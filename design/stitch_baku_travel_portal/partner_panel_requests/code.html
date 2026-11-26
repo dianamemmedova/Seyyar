@@ -1,0 +1,414 @@
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Partner Panel — Requests</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script id="tailwind-config">/** @type {import('tailwindcss').Config} */
+globalThis.tailwind = globalThis.tailwind || {};
+globalThis.tailwind.config = {
+  darkMode: 'class',
+  theme: {
+    extend: {
+      colors: {
+        'primary': '#3F5E4A',
+        'on-primary': '#FFFFFF',
+        'primary-container': '#D6F9DF',
+        'on-primary-container': '#183625',
+        'sage': '#7A9E7E',
+        'on-sage': '#15351E',
+        'sage-soft': '#EBF2EC',
+        'secondary': '#8B6B4F',
+        'on-secondary': '#FFFFFF',
+        'secondary-container': '#FFEEE1',
+        'on-secondary-container': '#432B14',
+        'terracotta': '#C98B6B',
+        'on-terracotta': '#2E1A10',
+        'terracotta-soft': '#F7EAE2',
+        'surface': '#F7F3EC',
+        'on-surface': '#2E2A26',
+        'surface-card': '#FFFFFF',
+        'on-surface-card': '#2E2A26',
+        'sand': '#E8DFD0',
+        'on-sand': '#2E2A26',
+        'on-surface-variant': '#655D56',
+        'muted': '#7A716A',
+        'outline': '#DDD5C7',
+        'outline-variant': '#EAE1D2',
+        'success': '#4A7C59',
+        'on-success': '#FFFFFF',
+        'warning': '#B58238',
+        'on-warning': '#201B15',
+        'error': '#A84A42',
+        'on-error': '#FFFFFF',
+      },
+      borderRadius: {
+        'sm': '8px',
+        'DEFAULT': '12px',
+        'md': '12px',
+        'lg': '16px',
+        'xl': '24px',
+        'full': '9999px',
+      },
+      spacing: {
+        'gutter-xs': '4px',
+        'gutter-sm': '8px',
+        'gutter-md': '16px',
+        'gutter-lg': '24px',
+        'gutter-xl': '32px',
+        'section': '64px',
+        'page-margin': '24px',
+      },
+      fontFamily: {
+        'display': ['"Plus Jakarta Sans"', 'sans-serif'],
+        'headline': ['"Plus Jakarta Sans"', 'sans-serif'],
+        'title': ['"Plus Jakarta Sans"', 'sans-serif'],
+        'body': ['"Plus Jakarta Sans"', 'sans-serif'],
+        'label': ['"Plus Jakarta Sans"', 'sans-serif'],
+      },
+      fontSize: {
+        'display-lg': ['44px', { lineHeight: '52px', letterSpacing: '-0.5px', fontWeight: '700' }],
+        'display-lg-mobile': ['30px', { lineHeight: '38px', letterSpacing: '-0.25px', fontWeight: '700' }],
+        'headline-lg': ['32px', { lineHeight: '40px', letterSpacing: '-0.25px', fontWeight: '700' }],
+        'headline-md': ['24px', { lineHeight: '32px', letterSpacing: '-0.15px', fontWeight: '700' }],
+        'headline-sm': ['18px', { lineHeight: '26px', letterSpacing: '0px', fontWeight: '600' }],
+        'title-md': ['16px', { lineHeight: '24px', letterSpacing: '0px', fontWeight: '600' }],
+        'body-lg': ['16px', { lineHeight: '26px', letterSpacing: '0px', fontWeight: '400' }],
+        'body-md': ['14px', { lineHeight: '22px', letterSpacing: '0px', fontWeight: '400' }],
+        'body-sm': ['13px', { lineHeight: '18px', letterSpacing: '0px', fontWeight: '400' }],
+        'label-lg': ['14px', { lineHeight: '20px', letterSpacing: '0px', fontWeight: '600' }],
+        'label-md': ['12px', { lineHeight: '16px', letterSpacing: '0.2px', fontWeight: '600' }],
+        'label-sm': ['11px', { lineHeight: '14px', letterSpacing: '0.3px', fontWeight: '600' }],
+      },
+      transitionDuration: {
+        'state-change': '150ms',
+        'surface-enter': '250ms',
+        'surface-exit': '150ms',
+      },
+      transitionDelay: {
+        'state-change': '0ms',
+        'surface-enter': '0ms',
+        'surface-exit': '0ms',
+      },
+      transitionTimingFunction: {
+        'state-change': 'ease-out',
+        'surface-enter': 'cubic-bezier(0.2, 0, 0, 1)',
+        'surface-exit': 'cubic-bezier(0.3, 0, 1, 1)',
+      },
+    },
+  },
+};
+if (typeof module !== 'undefined') module.exports = globalThis.tailwind.config;
+</script>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block" rel="stylesheet">
+  <style>
+    .material-symbols-outlined { display: inline-block; width: 1em; height: 1em; line-height: 1 !important; box-sizing: content-box; overflow: hidden; white-space: nowrap; direction: ltr; vertical-align: middle; }
+  </style>
+</head>
+<body class="bg-surface text-on-surface font-body antialiased">
+  <div class="min-h-[1024px] flex flex-col lg:flex-row" data-stitch-vh="min-h-[1024px]===min-h-screen">
+
+    <!-- Mobile Top Bar -->
+    <div class="lg:hidden sticky top-0 z-40 bg-surface-card border-b border-outline-variant px-4 py-3 flex items-center justify-between">
+      <div class="flex items-center gap-2.5">
+        <img src="https://lh3.googleusercontent.com/aida/ALJJyrA7vM1ovkU9Uv36AKnPStPNuRmATuO3LdGVQMv6V_RFJ9Pg2ZCWfsr8m8SCvJut7Lkd85-T7J8V9RlQg6pEsBRrlfXxJiicMwLH7c5hYNwsccIfaDSAgwsXnPP7DRCkaFPuWldLmqVHWZyG6iDSW9QTeO3O9mFk62EMC0AhBBfx35L4iKJ48q5Ep4ZPJCtB1RmogTdTZpV7gFtoSYHuuASJyvWpR5-XjtjRr18_TUDGpYI9Gfs8iOKwBYnG" alt="Shirvanshah Boutique Hotel" class="w-8 h-8 rounded-md object-cover">
+        <span class="font-title text-title-md text-on-surface">Shirvanshah Hotel</span>
+      </div>
+      <a href="../partner-dashboard/PartnerDashboard.html" class="font-label text-label-md text-primary">Dashboard</a>
+    </div>
+
+    <!-- Desktop Left Sidebar -->
+    <aside class="hidden lg:flex lg:w-64 shrink-0 bg-surface-card border-r border-outline-variant p-5 flex-col justify-between min-h-[1024px] sticky top-0 self-start" data-stitch-vh="min-h-[1024px]===min-h-screen">
+      <div class="flex flex-col gap-6">
+        <div class="flex items-center gap-3 pb-4 border-b border-outline-variant">
+          <img src="https://lh3.googleusercontent.com/aida/ALJJyrA7vM1ovkU9Uv36AKnPStPNuRmATuO3LdGVQMv6V_RFJ9Pg2ZCWfsr8m8SCvJut7Lkd85-T7J8V9RlQg6pEsBRrlfXxJiicMwLH7c5hYNwsccIfaDSAgwsXnPP7DRCkaFPuWldLmqVHWZyG6iDSW9QTeO3O9mFk62EMC0AhBBfx35L4iKJ48q5Ep4ZPJCtB1RmogTdTZpV7gFtoSYHuuASJyvWpR5-XjtjRr18_TUDGpYI9Gfs8iOKwBYnG" alt="Shirvanshah Boutique Hotel" class="w-11 h-11 rounded-md object-cover shrink-0">
+          <div class="min-w-0">
+            <h2 class="font-title text-title-md text-on-surface truncate">Shirvanshah Hotel</h2>
+            <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-sage-soft text-on-sage font-label text-label-sm mt-0.5">
+              <span class="material-symbols-outlined text-[13px]" aria-hidden="true">verified</span>
+              <span>Verified partner</span>
+            </span>
+          </div>
+        </div>
+
+        <nav aria-label="Partner" class="flex flex-col gap-1">
+          <a href="../partner-dashboard/PartnerDashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-md text-on-surface-variant hover:bg-sand hover:text-on-surface font-label text-label-md transition-colors">
+            <span class="material-symbols-outlined text-[19px]" aria-hidden="true">dashboard</span>
+            <span>Dashboard</span>
+          </a>
+          <a href="../partner-requests/PartnerRequests.html" class="flex items-center justify-between px-3 py-2.5 rounded-md bg-sage-soft text-primary font-label text-label-md">
+            <span class="flex items-center gap-3"><span class="material-symbols-outlined text-[19px]" aria-hidden="true">inbox</span><span>Requests</span></span>
+            <span class="px-2 py-0.5 rounded-full bg-terracotta text-on-terracotta font-label text-label-sm tabular-nums">3</span>
+          </a>
+          <a href="../partner-profile/PartnerProfile.html" class="flex items-center gap-3 px-3 py-2.5 rounded-md text-on-surface-variant hover:bg-sand hover:text-on-surface font-label text-label-md transition-colors">
+            <span class="material-symbols-outlined text-[19px]" aria-hidden="true">storefront</span>
+            <span>Profile</span>
+          </a>
+          <a href="../partner-rooms-menu/PartnerRoomsMenu.html" class="flex items-center gap-3 px-3 py-2.5 rounded-md text-on-surface-variant hover:bg-sand hover:text-on-surface font-label text-label-md transition-colors">
+            <span class="material-symbols-outlined text-[19px]" aria-hidden="true">bed</span>
+            <span>Rooms / Menu</span>
+          </a>
+          <a href="../partner-offers-billing/PartnerOffersBilling.html#offers" class="flex items-center gap-3 px-3 py-2.5 rounded-md text-on-surface-variant hover:bg-sand hover:text-on-surface font-label text-label-md transition-colors">
+            <span class="material-symbols-outlined text-[19px]" aria-hidden="true">local_offer</span>
+            <span>Offers</span>
+          </a>
+          <a href="../partner-dashboard/PartnerDashboard.html#reviews" class="flex items-center gap-3 px-3 py-2.5 rounded-md text-on-surface-variant hover:bg-sand hover:text-on-surface font-label text-label-md transition-colors">
+            <span class="material-symbols-outlined text-[19px]" aria-hidden="true">reviews</span>
+            <span>Reviews</span>
+          </a>
+          <a href="../partner-offers-billing/PartnerOffersBilling.html#statistics" class="flex items-center gap-3 px-3 py-2.5 rounded-md text-on-surface-variant hover:bg-sand hover:text-on-surface font-label text-label-md transition-colors">
+            <span class="material-symbols-outlined text-[19px]" aria-hidden="true">bar_chart</span>
+            <span>Statistics</span>
+          </a>
+          <a href="../partner-offers-billing/PartnerOffersBilling.html#billing" class="flex items-center gap-3 px-3 py-2.5 rounded-md text-on-surface-variant hover:bg-sand hover:text-on-surface font-label text-label-md transition-colors">
+            <span class="material-symbols-outlined text-[19px]" aria-hidden="true">receipt</span>
+            <span>Billing</span>
+          </a>
+          <a href="../partner-profile/PartnerProfile.html#settings" class="flex items-center gap-3 px-3 py-2.5 rounded-md text-on-surface-variant hover:bg-sand hover:text-on-surface font-label text-label-md transition-colors">
+            <span class="material-symbols-outlined text-[19px]" aria-hidden="true">settings</span>
+            <span>Settings</span>
+          </a>
+        </nav>
+      </div>
+
+      <a href="../hotel-detail/HotelDetail.html" class="flex items-center gap-2 px-3 py-2 rounded-md bg-surface border border-outline-variant font-label text-label-md text-primary hover:bg-sand">
+        <span class="material-symbols-outlined text-[18px]" aria-hidden="true">open_in_new</span>
+        <span>View public listing</span>
+      </a>
+    </aside>
+
+    <!-- Main Requests Content -->
+    <main class="flex-1 p-6 lg:p-8 pb-24 flex flex-col gap-6 max-w-[1160px]">
+      <div class="flex flex-wrap items-center justify-between gap-4">
+        <div>
+          <h1 class="font-headline text-headline-lg text-on-surface">Requests</h1>
+          <p class="font-body text-body-md text-on-surface-variant">Click any row to view full details or chat with the guest.</p>
+        </div>
+        <div class="flex items-center gap-1 bg-surface-card p-1 rounded-md border border-outline-variant">
+          <button type="button" id="btn-list" onclick="toggleCalendar(false)" class="px-3.5 py-1.5 rounded-sm bg-primary text-on-primary font-label text-label-md">Table view</button>
+          <button type="button" id="btn-cal" onclick="toggleCalendar(true)" class="px-3.5 py-1.5 rounded-sm text-on-surface-variant hover:text-on-surface font-label text-label-md">Calendar view</button>
+        </div>
+      </div>
+
+      <!-- Status Tabs + Search & Date Filter -->
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div class="flex flex-wrap gap-1.5">
+          <button type="button" onclick="filterTab(&#39;new&#39;, this)" class="req-tab px-3.5 py-1.5 rounded-full bg-primary text-on-primary font-label text-label-md">New (3)</button>
+          <button type="button" onclick="filterTab(&#39;confirmed&#39;, this)" class="req-tab px-3.5 py-1.5 rounded-full bg-surface-card border border-outline-variant text-on-surface font-label text-label-md hover:bg-sand">Confirmed (2)</button>
+          <button type="button" onclick="filterTab(&#39;arrived&#39;, this)" class="req-tab px-3.5 py-1.5 rounded-full bg-surface-card border border-outline-variant text-on-surface font-label text-label-md hover:bg-sand">Arrived (1)</button>
+          <button type="button" onclick="filterTab(&#39;no-show&#39;, this)" class="req-tab px-3.5 py-1.5 rounded-full bg-surface-card border border-outline-variant text-on-surface font-label text-label-md hover:bg-sand">No-show (0)</button>
+          <button type="button" onclick="filterTab(&#39;declined&#39;, this)" class="req-tab px-3.5 py-1.5 rounded-full bg-surface-card border border-outline-variant text-on-surface font-label text-label-md hover:bg-sand">Declined (1)</button>
+        </div>
+        <div class="flex gap-2">
+          <input type="search" placeholder="Search guest or code..." class="rounded-md border border-outline bg-surface-card px-3 py-2 font-body text-body-sm text-on-surface focus:border-primary focus:ring-primary">
+          <input type="date" aria-label="Filter by date" value="2026-12-10" class="rounded-md border border-outline bg-surface-card px-3 py-2 font-body text-body-sm text-on-surface tabular-nums focus:border-primary focus:ring-primary">
+        </div>
+      </div>
+
+      <!-- Table View -->
+      <section id="table-view" class="bg-surface-card rounded-lg border border-outline-variant overflow-x-auto shadow-[0_4px_20px_rgba(46,42,38,0.05)]">
+        <table class="w-full text-left border-collapse min-w-[780px]">
+          <thead>
+            <tr class="border-b border-outline-variant bg-surface font-label text-label-md text-on-surface-variant">
+              <th class="py-3 px-4">Code</th>
+              <th class="py-3 px-4">Guest &amp; Phone</th>
+              <th class="py-3 px-4">Date / Time</th>
+              <th class="py-3 px-4">People</th>
+              <th class="py-3 px-4">Room / Pre-order</th>
+              <th class="py-3 px-4">Note</th>
+              <th class="py-3 px-4">Status</th>
+              <th class="py-3 px-4 text-right">Actions</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-outline-variant font-body text-body-sm">
+            <tr onclick="openGuestDrawer(&#39;Claire Bennett&#39;, &#39;TRZ-1091&#39;)" class="req-row cursor-pointer hover:bg-surface/60" data-tab="new">
+              <td class="py-3.5 px-4 font-label text-primary tabular-nums">TRZ-1091</td>
+              <td class="py-3.5 px-4">
+                <span class="font-title text-on-surface block">Claire Bennett</span>
+                <span class="inline-flex items-center gap-1 text-primary tabular-nums"><span class="material-symbols-outlined text-[14px]">chat</span> +44 7700 900123</span>
+              </td>
+              <td class="py-3.5 px-4 tabular-nums">Dec 14–17</td>
+              <td class="py-3.5 px-4 tabular-nums">2 adults</td>
+              <td class="py-3.5 px-4">Deluxe Courtyard</td>
+              <td class="py-3.5 px-4 text-on-surface-variant">Quiet room</td>
+              <td class="py-3.5 px-4"><span class="px-2.5 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label text-label-sm">New</span></td>
+              <td class="py-3.5 px-4 text-right whitespace-nowrap" onclick="event.stopPropagation()">
+                <button type="button" onclick="showToast(&#39;Confirmed TRZ-1091&#39;)" class="px-2.5 py-1 rounded-md bg-primary text-on-primary font-label text-label-sm mr-1">Confirm</button>
+                <button type="button" onclick="openDeclineModal(&#39;TRZ-1091&#39;)" class="px-2.5 py-1 rounded-md bg-surface border border-outline text-error font-label text-label-sm">Decline</button>
+              </td>
+            </tr>
+            <tr onclick="openGuestDrawer(&#39;Marcus Weber&#39;, &#39;TRZ-1094&#39;)" class="req-row cursor-pointer hover:bg-surface/60" data-tab="new">
+              <td class="py-3.5 px-4 font-label text-primary tabular-nums">TRZ-1094</td>
+              <td class="py-3.5 px-4">
+                <span class="font-title text-on-surface block">Marcus Weber</span>
+                <span class="inline-flex items-center gap-1 text-primary tabular-nums"><span class="material-symbols-outlined text-[14px]">chat</span> +49 170 442 190</span>
+              </td>
+              <td class="py-3.5 px-4 tabular-nums">Dec 19–22</td>
+              <td class="py-3.5 px-4 tabular-nums">4 guests</td>
+              <td class="py-3.5 px-4">Family Suite</td>
+              <td class="py-3.5 px-4 text-on-surface-variant">Baby crib</td>
+              <td class="py-3.5 px-4"><span class="px-2.5 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label text-label-sm">New</span></td>
+              <td class="py-3.5 px-4 text-right whitespace-nowrap" onclick="event.stopPropagation()">
+                <button type="button" onclick="showToast(&#39;Confirmed TRZ-1094&#39;)" class="px-2.5 py-1 rounded-md bg-primary text-on-primary font-label text-label-sm mr-1">Confirm</button>
+                <button type="button" onclick="openDeclineModal(&#39;TRZ-1094&#39;)" class="px-2.5 py-1 rounded-md bg-surface border border-outline text-error font-label text-label-sm">Decline</button>
+              </td>
+            </tr>
+            <tr onclick="openGuestDrawer(&#39;Amina Al-Mansoor&#39;, &#39;TRZ-1098&#39;)" class="req-row cursor-pointer hover:bg-surface/60" data-tab="new">
+              <td class="py-3.5 px-4 font-label text-primary tabular-nums">TRZ-1098</td>
+              <td class="py-3.5 px-4">
+                <span class="font-title text-on-surface block">Amina Al-Mansoor</span>
+                <span class="inline-flex items-center gap-1 text-primary tabular-nums"><span class="material-symbols-outlined text-[14px]">chat</span> +971 50 882 410</span>
+              </td>
+              <td class="py-3.5 px-4 tabular-nums">Dec 26–29</td>
+              <td class="py-3.5 px-4 tabular-nums">2 adults</td>
+              <td class="py-3.5 px-4">Old City Studio</td>
+              <td class="py-3.5 px-4 text-on-surface-variant">Airport taxi</td>
+              <td class="py-3.5 px-4"><span class="px-2.5 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label text-label-sm">New</span></td>
+              <td class="py-3.5 px-4 text-right whitespace-nowrap" onclick="event.stopPropagation()">
+                <button type="button" onclick="showToast(&#39;Confirmed TRZ-1098&#39;)" class="px-2.5 py-1 rounded-md bg-primary text-on-primary font-label text-label-sm mr-1">Confirm</button>
+                <button type="button" onclick="openDeclineModal(&#39;TRZ-1098&#39;)" class="px-2.5 py-1 rounded-md bg-surface border border-outline text-error font-label text-label-sm">Decline</button>
+              </td>
+            </tr>
+            <tr onclick="openGuestDrawer(&#39;Claire Bennett&#39;, &#39;TRZ-1042&#39;)" class="req-row hidden cursor-pointer hover:bg-surface/60" data-tab="confirmed">
+              <td class="py-3.5 px-4 font-label text-primary tabular-nums">TRZ-1042</td>
+              <td class="py-3.5 px-4">
+                <span class="font-title text-on-surface block">Claire Bennett</span>
+                <span class="inline-flex items-center gap-1 text-primary tabular-nums"><span class="material-symbols-outlined text-[14px]">chat</span> +44 7700 900123</span>
+              </td>
+              <td class="py-3.5 px-4 tabular-nums">Dec 10–13</td>
+              <td class="py-3.5 px-4 tabular-nums">2 adults</td>
+              <td class="py-3.5 px-4">Deluxe Courtyard</td>
+              <td class="py-3.5 px-4 text-on-surface-variant">Room 204</td>
+              <td class="py-3.5 px-4"><span class="px-2.5 py-0.5 rounded-full bg-sage-soft text-on-sage font-label text-label-sm">Confirmed</span></td>
+              <td class="py-3.5 px-4 text-right whitespace-nowrap" onclick="event.stopPropagation()">
+                <button type="button" onclick="showToast(&#39;Marked TRZ-1042 arrived&#39;)" class="px-2.5 py-1 rounded-md bg-sage-soft text-primary font-label text-label-sm">Mark arrived</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- Calendar View -->
+      <section id="calendar-view" class="hidden bg-surface-card rounded-lg border border-outline-variant p-6 flex-col gap-4 shadow-[0_4px_20px_rgba(46,42,38,0.05)]">
+        <h2 class="font-headline text-headline-sm text-on-surface">December 2026</h2>
+        <div class="grid grid-cols-7 gap-2 text-center font-label text-label-sm text-on-surface-variant">
+          <span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
+        </div>
+        <div class="grid grid-cols-7 gap-2 text-body-sm tabular-nums">
+          <div class="p-2.5 rounded-md bg-surface border border-outline-variant min-h-[72px]">7</div>
+          <div class="p-2.5 rounded-md bg-surface border border-outline-variant min-h-[72px]">8</div>
+          <div class="p-2.5 rounded-md bg-surface border border-outline-variant min-h-[72px]">9</div>
+          <div class="p-2.5 rounded-md bg-sage-soft border border-primary/30 min-h-[72px]">10 <span class="block text-label-sm text-on-sage mt-1">TRZ-1042</span></div>
+          <div class="p-2.5 rounded-md bg-sage-soft border border-primary/30 min-h-[72px]">11 <span class="block text-label-sm text-on-sage mt-1">TRZ-1042</span></div>
+          <div class="p-2.5 rounded-md bg-sage-soft border border-primary/30 min-h-[72px]">12 <span class="block text-label-sm text-on-sage mt-1">TRZ-1042</span></div>
+          <div class="p-2.5 rounded-md bg-surface border border-outline-variant min-h-[72px]">13</div>
+          <div class="p-2.5 rounded-md bg-secondary-container border border-secondary/30 min-h-[72px]">14 <span class="block text-label-sm text-on-secondary-container mt-1">TRZ-1091</span></div>
+          <div class="p-2.5 rounded-md bg-secondary-container border border-secondary/30 min-h-[72px]">15 <span class="block text-label-sm text-on-secondary-container mt-1">TRZ-1091</span></div>
+          <div class="p-2.5 rounded-md bg-secondary-container border border-secondary/30 min-h-[72px]">16 <span class="block text-label-sm text-on-secondary-container mt-1">TRZ-1091</span></div>
+          <div class="p-2.5 rounded-md bg-surface border border-outline-variant min-h-[72px]">17</div>
+          <div class="p-2.5 rounded-md bg-surface border border-outline-variant min-h-[72px]">18</div>
+          <div class="p-2.5 rounded-md bg-secondary-container border border-secondary/30 min-h-[72px]">19 <span class="block text-label-sm text-on-secondary-container mt-1">TRZ-1094</span></div>
+          <div class="p-2.5 rounded-md bg-secondary-container border border-secondary/30 min-h-[72px]">20 <span class="block text-label-sm text-on-secondary-container mt-1">TRZ-1094</span></div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Guest Detail & Chat Side Drawer -->
+  <div id="guest-drawer" class="hidden fixed inset-0 z-50">
+    <div class="fixed inset-0 bg-on-surface/40" onclick="this.parentElement.classList.add(&#39;hidden&#39;)"></div>
+    <aside class="fixed top-0 right-0 bottom-0 w-full max-w-md bg-surface-card p-6 flex flex-col justify-between gap-5 shadow-xl overflow-y-auto">
+      <div class="flex flex-col gap-5">
+        <div class="flex items-center justify-between border-b border-outline-variant pb-4">
+          <div>
+            <span id="drawer-code" class="font-label text-label-md text-primary tabular-nums">TRZ-1091</span>
+            <h2 id="drawer-guest" class="font-headline text-headline-sm text-on-surface">Claire Bennett</h2>
+          </div>
+          <button type="button" aria-label="Close drawer" onclick="document.getElementById(&#39;guest-drawer&#39;).classList.add(&#39;hidden&#39;)" class="w-8 h-8 rounded-full hover:bg-sand flex items-center justify-center">
+            <span class="material-symbols-outlined text-[20px]">close</span>
+          </button>
+        </div>
+
+        <dl class="grid grid-cols-2 gap-y-2.5 text-body-sm bg-surface rounded-md p-4 border border-outline-variant">
+          <dt class="text-on-surface-variant">Room</dt><dd class="font-label text-right">Deluxe Courtyard</dd>
+          <dt class="text-on-surface-variant">Check-in</dt><dd class="font-label text-right tabular-nums">Dec 14, 2026</dd>
+          <dt class="text-on-surface-variant">Total</dt><dd class="font-label text-primary text-right tabular-nums">340 ₼</dd>
+        </dl>
+
+        <div class="flex flex-col gap-3">
+          <h3 class="font-title text-title-md text-on-surface">Chat with guest</h3>
+          <div class="bg-surface rounded-md p-3.5 border border-outline-variant text-body-sm">
+            <p>“Hello! Could we request a quiet room away from the street?”</p>
+            <span class="text-muted text-label-sm block mt-1">Guest · 1h ago</span>
+          </div>
+        </div>
+      </div>
+
+      <form onsubmit="event.preventDefault(); showToast(&#39;Reply sent to guest&#39;); document.getElementById(&#39;guest-drawer&#39;).classList.add(&#39;hidden&#39;);" class="flex gap-2 pt-3 border-t border-outline-variant">
+        <input type="text" placeholder="Reply to guest..." class="flex-1 rounded-md border border-outline bg-surface px-3 py-2 text-body-sm">
+        <button type="submit" class="px-4 py-2 rounded-md bg-primary text-on-primary font-label text-label-md">Send</button>
+      </form>
+    </aside>
+  </div>
+
+  <!-- Decline Modal -->
+  <div id="decline-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4">
+    <div class="fixed inset-0 bg-on-surface/50" onclick="this.parentElement.classList.add(&#39;hidden&#39;)"></div>
+    <div role="dialog" aria-modal="true" class="relative z-10 max-w-md w-full bg-surface-card rounded-lg border border-outline-variant p-6 shadow-xl flex flex-col gap-4">
+      <h2 class="font-headline text-headline-sm text-on-surface">Decline request <span id="decline-code" class="tabular-nums"></span></h2>
+      <div class="flex flex-col gap-2 text-body-md">
+        <label class="flex items-center gap-2.5"><input type="radio" name="reason" checked class="text-primary"> Fully booked on these dates</label>
+        <label class="flex items-center gap-2.5"><input type="radio" name="reason" class="text-primary"> Requested room type unavailable</label>
+        <label class="flex items-center gap-2.5"><input type="radio" name="reason" class="text-primary"> Maintenance / closed dates</label>
+      </div>
+      <div class="flex justify-end gap-2 pt-2">
+        <button type="button" onclick="document.getElementById(&#39;decline-modal&#39;).classList.add(&#39;hidden&#39;)" class="px-4 py-2 rounded-md bg-surface border border-outline font-label text-label-md">Cancel</button>
+        <button type="button" onclick="document.getElementById(&#39;decline-modal&#39;).classList.add(&#39;hidden&#39;); showToast(&#39;Decline reason sent to guest&#39;);" class="px-4 py-2 rounded-md bg-error text-on-error font-label text-label-md">Confirm decline</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" role="status" aria-live="polite" class="hidden fixed bottom-6 right-6 z-50 bg-primary text-on-primary px-4 py-3 rounded-md shadow-lg flex items-center gap-2.5 font-body text-body-md">
+    <span class="material-symbols-outlined text-[18px]" aria-hidden="true">check_circle</span>
+    <span id="toast-message"></span>
+  </div>
+
+  <script>
+    let toastTimer;
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      document.getElementById('toast-message').textContent = msg;
+      toast.classList.remove('hidden');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.add('hidden'), 3000);
+    }
+    function filterTab(tab, btn) {
+      document.querySelectorAll('.req-tab').forEach(b => {
+        b.className = 'req-tab px-3.5 py-1.5 rounded-full bg-surface-card border border-outline-variant text-on-surface font-label text-label-md hover:bg-sand';
+      });
+      btn.className = 'req-tab px-3.5 py-1.5 rounded-full bg-primary text-on-primary font-label text-label-md';
+      document.querySelectorAll('.req-row').forEach(r => {
+        r.classList.toggle('hidden', r.dataset.tab !== tab);
+      });
+    }
+    function toggleCalendar(show) {
+      document.getElementById('table-view').classList.toggle('hidden', show);
+      const cal = document.getElementById('calendar-view');
+      cal.classList.toggle('hidden', !show);
+      cal.classList.toggle('flex', show);
+      document.getElementById('btn-list').className = show ? 'px-3.5 py-1.5 rounded-sm text-on-surface-variant hover:text-on-surface font-label text-label-md' : 'px-3.5 py-1.5 rounded-sm bg-primary text-on-primary font-label text-label-md';
+      document.getElementById('btn-cal').className = show ? 'px-3.5 py-1.5 rounded-sm bg-primary text-on-primary font-label text-label-md' : 'px-3.5 py-1.5 rounded-sm text-on-surface-variant hover:text-on-surface font-label text-label-md';
+    }
+    function openGuestDrawer(name, code) {
+      document.getElementById('drawer-guest').textContent = name;
+      document.getElementById('drawer-code').textContent = code;
+      document.getElementById('guest-drawer').classList.remove('hidden');
+    }
+    function openDeclineModal(code) {
+      document.getElementById('decline-code').textContent = code;
+      document.getElementById('decline-modal').classList.remove('hidden');
+    }
+  </script>
+
+
+</body></html>

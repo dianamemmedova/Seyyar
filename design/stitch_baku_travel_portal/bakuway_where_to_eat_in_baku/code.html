@@ -1,0 +1,609 @@
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BakuWay — Where to Eat in Baku</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script id="tailwind-config">/** @type {import('tailwindcss').Config} */
+globalThis.tailwind = globalThis.tailwind || {};
+globalThis.tailwind.config = {
+  darkMode: 'class',
+  theme: {
+    extend: {
+      colors: {
+        'primary': '#3F5E4A',
+        'on-primary': '#FFFFFF',
+        'primary-container': '#D6F9DF',
+        'on-primary-container': '#183625',
+        'sage': '#7A9E7E',
+        'on-sage': '#15351E',
+        'sage-soft': '#EBF2EC',
+        'secondary': '#8B6B4F',
+        'on-secondary': '#FFFFFF',
+        'secondary-container': '#FFEEE1',
+        'on-secondary-container': '#432B14',
+        'terracotta': '#C98B6B',
+        'on-terracotta': '#2E1A10',
+        'terracotta-soft': '#F7EAE2',
+        'surface': '#F7F3EC',
+        'on-surface': '#2E2A26',
+        'surface-card': '#FFFFFF',
+        'on-surface-card': '#2E2A26',
+        'sand': '#E8DFD0',
+        'on-sand': '#2E2A26',
+        'on-surface-variant': '#655D56',
+        'muted': '#7A716A',
+        'outline': '#DDD5C7',
+        'outline-variant': '#EAE1D2',
+        'success': '#4A7C59',
+        'on-success': '#FFFFFF',
+        'warning': '#B58238',
+        'on-warning': '#201B15',
+        'error': '#A84A42',
+        'on-error': '#FFFFFF',
+      },
+      borderRadius: {
+        'sm': '8px',
+        'DEFAULT': '12px',
+        'md': '12px',
+        'lg': '16px',
+        'xl': '24px',
+        'full': '9999px',
+      },
+      spacing: {
+        'gutter-xs': '4px',
+        'gutter-sm': '8px',
+        'gutter-md': '16px',
+        'gutter-lg': '24px',
+        'gutter-xl': '32px',
+        'section': '64px',
+        'page-margin': '24px',
+      },
+      fontFamily: {
+        'display': ['"Plus Jakarta Sans"', 'sans-serif'],
+        'headline': ['"Plus Jakarta Sans"', 'sans-serif'],
+        'title': ['"Plus Jakarta Sans"', 'sans-serif'],
+        'body': ['"Plus Jakarta Sans"', 'sans-serif'],
+        'label': ['"Plus Jakarta Sans"', 'sans-serif'],
+      },
+      fontSize: {
+        'display-lg': ['44px', { lineHeight: '52px', letterSpacing: '-0.5px', fontWeight: '700' }],
+        'display-lg-mobile': ['30px', { lineHeight: '38px', letterSpacing: '-0.25px', fontWeight: '700' }],
+        'headline-lg': ['32px', { lineHeight: '40px', letterSpacing: '-0.25px', fontWeight: '700' }],
+        'headline-md': ['24px', { lineHeight: '32px', letterSpacing: '-0.15px', fontWeight: '700' }],
+        'headline-sm': ['18px', { lineHeight: '26px', letterSpacing: '0px', fontWeight: '600' }],
+        'title-md': ['16px', { lineHeight: '24px', letterSpacing: '0px', fontWeight: '600' }],
+        'body-lg': ['16px', { lineHeight: '26px', letterSpacing: '0px', fontWeight: '400' }],
+        'body-md': ['14px', { lineHeight: '22px', letterSpacing: '0px', fontWeight: '400' }],
+        'body-sm': ['13px', { lineHeight: '18px', letterSpacing: '0px', fontWeight: '400' }],
+        'label-lg': ['14px', { lineHeight: '20px', letterSpacing: '0px', fontWeight: '600' }],
+        'label-md': ['12px', { lineHeight: '16px', letterSpacing: '0.2px', fontWeight: '600' }],
+        'label-sm': ['11px', { lineHeight: '14px', letterSpacing: '0.3px', fontWeight: '600' }],
+      },
+      transitionDuration: {
+        'state-change': '150ms',
+        'surface-enter': '250ms',
+        'surface-exit': '150ms',
+      },
+      transitionDelay: {
+        'state-change': '0ms',
+        'surface-enter': '0ms',
+        'surface-exit': '0ms',
+      },
+      transitionTimingFunction: {
+        'state-change': 'ease-out',
+        'surface-enter': 'cubic-bezier(0.2, 0, 0, 1)',
+        'surface-exit': 'cubic-bezier(0.3, 0, 1, 1)',
+      },
+    },
+  },
+};
+if (typeof module !== 'undefined') module.exports = globalThis.tailwind.config;
+</script>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block" rel="stylesheet">
+  <style>
+    .material-symbols-outlined { display: inline-block; width: 1em; height: 1em; line-height: 1 !important; box-sizing: content-box; overflow: hidden; white-space: nowrap; direction: ltr; vertical-align: middle; }
+  </style>
+</head>
+<body class="bg-surface text-on-surface font-body antialiased">
+  <div class="min-h-[1024px] flex flex-col" data-stitch-vh="min-h-[1024px]===min-h-screen">
+
+    <!-- Sticky Header -->
+    <header id="site-header" class="sticky top-0 z-40 bg-surface shadow-[0_4px_16px_rgba(46,42,38,0.05)] transition-colors duration-state-change">
+      <div class="max-w-[1200px] mx-auto px-6 min-h-[72px] py-2 flex items-center justify-between gap-4">
+        <a href="../home/Home.html" class="flex items-center gap-2.5 shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-md">
+          <span class="w-9 h-9 rounded-md bg-sage text-on-sage flex items-center justify-center">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M12 4C8 4 5 7.5 5 11.5C5 16 8.5 19.5 12 20C15.5 19.5 19 16 19 11.5C19 7.5 16 4 12 4Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"></path>
+              <path d="M12 8V17M12 12L15 9.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path>
+            </svg>
+          </span>
+          <span class="font-headline text-headline-sm text-primary font-bold tracking-tight" data-design-text-token="headline-sm">BakuWay</span>
+        </a>
+
+        <nav aria-label="Primary" class="hidden lg:flex items-center gap-2">
+          <a href="../hotels-search/HotelsSearch.html" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full font-label text-label-md text-on-surface-variant hover:bg-sand hover:text-on-surface transition-colors">
+            <span class="material-symbols-outlined text-[18px]" aria-hidden="true">hotel</span>
+            <span>Stay</span>
+          </a>
+          <a href="RestaurantsSearch.html" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-sage-soft text-primary font-label text-label-md font-semibold">
+            <span class="material-symbols-outlined text-[18px]" aria-hidden="true">restaurant</span>
+            <span>Eat</span>
+          </a>
+          <a href="../home/Home.html#places" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full font-label text-label-md text-on-surface-variant hover:bg-sand hover:text-on-surface transition-colors">
+            <span class="material-symbols-outlined text-[18px]" aria-hidden="true">explore</span>
+            <span>Explore</span>
+          </a>
+          <a href="../home/Home.html#airport-guide" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full font-label text-label-md text-on-surface-variant hover:bg-sand hover:text-on-surface transition-colors">
+            <span class="material-symbols-outlined text-[18px]" aria-hidden="true">commute</span>
+            <span>Getting around</span>
+          </a>
+          <a href="../home/Home.html#intercity" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full font-label text-label-md text-on-surface-variant hover:bg-sand hover:text-on-surface transition-colors">
+            <span class="material-symbols-outlined text-[18px]" aria-hidden="true">directions_car</span>
+            <span>Rides to regions</span>
+          </a>
+        </nav>
+
+        <div class="flex items-center gap-2.5 shrink-0">
+          <button type="button" aria-label="Search" onclick="document.getElementById(&#39;eat-search-input&#39;).focus()" class="inline-flex items-center justify-center w-9 h-9 rounded-full bg-surface-card text-on-surface-variant hover:bg-sand hover:text-on-surface transition-colors">
+            <span class="material-symbols-outlined text-[19px]" aria-hidden="true">search</span>
+          </button>
+
+          <div class="relative hidden sm:block">
+            <button type="button" onclick="document.getElementById(&#39;locale-dropdown&#39;).classList.toggle(&#39;hidden&#39;)" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface-card border border-outline-variant text-on-surface font-label text-label-md hover:bg-sand transition-colors">
+              <span>EN · ₼</span>
+              <span class="material-symbols-outlined text-[16px] text-on-surface-variant" aria-hidden="true">expand_more</span>
+            </button>
+            <div id="locale-dropdown" class="hidden absolute right-0 mt-2 w-40 bg-surface-card rounded-lg border border-outline-variant shadow-lg p-3 flex flex-col gap-2 z-50">
+              <span class="font-label text-label-sm text-on-surface-variant">EN · RU · AZ</span>
+              <span class="font-label text-label-sm text-on-surface-variant">₼ AZN · $ USD · € EUR</span>
+            </div>
+          </div>
+
+          <button type="button" aria-label="Open saved favorites" onclick="showToast(&#39;3 restaurants saved in your Baku list.&#39;)" class="hidden sm:inline-flex relative items-center justify-center w-9 h-9 rounded-full bg-surface-card text-on-surface-variant hover:bg-sand hover:text-on-surface transition-colors">
+            <span class="material-symbols-outlined text-[19px]" aria-hidden="true">favorite</span>
+            <span class="absolute -top-1 -right-1 inline-flex items-center justify-center min-w-5 h-5 px-1 rounded-full bg-terracotta text-on-terracotta font-label text-label-sm tabular-nums" aria-hidden="true">3</span>
+          </button>
+
+          <button type="button" onclick="showToast(&#39;Log in modal opened.&#39;)" class="hidden md:inline-flex items-center px-2 py-1.5 font-label text-label-md text-on-surface-variant hover:text-primary transition-colors">Log in</button>
+
+          <button type="button" onclick="showToast(&#39;Partner registration opened.&#39;)" class="hidden sm:inline-flex items-center justify-center px-3.5 py-1.5 rounded-md bg-surface-card text-secondary border border-secondary font-label text-label-md hover:bg-secondary-container transition-colors">Become a partner</button>
+
+          <button type="button" aria-label="Open navigation menu" onclick="document.getElementById(&#39;mobile-drawer&#39;).classList.remove(&#39;hidden&#39;)" class="lg:hidden inline-flex items-center justify-center w-9 h-9 rounded-full bg-surface-card text-on-surface hover:bg-sand transition-colors">
+            <span class="material-symbols-outlined text-[20px]" aria-hidden="true">menu</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Mobile Full-Height Drawer -->
+    <div id="mobile-drawer" class="hidden fixed inset-0 z-50">
+      <div class="fixed inset-0 bg-on-surface/40" onclick="this.parentElement.classList.add(&#39;hidden&#39;)"></div>
+      <aside class="fixed top-0 right-0 bottom-0 w-72 bg-surface-card p-6 flex flex-col gap-6 shadow-xl">
+        <div class="flex items-center justify-between">
+          <span class="font-headline text-headline-sm text-primary font-bold">BakuWay</span>
+          <button type="button" aria-label="Close menu" onclick="document.getElementById(&#39;mobile-drawer&#39;).classList.add(&#39;hidden&#39;)" class="w-9 h-9 rounded-full hover:bg-sand flex items-center justify-center">
+            <span class="material-symbols-outlined text-[20px]">close</span>
+          </button>
+        </div>
+        <nav class="flex flex-col gap-2">
+          <a href="../hotels-search/HotelsSearch.html" class="flex items-center gap-3 px-3 py-2.5 rounded-full text-on-surface-variant hover:bg-sand font-label text-label-lg"><span class="material-symbols-outlined text-[20px]">hotel</span> Stay</a>
+          <a href="RestaurantsSearch.html" class="flex items-center gap-3 px-3 py-2.5 rounded-full bg-sage-soft text-primary font-label text-label-lg"><span class="material-symbols-outlined text-[20px]">restaurant</span> Eat</a>
+          <a href="../home/Home.html#places" class="flex items-center gap-3 px-3 py-2.5 rounded-full text-on-surface-variant hover:bg-sand font-label text-label-lg"><span class="material-symbols-outlined text-[20px]">explore</span> Explore</a>
+          <a href="../home/Home.html#airport-guide" class="flex items-center gap-3 px-3 py-2.5 rounded-full text-on-surface-variant hover:bg-sand font-label text-label-lg"><span class="material-symbols-outlined text-[20px]">commute</span> Getting around</a>
+          <a href="../home/Home.html#intercity" class="flex items-center gap-3 px-3 py-2.5 rounded-full text-on-surface-variant hover:bg-sand font-label text-label-lg"><span class="material-symbols-outlined text-[20px]">directions_car</span> Rides to regions</a>
+        </nav>
+      </aside>
+    </div>
+
+    <!-- Top Search & Cuisine Guide Banner -->
+    <section class="bg-surface-card border-b border-outline-variant py-6">
+      <div class="max-w-[1200px] mx-auto px-6 flex flex-col gap-5">
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+          <div>
+            <h1 class="font-headline text-headline-lg text-on-surface" data-design-text-token="headline-lg">Where to eat in Baku</h1>
+            <p class="font-body text-body-md text-on-surface-variant">94 verified tea houses, family kitchens, and Caspian terraces · <a href="../cuisine-guide/CuisineGuide.html" class="text-primary font-semibold hover:underline">Read Azerbaijani cuisine guide</a></p>
+          </div>
+          <div class="inline-flex rounded-full bg-surface p-1 border border-outline-variant self-start">
+            <button type="button" id="view-list-btn" onclick="setViewMode(&#39;list&#39;)" class="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-primary text-on-primary font-label text-label-md">
+              <span class="material-symbols-outlined text-[16px]" aria-hidden="true">view_module</span> List
+            </button>
+            <button type="button" id="view-map-btn" onclick="setViewMode(&#39;map&#39;)" class="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-on-surface-variant hover:text-on-surface font-label text-label-md">
+              <span class="material-symbols-outlined text-[16px]" aria-hidden="true">map</span> Map
+            </button>
+          </div>
+        </div>
+
+        <form onsubmit="event.preventDefault(); showToast(&#39;Updated restaurant results.&#39;);" class="grid grid-cols-1 md:grid-cols-12 gap-3 items-center">
+          <div class="md:col-span-6 relative flex items-center">
+            <span class="material-symbols-outlined text-[18px] text-on-surface-variant absolute left-3.5 pointer-events-none" aria-hidden="true">search</span>
+            <input id="eat-search-input" type="text" placeholder="Search dish (plov, qutab), restaurant, or area..." class="w-full pl-10 pr-4 py-2.5 rounded-md bg-surface border border-outline text-on-surface font-body text-body-md focus:outline-none focus-visible:ring-2 focus-visible:ring-primary">
+          </div>
+          <div class="md:col-span-4 relative flex items-center">
+            <span class="material-symbols-outlined text-[18px] text-on-surface-variant absolute left-3.5 pointer-events-none" aria-hidden="true">location_on</span>
+            <select class="w-full pl-10 pr-3 py-2.5 rounded-md bg-surface border border-outline text-on-surface font-body text-body-md focus:outline-none focus-visible:ring-2 focus-visible:ring-primary">
+              <option selected>All Baku areas</option>
+              <option>Icherisheher (Old City)</option>
+              <option>Fountain Square &amp; Nizami</option>
+              <option>Seaside Boulevard</option>
+            </select>
+          </div>
+          <div class="md:col-span-2">
+            <button type="submit" class="w-full py-2.5 px-4 rounded-md bg-primary text-on-primary font-label text-label-lg hover:opacity-90 transition-opacity">Search</button>
+          </div>
+        </form>
+
+        <!-- Try National Dishes Filter Strip -->
+        <div class="flex flex-col gap-2.5">
+          <div class="flex items-center justify-between">
+            <span class="font-label text-label-md text-on-surface-variant">Try national dishes</span>
+            <a href="../cuisine-guide/CuisineGuide.html" class="font-label text-label-md text-primary hover:underline">What to order?</a>
+          </div>
+          <div class="flex items-center gap-3 overflow-x-auto pb-1">
+            <button type="button" onclick="toggleDishFilter(this, &#39;Plov&#39;)" class="dish-pill inline-flex items-center gap-2.5 pl-1.5 pr-4 py-1.5 rounded-full bg-surface border border-outline-variant hover:bg-sand font-label text-label-md text-on-surface shrink-0 transition-colors">
+              <img src="https://lh3.googleusercontent.com/aida/ALJJyrBEohQFioV2V-UKWYPcFyMMHwUI0xHDqB53FN-suO2K9_GwYb5V1NKbSu85Xb88Pplfr7c7n_gJMJEwcY9co8T2q2FiOzddyLvh54PHFquuYeYMQIyeMxJ2oqpEgmZRhp24TKKLQDpCzTPv_DCTnuX50Yv0fd40-NlLAKmm6rxt24pdWF-y0Ant__wqJEUJJIYIiaKRITNNZT6bMR5d_3LLsaX7tMW8XDmuo1n8o7Q7uviT" alt="Plov" class="w-7 h-7 rounded-full object-cover">
+              <span>Plov</span>
+            </button>
+            <button type="button" onclick="toggleDishFilter(this, &#39;Dolma&#39;)" class="dish-pill inline-flex items-center gap-2.5 pl-1.5 pr-4 py-1.5 rounded-full bg-surface border border-outline-variant hover:bg-sand font-label text-label-md text-on-surface shrink-0 transition-colors">
+              <img src="https://lh3.googleusercontent.com/aida/ALJJyrB-iyRnWJDRz_t8Im56kIxorkfYjpfqSTV0FFV5N__DAkNmaLn4ljMqJMGlhWUVaULqAy12ipcK3WW927c9lc73DWYAFxDDdetvYgiX6yTCi4jlpAW4fbtXhP54WpSI4dJtwR6Ui-Rkq7L0Gqjzs5LLvb6bSOZZ7tBrlTlq-Zj3CcmVommLDadpg964nmPp_qY-v7XEXYXLbTqZndKLOVEWUSjKaSsS44oxbfubpTAmHBJjTQ" alt="Dolma" class="w-7 h-7 rounded-full object-cover">
+              <span>Dolma</span>
+            </button>
+            <button type="button" onclick="toggleDishFilter(this, &#39;Qutab&#39;)" class="dish-pill inline-flex items-center gap-2.5 pl-1.5 pr-4 py-1.5 rounded-full bg-surface border border-outline-variant hover:bg-sand font-label text-label-md text-on-surface shrink-0 transition-colors">
+              <img src="https://lh3.googleusercontent.com/aida/ALJJyrApxdlmaNBLdA_YmhViuywWMwfTdXBJqT2Ef7CFapv3Jik1vM0F1fsTE9H9kJ9ruqtMs3oJhZoeE4liUq818qfuZd23po8qKWYlnWmQCbmlMJFyehHmCPxsEqSJwXP0IQ_etkp8AvIp295DLWxsvy5lBzd21ND4oHjkc2fAweYbbrcudAS0wlK1h7JXHkXNYUNd_jVP5iIXp359-vnmOkM0UK_yKpEQWtDsfKqS7nMIIfo7LQ" alt="Qutab" class="w-7 h-7 rounded-full object-cover">
+              <span>Qutab</span>
+            </button>
+            <button type="button" onclick="toggleDishFilter(this, &#39;Kebab&#39;)" class="dish-pill inline-flex items-center gap-2.5 pl-1.5 pr-4 py-1.5 rounded-full bg-surface border border-outline-variant hover:bg-sand font-label text-label-md text-on-surface shrink-0 transition-colors">
+              <img src="https://lh3.googleusercontent.com/aida/ALJJyrDOYB8FfaCzJ1gLI9hmr_WIpp9TBVL9olyEOlKLr6bMFqbH8RL82TBf0i3gnhSrycfV9qc0k9XIiVU0U4_gWTZ5nj8q9jayooj-qcnlSmh8kh0JWbs2eV-ZpB3L07uInvAP2GqSa3IstgjTLcoXHMsfy3qSYj_GqRQQXR4yCBxbql7CgF3p02fCBzFdWTbdOgcQWQDEGKFeuIZOuhc1EaKXC0q_ISKoOd2oV6qhviyX_QBjHUN1YB43NZw" alt="Kebab" class="w-7 h-7 rounded-full object-cover">
+              <span>Kebab</span>
+            </button>
+            <button type="button" onclick="toggleDishFilter(this, &#39;Piti&#39;)" class="dish-pill inline-flex items-center gap-2.5 pl-1.5 pr-4 py-1.5 rounded-full bg-surface border border-outline-variant hover:bg-sand font-label text-label-md text-on-surface shrink-0 transition-colors">
+              <img src="https://lh3.googleusercontent.com/aida/ALJJyrCRBFzu_FNbItrfSa7tghTwjA9vHZ7qGxMcCZeCx-LDsLONC89ot1eaxtqdAoiGWj9Twm3FxDp72iJ-oEmQQiAlUxfbw-NLgX6LjVuOPEA9w8Jax7t69d3D-7KoqVgOgUkcfSRInPbwBXE5tCAaVuV8TOi9RbDt6__3M6DJIkLMZi6ngvZqxAkS_D9dS3CwXklunGH3b9SE65oVGLty3Lk_8pgdJuz1ZDbxJJKKnK96Byc" alt="Piti" class="w-7 h-7 rounded-full object-cover">
+              <span>Piti</span>
+            </button>
+            <button type="button" onclick="toggleDishFilter(this, &#39;Pakhlava&#39;)" class="dish-pill inline-flex items-center gap-2.5 pl-1.5 pr-4 py-1.5 rounded-full bg-surface border border-outline-variant hover:bg-sand font-label text-label-md text-on-surface shrink-0 transition-colors">
+              <img src="https://lh3.googleusercontent.com/aida/ALJJyrAjORdHdDiCMKSCOwMZy3944lmm31MojYMUqLnOtKOfAqRKM0L6YqlIqdEZNdKlV1Ke8NdSE6glHVE6Np4vgX-uU8Z9qdsS_QjeX40fpxz7POxFMmlBgUjS39DxDKwUIez1bYeogNOdkupt_ccHdrABDHWfQv0YC0tiizewcP-qJ3RmqMaseb07JlmSee20ZSFFgA9YvzQp6BeM6ADvw4TnGIz1qNlUAQaKJJ3QZdQHzssPlLweAA" alt="Pakhlava" class="w-7 h-7 rounded-full object-cover">
+              <span>Pakhlava</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <main class="flex-1 max-w-[1200px] w-full mx-auto px-6 py-8 flex flex-col gap-12">
+
+      <!-- Main Grid: Left Filters (3 cols) + Right Results (9 cols) -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+
+        <!-- Left Filter Sidebar -->
+        <aside class="lg:col-span-3 bg-surface-card rounded-lg border border-outline-variant p-5 flex flex-col gap-5 shadow-[0_4px_20px_rgba(46,42,38,0.05)]">
+          <div class="flex items-center justify-between border-b border-outline-variant pb-3">
+            <h2 class="font-title text-title-md text-on-surface">Filters</h2>
+            <button type="button" onclick="showToast(&#39;All filters reset.&#39;)" class="font-label text-label-md text-primary hover:underline">Clear all</button>
+          </div>
+
+          <div class="flex flex-col gap-2">
+            <span class="font-label text-label-md text-on-surface">Price level</span>
+            <div class="grid grid-cols-3 gap-2">
+              <button type="button" onclick="this.classList.toggle(&#39;bg-sage-soft&#39;); this.classList.toggle(&#39;text-primary&#39;)" class="py-1.5 rounded-md border border-outline text-on-surface font-label text-label-md hover:bg-sand">₼</button>
+              <button type="button" class="py-1.5 rounded-md border border-primary bg-sage-soft text-primary font-label text-label-md">₼₼</button>
+              <button type="button" onclick="this.classList.toggle(&#39;bg-sage-soft&#39;); this.classList.toggle(&#39;text-primary&#39;)" class="py-1.5 rounded-md border border-outline text-on-surface font-label text-label-md hover:bg-sand">₼₼₼</button>
+            </div>
+          </div>
+
+          <div class="flex flex-col gap-2">
+            <div class="flex justify-between font-label text-label-md text-on-surface">
+              <span>Near my hotel</span>
+              <span class="text-primary tabular-nums">Within 2 km</span>
+            </div>
+            <input type="range" min="1" max="10" value="2" class="w-full accent-primary">
+          </div>
+
+          <div class="flex flex-col gap-2">
+            <span class="font-label text-label-md text-on-surface">Cuisine</span>
+            <label class="flex items-center gap-2.5 font-body text-body-md"><input type="checkbox" checked class="rounded border-outline text-primary focus:ring-primary"> Azerbaijani national</label>
+            <label class="flex items-center gap-2.5 font-body text-body-md"><input type="checkbox" class="rounded border-outline text-primary focus:ring-primary"> Caspian seafood</label>
+            <label class="flex items-center gap-2.5 font-body text-body-md"><input type="checkbox" class="rounded border-outline text-primary focus:ring-primary"> Tea house &amp; bakery</label>
+            <label class="flex items-center gap-2.5 font-body text-body-md"><input type="checkbox" class="rounded border-outline text-primary focus:ring-primary"> Vegetarian friendly</label>
+          </div>
+
+          <div class="flex flex-col gap-2 border-t border-outline-variant pt-4">
+            <span class="font-label text-label-md text-on-surface">Quick filters</span>
+            <label class="flex items-center gap-2.5 font-body text-body-md"><input type="checkbox" checked class="rounded border-outline text-primary focus:ring-primary"> Open now</label>
+            <label class="flex items-center gap-2.5 font-body text-body-md"><input type="checkbox" checked class="rounded border-outline text-primary focus:ring-primary"> Rating 4.5+</label>
+            <label class="flex items-center gap-2.5 font-body text-body-md"><input type="checkbox" checked class="rounded border-outline text-primary focus:ring-primary"> Halal</label>
+            <label class="flex items-center gap-2.5 font-body text-body-md"><input type="checkbox" class="rounded border-outline text-primary focus:ring-primary"> Family friendly (kids menu, baby chair)</label>
+            <label class="flex items-center gap-2.5 font-body text-body-md"><input type="checkbox" class="rounded border-outline text-primary focus:ring-primary"> Terrace / sea view</label>
+            <label class="flex items-center gap-2.5 font-body text-body-md"><input type="checkbox" class="rounded border-outline text-primary focus:ring-primary"> Live music</label>
+            <label class="flex items-center gap-2.5 font-body text-body-md"><input type="checkbox" class="rounded border-outline text-primary focus:ring-primary"> Delivery available</label>
+            <label class="flex items-center gap-2.5 font-body text-body-md"><input type="checkbox" class="rounded border-outline text-primary focus:ring-primary"> Has set menus</label>
+            <label class="flex items-center gap-2.5 font-body text-body-md"><input type="checkbox" class="rounded border-outline text-primary focus:ring-primary"> Has discounts</label>
+            <label class="flex items-center gap-2.5 font-body text-body-md"><input type="checkbox" checked class="rounded border-outline text-primary focus:ring-primary"> Verified partners only</label>
+          </div>
+        </aside>
+
+        <!-- Right Results Area -->
+        <div class="lg:col-span-9 flex flex-col gap-6">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <p class="font-body text-body-md text-on-surface-variant tabular-nums">Showing <strong class="text-on-surface">6</strong> of <strong class="text-on-surface">94</strong> restaurants</p>
+            <div class="flex items-center gap-2">
+              <label for="eat-sort" class="font-label text-label-md text-on-surface-variant">Sort:</label>
+              <select id="eat-sort" class="bg-surface-card border border-outline rounded-md px-3 py-2 font-label text-label-md text-on-surface focus:outline-none focus-visible:ring-2 focus-visible:ring-primary">
+                <option selected>Recommended</option>
+                <option>Nearest</option>
+                <option>Top rated</option>
+                <option>Cheapest</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Map Mode Preview (Hidden by default) -->
+          <div id="eat-map-panel" class="hidden rounded-lg bg-sand border border-outline-variant p-6 flex flex-col gap-4">
+            <div class="flex items-center justify-between">
+              <span class="font-title text-title-md text-on-surface">Baku Dining Map · Old City &amp; Boulevard</span>
+              <button type="button" onclick="setViewMode(&#39;list&#39;)" class="px-3 py-1.5 rounded-md bg-surface-card border border-outline font-label text-label-md text-on-surface">Back to grid</button>
+            </div>
+            <div class="relative h-72 rounded-md bg-sage-soft border border-outline overflow-hidden flex items-center justify-center">
+              <div class="absolute top-12 left-16 px-3 py-1.5 rounded-full bg-primary text-on-primary font-label text-label-md shadow-md">Dolma Kitchen · 4.8</div>
+              <div class="absolute top-28 right-24 px-3 py-1.5 rounded-full bg-surface-card text-on-surface font-label text-label-md shadow-md border border-outline-variant">Caspian Terrace · 4.7</div>
+              <div class="absolute bottom-14 left-1/3 px-3 py-1.5 rounded-full bg-surface-card text-on-surface font-label text-label-md shadow-md border border-outline-variant">Shah Cayxana · 4.6</div>
+              <span class="font-body text-body-sm text-on-surface-variant">Interactive Baku restaurant pins</span>
+            </div>
+          </div>
+
+          <!-- 3-Column Restaurant Grid -->
+          <div id="eat-cards-grid" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 items-stretch">
+
+            <!-- Card 1 -->
+            <article class="bg-surface-card rounded-lg border border-outline-variant/60 shadow-[0_4px_20px_rgba(46,42,38,0.05)] overflow-hidden flex flex-col h-full">
+              <div class="relative aspect-video overflow-hidden">
+                <img src="https://lh3.googleusercontent.com/aida/ALJJyrBEDBFdSzdRBwmNVYlMzFBC0lgkO2_Gxmc-1K7h8MGk1iu99J-tQA75HEHM7zYpGsAH1qAZexJYxMjUI_gbadtYWsVrJs-Lh6UB2QRJXYNFGEZldL0Oy8u-MV_9Zg76Fr2CuO9MeAnbYKbAX_MEJoJ-Qo8XHZIuB-3Kn0bq4SMe47k4WeDnejpIEJcrr01PrMynb4-8PqyPiLetKa6etk5W3jPRNL7AZl_enRacKOTgQrqIa5Dnf3Ri03Ss" alt="Dolma Kitchen &amp; Tea House" class="w-full h-full object-cover">
+                <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-terracotta text-on-terracotta font-label text-label-sm">Lunch set -20%</span>
+                <button type="button" aria-label="Save restaurant" onclick="showToast(&#39;Saved Dolma Kitchen to favorites.&#39;)" class="absolute top-3 right-3 w-8 h-8 rounded-full bg-surface-card/90 text-on-surface flex items-center justify-center hover:bg-surface-card">
+                  <span class="material-symbols-outlined text-[18px]" aria-hidden="true">favorite</span>
+                </button>
+              </div>
+              <div class="p-4 flex flex-col gap-2.5 flex-1">
+                <div class="flex items-center justify-between gap-2">
+                  <span class="px-2 py-0.5 rounded-full bg-sage-soft text-on-sage font-label text-label-sm">Verified partner</span>
+                  <span class="font-label text-label-md text-on-surface tabular-nums">4.8 <span class="text-on-surface-variant font-normal">(246)</span></span>
+                </div>
+                <a href="../restaurant-detail/RestaurantDetail.html" class="font-title text-title-md text-on-surface hover:text-primary transition-colors">Dolma Kitchen &amp; Tea House</a>
+                <p class="font-body text-body-sm text-on-surface-variant">Azerbaijani · ₼₼ · 450 m away</p>
+                <p class="font-label text-label-md text-success tabular-nums">Open until 23:00</p>
+                <div class="mt-auto pt-3 border-t border-outline-variant flex items-center justify-between">
+                  <span class="font-body text-body-sm text-on-surface tabular-nums">≈ 25 ₼ per person <span class="text-on-surface-variant">(≈ $15)</span></span>
+                  <a href="../restaurant-detail/RestaurantDetail.html" class="font-label text-label-md text-primary hover:underline">Menu</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Card 2 -->
+            <article class="bg-surface-card rounded-lg border border-outline-variant/60 shadow-[0_4px_20px_rgba(46,42,38,0.05)] overflow-hidden flex flex-col h-full">
+              <div class="relative aspect-video overflow-hidden">
+                <img src="https://lh3.googleusercontent.com/aida/ALJJyrDPxFzNpgw-ipHdSE2Vm4EiBInrn1d40QvW6GBUUqMAlPBgfUWIkZOKDJTuI09fgQx7I38grmLVSuZgLRU8pEr_-nimCWdhPDRvdfL1_cxICmVxi4pgj472mcV0EjYz32P9FMOsbYZplOXWSrJaDMV4A4H9ZuTg9mBDJB05oUrVr2iUdZyD_Tn9puvOpjPFfP0_C8SkzMWmQO2nD3ul0yjfcAREYU7P2GYqar8xS1cVa6sfnWG5Mlj5V1VfGuE" alt="Caspian Breeze Terrace" class="w-full h-full object-cover">
+                <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-terracotta text-on-terracotta font-label text-label-sm">Tea set free</span>
+                <button type="button" aria-label="Save restaurant" onclick="showToast(&#39;Saved Caspian Breeze Terrace.&#39;)" class="absolute top-3 right-3 w-8 h-8 rounded-full bg-surface-card/90 text-on-surface flex items-center justify-center hover:bg-surface-card">
+                  <span class="material-symbols-outlined text-[18px]" aria-hidden="true">favorite</span>
+                </button>
+              </div>
+              <div class="p-4 flex flex-col gap-2.5 flex-1">
+                <div class="flex items-center justify-between gap-2">
+                  <span class="px-2 py-0.5 rounded-full bg-sage-soft text-on-sage font-label text-label-sm">Verified partner</span>
+                  <span class="font-label text-label-md text-on-surface tabular-nums">4.7 <span class="text-on-surface-variant font-normal">(180)</span></span>
+                </div>
+                <a href="../restaurant-detail/RestaurantDetail.html" class="font-title text-title-md text-on-surface hover:text-primary transition-colors">Caspian Breeze Terrace</a>
+                <p class="font-body text-body-sm text-on-surface-variant">Seafood &amp; Grill · ₼₼₼ · 900 m away</p>
+                <p class="font-label text-label-md text-success tabular-nums">Open until 23:30</p>
+                <div class="mt-auto pt-3 border-t border-outline-variant flex items-center justify-between">
+                  <span class="font-body text-body-sm text-on-surface tabular-nums">≈ 38 ₼ per person <span class="text-on-surface-variant">(≈ $22)</span></span>
+                  <a href="../restaurant-detail/RestaurantDetail.html" class="font-label text-label-md text-primary hover:underline">Menu</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Card 3 -->
+            <article class="bg-surface-card rounded-lg border border-outline-variant/60 shadow-[0_4px_20px_rgba(46,42,38,0.05)] overflow-hidden flex flex-col h-full">
+              <div class="relative aspect-video overflow-hidden">
+                <img src="https://lh3.googleusercontent.com/aida/ALJJyrC4Z8-_qKkq_7vDJmCa7l0FxEbEHQ3xeNsXpQVbwaTilOCGhXdka5PdOUeU_Z1fKLNgFHHSyRjvMjAzyf7c8_VzvYRbtVDzUG69a7w3IMX4AaGutXw0_3QyPLK4gXqZuBlZGWjUqJO0n7_sPBo3J3DXfCo0wQYuzFvG5FrrtzdAD6hLrXMTL2M5FrzzIVUICwItUtrkDn2-34fgp_ldgpEmgZgXzFqmMRK7cdlOSztcgPczg-_LUIte_AvG0Lc1FyY" alt="Qala Courtyard Kitchen" class="w-full h-full object-cover">
+                <button type="button" aria-label="Save restaurant" onclick="showToast(&#39;Saved Qala Courtyard Kitchen.&#39;)" class="absolute top-3 right-3 w-8 h-8 rounded-full bg-surface-card/90 text-on-surface flex items-center justify-center hover:bg-surface-card">
+                  <span class="material-symbols-outlined text-[18px]" aria-hidden="true">favorite</span>
+                </button>
+              </div>
+              <div class="p-4 flex flex-col gap-2.5 flex-1">
+                <div class="flex items-center justify-between gap-2">
+                  <span class="px-2 py-0.5 rounded-full bg-sage-soft text-on-sage font-label text-label-sm">Family friendly</span>
+                  <span class="font-label text-label-md text-on-surface tabular-nums">4.6 <span class="text-on-surface-variant font-normal">(154)</span></span>
+                </div>
+                <a href="../restaurant-detail/RestaurantDetail.html" class="font-title text-title-md text-on-surface hover:text-primary transition-colors">Qala Courtyard Kitchen</a>
+                <p class="font-body text-body-sm text-on-surface-variant">Plov &amp; Kebabs · ₼₼ · 300 m away</p>
+                <p class="font-label text-label-md text-success tabular-nums">Open until 22:30</p>
+                <div class="mt-auto pt-3 border-t border-outline-variant flex items-center justify-between">
+                  <span class="font-body text-body-sm text-on-surface tabular-nums">≈ 22 ₼ per person <span class="text-on-surface-variant">(≈ $13)</span></span>
+                  <a href="../restaurant-detail/RestaurantDetail.html" class="font-label text-label-md text-primary hover:underline">Menu</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Card 4 -->
+            <article class="bg-surface-card rounded-lg border border-outline-variant/60 shadow-[0_4px_20px_rgba(46,42,38,0.05)] overflow-hidden flex flex-col h-full">
+              <div class="relative aspect-video overflow-hidden">
+                <img src="https://lh3.googleusercontent.com/aida/ALJJyrDLbx59-e5oAn5iK8PH_MTZJVN8qwGqmXFhAQdlmtkfGkDboYjNjxnSO9KyOAst04bHFMR3rZPr5zVLel6encoDG3HqAzGghcsvTZ7d3b8aVYRP4F1xY9RZuZDiy-EesbqH1cwLngPUZmAL41ud3iFi9YFrkMd62iuHmAJyGIuOYa-F80EV2NOiaGhHBQDWUk42JjnT1wekDkAGDkmWPSVYCLminaP7YS8uS2hpJnufQ5vtqsY" alt="Shah Samovar Cayxana" class="w-full h-full object-cover">
+                <button type="button" aria-label="Save restaurant" onclick="showToast(&#39;Saved Shah Samovar Cayxana.&#39;)" class="absolute top-3 right-3 w-8 h-8 rounded-full bg-surface-card/90 text-on-surface flex items-center justify-center hover:bg-surface-card">
+                  <span class="material-symbols-outlined text-[18px]" aria-hidden="true">favorite</span>
+                </button>
+              </div>
+              <div class="p-4 flex flex-col gap-2.5 flex-1">
+                <div class="flex items-center justify-between gap-2">
+                  <span class="px-2 py-0.5 rounded-full bg-sage-soft text-on-sage font-label text-label-sm">Verified partner</span>
+                  <span class="font-label text-label-md text-on-surface tabular-nums">4.6 <span class="text-on-surface-variant font-normal">(112)</span></span>
+                </div>
+                <a href="../restaurant-detail/RestaurantDetail.html" class="font-title text-title-md text-on-surface hover:text-primary transition-colors">Shah Samovar Cayxana</a>
+                <p class="font-body text-body-sm text-on-surface-variant">Tea House &amp; Qutab · ₼ · 600 m away</p>
+                <p class="font-label text-label-md text-on-surface-variant tabular-nums">Closed · opens 12:00</p>
+                <div class="mt-auto pt-3 border-t border-outline-variant flex items-center justify-between">
+                  <span class="font-body text-body-sm text-on-surface tabular-nums">≈ 14 ₼ per person <span class="text-on-surface-variant">(≈ $8)</span></span>
+                  <a href="../restaurant-detail/RestaurantDetail.html" class="font-label text-label-md text-primary hover:underline">Menu</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Card 5 -->
+            <article class="bg-surface-card rounded-lg border border-outline-variant/60 shadow-[0_4px_20px_rgba(46,42,38,0.05)] overflow-hidden flex flex-col h-full">
+              <div class="relative aspect-video overflow-hidden">
+                <img src="https://lh3.googleusercontent.com/aida/ALJJyrAPdynBIBj7opJnGxs6Qgj-ZnVJizjUC_EyS9O0sgGrj1zK4yDoVqVNtuoo0Lku5qRMKUL4vl0Lk0dFUzPmLKiGB2AcB8Dga7MwvF0mF75gzhZEMyJWEygZ4E46MvPk1OnPnw340v7qRz99O0KY_H6XYcilhBP86Krsw6ENGQr1quWDZBu67ZeYIhi1FI9oz_t5d9occPkngW19SXawckz_wFQOiIT7yQjAbgZn92Bq59LrNPip1K3JgpoMjZ8CAXw1PvTa" alt="Nizami Garden Bistro" class="w-full h-full object-cover">
+                <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-terracotta text-on-terracotta font-label text-label-sm">-15% dinner</span>
+                <button type="button" aria-label="Save restaurant" onclick="showToast(&#39;Saved Nizami Garden Bistro.&#39;)" class="absolute top-3 right-3 w-8 h-8 rounded-full bg-surface-card/90 text-on-surface flex items-center justify-center hover:bg-surface-card">
+                  <span class="material-symbols-outlined text-[18px]" aria-hidden="true">favorite</span>
+                </button>
+              </div>
+              <div class="p-4 flex flex-col gap-2.5 flex-1">
+                <div class="flex items-center justify-between gap-2">
+                  <span class="px-2 py-0.5 rounded-full bg-sage-soft text-on-sage font-label text-label-sm">Halal</span>
+                  <span class="font-label text-label-md text-on-surface tabular-nums">4.7 <span class="text-on-surface-variant font-normal">(198)</span></span>
+                </div>
+                <a href="../restaurant-detail/RestaurantDetail.html" class="font-title text-title-md text-on-surface hover:text-primary transition-colors">Nizami Garden Bistro</a>
+                <p class="font-body text-body-sm text-on-surface-variant">Modern Azerbaijani · ₼₼ · 1.1 km away</p>
+                <p class="font-label text-label-md text-success tabular-nums">Open until 23:00</p>
+                <div class="mt-auto pt-3 border-t border-outline-variant flex items-center justify-between">
+                  <span class="font-body text-body-sm text-on-surface tabular-nums">≈ 28 ₼ per person <span class="text-on-surface-variant">(≈ $16)</span></span>
+                  <a href="../restaurant-detail/RestaurantDetail.html" class="font-label text-label-md text-primary hover:underline">Menu</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Card 6 -->
+            <article class="bg-surface-card rounded-lg border border-outline-variant/60 shadow-[0_4px_20px_rgba(46,42,38,0.05)] overflow-hidden flex flex-col h-full">
+              <div class="relative aspect-video overflow-hidden">
+                <img src="https://lh3.googleusercontent.com/aida/ALJJyrDOYB8FfaCzJ1gLI9hmr_WIpp9TBVL9olyEOlKLr6bMFqbH8RL82TBf0i3gnhSrycfV9qc0k9XIiVU0U4_gWTZ5nj8q9jayooj-qcnlSmh8kh0JWbs2eV-ZpB3L07uInvAP2GqSa3IstgjTLcoXHMsfy3qSYj_GqRQQXR4yCBxbql7CgF3p02fCBzFdWTbdOgcQWQDEGKFeuIZOuhc1EaKXC0q_ISKoOd2oV6qhviyX_QBjHUN1YB43NZw" alt="Sheki Piti &amp; Mangal House" class="w-full h-full object-cover">
+                <button type="button" aria-label="Save restaurant" onclick="showToast(&#39;Saved Sheki Piti &amp; Mangal House.&#39;)" class="absolute top-3 right-3 w-8 h-8 rounded-full bg-surface-card/90 text-on-surface flex items-center justify-center hover:bg-surface-card">
+                  <span class="material-symbols-outlined text-[18px]" aria-hidden="true">favorite</span>
+                </button>
+              </div>
+              <div class="p-4 flex flex-col gap-2.5 flex-1">
+                <div class="flex items-center justify-between gap-2">
+                  <span class="px-2 py-0.5 rounded-full bg-sage-soft text-on-sage font-label text-label-sm">Verified partner</span>
+                  <span class="font-label text-label-md text-on-surface tabular-nums">4.5 <span class="text-on-surface-variant font-normal">(134)</span></span>
+                </div>
+                <a href="../restaurant-detail/RestaurantDetail.html" class="font-title text-title-md text-on-surface hover:text-primary transition-colors">Sheki Piti &amp; Mangal House</a>
+                <p class="font-body text-body-sm text-on-surface-variant">Regional &amp; Grill · ₼₼ · 1.4 km away</p>
+                <p class="font-label text-label-md text-success tabular-nums">Open until 22:00</p>
+                <div class="mt-auto pt-3 border-t border-outline-variant flex items-center justify-between">
+                  <span class="font-body text-body-sm text-on-surface tabular-nums">≈ 24 ₼ per person <span class="text-on-surface-variant">(≈ $14)</span></span>
+                  <a href="../restaurant-detail/RestaurantDetail.html" class="font-label text-label-md text-primary hover:underline">Menu</a>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <!-- Collections Row -->
+          <section class="pt-6 border-t border-outline-variant flex flex-col gap-4">
+            <h2 class="font-headline text-headline-md text-on-surface">Curated dining collections</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+              <a href="../restaurant-detail/RestaurantDetail.html" class="rounded-lg bg-sand p-5 flex items-center gap-4 hover:shadow-md transition-shadow">
+                <img src="https://lh3.googleusercontent.com/aida/ALJJyrBEohQFioV2V-UKWYPcFyMMHwUI0xHDqB53FN-suO2K9_GwYb5V1NKbSu85Xb88Pplfr7c7n_gJMJEwcY9co8T2q2FiOzddyLvh54PHFquuYeYMQIyeMxJ2oqpEgmZRhp24TKKLQDpCzTPv_DCTnuX50Yv0fd40-NlLAKmm6rxt24pdWF-y0Ant__wqJEUJJIYIiaKRITNNZT6bMR5d_3LLsaX7tMW8XDmuo1n8o7Q7uviT" alt="Best plov in Baku" class="w-16 h-16 rounded-md object-cover shrink-0">
+                <div>
+                  <h3 class="font-title text-title-md text-on-sand">Best plov in Baku</h3>
+                  <p class="font-body text-body-sm text-on-surface-variant">12 traditional kitchens</p>
+                </div>
+              </a>
+              <a href="../restaurant-detail/RestaurantDetail.html" class="rounded-lg bg-sand p-5 flex items-center gap-4 hover:shadow-md transition-shadow">
+                <img src="https://lh3.googleusercontent.com/aida/ALJJyrDPxFzNpgw-ipHdSE2Vm4EiBInrn1d40QvW6GBUUqMAlPBgfUWIkZOKDJTuI09fgQx7I38grmLVSuZgLRU8pEr_-nimCWdhPDRvdfL1_cxICmVxi4pgj472mcV0EjYz32P9FMOsbYZplOXWSrJaDMV4A4H9ZuTg9mBDJB05oUrVr2iUdZyD_Tn9puvOpjPFfP0_C8SkzMWmQO2nD3ul0yjfcAREYU7P2GYqar8xS1cVa6sfnWG5Mlj5V1VfGuE" alt="Sea view dinners" class="w-16 h-16 rounded-md object-cover shrink-0">
+                <div>
+                  <h3 class="font-title text-title-md text-on-sand">Sea view dinners</h3>
+                  <p class="font-body text-body-sm text-on-surface-variant">9 Caspian terraces</p>
+                </div>
+              </a>
+              <a href="../restaurant-detail/RestaurantDetail.html" class="rounded-lg bg-sand p-5 flex items-center gap-4 hover:shadow-md transition-shadow">
+                <img src="https://lh3.googleusercontent.com/aida/ALJJyrC4Z8-_qKkq_7vDJmCa7l0FxEbEHQ3xeNsXpQVbwaTilOCGhXdka5PdOUeU_Z1fKLNgFHHSyRjvMjAzyf7c8_VzvYRbtVDzUG69a7w3IMX4AaGutXw0_3QyPLK4gXqZuBlZGWjUqJO0n7_sPBo3J3DXfCo0wQYuzFvG5FrrtzdAD6hLrXMTL2M5FrzzIVUICwItUtrkDn2-34fgp_ldgpEmgZgXzFqmMRK7cdlOSztcgPczg-_LUIte_AvG0Lc1FyY" alt="Family friendly" class="w-16 h-16 rounded-md object-cover shrink-0">
+                <div>
+                  <h3 class="font-title text-title-md text-on-sand">Family friendly</h3>
+                  <p class="font-body text-body-sm text-on-surface-variant">18 spots with kids menus</p>
+                </div>
+              </a>
+            </div>
+          </section>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-sand text-on-sand border-t border-outline mt-12">
+      <div class="max-w-[1200px] mx-auto px-6 py-12 flex flex-col gap-10">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+          <div class="md:col-span-4 flex flex-col gap-3">
+            <span class="font-headline text-headline-sm text-on-sand">BakuWay</span>
+            <p class="font-body text-body-md text-on-surface-variant max-w-xs text-balance">Calm, independent travel planning for Baku and Azerbaijan.</p>
+          </div>
+          <div class="md:col-span-3 flex flex-col gap-2 font-body text-body-md text-on-surface-variant">
+            <h3 class="font-title text-title-md text-on-sand">Explore</h3>
+            <a href="../hotels-search/HotelsSearch.html">Stay in Baku</a>
+            <a href="RestaurantsSearch.html">Where to eat</a>
+            <a href="../cuisine-guide/CuisineGuide.html">Cuisine guide</a>
+          </div>
+          <div class="md:col-span-3 flex flex-col gap-2 font-body text-body-md text-on-surface-variant">
+            <h3 class="font-title text-title-md text-on-sand">For business</h3>
+            <a href="../home/Home.html">Become a partner</a>
+            <a href="../home/Home.html">Driver sign up</a>
+            <a href="../home/Home.html">Partner login</a>
+          </div>
+          <div class="md:col-span-2 flex flex-col gap-2 font-body text-body-md text-on-surface-variant">
+            <h3 class="font-title text-title-md text-on-sand">Help</h3>
+            <a href="../home/Home.html">FAQ</a>
+            <a href="../home/Home.html">Contact</a>
+            <a href="../home/Home.html">Terms &amp; Privacy</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <div id="toast" role="status" aria-live="polite" class="hidden fixed bottom-6 right-6 z-50 bg-primary text-on-primary px-4 py-3 rounded-md shadow-lg flex items-center gap-2.5 font-body text-body-md">
+    <span class="material-symbols-outlined text-[18px]" aria-hidden="true">check_circle</span>
+    <span id="toast-message"></span>
+  </div>
+  <script>
+    function toggleDishFilter(btn, name) {
+      btn.classList.toggle('bg-sage-soft');
+      btn.classList.toggle('border-primary');
+      showToast(`Filtered by ${name}.`);
+    }
+    function setViewMode(mode) {
+      const mapPanel = document.getElementById('eat-map-panel');
+      const grid = document.getElementById('eat-cards-grid');
+      const listBtn = document.getElementById('view-list-btn');
+      const mapBtn = document.getElementById('view-map-btn');
+      if (mode === 'map') {
+        mapPanel.classList.remove('hidden');
+        grid.classList.add('hidden');
+        mapBtn.className = 'inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-primary text-on-primary font-label text-label-md';
+        listBtn.className = 'inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-on-surface-variant hover:text-on-surface font-label text-label-md';
+      } else {
+        mapPanel.classList.add('hidden');
+        grid.classList.remove('hidden');
+        listBtn.className = 'inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-primary text-on-primary font-label text-label-md';
+        mapBtn.className = 'inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-on-surface-variant hover:text-on-surface font-label text-label-md';
+      }
+    }
+    let toastTimer;
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      document.getElementById('toast-message').textContent = msg;
+      toast.classList.remove('hidden');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.add('hidden'), 3000);
+    }
+    window.addEventListener('scroll', () => {
+      const header = document.getElementById('site-header');
+      if (!header) return;
+      if (window.scrollY > 10) {
+        header.classList.remove('bg-surface');
+        header.classList.add('bg-surface-card/90', 'backdrop-blur-sm');
+      } else {
+        header.classList.add('bg-surface');
+        header.classList.remove('bg-surface-card/90', 'backdrop-blur-sm');
+      }
+    });
+  </script>
+
+
+</body></html>

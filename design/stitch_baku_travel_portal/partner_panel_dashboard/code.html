@@ -1,0 +1,389 @@
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Partner Panel — Dashboard</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script id="tailwind-config">/** @type {import('tailwindcss').Config} */
+globalThis.tailwind = globalThis.tailwind || {};
+globalThis.tailwind.config = {
+  darkMode: 'class',
+  theme: {
+    extend: {
+      colors: {
+        'primary': '#3F5E4A',
+        'on-primary': '#FFFFFF',
+        'primary-container': '#D6F9DF',
+        'on-primary-container': '#183625',
+        'sage': '#7A9E7E',
+        'on-sage': '#15351E',
+        'sage-soft': '#EBF2EC',
+        'secondary': '#8B6B4F',
+        'on-secondary': '#FFFFFF',
+        'secondary-container': '#FFEEE1',
+        'on-secondary-container': '#432B14',
+        'terracotta': '#C98B6B',
+        'on-terracotta': '#2E1A10',
+        'terracotta-soft': '#F7EAE2',
+        'surface': '#F7F3EC',
+        'on-surface': '#2E2A26',
+        'surface-card': '#FFFFFF',
+        'on-surface-card': '#2E2A26',
+        'sand': '#E8DFD0',
+        'on-sand': '#2E2A26',
+        'on-surface-variant': '#655D56',
+        'muted': '#7A716A',
+        'outline': '#DDD5C7',
+        'outline-variant': '#EAE1D2',
+        'success': '#4A7C59',
+        'on-success': '#FFFFFF',
+        'warning': '#B58238',
+        'on-warning': '#201B15',
+        'error': '#A84A42',
+        'on-error': '#FFFFFF',
+      },
+      borderRadius: {
+        'sm': '8px',
+        'DEFAULT': '12px',
+        'md': '12px',
+        'lg': '16px',
+        'xl': '24px',
+        'full': '9999px',
+      },
+      spacing: {
+        'gutter-xs': '4px',
+        'gutter-sm': '8px',
+        'gutter-md': '16px',
+        'gutter-lg': '24px',
+        'gutter-xl': '32px',
+        'section': '64px',
+        'page-margin': '24px',
+      },
+      fontFamily: {
+        'display': ['"Plus Jakarta Sans"', 'sans-serif'],
+        'headline': ['"Plus Jakarta Sans"', 'sans-serif'],
+        'title': ['"Plus Jakarta Sans"', 'sans-serif'],
+        'body': ['"Plus Jakarta Sans"', 'sans-serif'],
+        'label': ['"Plus Jakarta Sans"', 'sans-serif'],
+      },
+      fontSize: {
+        'display-lg': ['44px', { lineHeight: '52px', letterSpacing: '-0.5px', fontWeight: '700' }],
+        'display-lg-mobile': ['30px', { lineHeight: '38px', letterSpacing: '-0.25px', fontWeight: '700' }],
+        'headline-lg': ['32px', { lineHeight: '40px', letterSpacing: '-0.25px', fontWeight: '700' }],
+        'headline-md': ['24px', { lineHeight: '32px', letterSpacing: '-0.15px', fontWeight: '700' }],
+        'headline-sm': ['18px', { lineHeight: '26px', letterSpacing: '0px', fontWeight: '600' }],
+        'title-md': ['16px', { lineHeight: '24px', letterSpacing: '0px', fontWeight: '600' }],
+        'body-lg': ['16px', { lineHeight: '26px', letterSpacing: '0px', fontWeight: '400' }],
+        'body-md': ['14px', { lineHeight: '22px', letterSpacing: '0px', fontWeight: '400' }],
+        'body-sm': ['13px', { lineHeight: '18px', letterSpacing: '0px', fontWeight: '400' }],
+        'label-lg': ['14px', { lineHeight: '20px', letterSpacing: '0px', fontWeight: '600' }],
+        'label-md': ['12px', { lineHeight: '16px', letterSpacing: '0.2px', fontWeight: '600' }],
+        'label-sm': ['11px', { lineHeight: '14px', letterSpacing: '0.3px', fontWeight: '600' }],
+      },
+      transitionDuration: {
+        'state-change': '150ms',
+        'surface-enter': '250ms',
+        'surface-exit': '150ms',
+      },
+      transitionDelay: {
+        'state-change': '0ms',
+        'surface-enter': '0ms',
+        'surface-exit': '0ms',
+      },
+      transitionTimingFunction: {
+        'state-change': 'ease-out',
+        'surface-enter': 'cubic-bezier(0.2, 0, 0, 1)',
+        'surface-exit': 'cubic-bezier(0.3, 0, 1, 1)',
+      },
+    },
+  },
+};
+if (typeof module !== 'undefined') module.exports = globalThis.tailwind.config;
+</script>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block" rel="stylesheet">
+  <style>
+    .material-symbols-outlined { display: inline-block; width: 1em; height: 1em; line-height: 1 !important; box-sizing: content-box; overflow: hidden; white-space: nowrap; direction: ltr; vertical-align: middle; }
+  </style>
+</head>
+<body class="bg-surface text-on-surface font-body antialiased">
+  <div class="min-h-[1024px] flex flex-col lg:flex-row" data-stitch-vh="min-h-[1024px]===min-h-screen">
+
+    <!-- Mobile Top Bar -->
+    <div class="lg:hidden sticky top-0 z-40 bg-surface-card border-b border-outline-variant px-4 py-3 flex items-center justify-between">
+      <div class="flex items-center gap-2.5">
+        <img src="https://lh3.googleusercontent.com/aida/ALJJyrA7vM1ovkU9Uv36AKnPStPNuRmATuO3LdGVQMv6V_RFJ9Pg2ZCWfsr8m8SCvJut7Lkd85-T7J8V9RlQg6pEsBRrlfXxJiicMwLH7c5hYNwsccIfaDSAgwsXnPP7DRCkaFPuWldLmqVHWZyG6iDSW9QTeO3O9mFk62EMC0AhBBfx35L4iKJ48q5Ep4ZPJCtB1RmogTdTZpV7gFtoSYHuuASJyvWpR5-XjtjRr18_TUDGpYI9Gfs8iOKwBYnG" alt="Shirvanshah Boutique Hotel" class="w-8 h-8 rounded-md object-cover">
+        <span class="font-title text-title-md text-on-surface">Shirvanshah Hotel</span>
+      </div>
+      <button type="button" aria-label="Open partner menu" onclick="document.getElementById(&#39;partner-drawer&#39;).classList.remove(&#39;hidden&#39;)" class="w-9 h-9 rounded-md bg-surface flex items-center justify-center">
+        <span class="material-symbols-outlined text-[20px]">menu</span>
+      </button>
+    </div>
+
+    <!-- Mobile Drawer -->
+    <div id="partner-drawer" class="hidden fixed inset-0 z-50 lg:hidden">
+      <div class="fixed inset-0 bg-on-surface/40" onclick="this.parentElement.classList.add(&#39;hidden&#39;)"></div>
+      <aside class="fixed top-0 left-0 bottom-0 w-72 bg-surface-card p-5 flex flex-col gap-5 shadow-xl overflow-y-auto">
+        <div class="flex items-center justify-between">
+          <span class="font-headline text-headline-sm text-primary">Partner Panel</span>
+          <button type="button" aria-label="Close menu" onclick="document.getElementById(&#39;partner-drawer&#39;).classList.add(&#39;hidden&#39;)" class="w-8 h-8 rounded-full hover:bg-sand flex items-center justify-center">
+            <span class="material-symbols-outlined text-[20px]">close</span>
+          </button>
+        </div>
+        <nav class="flex flex-col gap-1">
+          <a href="../partner-dashboard/PartnerDashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-md bg-sage-soft text-primary font-label text-label-md"><span class="material-symbols-outlined text-[18px]">dashboard</span> Dashboard</a>
+          <a href="../partner-requests/PartnerRequests.html" class="flex items-center justify-between px-3 py-2.5 rounded-md text-on-surface-variant hover:bg-sand font-label text-label-md"><span class="flex items-center gap-3"><span class="material-symbols-outlined text-[18px]">inbox</span> Requests</span><span class="px-2 py-0.5 rounded-full bg-terracotta text-on-terracotta text-label-sm tabular-nums">3</span></a>
+          <a href="../partner-profile/PartnerProfile.html" class="flex items-center gap-3 px-3 py-2.5 rounded-md text-on-surface-variant hover:bg-sand font-label text-label-md"><span class="material-symbols-outlined text-[18px]">storefront</span> Profile</a>
+          <a href="../partner-rooms-menu/PartnerRoomsMenu.html" class="flex items-center gap-3 px-3 py-2.5 rounded-md text-on-surface-variant hover:bg-sand font-label text-label-md"><span class="material-symbols-outlined text-[18px]">bed</span> Rooms / Menu</a>
+          <a href="../partner-offers-billing/PartnerOffersBilling.html#offers" class="flex items-center gap-3 px-3 py-2.5 rounded-md text-on-surface-variant hover:bg-sand font-label text-label-md"><span class="material-symbols-outlined text-[18px]">local_offer</span> Offers</a>
+          <a href="../partner-dashboard/PartnerDashboard.html#reviews" class="flex items-center gap-3 px-3 py-2.5 rounded-md text-on-surface-variant hover:bg-sand font-label text-label-md"><span class="material-symbols-outlined text-[18px]">reviews</span> Reviews</a>
+          <a href="../partner-offers-billing/PartnerOffersBilling.html#statistics" class="flex items-center gap-3 px-3 py-2.5 rounded-md text-on-surface-variant hover:bg-sand font-label text-label-md"><span class="material-symbols-outlined text-[18px]">bar_chart</span> Statistics</a>
+          <a href="../partner-offers-billing/PartnerOffersBilling.html#billing" class="flex items-center gap-3 px-3 py-2.5 rounded-md text-on-surface-variant hover:bg-sand font-label text-label-md"><span class="material-symbols-outlined text-[18px]">receipt</span> Billing</a>
+          <a href="../partner-profile/PartnerProfile.html#settings" class="flex items-center gap-3 px-3 py-2.5 rounded-md text-on-surface-variant hover:bg-sand font-label text-label-md"><span class="material-symbols-outlined text-[18px]">settings</span> Settings</a>
+        </nav>
+      </aside>
+    </div>
+
+    <!-- Desktop Left Sidebar -->
+    <aside class="hidden lg:flex lg:w-64 shrink-0 bg-surface-card border-r border-outline-variant p-5 flex-col justify-between min-h-[1024px] sticky top-0 self-start" data-stitch-vh="min-h-[1024px]===min-h-screen">
+      <div class="flex flex-col gap-6">
+        <div class="flex items-center gap-3 pb-4 border-b border-outline-variant">
+          <img src="https://lh3.googleusercontent.com/aida/ALJJyrA7vM1ovkU9Uv36AKnPStPNuRmATuO3LdGVQMv6V_RFJ9Pg2ZCWfsr8m8SCvJut7Lkd85-T7J8V9RlQg6pEsBRrlfXxJiicMwLH7c5hYNwsccIfaDSAgwsXnPP7DRCkaFPuWldLmqVHWZyG6iDSW9QTeO3O9mFk62EMC0AhBBfx35L4iKJ48q5Ep4ZPJCtB1RmogTdTZpV7gFtoSYHuuASJyvWpR5-XjtjRr18_TUDGpYI9Gfs8iOKwBYnG" alt="Shirvanshah Boutique Hotel" class="w-11 h-11 rounded-md object-cover shrink-0">
+          <div class="min-w-0">
+            <h2 class="font-title text-title-md text-on-surface truncate">Shirvanshah Hotel</h2>
+            <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-sage-soft text-on-sage font-label text-label-sm mt-0.5">
+              <span class="material-symbols-outlined text-[13px]" aria-hidden="true">verified</span>
+              <span>Verified partner</span>
+            </span>
+          </div>
+        </div>
+
+        <nav aria-label="Partner" class="flex flex-col gap-1">
+          <a href="../partner-dashboard/PartnerDashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-md bg-sage-soft text-primary font-label text-label-md">
+            <span class="material-symbols-outlined text-[19px]" aria-hidden="true">dashboard</span>
+            <span>Dashboard</span>
+          </a>
+          <a href="../partner-requests/PartnerRequests.html" class="flex items-center justify-between px-3 py-2.5 rounded-md text-on-surface-variant hover:bg-sand hover:text-on-surface font-label text-label-md transition-colors">
+            <span class="flex items-center gap-3"><span class="material-symbols-outlined text-[19px]" aria-hidden="true">inbox</span><span>Requests</span></span>
+            <span class="px-2 py-0.5 rounded-full bg-terracotta text-on-terracotta font-label text-label-sm tabular-nums">3</span>
+          </a>
+          <a href="../partner-profile/PartnerProfile.html" class="flex items-center gap-3 px-3 py-2.5 rounded-md text-on-surface-variant hover:bg-sand hover:text-on-surface font-label text-label-md transition-colors">
+            <span class="material-symbols-outlined text-[19px]" aria-hidden="true">storefront</span>
+            <span>Profile</span>
+          </a>
+          <a href="../partner-rooms-menu/PartnerRoomsMenu.html" class="flex items-center gap-3 px-3 py-2.5 rounded-md text-on-surface-variant hover:bg-sand hover:text-on-surface font-label text-label-md transition-colors">
+            <span class="material-symbols-outlined text-[19px]" aria-hidden="true">bed</span>
+            <span>Rooms / Menu</span>
+          </a>
+          <a href="../partner-offers-billing/PartnerOffersBilling.html#offers" class="flex items-center gap-3 px-3 py-2.5 rounded-md text-on-surface-variant hover:bg-sand hover:text-on-surface font-label text-label-md transition-colors">
+            <span class="material-symbols-outlined text-[19px]" aria-hidden="true">local_offer</span>
+            <span>Offers</span>
+          </a>
+          <a href="../partner-dashboard/PartnerDashboard.html#reviews" class="flex items-center gap-3 px-3 py-2.5 rounded-md text-on-surface-variant hover:bg-sand hover:text-on-surface font-label text-label-md transition-colors">
+            <span class="material-symbols-outlined text-[19px]" aria-hidden="true">reviews</span>
+            <span>Reviews</span>
+          </a>
+          <a href="../partner-offers-billing/PartnerOffersBilling.html#statistics" class="flex items-center gap-3 px-3 py-2.5 rounded-md text-on-surface-variant hover:bg-sand hover:text-on-surface font-label text-label-md transition-colors">
+            <span class="material-symbols-outlined text-[19px]" aria-hidden="true">bar_chart</span>
+            <span>Statistics</span>
+          </a>
+          <a href="../partner-offers-billing/PartnerOffersBilling.html#billing" class="flex items-center gap-3 px-3 py-2.5 rounded-md text-on-surface-variant hover:bg-sand hover:text-on-surface font-label text-label-md transition-colors">
+            <span class="material-symbols-outlined text-[19px]" aria-hidden="true">receipt</span>
+            <span>Billing</span>
+          </a>
+          <a href="../partner-profile/PartnerProfile.html#settings" class="flex items-center gap-3 px-3 py-2.5 rounded-md text-on-surface-variant hover:bg-sand hover:text-on-surface font-label text-label-md transition-colors">
+            <span class="material-symbols-outlined text-[19px]" aria-hidden="true">settings</span>
+            <span>Settings</span>
+          </a>
+        </nav>
+      </div>
+
+      <a href="../hotel-detail/HotelDetail.html" class="flex items-center gap-2 px-3 py-2 rounded-md bg-surface border border-outline-variant font-label text-label-md text-primary hover:bg-sand">
+        <span class="material-symbols-outlined text-[18px]" aria-hidden="true">open_in_new</span>
+        <span>View public listing</span>
+      </a>
+    </aside>
+
+    <!-- Main Dashboard Content -->
+    <main class="flex-1 p-6 lg:p-8 pb-24 flex flex-col gap-8 max-w-[1160px]">
+      <div class="flex flex-wrap items-center justify-between gap-4">
+        <div>
+          <h1 class="font-headline text-headline-lg text-on-surface">Dashboard</h1>
+          <p class="font-body text-body-md text-on-surface-variant">Overview for November 2026 · Old City, Baku</p>
+        </div>
+        <a href="../partner-requests/PartnerRequests.html" class="px-4 py-2.5 rounded-md bg-primary text-on-primary font-label text-label-md hover:opacity-90">Manage all requests</a>
+      </div>
+
+      <!-- 5 Stat Cards -->
+      <section class="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-5 gap-4">
+        <div class="bg-primary text-on-primary rounded-lg p-5 flex flex-col gap-1 shadow-[0_4px_20px_rgba(46,42,38,0.08)]">
+          <span class="font-label text-label-md opacity-90">New requests</span>
+          <span class="font-headline text-headline-lg tabular-nums">3</span>
+          <span class="font-body text-body-sm opacity-90">Needs reply</span>
+        </div>
+        <div class="bg-surface-card rounded-lg border border-outline-variant p-5 flex flex-col gap-1 shadow-[0_4px_20px_rgba(46,42,38,0.05)]">
+          <span class="font-label text-label-md text-on-surface-variant">Views this month</span>
+          <span class="font-headline text-headline-lg text-on-surface tabular-nums">1,240</span>
+          <span class="font-body text-body-sm text-primary tabular-nums">+14% vs Oct</span>
+        </div>
+        <div class="bg-surface-card rounded-lg border border-outline-variant p-5 flex flex-col gap-1 shadow-[0_4px_20px_rgba(46,42,38,0.05)]">
+          <span class="font-label text-label-md text-on-surface-variant">Requests</span>
+          <span class="font-headline text-headline-lg text-on-surface tabular-nums">46</span>
+          <span class="font-body text-body-sm text-on-surface-variant tabular-nums">3.7% conversion</span>
+        </div>
+        <div class="bg-surface-card rounded-lg border border-outline-variant p-5 flex flex-col gap-1 shadow-[0_4px_20px_rgba(46,42,38,0.05)]">
+          <span class="font-label text-label-md text-on-surface-variant">Guests arrived</span>
+          <span class="font-headline text-headline-lg text-on-surface tabular-nums">38</span>
+          <span class="font-body text-body-sm text-on-surface-variant tabular-nums">92% show rate</span>
+        </div>
+        <div class="bg-surface-card rounded-lg border border-outline-variant p-5 flex flex-col gap-1 shadow-[0_4px_20px_rgba(46,42,38,0.05)] col-span-2 sm:col-span-1">
+          <span class="font-label text-label-md text-on-surface-variant">Response rate</span>
+          <span class="font-headline text-headline-lg text-primary tabular-nums">96%</span>
+          <span class="font-body text-body-sm text-on-surface-variant tabular-nums">Avg 28 min</span>
+        </div>
+      </section>
+
+      <!-- Waiting for your reply -->
+      <section class="bg-surface-card rounded-lg border border-outline-variant p-6 flex flex-col gap-4 shadow-[0_4px_20px_rgba(46,42,38,0.05)]">
+        <div class="flex flex-wrap items-center justify-between gap-2">
+          <h2 class="font-headline text-headline-sm text-on-surface">Waiting for your reply (3)</h2>
+          <a href="../partner-requests/PartnerRequests.html" class="font-label text-label-md text-primary hover:underline">View all →</a>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse">
+            <thead>
+              <tr class="border-b border-outline-variant font-label text-label-md text-on-surface-variant">
+                <th class="py-3 pr-4">Guest &amp; Code</th>
+                <th class="py-3 pr-4">Dates &amp; Room</th>
+                <th class="py-3 pr-4">Reply timer</th>
+                <th class="py-3 text-right">Actions</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-outline-variant font-body text-body-md">
+              <tr>
+                <td class="py-3.5 pr-4">
+                  <span class="font-title text-title-md text-on-surface block">Claire Bennett</span>
+                  <span class="font-body text-body-sm text-on-surface-variant tabular-nums">TRZ-1091 · 2 adults</span>
+                </td>
+                <td class="py-3.5 pr-4 tabular-nums">Dec 14–17 · Deluxe Courtyard (340 ₼)</td>
+                <td class="py-3.5 pr-4"><span class="px-2.5 py-1 rounded-full bg-secondary-container text-on-secondary-container font-label text-label-sm tabular-nums">Reply within 1h 12m</span></td>
+                <td class="py-3.5 text-right whitespace-nowrap">
+                  <button type="button" onclick="confirmRow(this, &#39;TRZ-1091&#39;)" class="px-3 py-1.5 rounded-md bg-primary text-on-primary font-label text-label-md hover:opacity-90 mr-1.5">Confirm</button>
+                  <button type="button" onclick="showToast(&#39;Declined TRZ-1091&#39;)" class="px-3 py-1.5 rounded-md bg-surface border border-outline font-label text-label-md text-error hover:bg-terracotta-soft">Decline</button>
+                </td>
+              </tr>
+              <tr>
+                <td class="py-3.5 pr-4">
+                  <span class="font-title text-title-md text-on-surface block">Marcus Weber</span>
+                  <span class="font-body text-body-sm text-on-surface-variant tabular-nums">TRZ-1094 · 4 guests</span>
+                </td>
+                <td class="py-3.5 pr-4 tabular-nums">Dec 19–22 · Family Suite (495 ₼)</td>
+                <td class="py-3.5 pr-4"><span class="px-2.5 py-1 rounded-full bg-secondary-container text-on-secondary-container font-label text-label-sm tabular-nums">Reply within 2h 40m</span></td>
+                <td class="py-3.5 text-right whitespace-nowrap">
+                  <button type="button" onclick="confirmRow(this, &#39;TRZ-1094&#39;)" class="px-3 py-1.5 rounded-md bg-primary text-on-primary font-label text-label-md hover:opacity-90 mr-1.5">Confirm</button>
+                  <button type="button" onclick="showToast(&#39;Declined TRZ-1094&#39;)" class="px-3 py-1.5 rounded-md bg-surface border border-outline font-label text-label-md text-error hover:bg-terracotta-soft">Decline</button>
+                </td>
+              </tr>
+              <tr>
+                <td class="py-3.5 pr-4">
+                  <span class="font-title text-title-md text-on-surface block">Amina Al-Mansoor</span>
+                  <span class="font-body text-body-sm text-on-surface-variant tabular-nums">TRZ-1098 · 2 adults</span>
+                </td>
+                <td class="py-3.5 pr-4 tabular-nums">Dec 26–29 · Old City Studio (255 ₼)</td>
+                <td class="py-3.5 pr-4"><span class="px-2.5 py-1 rounded-full bg-secondary-container text-on-secondary-container font-label text-label-sm tabular-nums">Reply within 4h 05m</span></td>
+                <td class="py-3.5 text-right whitespace-nowrap">
+                  <button type="button" onclick="confirmRow(this, &#39;TRZ-1098&#39;)" class="px-3 py-1.5 rounded-md bg-primary text-on-primary font-label text-label-md hover:opacity-90 mr-1.5">Confirm</button>
+                  <button type="button" onclick="showToast(&#39;Declined TRZ-1098&#39;)" class="px-3 py-1.5 rounded-md bg-surface border border-outline font-label text-label-md text-error hover:bg-terracotta-soft">Decline</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Chart + Profile Completeness -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+        <section class="lg:col-span-8 bg-surface-card rounded-lg border border-outline-variant p-6 flex flex-col gap-4 shadow-[0_4px_20px_rgba(46,42,38,0.05)]">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <h2 class="font-headline text-headline-sm text-on-surface">Views vs requests (last 6 weeks)</h2>
+            <div class="flex items-center gap-4 font-label text-label-sm">
+              <span class="inline-flex items-center gap-1.5 text-primary"><span class="w-2.5 h-2.5 rounded-full bg-primary"></span> Views</span>
+              <span class="inline-flex items-center gap-1.5 text-on-surface"><span class="w-2.5 h-2.5 rounded-full bg-terracotta"></span> Requests</span>
+            </div>
+          </div>
+          <svg viewBox="0 0 600 180" class="w-full h-44" aria-label="Views vs Requests line chart">
+            <line x1="30" y1="150" x2="580" y2="150" stroke="#EAE1D2" stroke-width="1"></line>
+            <line x1="30" y1="90" x2="580" y2="90" stroke="#EAE1D2" stroke-width="1" stroke-dasharray="4 4"></line>
+            <line x1="30" y1="30" x2="580" y2="30" stroke="#EAE1D2" stroke-width="1" stroke-dasharray="4 4"></line>
+            <polyline fill="none" stroke="#3F5E4A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" points="40,120 145,105 250,95 355,68 460,55 565,36"></polyline>
+            <polyline fill="none" stroke="#C98B6B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" points="40,142 145,136 250,132 355,122 460,118 565,108"></polyline>
+            <text x="40" y="170" font-size="11" fill="#7A716A">Oct 15</text>
+            <text x="145" y="170" font-size="11" fill="#7A716A">Oct 22</text>
+            <text x="250" y="170" font-size="11" fill="#7A716A">Oct 29</text>
+            <text x="355" y="170" font-size="11" fill="#7A716A">Nov 5</text>
+            <text x="460" y="170" font-size="11" fill="#7A716A">Nov 12</text>
+            <text x="545" y="170" font-size="11" fill="#7A716A">Nov 19</text>
+          </svg>
+        </section>
+
+        <section class="lg:col-span-4 bg-sage-soft rounded-lg p-6 flex flex-col gap-4">
+          <div class="flex items-center justify-between">
+            <h2 class="font-headline text-headline-sm text-on-sage">Profile completeness</h2>
+            <span class="font-headline text-headline-sm text-on-sage tabular-nums">85%</span>
+          </div>
+          <div class="w-full h-2.5 rounded-full bg-surface-card overflow-hidden">
+            <div class="h-full bg-primary rounded-full w-4/5"></div>
+          </div>
+          <ul class="flex flex-col gap-2 text-body-sm text-on-sage">
+            <li class="flex items-start gap-2"><span class="material-symbols-outlined text-[16px] mt-0.5">add_circle</span> Add 2 breakfast courtyard photos (+10%)</li>
+            <li class="flex items-start gap-2"><span class="material-symbols-outlined text-[16px] mt-0.5">add_circle</span> Confirm Sunday check-in hours (+5%)</li>
+          </ul>
+          <a href="../partner-profile/PartnerProfile.html" class="px-4 py-2 rounded-md bg-primary text-on-primary font-label text-label-md text-center hover:opacity-90">Update profile</a>
+        </section>
+      </div>
+
+      <!-- Latest Reviews -->
+      <section id="reviews" class="bg-surface-card rounded-lg border border-outline-variant p-6 flex flex-col gap-4 shadow-[0_4px_20px_rgba(46,42,38,0.05)]">
+        <h2 class="font-headline text-headline-sm text-on-surface">Latest guest reviews</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="p-4 rounded-md bg-surface border border-outline-variant flex flex-col gap-2">
+            <div class="flex items-center justify-between">
+              <span class="font-title text-title-md text-on-surface">Elena K. · Family</span>
+              <span class="px-2.5 py-0.5 rounded-full bg-sage-soft text-on-sage font-label text-label-sm tabular-nums">9.4</span>
+            </div>
+            <p class="font-body text-body-sm text-on-surface-variant text-pretty">“Quiet courtyard, warm Azerbaijani breakfast, and Farida helped us book a shared taxi to Gabala.”</p>
+          </div>
+          <div class="p-4 rounded-md bg-surface border border-outline-variant flex flex-col gap-2">
+            <div class="flex items-center justify-between">
+              <span class="font-title text-title-md text-on-surface">David R. · Couple</span>
+              <span class="px-2.5 py-0.5 rounded-full bg-sage-soft text-on-sage font-label text-label-sm tabular-nums">9.0</span>
+            </div>
+            <p class="font-body text-body-sm text-on-surface-variant text-pretty">“Steps from Maiden Tower and metro, spotlessly clean room with lovely carved wooden balcony.”</p>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <div id="toast" role="status" aria-live="polite" class="hidden fixed bottom-6 right-6 z-50 bg-primary text-on-primary px-4 py-3 rounded-md shadow-lg flex items-center gap-2.5 font-body text-body-md">
+    <span class="material-symbols-outlined text-[18px]" aria-hidden="true">check_circle</span>
+    <span id="toast-message"></span>
+  </div>
+
+  <script>
+    let toastTimer;
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      document.getElementById('toast-message').textContent = msg;
+      toast.classList.remove('hidden');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.add('hidden'), 3000);
+    }
+    function confirmRow(btn, code) {
+      btn.closest('tr').querySelector('td:nth-child(3)').innerHTML = '<span class="px-2.5 py-1 rounded-full bg-sage-soft text-on-sage font-label text-label-sm">Confirmed</span>';
+      showToast('Confirmed request ' + code);
+    }
+  </script>
+
+
+</body></html>

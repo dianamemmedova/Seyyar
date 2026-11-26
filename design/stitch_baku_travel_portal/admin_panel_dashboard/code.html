@@ -1,0 +1,334 @@
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel — Dashboard</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script id="tailwind-config">/** @type {import('tailwindcss').Config} */
+globalThis.tailwind = globalThis.tailwind || {};
+globalThis.tailwind.config = {
+  darkMode: 'class',
+  theme: {
+    extend: {
+      colors: {
+        'primary': '#3F5E4A',
+        'on-primary': '#FFFFFF',
+        'primary-container': '#D6F9DF',
+        'on-primary-container': '#183625',
+        'sage': '#7A9E7E',
+        'on-sage': '#15351E',
+        'sage-soft': '#EBF2EC',
+        'secondary': '#8B6B4F',
+        'on-secondary': '#FFFFFF',
+        'secondary-container': '#FFEEE1',
+        'on-secondary-container': '#432B14',
+        'terracotta': '#C98B6B',
+        'on-terracotta': '#2E1A10',
+        'terracotta-soft': '#F7EAE2',
+        'surface': '#F7F3EC',
+        'on-surface': '#2E2A26',
+        'surface-card': '#FFFFFF',
+        'on-surface-card': '#2E2A26',
+        'sand': '#E8DFD0',
+        'on-sand': '#2E2A26',
+        'on-surface-variant': '#655D56',
+        'muted': '#7A716A',
+        'outline': '#DDD5C7',
+        'outline-variant': '#EAE1D2',
+        'success': '#4A7C59',
+        'on-success': '#FFFFFF',
+        'warning': '#B58238',
+        'on-warning': '#201B15',
+        'error': '#A84A42',
+        'on-error': '#FFFFFF',
+      },
+      borderRadius: {
+        'sm': '8px',
+        'DEFAULT': '12px',
+        'md': '12px',
+        'lg': '16px',
+        'xl': '24px',
+        'full': '9999px',
+      },
+      spacing: {
+        'gutter-xs': '4px',
+        'gutter-sm': '8px',
+        'gutter-md': '16px',
+        'gutter-lg': '24px',
+        'gutter-xl': '32px',
+        'section': '64px',
+        'page-margin': '24px',
+      },
+      fontFamily: {
+        'display': ['"Plus Jakarta Sans"', 'sans-serif'],
+        'headline': ['"Plus Jakarta Sans"', 'sans-serif'],
+        'title': ['"Plus Jakarta Sans"', 'sans-serif'],
+        'body': ['"Plus Jakarta Sans"', 'sans-serif'],
+        'label': ['"Plus Jakarta Sans"', 'sans-serif'],
+      },
+      fontSize: {
+        'display-lg': ['44px', { lineHeight: '52px', letterSpacing: '-0.5px', fontWeight: '700' }],
+        'display-lg-mobile': ['30px', { lineHeight: '38px', letterSpacing: '-0.25px', fontWeight: '700' }],
+        'headline-lg': ['32px', { lineHeight: '40px', letterSpacing: '-0.25px', fontWeight: '700' }],
+        'headline-md': ['24px', { lineHeight: '32px', letterSpacing: '-0.15px', fontWeight: '700' }],
+        'headline-sm': ['18px', { lineHeight: '26px', letterSpacing: '0px', fontWeight: '600' }],
+        'title-md': ['16px', { lineHeight: '24px', letterSpacing: '0px', fontWeight: '600' }],
+        'body-lg': ['16px', { lineHeight: '26px', letterSpacing: '0px', fontWeight: '400' }],
+        'body-md': ['14px', { lineHeight: '22px', letterSpacing: '0px', fontWeight: '400' }],
+        'body-sm': ['13px', { lineHeight: '18px', letterSpacing: '0px', fontWeight: '400' }],
+        'label-lg': ['14px', { lineHeight: '20px', letterSpacing: '0px', fontWeight: '600' }],
+        'label-md': ['12px', { lineHeight: '16px', letterSpacing: '0.2px', fontWeight: '600' }],
+        'label-sm': ['11px', { lineHeight: '14px', letterSpacing: '0.3px', fontWeight: '600' }],
+      },
+      transitionDuration: {
+        'state-change': '150ms',
+        'surface-enter': '250ms',
+        'surface-exit': '150ms',
+      },
+      transitionDelay: {
+        'state-change': '0ms',
+        'surface-enter': '0ms',
+        'surface-exit': '0ms',
+      },
+      transitionTimingFunction: {
+        'state-change': 'ease-out',
+        'surface-enter': 'cubic-bezier(0.2, 0, 0, 1)',
+        'surface-exit': 'cubic-bezier(0.3, 0, 1, 1)',
+      },
+    },
+  },
+};
+if (typeof module !== 'undefined') module.exports = globalThis.tailwind.config;
+</script>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block" rel="stylesheet">
+  <style>
+    .material-symbols-outlined { display: inline-block; width: 1em; height: 1em; line-height: 1 !important; box-sizing: content-box; overflow: hidden; white-space: nowrap; direction: ltr; vertical-align: middle; }
+  </style>
+</head>
+<body class="bg-surface text-on-surface font-body antialiased">
+  <div class="min-h-[1024px] flex flex-col lg:flex-row" data-stitch-vh="min-h-[1024px]===min-h-screen">
+
+    <!-- Mobile Top Bar -->
+    <div class="lg:hidden sticky top-0 z-40 bg-surface-card border-b border-outline-variant px-4 py-3 flex items-center justify-between">
+      <span class="font-headline text-headline-sm text-primary font-bold">BakuWay Admin</span>
+      <button type="button" aria-label="Open admin menu" onclick="document.getElementById(&#39;admin-drawer&#39;).classList.remove(&#39;hidden&#39;)" class="w-9 h-9 rounded-md bg-surface flex items-center justify-center">
+        <span class="material-symbols-outlined text-[20px]">menu</span>
+      </button>
+    </div>
+
+    <!-- Mobile Drawer -->
+    <div id="admin-drawer" class="hidden fixed inset-0 z-50 lg:hidden">
+      <div class="fixed inset-0 bg-on-surface/40" onclick="this.parentElement.classList.add(&#39;hidden&#39;)"></div>
+      <aside class="fixed top-0 left-0 bottom-0 w-72 bg-surface-card p-5 flex flex-col gap-5 shadow-xl overflow-y-auto">
+        <div class="flex items-center justify-between">
+          <span class="font-headline text-headline-sm text-primary font-bold">BakuWay Admin</span>
+          <button type="button" aria-label="Close menu" onclick="document.getElementById(&#39;admin-drawer&#39;).classList.add(&#39;hidden&#39;)" class="w-8 h-8 rounded-full hover:bg-sand flex items-center justify-center">
+            <span class="material-symbols-outlined text-[20px]">close</span>
+          </button>
+        </div>
+        <nav class="flex flex-col gap-1">
+          <a href="../admin-dashboard/AdminDashboard.html" class="flex items-center gap-3 px-3 py-2 rounded-md bg-sage-soft text-primary font-label text-label-md"><span class="material-symbols-outlined text-[18px]">dashboard</span> Dashboard</a>
+          <a href="../admin-places/AdminPlaces.html" class="flex items-center gap-3 px-3 py-2 rounded-md text-on-surface-variant hover:bg-sand font-label text-label-md"><span class="material-symbols-outlined text-[18px]">place</span> Places</a>
+          <a href="../admin-applications/AdminApplications.html" class="flex items-center gap-3 px-3 py-2 rounded-md text-on-surface-variant hover:bg-sand font-label text-label-md"><span class="material-symbols-outlined text-[18px]">assignment_ind</span> Partner applications</a>
+          <a href="../admin-applications/AdminApplications.html#drivers" class="flex items-center gap-3 px-3 py-2 rounded-md text-on-surface-variant hover:bg-sand font-label text-label-md"><span class="material-symbols-outlined text-[18px]">directions_car</span> Drivers</a>
+          <a href="../admin-places/AdminPlaces.html#content" class="flex items-center gap-3 px-3 py-2 rounded-md text-on-surface-variant hover:bg-sand font-label text-label-md"><span class="material-symbols-outlined text-[18px]">article</span> Content</a>
+          <a href="../admin-dashboard/AdminDashboard.html#requests" class="flex items-center gap-3 px-3 py-2 rounded-md text-on-surface-variant hover:bg-sand font-label text-label-md"><span class="material-symbols-outlined text-[18px]">inbox</span> Requests</a>
+          <a href="../admin-finance-moderation/AdminFinanceModeration.html#moderation" class="flex items-center gap-3 px-3 py-2 rounded-md text-on-surface-variant hover:bg-sand font-label text-label-md"><span class="material-symbols-outlined text-[18px]">flag</span> Reviews &amp; complaints</a>
+          <a href="../admin-finance-moderation/AdminFinanceModeration.html#finance" class="flex items-center gap-3 px-3 py-2 rounded-md text-on-surface-variant hover:bg-sand font-label text-label-md"><span class="material-symbols-outlined text-[18px]">payments</span> Finance</a>
+          <a href="../admin-dashboard/AdminDashboard.html#analytics" class="flex items-center gap-3 px-3 py-2 rounded-md text-on-surface-variant hover:bg-sand font-label text-label-md"><span class="material-symbols-outlined text-[18px]">analytics</span> Analytics</a>
+          <a href="../admin-finance-moderation/AdminFinanceModeration.html#settings" class="flex items-center gap-3 px-3 py-2 rounded-md text-on-surface-variant hover:bg-sand font-label text-label-md"><span class="material-symbols-outlined text-[18px]">settings</span> Settings</a>
+        </nav>
+      </aside>
+    </div>
+
+    <!-- Desktop Left Sidebar -->
+    <aside class="hidden lg:flex lg:w-64 shrink-0 bg-surface-card border-r border-outline-variant p-5 flex-col justify-between min-h-[1024px] sticky top-0 self-start" data-stitch-vh="min-h-[1024px]===min-h-screen">
+      <div class="flex flex-col gap-5">
+        <div class="flex items-center gap-2.5 pb-4 border-b border-outline-variant">
+          <span class="w-9 h-9 rounded-md bg-primary text-on-primary flex items-center justify-center font-headline text-headline-sm">B</span>
+          <div>
+            <span class="font-headline text-headline-sm text-primary font-bold block">BakuWay</span>
+            <span class="font-label text-label-sm text-on-surface-variant">Admin Panel</span>
+          </div>
+        </div>
+
+        <nav aria-label="Admin" class="flex flex-col gap-1">
+          <a href="../admin-dashboard/AdminDashboard.html" class="flex items-center gap-3 px-3 py-2 rounded-md bg-sage-soft text-primary font-label text-label-md"><span class="material-symbols-outlined text-[18px]">dashboard</span> Dashboard</a>
+          <a href="../admin-places/AdminPlaces.html" class="flex items-center gap-3 px-3 py-2 rounded-md text-on-surface-variant hover:bg-sand font-label text-label-md"><span class="material-symbols-outlined text-[18px]">place</span> Places</a>
+          <a href="../admin-applications/AdminApplications.html" class="flex items-center justify-between px-3 py-2 rounded-md text-on-surface-variant hover:bg-sand font-label text-label-md"><span class="flex items-center gap-3"><span class="material-symbols-outlined text-[18px]">assignment_ind</span> Partner applications</span><span class="px-2 py-0.5 rounded-full bg-terracotta text-on-terracotta text-label-sm tabular-nums">4</span></a>
+          <a href="../admin-applications/AdminApplications.html#drivers" class="flex items-center gap-3 px-3 py-2 rounded-md text-on-surface-variant hover:bg-sand font-label text-label-md"><span class="material-symbols-outlined text-[18px]">directions_car</span> Drivers</a>
+          <a href="../admin-places/AdminPlaces.html#content" class="flex items-center gap-3 px-3 py-2 rounded-md text-on-surface-variant hover:bg-sand font-label text-label-md"><span class="material-symbols-outlined text-[18px]">article</span> Content</a>
+          <a href="#requests" class="flex items-center gap-3 px-3 py-2 rounded-md text-on-surface-variant hover:bg-sand font-label text-label-md"><span class="material-symbols-outlined text-[18px]">inbox</span> Requests</a>
+          <a href="../admin-finance-moderation/AdminFinanceModeration.html#moderation" class="flex items-center gap-3 px-3 py-2 rounded-md text-on-surface-variant hover:bg-sand font-label text-label-md"><span class="material-symbols-outlined text-[18px]">flag</span> Reviews &amp; complaints</a>
+          <a href="../admin-finance-moderation/AdminFinanceModeration.html#finance" class="flex items-center gap-3 px-3 py-2 rounded-md text-on-surface-variant hover:bg-sand font-label text-label-md"><span class="material-symbols-outlined text-[18px]">payments</span> Finance</a>
+          <a href="#analytics" class="flex items-center gap-3 px-3 py-2 rounded-md text-on-surface-variant hover:bg-sand font-label text-label-md"><span class="material-symbols-outlined text-[18px]">analytics</span> Analytics</a>
+          <a href="../admin-finance-moderation/AdminFinanceModeration.html#settings" class="flex items-center gap-3 px-3 py-2 rounded-md text-on-surface-variant hover:bg-sand font-label text-label-md"><span class="material-symbols-outlined text-[18px]">settings</span> Settings</a>
+        </nav>
+      </div>
+
+      <a href="../home/Home.html" class="flex items-center gap-2 px-3 py-2 rounded-md bg-surface border border-outline-variant font-label text-label-md text-primary hover:bg-sand">
+        <span class="material-symbols-outlined text-[18px]">open_in_new</span>
+        <span>Public site</span>
+      </a>
+    </aside>
+
+    <!-- Main Admin Dashboard -->
+    <main class="flex-1 p-6 lg:p-8 pb-24 flex flex-col gap-8 max-w-[1160px]">
+      <div class="flex flex-wrap items-center justify-between gap-4">
+        <div>
+          <h1 class="font-headline text-headline-lg text-on-surface">Admin overview</h1>
+          <p class="font-body text-body-md text-on-surface-variant">Platform health for November 2026</p>
+        </div>
+        <a href="../admin-applications/AdminApplications.html" class="px-4 py-2.5 rounded-md bg-primary text-on-primary font-label text-label-md hover:opacity-90">Review 4 applications</a>
+      </div>
+
+      <!-- 6 KPI Cards -->
+      <section class="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-6 gap-4">
+        <div class="bg-surface-card rounded-lg border border-outline-variant p-4 flex flex-col gap-1 shadow-[0_4px_20px_rgba(46,42,38,0.05)]">
+          <span class="font-label text-label-sm text-on-surface-variant">Monthly users</span>
+          <span class="font-headline text-headline-md text-on-surface tabular-nums">18,420</span>
+          <span class="font-body text-body-sm text-primary tabular-nums">+18%</span>
+        </div>
+        <div class="bg-surface-card rounded-lg border border-outline-variant p-4 flex flex-col gap-1 shadow-[0_4px_20px_rgba(46,42,38,0.05)]">
+          <span class="font-label text-label-sm text-on-surface-variant">Requests</span>
+          <span class="font-headline text-headline-md text-on-surface tabular-nums">1,290</span>
+          <span class="font-body text-body-sm text-primary tabular-nums">+11%</span>
+        </div>
+        <div class="bg-surface-card rounded-lg border border-outline-variant p-4 flex flex-col gap-1 shadow-[0_4px_20px_rgba(46,42,38,0.05)]">
+          <span class="font-label text-label-sm text-on-surface-variant">Request → arrival</span>
+          <span class="font-headline text-headline-md text-primary tabular-nums">78%</span>
+          <span class="font-body text-body-sm text-on-surface-variant">Target 75%</span>
+        </div>
+        <div class="bg-surface-card rounded-lg border border-outline-variant p-4 flex flex-col gap-1 shadow-[0_4px_20px_rgba(46,42,38,0.05)]">
+          <span class="font-label text-label-sm text-on-surface-variant">Active partners</span>
+          <span class="font-headline text-headline-md text-on-surface tabular-nums">142</span>
+          <span class="font-body text-body-sm text-on-surface-variant">94 hotels · 48 eat</span>
+        </div>
+        <div class="bg-surface-card rounded-lg border border-outline-variant p-4 flex flex-col gap-1 shadow-[0_4px_20px_rgba(46,42,38,0.05)]">
+          <span class="font-label text-label-sm text-on-surface-variant">Active drivers</span>
+          <span class="font-headline text-headline-md text-on-surface tabular-nums">64</span>
+          <span class="font-body text-body-sm text-on-surface-variant">4 regions</span>
+        </div>
+        <div class="bg-sage-soft rounded-lg p-4 flex flex-col gap-1">
+          <span class="font-label text-label-sm text-on-sage">Region waitlist</span>
+          <span class="font-headline text-headline-md text-on-sage tabular-nums">318</span>
+          <span class="font-body text-body-sm text-on-sage/90">Sheki &amp; Guba</span>
+        </div>
+      </section>
+
+      <!-- Requests per day Chart -->
+      <section id="analytics" class="bg-surface-card rounded-lg border border-outline-variant p-6 flex flex-col gap-4 shadow-[0_4px_20px_rgba(46,42,38,0.05)]">
+        <div class="flex items-center justify-between">
+          <h2 class="font-headline text-headline-sm text-on-surface">Requests per day (last 14 days)</h2>
+          <span class="font-label text-label-md text-primary tabular-nums">Avg 43 / day</span>
+        </div>
+        <svg viewBox="0 0 700 150" class="w-full h-36" aria-label="Requests per day bar chart">
+          <rect x="20" y="75" width="32" height="55" rx="4" fill="#7A9E7E"></rect>
+          <rect x="68" y="65" width="32" height="65" rx="4" fill="#7A9E7E"></rect>
+          <rect x="116" y="80" width="32" height="50" rx="4" fill="#7A9E7E"></rect>
+          <rect x="164" y="55" width="32" height="75" rx="4" fill="#7A9E7E"></rect>
+          <rect x="212" y="40" width="32" height="90" rx="4" fill="#3F5E4A"></rect>
+          <rect x="260" y="50" width="32" height="80" rx="4" fill="#7A9E7E"></rect>
+          <rect x="308" y="62" width="32" height="68" rx="4" fill="#7A9E7E"></rect>
+          <rect x="356" y="48" width="32" height="82" rx="4" fill="#7A9E7E"></rect>
+          <rect x="404" y="34" width="32" height="96" rx="4" fill="#3F5E4A"></rect>
+          <rect x="452" y="42" width="32" height="88" rx="4" fill="#7A9E7E"></rect>
+          <rect x="500" y="28" width="32" height="102" rx="4" fill="#3F5E4A"></rect>
+          <rect x="548" y="36" width="32" height="94" rx="4" fill="#7A9E7E"></rect>
+          <rect x="596" y="22" width="32" height="108" rx="4" fill="#3F5E4A"></rect>
+          <rect x="644" y="30" width="32" height="100" rx="4" fill="#3F5E4A"></rect>
+        </svg>
+      </section>
+
+      <!-- Requests without reply > 2h + New Partner Applications -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+        <section id="requests" class="lg:col-span-7 bg-surface-card rounded-lg border border-outline-variant p-6 flex flex-col gap-4 shadow-[0_4px_20px_rgba(46,42,38,0.05)]">
+          <div class="flex items-center justify-between">
+            <h2 class="font-headline text-headline-sm text-on-surface">Requests without reply &gt; 2h</h2>
+            <span class="px-2.5 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label text-label-sm tabular-nums">3 alerts</span>
+          </div>
+          <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse">
+              <thead>
+                <tr class="border-b border-outline-variant font-label text-label-sm text-on-surface-variant">
+                  <th class="py-2.5 pr-3">Code</th>
+                  <th class="py-2.5 pr-3">Partner</th>
+                  <th class="py-2.5 pr-3">Wait time</th>
+                  <th class="py-2.5 text-right">Action</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-outline-variant font-body text-body-sm tabular-nums">
+                <tr>
+                  <td class="py-3 pr-3 font-label text-primary">TRZ-1102</td>
+                  <td class="py-3 pr-3">Nizami Garden Hotel</td>
+                  <td class="py-3 pr-3"><span class="px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label text-label-sm">2h 18m</span></td>
+                  <td class="py-3 text-right"><button type="button" onclick="showToast(&#39;WhatsApp reminder sent to Nizami Garden Hotel&#39;)" class="px-3 py-1 rounded-md bg-primary text-on-primary font-label text-label-sm">Remind</button></td>
+                </tr>
+                <tr>
+                  <td class="py-3 pr-3 font-label text-primary">TRZ-1105</td>
+                  <td class="py-3 pr-3">Seaside Terrace</td>
+                  <td class="py-3 pr-3"><span class="px-2 py-0.5 rounded-full bg-error text-on-error font-label text-label-sm">3h 05m</span></td>
+                  <td class="py-3 text-right"><button type="button" onclick="showToast(&#39;WhatsApp reminder sent to Seaside Terrace&#39;)" class="px-3 py-1 rounded-md bg-primary text-on-primary font-label text-label-sm">Remind</button></td>
+                </tr>
+                <tr>
+                  <td class="py-3 pr-3 font-label text-primary">TRZ-1109</td>
+                  <td class="py-3 pr-3">Caspian Pearl Hotel</td>
+                  <td class="py-3 pr-3"><span class="px-2 py-0.5 rounded-full bg-error text-on-error font-label text-label-sm">4h 12m</span></td>
+                  <td class="py-3 text-right"><button type="button" onclick="showToast(&#39;WhatsApp reminder sent to Caspian Pearl&#39;)" class="px-3 py-1 rounded-md bg-primary text-on-primary font-label text-label-sm">Remind</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="lg:col-span-5 bg-surface-card rounded-lg border border-outline-variant p-6 flex flex-col gap-4 shadow-[0_4px_20px_rgba(46,42,38,0.05)]">
+          <div class="flex items-center justify-between">
+            <h2 class="font-headline text-headline-sm text-on-surface">New partner applications</h2>
+            <a href="../admin-applications/AdminApplications.html" class="font-label text-label-md text-primary hover:underline">See all →</a>
+          </div>
+          <div class="flex flex-col gap-3">
+            <div class="p-4 rounded-md bg-surface border border-outline-variant flex flex-col gap-2.5">
+              <div>
+                <h3 class="font-title text-title-md text-on-surface">Maiden Tower Guest House</h3>
+                <p class="font-body text-body-sm text-on-surface-variant tabular-nums">Hotel · VÖEN 1402918471 · Old City</p>
+              </div>
+              <div class="flex gap-2">
+                <button type="button" onclick="showToast(&#39;Approved Maiden Tower Guest House&#39;)" class="flex-1 py-1.5 rounded-md bg-primary text-on-primary font-label text-label-md hover:opacity-90">Approve</button>
+                <button type="button" onclick="showToast(&#39;Rejected Maiden Tower Guest House&#39;)" class="flex-1 py-1.5 rounded-md bg-surface-card border border-outline text-error font-label text-label-md hover:bg-terracotta-soft">Reject</button>
+              </div>
+            </div>
+            <div class="p-4 rounded-md bg-surface border border-outline-variant flex flex-col gap-2.5">
+              <div>
+                <h3 class="font-title text-title-md text-on-surface">Nakhchivan Tea &amp; Plov</h3>
+                <p class="font-body text-body-sm text-on-surface-variant tabular-nums">Restaurant · VÖEN 1701829311 · Nasimi</p>
+              </div>
+              <div class="flex gap-2">
+                <button type="button" onclick="showToast(&#39;Approved Nakhchivan Tea &amp; Plov&#39;)" class="flex-1 py-1.5 rounded-md bg-primary text-on-primary font-label text-label-md hover:opacity-90">Approve</button>
+                <button type="button" onclick="showToast(&#39;Rejected Nakhchivan Tea &amp; Plov&#39;)" class="flex-1 py-1.5 rounded-md bg-surface-card border border-outline text-error font-label text-label-md hover:bg-terracotta-soft">Reject</button>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+    </main>
+  </div>
+
+  <div id="toast" role="status" aria-live="polite" class="hidden fixed bottom-6 right-6 z-50 bg-primary text-on-primary px-4 py-3 rounded-md shadow-lg flex items-center gap-2.5 font-body text-body-md">
+    <span class="material-symbols-outlined text-[18px]" aria-hidden="true">check_circle</span>
+    <span id="toast-message"></span>
+  </div>
+
+  <script>
+    let toastTimer;
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      document.getElementById('toast-message').textContent = msg;
+      toast.classList.remove('hidden');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.add('hidden'), 3000);
+    }
+  </script>
+
+
+</body></html>

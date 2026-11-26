@@ -1,0 +1,387 @@
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BakuWay — Select Rooms</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script id="tailwind-config">/** @type {import('tailwindcss').Config} */
+globalThis.tailwind = globalThis.tailwind || {};
+globalThis.tailwind.config = {
+  darkMode: 'class',
+  theme: {
+    extend: {
+      colors: {
+        'primary': '#3F5E4A',
+        'on-primary': '#FFFFFF',
+        'primary-container': '#D6F9DF',
+        'on-primary-container': '#183625',
+        'sage': '#7A9E7E',
+        'on-sage': '#15351E',
+        'sage-soft': '#EBF2EC',
+        'secondary': '#8B6B4F',
+        'on-secondary': '#FFFFFF',
+        'secondary-container': '#FFEEE1',
+        'on-secondary-container': '#432B14',
+        'terracotta': '#C98B6B',
+        'on-terracotta': '#2E1A10',
+        'terracotta-soft': '#F7EAE2',
+        'surface': '#F7F3EC',
+        'on-surface': '#2E2A26',
+        'surface-card': '#FFFFFF',
+        'on-surface-card': '#2E2A26',
+        'sand': '#E8DFD0',
+        'on-sand': '#2E2A26',
+        'on-surface-variant': '#655D56',
+        'muted': '#7A716A',
+        'outline': '#DDD5C7',
+        'outline-variant': '#EAE1D2',
+        'success': '#4A7C59',
+        'on-success': '#FFFFFF',
+        'warning': '#B58238',
+        'on-warning': '#201B15',
+        'error': '#A84A42',
+        'on-error': '#FFFFFF',
+      },
+      borderRadius: {
+        'sm': '8px',
+        'DEFAULT': '12px',
+        'md': '12px',
+        'lg': '16px',
+        'xl': '24px',
+        'full': '9999px',
+      },
+      spacing: {
+        'gutter-xs': '4px',
+        'gutter-sm': '8px',
+        'gutter-md': '16px',
+        'gutter-lg': '24px',
+        'gutter-xl': '32px',
+        'section': '64px',
+        'page-margin': '24px',
+      },
+      fontFamily: {
+        'display': ['"Plus Jakarta Sans"', 'sans-serif'],
+        'headline': ['"Plus Jakarta Sans"', 'sans-serif'],
+        'title': ['"Plus Jakarta Sans"', 'sans-serif'],
+        'body': ['"Plus Jakarta Sans"', 'sans-serif'],
+        'label': ['"Plus Jakarta Sans"', 'sans-serif'],
+      },
+      fontSize: {
+        'display-lg': ['44px', { lineHeight: '52px', letterSpacing: '-0.5px', fontWeight: '700' }],
+        'display-lg-mobile': ['30px', { lineHeight: '38px', letterSpacing: '-0.25px', fontWeight: '700' }],
+        'headline-lg': ['32px', { lineHeight: '40px', letterSpacing: '-0.25px', fontWeight: '700' }],
+        'headline-md': ['24px', { lineHeight: '32px', letterSpacing: '-0.15px', fontWeight: '700' }],
+        'headline-sm': ['18px', { lineHeight: '26px', letterSpacing: '0px', fontWeight: '600' }],
+        'title-md': ['16px', { lineHeight: '24px', letterSpacing: '0px', fontWeight: '600' }],
+        'body-lg': ['16px', { lineHeight: '26px', letterSpacing: '0px', fontWeight: '400' }],
+        'body-md': ['14px', { lineHeight: '22px', letterSpacing: '0px', fontWeight: '400' }],
+        'body-sm': ['13px', { lineHeight: '18px', letterSpacing: '0px', fontWeight: '400' }],
+        'label-lg': ['14px', { lineHeight: '20px', letterSpacing: '0px', fontWeight: '600' }],
+        'label-md': ['12px', { lineHeight: '16px', letterSpacing: '0.2px', fontWeight: '600' }],
+        'label-sm': ['11px', { lineHeight: '14px', letterSpacing: '0.3px', fontWeight: '600' }],
+      },
+      transitionDuration: {
+        'state-change': '150ms',
+        'surface-enter': '250ms',
+        'surface-exit': '150ms',
+      },
+      transitionDelay: {
+        'state-change': '0ms',
+        'surface-enter': '0ms',
+        'surface-exit': '0ms',
+      },
+      transitionTimingFunction: {
+        'state-change': 'ease-out',
+        'surface-enter': 'cubic-bezier(0.2, 0, 0, 1)',
+        'surface-exit': 'cubic-bezier(0.3, 0, 1, 1)',
+      },
+    },
+  },
+};
+if (typeof module !== 'undefined') module.exports = globalThis.tailwind.config;
+</script>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block" rel="stylesheet">
+  <style>
+    .material-symbols-outlined { display: inline-block; width: 1em; height: 1em; line-height: 1 !important; box-sizing: content-box; overflow: hidden; white-space: nowrap; direction: ltr; vertical-align: middle; }
+  </style>
+</head>
+<body class="bg-surface text-on-surface font-body antialiased">
+  <div class="min-h-[1024px] flex flex-col" data-stitch-vh="min-h-[1024px]===min-h-screen">
+
+    <!-- Sticky Header -->
+    <header id="site-header" class="sticky top-0 z-40 bg-surface shadow-[0_4px_16px_rgba(46,42,38,0.05)] transition-colors duration-state-change">
+      <div class="max-w-[1200px] mx-auto px-6 min-h-[72px] py-2 flex items-center justify-between gap-4">
+        <a href="../home/Home.html" class="flex items-center gap-2.5 shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-md">
+          <span class="w-9 h-9 rounded-md bg-sage text-on-sage flex items-center justify-center">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M12 4C8 4 5 7.5 5 11.5C5 16 8.5 19.5 12 20C15.5 19.5 19 16 19 11.5C19 7.5 16 4 12 4Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"></path>
+              <path d="M12 8V17M12 12L15 9.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path>
+            </svg>
+          </span>
+          <span class="font-headline text-headline-sm text-primary font-bold tracking-tight">BakuWay</span>
+        </a>
+
+        <nav aria-label="Primary" class="hidden lg:flex items-center gap-2">
+          <a href="../hotels-search/HotelsSearch.html" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-sage-soft text-primary font-label text-label-md font-semibold">
+            <span class="material-symbols-outlined text-[18px]" aria-hidden="true">hotel</span>
+            <span>Stay</span>
+          </a>
+          <a href="../home/Home.html#eat" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full font-label text-label-md text-on-surface-variant hover:bg-sand hover:text-on-surface transition-colors">
+            <span class="material-symbols-outlined text-[18px]" aria-hidden="true">restaurant</span>
+            <span>Eat</span>
+          </a>
+          <a href="../home/Home.html#places" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full font-label text-label-md text-on-surface-variant hover:bg-sand hover:text-on-surface transition-colors">
+            <span class="material-symbols-outlined text-[18px]" aria-hidden="true">explore</span>
+            <span>Explore</span>
+          </a>
+          <a href="../home/Home.html#airport-guide" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full font-label text-label-md text-on-surface-variant hover:bg-sand hover:text-on-surface transition-colors">
+            <span class="material-symbols-outlined text-[18px]" aria-hidden="true">commute</span>
+            <span>Getting around</span>
+          </a>
+          <a href="../home/Home.html#intercity" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full font-label text-label-md text-on-surface-variant hover:bg-sand hover:text-on-surface transition-colors">
+            <span class="material-symbols-outlined text-[18px]" aria-hidden="true">directions_car</span>
+            <span>Rides to regions</span>
+          </a>
+        </nav>
+
+        <div class="flex items-center gap-2.5 shrink-0">
+          <button type="button" aria-label="Search" onclick="window.location.href=&#39;../hotels-search/HotelsSearch.html&#39;" class="inline-flex items-center justify-center w-9 h-9 rounded-full bg-surface-card text-on-surface-variant hover:bg-sand hover:text-on-surface transition-colors">
+            <span class="material-symbols-outlined text-[19px]" aria-hidden="true">search</span>
+          </button>
+          <span class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface-card border border-outline-variant text-on-surface font-label text-label-md">EN · ₼</span>
+          <button type="button" aria-label="Saved favorites" class="hidden sm:inline-flex items-center justify-center w-9 h-9 rounded-full bg-surface-card text-on-surface-variant hover:bg-sand hover:text-on-surface transition-colors">
+            <span class="material-symbols-outlined text-[19px]" aria-hidden="true">favorite</span>
+          </button>
+          <button type="button" class="hidden md:inline-flex items-center px-2 py-1.5 font-label text-label-md text-on-surface-variant hover:text-primary transition-colors">Log in</button>
+          <button type="button" class="hidden sm:inline-flex items-center justify-center px-3.5 py-1.5 rounded-md bg-surface-card text-secondary border border-secondary font-label text-label-md hover:bg-secondary-container transition-colors">Become a partner</button>
+          <button type="button" aria-label="Open navigation menu" onclick="document.getElementById(&#39;mobile-drawer&#39;).classList.remove(&#39;hidden&#39;)" class="lg:hidden inline-flex items-center justify-center w-9 h-9 rounded-full bg-surface-card text-on-surface hover:bg-sand transition-colors">
+            <span class="material-symbols-outlined text-[20px]" aria-hidden="true">menu</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Mobile Full-Height Drawer -->
+    <div id="mobile-drawer" class="hidden fixed inset-0 z-50">
+      <div class="fixed inset-0 bg-on-surface/40" onclick="this.parentElement.classList.add(&#39;hidden&#39;)"></div>
+      <aside class="fixed top-0 right-0 bottom-0 w-72 bg-surface-card p-6 flex flex-col gap-6 shadow-xl">
+        <div class="flex items-center justify-between">
+          <span class="font-headline text-headline-sm text-primary font-bold">BakuWay</span>
+          <button type="button" aria-label="Close menu" onclick="document.getElementById(&#39;mobile-drawer&#39;).classList.add(&#39;hidden&#39;)" class="w-9 h-9 rounded-full hover:bg-sand flex items-center justify-center">
+            <span class="material-symbols-outlined text-[20px]">close</span>
+          </button>
+        </div>
+        <nav class="flex flex-col gap-2">
+          <a href="../hotels-search/HotelsSearch.html" class="flex items-center gap-3 px-3 py-2.5 rounded-full bg-sage-soft text-primary font-label text-label-lg"><span class="material-symbols-outlined text-[20px]">hotel</span> Stay</a>
+          <a href="../home/Home.html#eat" class="flex items-center gap-3 px-3 py-2.5 rounded-full text-on-surface-variant hover:bg-sand font-label text-label-lg"><span class="material-symbols-outlined text-[20px]">restaurant</span> Eat</a>
+          <a href="../home/Home.html#places" class="flex items-center gap-3 px-3 py-2.5 rounded-full text-on-surface-variant hover:bg-sand font-label text-label-lg"><span class="material-symbols-outlined text-[20px]">explore</span> Explore</a>
+          <a href="../home/Home.html#airport-guide" class="flex items-center gap-3 px-3 py-2.5 rounded-full text-on-surface-variant hover:bg-sand font-label text-label-lg"><span class="material-symbols-outlined text-[20px]">commute</span> Getting around</a>
+          <a href="../home/Home.html#intercity" class="flex items-center gap-3 px-3 py-2.5 rounded-full text-on-surface-variant hover:bg-sand font-label text-label-lg"><span class="material-symbols-outlined text-[20px]">directions_car</span> Rides to regions</a>
+        </nav>
+      </aside>
+    </div>
+
+    <main class="flex-1 max-w-[1200px] w-full mx-auto px-6 py-8 pb-28 flex flex-col gap-10">
+
+      <!-- Step Indicator + Hotel Title -->
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div>
+          <a href="../hotel-detail/HotelDetail.html" class="inline-flex items-center gap-1 font-label text-label-md text-primary hover:underline mb-2">
+            <span class="material-symbols-outlined text-[16px]" aria-hidden="true">arrow_back</span> Back to Shirvanshah Boutique Hotel
+          </a>
+          <h1 class="font-headline text-headline-lg text-on-surface">Choose your rooms</h1>
+          <p class="font-body text-body-md text-on-surface-variant">Dec 10 – Dec 13, 2026 (3 nights) · 2 adults, 1 child</p>
+        </div>
+        <div class="flex items-center gap-2 font-label text-label-md">
+          <span class="px-3 py-1.5 rounded-full bg-primary text-on-primary">1. Rooms</span>
+          <span class="text-on-surface-variant">→</span>
+          <span class="px-3 py-1.5 rounded-full bg-sand text-on-surface-variant">2. Your details</span>
+          <span class="text-on-surface-variant">→</span>
+          <span class="px-3 py-1.5 rounded-full bg-sand text-on-surface-variant">3. Sent</span>
+        </div>
+      </div>
+
+      <!-- Rich Room Rows -->
+      <section class="flex flex-col gap-5">
+        <!-- Room 1 -->
+        <article class="bg-surface-card rounded-lg border border-outline-variant shadow-[0_4px_20px_rgba(46,42,38,0.05)] overflow-hidden grid grid-cols-1 md:grid-cols-12">
+          <div class="md:col-span-4 aspect-video md:aspect-auto bg-sand">
+            <img src="https://lh3.googleusercontent.com/aida/ALJJyrCrTgL1l6ibwX-k_benrbgiVTKUa33v2cho_YYtl6O8p3AvnnMOH6Zk1MW1CcpvAUmlsL2m9gGjLrQ4VgkBWPw8f7FNjejvLP0ZQGww-5yr0Jeg_2uaw4FLWGLX9fgJa2jrD8q7Hu2pKWHVfryuOpTXONo8fFfRrRefVSM9EL9nQXo5Vlau_7UHThXHyVQbPbD5PASBbYbyN-JQIR3qTbZsdFiw6eHBXWl9_2kRVDCyg10HguMMDIxodPQ6TkCX0A" alt="Deluxe Courtyard Room" class="w-full h-full object-cover">
+          </div>
+          <div class="md:col-span-5 p-5 flex flex-col gap-2">
+            <div class="flex items-center justify-between gap-2">
+              <h2 class="font-headline text-headline-sm text-on-surface">Deluxe Courtyard Room</h2>
+              <button type="button" onclick="openRoomModal(&#39;Deluxe Courtyard Room&#39;, &#39;28 m² · 1 Queen Bed · Courtyard view&#39;)" class="font-label text-label-md text-primary hover:underline">Room details</button>
+            </div>
+            <p class="font-body text-body-sm text-on-surface-variant">28 m² · 1 Queen bed · Max 2 guests · Quiet courtyard view</p>
+            <div class="flex flex-wrap gap-2 pt-1">
+              <span class="px-2.5 py-1 rounded-full bg-sage-soft text-on-sage font-label text-label-sm">Breakfast included</span>
+              <span class="px-2.5 py-1 rounded-full bg-sage-soft text-on-sage font-label text-label-sm">Free cancellation</span>
+            </div>
+          </div>
+          <div class="md:col-span-3 p-5 bg-surface/50 border-t md:border-t-0 md:border-l border-outline-variant flex flex-col justify-between gap-4">
+            <div>
+              <span class="font-headline text-headline-sm text-primary tabular-nums">85 ₼</span>
+              <span class="font-body text-body-sm text-on-surface-variant">/ night (≈ $50)</span>
+              <p class="font-label text-label-md text-on-surface mt-1 tabular-nums">255 ₼ total for 3 nights</p>
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="font-label text-label-md text-on-surface">Rooms:</span>
+              <div class="inline-flex items-center border border-outline rounded-md bg-surface-card">
+                <button type="button" onclick="updateRoomCount(&#39;r1&#39;, -1)" class="px-3 py-1.5 font-label text-label-lg hover:bg-sand">−</button>
+                <span id="qty-r1" class="px-3 py-1.5 font-label text-label-md tabular-nums">1</span>
+                <button type="button" onclick="updateRoomCount(&#39;r1&#39;, 1)" class="px-3 py-1.5 font-label text-label-lg hover:bg-sand">+</button>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Room 2 -->
+        <article class="bg-surface-card rounded-lg border border-outline-variant shadow-[0_4px_20px_rgba(46,42,38,0.05)] overflow-hidden grid grid-cols-1 md:grid-cols-12">
+          <div class="md:col-span-4 aspect-video md:aspect-auto bg-sand">
+            <img src="https://lh3.googleusercontent.com/aida/ALJJyrA50Q5KG0Od2pOxRZ3lpdJTuNP_HRjJ7yfZZEhJ7mfArCduUIB5SvwzwiX6V0wnCWujYglUnLigTZbGQzFe8OhzV151n96oAxN376ehvRLyAY6kqrBOt_tWgeHyQCWV7-JTOnOVlpbIOStWfut1mwmzSihfRash-e4YnFJ58xN-Dw1JJwLPwU0BPb5mwhOopr4JCJTvB2Z7FmNLZ2cmH6bYIFHbb8_0ptmLMI2Yu9U6JnX3pMTmrQkbd0x7" alt="Family Courtyard Suite" class="w-full h-full object-cover">
+          </div>
+          <div class="md:col-span-5 p-5 flex flex-col gap-2">
+            <div class="flex items-center justify-between gap-2">
+              <h2 class="font-headline text-headline-sm text-on-surface">Family Courtyard Suite</h2>
+              <button type="button" onclick="openRoomModal(&#39;Family Courtyard Suite&#39;, &#39;45 m² · 1 King + 1 Twin Bed · Balcony&#39;)" class="font-label text-label-md text-primary hover:underline">Room details</button>
+            </div>
+            <p class="font-body text-body-sm text-on-surface-variant">45 m² · 1 King + 1 Twin bed · Max 4 guests · Wooden balcony</p>
+            <div class="flex flex-wrap gap-2 pt-1">
+              <span class="px-2.5 py-1 rounded-full bg-sage-soft text-on-sage font-label text-label-sm">Breakfast included</span>
+              <span class="px-2.5 py-1 rounded-full bg-terracotta-soft text-on-terracotta font-label text-label-sm">Free airport pickup</span>
+            </div>
+          </div>
+          <div class="md:col-span-3 p-5 bg-surface/50 border-t md:border-t-0 md:border-l border-outline-variant flex flex-col justify-between gap-4">
+            <div>
+              <span class="font-headline text-headline-sm text-primary tabular-nums">85 ₼</span>
+              <span class="font-body text-body-sm text-on-surface-variant">/ night (≈ $50)</span>
+              <p class="font-label text-label-md text-on-surface mt-1 tabular-nums">255 ₼ total for 3 nights</p>
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="font-label text-label-md text-on-surface">Rooms:</span>
+              <div class="inline-flex items-center border border-outline rounded-md bg-surface-card">
+                <button type="button" onclick="updateRoomCount(&#39;r2&#39;, -1)" class="px-3 py-1.5 font-label text-label-lg hover:bg-sand">−</button>
+                <span id="qty-r2" class="px-3 py-1.5 font-label text-label-md tabular-nums">1</span>
+                <button type="button" onclick="updateRoomCount(&#39;r2&#39;, 1)" class="px-3 py-1.5 font-label text-label-lg hover:bg-sand">+</button>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Room 3 -->
+        <article class="bg-surface-card rounded-lg border border-outline-variant shadow-[0_4px_20px_rgba(46,42,38,0.05)] overflow-hidden grid grid-cols-1 md:grid-cols-12">
+          <div class="md:col-span-4 aspect-video md:aspect-auto bg-sand">
+            <img src="https://lh3.googleusercontent.com/aida/ALJJyrAZP5gqFV1NUoJl7TFD9LBKnNTI9gwIzDT0p3_N4cuFOo6i2EHR0zOeiVQdIk1SOKKqKiZ5AK2Cas6VS3Pj6rttktdriDTEFKgosjn7evSS-oq2-MArpL3v8OmXnpSSUhux3-rObdJgoXZUWldWGkAJ5xOZ1DryE8Indm759JAQkxMF1A4Rw3u1pIbzyJ8RJ79C-26mxUszt9XUpWv-5xr7mtaY59xLl4F1-AuhEFp0nXDYMKiGCLeMh9oZpYim" alt="Old City Stone Studio" class="w-full h-full object-cover">
+          </div>
+          <div class="md:col-span-5 p-5 flex flex-col gap-2">
+            <div class="flex items-center justify-between gap-2">
+              <h2 class="font-headline text-headline-sm text-on-surface">Old City Stone Studio</h2>
+              <button type="button" onclick="openRoomModal(&#39;Old City Stone Studio&#39;, &#39;34 m² · 1 Queen Bed · Kitchenette&#39;)" class="font-label text-label-md text-primary hover:underline">Room details</button>
+            </div>
+            <p class="font-body text-body-sm text-on-surface-variant">34 m² · 1 Queen bed + sofa · Max 3 guests · Street view</p>
+            <div class="flex flex-wrap gap-2 pt-1">
+              <span class="px-2.5 py-1 rounded-full bg-sage-soft text-on-sage font-label text-label-sm">Free cancellation</span>
+            </div>
+          </div>
+          <div class="md:col-span-3 p-5 bg-surface/50 border-t md:border-t-0 md:border-l border-outline-variant flex flex-col justify-between gap-4">
+            <div>
+              <span class="font-headline text-headline-sm text-primary tabular-nums">95 ₼</span>
+              <span class="font-body text-body-sm text-on-surface-variant">/ night (≈ $56)</span>
+              <p class="font-label text-label-md text-on-surface mt-1 tabular-nums">285 ₼ total for 3 nights</p>
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="font-label text-label-md text-on-surface">Rooms:</span>
+              <div class="inline-flex items-center border border-outline rounded-md bg-surface-card">
+                <button type="button" onclick="updateRoomCount(&#39;r3&#39;, -1)" class="px-3 py-1.5 font-label text-label-lg hover:bg-sand">−</button>
+                <span id="qty-r3" class="px-3 py-1.5 font-label text-label-md tabular-nums">0</span>
+                <button type="button" onclick="updateRoomCount(&#39;r3&#39;, 1)" class="px-3 py-1.5 font-label text-label-lg hover:bg-sand">+</button>
+              </div>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <!-- Compare Rooms Side-by-Side Table -->
+      <section class="bg-surface-card rounded-lg border border-outline-variant p-6 flex flex-col gap-4 overflow-x-auto">
+        <h2 class="font-headline text-headline-md text-on-surface">Compare rooms</h2>
+        <table class="w-full text-left border-collapse min-w-[600px]">
+          <thead>
+            <tr class="border-b border-outline-variant font-title text-title-md text-on-surface">
+              <th class="py-3 pr-4">Feature</th>
+              <th class="py-3 px-4">Deluxe Courtyard</th>
+              <th class="py-3 px-4">Family Suite</th>
+              <th class="py-3 px-4">Old City Studio</th>
+            </tr>
+          </thead>
+          <tbody class="font-body text-body-md text-on-surface-variant divide-y divide-outline-variant/60">
+            <tr><td class="py-3 pr-4 font-medium text-on-surface">Size</td><td class="py-3 px-4">28 m²</td><td class="py-3 px-4">45 m²</td><td class="py-3 px-4">34 m²</td></tr>
+            <tr><td class="py-3 pr-4 font-medium text-on-surface">Max guests</td><td class="py-3 px-4">2 guests</td><td class="py-3 px-4">4 guests</td><td class="py-3 px-4">3 guests</td></tr>
+            <tr><td class="py-3 pr-4 font-medium text-on-surface">Breakfast</td><td class="py-3 px-4 text-primary">Included</td><td class="py-3 px-4 text-primary">Included</td><td class="py-3 px-4">Optional (+12 ₼)</td></tr>
+            <tr><td class="py-3 pr-4 font-medium text-on-surface">Airport pickup</td><td class="py-3 px-4">25 ₼</td><td class="py-3 px-4 text-primary">Free</td><td class="py-3 px-4">25 ₼</td></tr>
+            <tr><td class="py-3 pr-4 font-medium text-on-surface">3-night total</td><td class="py-3 px-4 font-label text-on-surface tabular-nums">255 ₼ (≈ $150)</td><td class="py-3 px-4 font-label text-on-surface tabular-nums">255 ₼ (≈ $150)</td><td class="py-3 px-4 font-label text-on-surface tabular-nums">285 ₼ (≈ $168)</td></tr>
+          </tbody>
+        </table>
+      </section>
+    </main>
+
+    <!-- Sticky Bottom Summary Bar -->
+    <div class="fixed bottom-0 left-0 right-0 z-40 bg-surface-card border-t border-outline-variant shadow-[0_-4px_20px_rgba(46,42,38,0.08)]">
+      <div class="max-w-[1200px] mx-auto px-6 py-4 flex items-center justify-between gap-4">
+        <div>
+          <p id="summary-line" class="font-title text-title-md text-on-surface tabular-nums">2 rooms selected · 3 nights · 510 ₼</p>
+          <p class="font-body text-body-sm text-on-surface-variant tabular-nums">≈ $300 · Pay at the hotel</p>
+        </div>
+        <a href="../booking-request/BookingRequest.html" class="px-6 py-3 rounded-md bg-primary text-on-primary font-label text-label-lg hover:opacity-90 transition-colors shrink-0">
+          Continue
+        </a>
+      </div>
+    </div>
+
+    <!-- Room Detail Modal -->
+    <div id="room-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4">
+      <div class="fixed inset-0 bg-on-surface/40" onclick="document.getElementById(&#39;room-modal&#39;).classList.add(&#39;hidden&#39;)"></div>
+      <div role="dialog" aria-modal="true" class="relative bg-surface-card rounded-lg max-w-lg w-full p-6 flex flex-col gap-4 shadow-xl border border-outline-variant">
+        <div class="flex items-center justify-between">
+          <h2 id="room-modal-title" class="font-headline text-headline-sm text-on-surface">Room details</h2>
+          <button type="button" aria-label="Close modal" onclick="document.getElementById(&#39;room-modal&#39;).classList.add(&#39;hidden&#39;)" class="w-9 h-9 rounded-full hover:bg-sand flex items-center justify-center">
+            <span class="material-symbols-outlined text-[20px]">close</span>
+          </button>
+        </div>
+        <img src="https://lh3.googleusercontent.com/aida/ALJJyrCrTgL1l6ibwX-k_benrbgiVTKUa33v2cho_YYtl6O8p3AvnnMOH6Zk1MW1CcpvAUmlsL2m9gGjLrQ4VgkBWPw8f7FNjejvLP0ZQGww-5yr0Jeg_2uaw4FLWGLX9fgJa2jrD8q7Hu2pKWHVfryuOpTXONo8fFfRrRefVSM9EL9nQXo5Vlau_7UHThXHyVQbPbD5PASBbYbyN-JQIR3qTbZsdFiw6eHBXWl9_2kRVDCyg10HguMMDIxodPQ6TkCX0A" alt="Room preview" class="w-full aspect-video object-cover rounded-md">
+        <p id="room-modal-meta" class="font-body text-body-md text-on-surface-variant"></p>
+        <p class="font-body text-body-sm text-on-surface-variant">Includes cotton linens, rain shower, electric kettle with Azerbaijani black tea, safe box, and daily housekeeping.</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const counts = { r1: 1, r2: 1, r3: 0 };
+    const prices = { r1: 255, r2: 255, r3: 285 };
+    function updateRoomCount(id, delta) {
+      counts[id] = Math.max(0, Math.min(4, counts[id] + delta));
+      document.getElementById('qty-' + id).textContent = counts[id];
+      const totalRooms = counts.r1 + counts.r2 + counts.r3;
+      const totalPrice = counts.r1 * prices.r1 + counts.r2 * prices.r2 + counts.r3 * prices.r3;
+      document.getElementById('summary-line').textContent = `${totalRooms} ${totalRooms === 1 ? 'room' : 'rooms'} selected · 3 nights · ${totalPrice} ₼`;
+    }
+    function openRoomModal(title, meta) {
+      document.getElementById('room-modal-title').textContent = title;
+      document.getElementById('room-modal-meta').textContent = meta;
+      document.getElementById('room-modal').classList.remove('hidden');
+    }
+    window.addEventListener('scroll', () => {
+      const header = document.getElementById('site-header');
+      if (!header) return;
+      if (window.scrollY > 10) {
+        header.classList.remove('bg-surface');
+        header.classList.add('bg-surface-card/90', 'backdrop-blur-sm');
+      } else {
+        header.classList.add('bg-surface');
+        header.classList.remove('bg-surface-card/90', 'backdrop-blur-sm');
+      }
+    });
+  </script>
+
+
+</body></html>

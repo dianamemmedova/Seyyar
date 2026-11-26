@@ -1,0 +1,598 @@
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BakuWay — Shirvanshah Boutique Hotel</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script id="tailwind-config">/** @type {import('tailwindcss').Config} */
+globalThis.tailwind = globalThis.tailwind || {};
+globalThis.tailwind.config = {
+  darkMode: 'class',
+  theme: {
+    extend: {
+      colors: {
+        'primary': '#3F5E4A',
+        'on-primary': '#FFFFFF',
+        'primary-container': '#D6F9DF',
+        'on-primary-container': '#183625',
+        'sage': '#7A9E7E',
+        'on-sage': '#15351E',
+        'sage-soft': '#EBF2EC',
+        'secondary': '#8B6B4F',
+        'on-secondary': '#FFFFFF',
+        'secondary-container': '#FFEEE1',
+        'on-secondary-container': '#432B14',
+        'terracotta': '#C98B6B',
+        'on-terracotta': '#2E1A10',
+        'terracotta-soft': '#F7EAE2',
+        'surface': '#F7F3EC',
+        'on-surface': '#2E2A26',
+        'surface-card': '#FFFFFF',
+        'on-surface-card': '#2E2A26',
+        'sand': '#E8DFD0',
+        'on-sand': '#2E2A26',
+        'on-surface-variant': '#655D56',
+        'muted': '#7A716A',
+        'outline': '#DDD5C7',
+        'outline-variant': '#EAE1D2',
+        'success': '#4A7C59',
+        'on-success': '#FFFFFF',
+        'warning': '#B58238',
+        'on-warning': '#201B15',
+        'error': '#A84A42',
+        'on-error': '#FFFFFF',
+      },
+      borderRadius: {
+        'sm': '8px',
+        'DEFAULT': '12px',
+        'md': '12px',
+        'lg': '16px',
+        'xl': '24px',
+        'full': '9999px',
+      },
+      spacing: {
+        'gutter-xs': '4px',
+        'gutter-sm': '8px',
+        'gutter-md': '16px',
+        'gutter-lg': '24px',
+        'gutter-xl': '32px',
+        'section': '64px',
+        'page-margin': '24px',
+      },
+      fontFamily: {
+        'display': ['"Plus Jakarta Sans"', 'sans-serif'],
+        'headline': ['"Plus Jakarta Sans"', 'sans-serif'],
+        'title': ['"Plus Jakarta Sans"', 'sans-serif'],
+        'body': ['"Plus Jakarta Sans"', 'sans-serif'],
+        'label': ['"Plus Jakarta Sans"', 'sans-serif'],
+      },
+      fontSize: {
+        'display-lg': ['44px', { lineHeight: '52px', letterSpacing: '-0.5px', fontWeight: '700' }],
+        'display-lg-mobile': ['30px', { lineHeight: '38px', letterSpacing: '-0.25px', fontWeight: '700' }],
+        'headline-lg': ['32px', { lineHeight: '40px', letterSpacing: '-0.25px', fontWeight: '700' }],
+        'headline-md': ['24px', { lineHeight: '32px', letterSpacing: '-0.15px', fontWeight: '700' }],
+        'headline-sm': ['18px', { lineHeight: '26px', letterSpacing: '0px', fontWeight: '600' }],
+        'title-md': ['16px', { lineHeight: '24px', letterSpacing: '0px', fontWeight: '600' }],
+        'body-lg': ['16px', { lineHeight: '26px', letterSpacing: '0px', fontWeight: '400' }],
+        'body-md': ['14px', { lineHeight: '22px', letterSpacing: '0px', fontWeight: '400' }],
+        'body-sm': ['13px', { lineHeight: '18px', letterSpacing: '0px', fontWeight: '400' }],
+        'label-lg': ['14px', { lineHeight: '20px', letterSpacing: '0px', fontWeight: '600' }],
+        'label-md': ['12px', { lineHeight: '16px', letterSpacing: '0.2px', fontWeight: '600' }],
+        'label-sm': ['11px', { lineHeight: '14px', letterSpacing: '0.3px', fontWeight: '600' }],
+      },
+      transitionDuration: {
+        'state-change': '150ms',
+        'surface-enter': '250ms',
+        'surface-exit': '150ms',
+      },
+      transitionDelay: {
+        'state-change': '0ms',
+        'surface-enter': '0ms',
+        'surface-exit': '0ms',
+      },
+      transitionTimingFunction: {
+        'state-change': 'ease-out',
+        'surface-enter': 'cubic-bezier(0.2, 0, 0, 1)',
+        'surface-exit': 'cubic-bezier(0.3, 0, 1, 1)',
+      },
+    },
+  },
+};
+if (typeof module !== 'undefined') module.exports = globalThis.tailwind.config;
+</script>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block" rel="stylesheet">
+  <style>
+    .material-symbols-outlined { display: inline-block; width: 1em; height: 1em; line-height: 1 !important; box-sizing: content-box; overflow: hidden; white-space: nowrap; direction: ltr; vertical-align: middle; }
+  </style>
+</head>
+<body class="bg-surface text-on-surface font-body antialiased">
+  <div class="min-h-[1024px] flex flex-col" data-stitch-vh="min-h-[1024px]===min-h-screen">
+
+    <!-- Sticky Header -->
+    <header id="site-header" class="sticky top-0 z-40 bg-surface shadow-[0_4px_16px_rgba(46,42,38,0.05)] transition-colors duration-state-change">
+      <div class="max-w-[1200px] mx-auto px-6 min-h-[72px] py-2 flex items-center justify-between gap-4">
+        <a href="../home/Home.html" class="flex items-center gap-2.5 shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-md">
+          <span class="w-9 h-9 rounded-md bg-sage text-on-sage flex items-center justify-center">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M12 4C8 4 5 7.5 5 11.5C5 16 8.5 19.5 12 20C15.5 19.5 19 16 19 11.5C19 7.5 16 4 12 4Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"></path>
+              <path d="M12 8V17M12 12L15 9.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path>
+            </svg>
+          </span>
+          <span class="font-headline text-headline-sm text-primary font-bold tracking-tight">BakuWay</span>
+        </a>
+
+        <nav aria-label="Primary" class="hidden lg:flex items-center gap-2">
+          <a href="../hotels-search/HotelsSearch.html" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-sage-soft text-primary font-label text-label-md font-semibold">
+            <span class="material-symbols-outlined text-[18px]" aria-hidden="true">hotel</span>
+            <span>Stay</span>
+          </a>
+          <a href="../home/Home.html#eat" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full font-label text-label-md text-on-surface-variant hover:bg-sand hover:text-on-surface transition-colors">
+            <span class="material-symbols-outlined text-[18px]" aria-hidden="true">restaurant</span>
+            <span>Eat</span>
+          </a>
+          <a href="../home/Home.html#places" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full font-label text-label-md text-on-surface-variant hover:bg-sand hover:text-on-surface transition-colors">
+            <span class="material-symbols-outlined text-[18px]" aria-hidden="true">explore</span>
+            <span>Explore</span>
+          </a>
+          <a href="../home/Home.html#airport-guide" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full font-label text-label-md text-on-surface-variant hover:bg-sand hover:text-on-surface transition-colors">
+            <span class="material-symbols-outlined text-[18px]" aria-hidden="true">commute</span>
+            <span>Getting around</span>
+          </a>
+          <a href="../home/Home.html#intercity" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full font-label text-label-md text-on-surface-variant hover:bg-sand hover:text-on-surface transition-colors">
+            <span class="material-symbols-outlined text-[18px]" aria-hidden="true">directions_car</span>
+            <span>Rides to regions</span>
+          </a>
+        </nav>
+
+        <div class="flex items-center gap-2.5 shrink-0">
+          <button type="button" aria-label="Search" onclick="window.location.href=&#39;../hotels-search/HotelsSearch.html&#39;" class="inline-flex items-center justify-center w-9 h-9 rounded-full bg-surface-card text-on-surface-variant hover:bg-sand hover:text-on-surface transition-colors">
+            <span class="material-symbols-outlined text-[19px]" aria-hidden="true">search</span>
+          </button>
+
+          <div class="relative hidden sm:block">
+            <button type="button" onclick="document.getElementById(&#39;locale-dropdown&#39;).classList.toggle(&#39;hidden&#39;)" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface-card border border-outline-variant text-on-surface font-label text-label-md hover:bg-sand transition-colors">
+              <span>EN · ₼</span>
+              <span class="material-symbols-outlined text-[16px] text-on-surface-variant" aria-hidden="true">expand_more</span>
+            </button>
+            <div id="locale-dropdown" class="hidden absolute right-0 mt-2 w-40 bg-surface-card rounded-lg border border-outline-variant shadow-lg p-3 flex flex-col gap-2 z-50">
+              <span class="font-label text-label-sm text-on-surface-variant">EN · RU · AZ</span>
+              <span class="font-label text-label-sm text-on-surface-variant">₼ AZN · $ USD · € EUR</span>
+            </div>
+          </div>
+
+          <button type="button" aria-label="Saved favorites" onclick="showToast(&#39;Saved to favorites.&#39;)" class="hidden sm:inline-flex relative items-center justify-center w-9 h-9 rounded-full bg-surface-card text-on-surface-variant hover:bg-sand hover:text-on-surface transition-colors">
+            <span class="material-symbols-outlined text-[19px]" aria-hidden="true">favorite</span>
+          </button>
+
+          <button type="button" onclick="showToast(&#39;Log in modal opened.&#39;)" class="hidden md:inline-flex items-center px-2 py-1.5 font-label text-label-md text-on-surface-variant hover:text-primary transition-colors">Log in</button>
+
+          <button type="button" onclick="showToast(&#39;Partner registration opened.&#39;)" class="hidden sm:inline-flex items-center justify-center px-3.5 py-1.5 rounded-md bg-surface-card text-secondary border border-secondary font-label text-label-md hover:bg-secondary-container transition-colors">Become a partner</button>
+
+          <button type="button" aria-label="Open navigation menu" onclick="document.getElementById(&#39;mobile-drawer&#39;).classList.remove(&#39;hidden&#39;)" class="lg:hidden inline-flex items-center justify-center w-9 h-9 rounded-full bg-surface-card text-on-surface hover:bg-sand transition-colors">
+            <span class="material-symbols-outlined text-[20px]" aria-hidden="true">menu</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Mobile Full-Height Drawer -->
+    <div id="mobile-drawer" class="hidden fixed inset-0 z-50">
+      <div class="fixed inset-0 bg-on-surface/40" onclick="this.parentElement.classList.add(&#39;hidden&#39;)"></div>
+      <aside class="fixed top-0 right-0 bottom-0 w-72 bg-surface-card p-6 flex flex-col gap-6 shadow-xl">
+        <div class="flex items-center justify-between">
+          <span class="font-headline text-headline-sm text-primary font-bold">BakuWay</span>
+          <button type="button" aria-label="Close menu" onclick="document.getElementById(&#39;mobile-drawer&#39;).classList.add(&#39;hidden&#39;)" class="w-9 h-9 rounded-full hover:bg-sand flex items-center justify-center">
+            <span class="material-symbols-outlined text-[20px]">close</span>
+          </button>
+        </div>
+        <nav class="flex flex-col gap-2">
+          <a href="../hotels-search/HotelsSearch.html" class="flex items-center gap-3 px-3 py-2.5 rounded-full bg-sage-soft text-primary font-label text-label-lg"><span class="material-symbols-outlined text-[20px]">hotel</span> Stay</a>
+          <a href="../home/Home.html#eat" class="flex items-center gap-3 px-3 py-2.5 rounded-full text-on-surface-variant hover:bg-sand font-label text-label-lg"><span class="material-symbols-outlined text-[20px]">restaurant</span> Eat</a>
+          <a href="../home/Home.html#places" class="flex items-center gap-3 px-3 py-2.5 rounded-full text-on-surface-variant hover:bg-sand font-label text-label-lg"><span class="material-symbols-outlined text-[20px]">explore</span> Explore</a>
+          <a href="../home/Home.html#airport-guide" class="flex items-center gap-3 px-3 py-2.5 rounded-full text-on-surface-variant hover:bg-sand font-label text-label-lg"><span class="material-symbols-outlined text-[20px]">commute</span> Getting around</a>
+          <a href="../home/Home.html#intercity" class="flex items-center gap-3 px-3 py-2.5 rounded-full text-on-surface-variant hover:bg-sand font-label text-label-lg"><span class="material-symbols-outlined text-[20px]">directions_car</span> Rides to regions</a>
+        </nav>
+      </aside>
+    </div>
+
+    <main class="flex-1 max-w-[1200px] w-full mx-auto px-6 py-8 flex flex-col gap-8">
+
+      <!-- Breadcrumb -->
+      <nav aria-label="Breadcrumb" class="flex items-center gap-2 font-body text-body-sm text-on-surface-variant">
+        <a href="../home/Home.html" class="hover:text-primary">Home</a>
+        <span>/</span>
+        <a href="../hotels-search/HotelsSearch.html" class="hover:text-primary">Hotels in Baku</a>
+        <span>/</span>
+        <span class="text-on-surface font-medium">Shirvanshah Boutique Hotel</span>
+      </nav>
+
+      <!-- Hotel Header -->
+      <div class="flex flex-col md:flex-row md:items-start justify-between gap-4">
+        <div class="flex flex-col gap-2">
+          <div class="flex flex-wrap items-center gap-2">
+            <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-sage-soft text-on-sage font-label text-label-md">
+              <span class="material-symbols-outlined text-[14px]" aria-hidden="true">verified</span> Verified partner
+            </span>
+            <span class="px-2.5 py-0.5 rounded-full bg-terracotta text-on-terracotta font-label text-label-md">-15%</span>
+            <span class="font-label text-label-md text-on-secondary-container">★★★★ Boutique Hotel</span>
+          </div>
+          <h1 class="font-headline text-headline-lg text-on-surface" data-design-text-token="headline-lg">Shirvanshah Boutique Hotel</h1>
+          <div class="flex flex-wrap items-center gap-3 font-body text-body-md text-on-surface-variant">
+            <span class="inline-flex items-center gap-1 font-label text-primary">
+              <span class="material-symbols-outlined text-[18px]" style="font-variation-settings: &#39;FILL&#39; 1;" aria-hidden="true">star</span> 8.9 Excellent (214 reviews)
+            </span>
+            <span>·</span>
+            <span>14 Boyuk Qala Street, Icherisheher (Old City), Baku</span>
+            <a href="#location" class="text-primary font-label text-label-md hover:underline">Show on map</a>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-2 shrink-0">
+          <button type="button" onclick="showToast(&#39;Link copied to clipboard!&#39;)" class="inline-flex items-center gap-1.5 px-4 py-2 rounded-md bg-surface-card border border-outline font-label text-label-md hover:bg-sand">
+            <span class="material-symbols-outlined text-[18px]" aria-hidden="true">share</span> Share
+          </button>
+          <button type="button" onclick="showToast(&#39;Saved Shirvanshah Boutique Hotel.&#39;)" class="inline-flex items-center gap-1.5 px-4 py-2 rounded-md bg-surface-card border border-outline font-label text-label-md hover:bg-sand">
+            <span class="material-symbols-outlined text-[18px]" aria-hidden="true">favorite</span> Save
+          </button>
+        </div>
+      </div>
+
+      <!-- Photo Gallery (1 Large + 4 Small) -->
+      <section class="relative grid grid-cols-1 md:grid-cols-4 gap-3 rounded-lg overflow-hidden">
+        <div class="md:col-span-2 md:row-span-2 aspect-video md:aspect-auto md:h-[380px] bg-sand">
+          <img src="https://lh3.googleusercontent.com/aida/ALJJyrCABpIo22MX0VeskZHDbBX8M7LvodoYIXyyCPEk9RQjIOg4rScx5ZH9d8FhfwNfKKblPjZ9YsgTu_HA-sv_FYASRCpT_bJdF4LCb25I4Vmu313sIEiVRU28Fz_QgQMyP2HYC2TxZ6nd9wpPN2UO1q9yzSG6DnA4VPCtRgnoVwMK9u7MnbDEJe1bmbvL9q6J_2xPrrRCGKcVWhOpZw0KahYmOnQ0a1H--HKkXE5-6DdZUtxkmTlA2yLL7_id" alt="Shirvanshah Boutique Hotel courtyard" class="w-full h-full object-cover">
+        </div>
+        <div class="aspect-video md:h-[184px] bg-sand">
+          <img src="https://lh3.googleusercontent.com/aida/ALJJyrCrTgL1l6ibwX-k_benrbgiVTKUa33v2cho_YYtl6O8p3AvnnMOH6Zk1MW1CcpvAUmlsL2m9gGjLrQ4VgkBWPw8f7FNjejvLP0ZQGww-5yr0Jeg_2uaw4FLWGLX9fgJa2jrD8q7Hu2pKWHVfryuOpTXONo8fFfRrRefVSM9EL9nQXo5Vlau_7UHThXHyVQbPbD5PASBbYbyN-JQIR3qTbZsdFiw6eHBXWl9_2kRVDCyg10HguMMDIxodPQ6TkCX0A" alt="Deluxe Courtyard Room" class="w-full h-full object-cover">
+        </div>
+        <div class="aspect-video md:h-[184px] bg-sand">
+          <img src="https://lh3.googleusercontent.com/aida/ALJJyrA50Q5KG0Od2pOxRZ3lpdJTuNP_HRjJ7yfZZEhJ7mfArCduUIB5SvwzwiX6V0wnCWujYglUnLigTZbGQzFe8OhzV151n96oAxN376ehvRLyAY6kqrBOt_tWgeHyQCWV7-JTOnOVlpbIOStWfut1mwmzSihfRash-e4YnFJ58xN-Dw1JJwLPwU0BPb5mwhOopr4JCJTvB2Z7FmNLZ2cmH6bYIFHbb8_0ptmLMI2Yu9U6JnX3pMTmrQkbd0x7" alt="Family Suite" class="w-full h-full object-cover">
+        </div>
+        <div class="aspect-video md:h-[184px] bg-sand">
+          <img src="https://lh3.googleusercontent.com/aida/ALJJyrDLbx59-e5oAn5iK8PH_MTZJVN8qwGqmXFhAQdlmtkfGkDboYjNjxnSO9KyOAst04bHFMR3rZPr5zVLel6encoDG3HqAzGghcsvTZ7d3b8aVYRP4F1xY9RZuZDiy-EesbqH1cwLngPUZmAL41ud3iFi9YFrkMd62iuHmAJyGIuOYa-F80EV2NOiaGhHBQDWUk42JjnT1wekDkAGDkmWPSVYCLminaP7YS8uS2hpJnufQ5vtqsY" alt="Morning tea and breakfast courtyard" class="w-full h-full object-cover">
+        </div>
+        <div class="relative aspect-video md:h-[184px] bg-sand">
+          <img src="https://lh3.googleusercontent.com/aida/ALJJyrDlaObOCH7EMPv9AI3o7m8sA2UgnPYWvCNlGgdM2Z-vrt0rr9RxkyAUmmzF_ACcWaFeegv6vL-06cAjo5z_SvL_i2udVNasTT9-9ajeD9Bb5yOhIvdX65oXr8bKfF_A6Qtg2uasu9-PVyrJ4Qr-pf3k74gBo5MP7aRyBlg50B0P_byLD6nxeB0jJlNJBBQ-qqDEdSQDgA41qoVRLEWXmI3HoCtNUbyHarzicQijchz2otnYAQUmQnzv" alt="Old City street outside the hotel" class="w-full h-full object-cover">
+          <button type="button" onclick="showToast(&#39;Opening gallery: 36 photos&#39;)" class="absolute bottom-3 right-3 px-3.5 py-2 rounded-md bg-surface-card/95 text-on-surface font-label text-label-md shadow-md hover:bg-surface-card">
+            Show all 36 photos
+          </button>
+        </div>
+      </section>
+
+      <!-- Sticky In-Page Tabs -->
+      <nav aria-label="Hotel sections" class="sticky top-20 z-30 bg-surface border-b border-outline-variant py-3 flex items-center gap-6 overflow-x-auto">
+        <a href="#overview" class="font-label text-label-lg text-primary border-b-2 border-primary pb-1 shrink-0">Overview</a>
+        <a href="../room-selection/RoomSelection.html" class="font-label text-label-lg text-on-surface-variant hover:text-primary shrink-0">Rooms</a>
+        <a href="#amenities" class="font-label text-label-lg text-on-surface-variant hover:text-primary shrink-0">Amenities</a>
+        <a href="#location" class="font-label text-label-lg text-on-surface-variant hover:text-primary shrink-0">Location</a>
+        <a href="#reviews" class="font-label text-label-lg text-on-surface-variant hover:text-primary shrink-0">Reviews</a>
+        <a href="#policies" class="font-label text-label-lg text-on-surface-variant hover:text-primary shrink-0">Policies</a>
+      </nav>
+
+      <!-- Main 2-Column Content + Right Sticky Booking Card -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+
+        <!-- Left Details Column (8 cols) -->
+        <div class="lg:col-span-8 flex flex-col gap-10">
+
+          <!-- Overview & Highlights -->
+          <section id="overview" class="flex flex-col gap-5">
+            <div class="grid grid-cols-2 sm:grid-cols-5 gap-3">
+              <div class="bg-surface-card rounded-lg border border-outline-variant p-3.5 flex flex-col gap-1">
+                <span class="material-symbols-outlined text-[20px] text-primary" aria-hidden="true">flight_land</span>
+                <span class="font-label text-label-md text-on-surface">22 km to airport</span>
+                <span class="font-body text-body-sm text-on-surface-variant">~30 min drive</span>
+              </div>
+              <div class="bg-surface-card rounded-lg border border-outline-variant p-3.5 flex flex-col gap-1">
+                <span class="material-symbols-outlined text-[20px] text-primary" aria-hidden="true">directions_subway</span>
+                <span class="font-label text-label-md text-on-surface">400 m to metro</span>
+                <span class="font-body text-body-sm text-on-surface-variant">Icherisheher</span>
+              </div>
+              <div class="bg-surface-card rounded-lg border border-outline-variant p-3.5 flex flex-col gap-1">
+                <span class="material-symbols-outlined text-[20px] text-primary" aria-hidden="true">login</span>
+                <span class="font-label text-label-md text-on-surface">Check-in 14:00</span>
+                <span class="font-body text-body-sm text-on-surface-variant">24h reception</span>
+              </div>
+              <div class="bg-surface-card rounded-lg border border-outline-variant p-3.5 flex flex-col gap-1">
+                <span class="material-symbols-outlined text-[20px] text-primary" aria-hidden="true">logout</span>
+                <span class="font-label text-label-md text-on-surface">Check-out 12:00</span>
+                <span class="font-body text-body-sm text-on-surface-variant">Luggage storage</span>
+              </div>
+              <div class="bg-surface-card rounded-lg border border-outline-variant p-3.5 flex flex-col gap-1 col-span-2 sm:col-span-1">
+                <span class="material-symbols-outlined text-[20px] text-primary" aria-hidden="true">translate</span>
+                <span class="font-label text-label-md text-on-surface">Languages</span>
+                <span class="font-body text-body-sm text-on-surface-variant">EN, RU, AZ, TR</span>
+              </div>
+            </div>
+
+            <div class="bg-surface-card rounded-lg border border-outline-variant p-6 flex flex-col gap-3">
+              <h2 class="font-headline text-headline-md text-on-surface">About this stay</h2>
+              <p class="font-body text-body-md text-on-surface-variant">
+                Set inside a restored 19th-century limestone townhouse in Baku’s pedestrian Old City, Shirvanshah Boutique Hotel pairs quiet courtyard mornings with easy walking access to Maiden Tower, the Caspian Boulevard, and local tea houses.
+              </p>
+              <button type="button" onclick="showToast(&#39;Full property history expanded.&#39;)" class="self-start font-label text-label-md text-primary hover:underline">Read more</button>
+            </div>
+          </section>
+
+          <!-- Current Offers in Soft Terracotta Tint -->
+          <section class="flex flex-col gap-4">
+            <h2 class="font-headline text-headline-md text-on-surface">Current offers</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div class="rounded-lg bg-terracotta-soft border border-terracotta/40 p-5 flex items-start gap-3">
+                <span class="material-symbols-outlined text-[24px] text-on-terracotta shrink-0" aria-hidden="true">sell</span>
+                <div>
+                  <h3 class="font-title text-title-md text-on-terracotta">Stay 3 nights, get 15% off</h3>
+                  <p class="font-body text-body-sm text-on-terracotta mt-1">Automatically applied on your Dec 10–13 dates. Includes Azerbaijani breakfast.</p>
+                </div>
+              </div>
+              <div class="rounded-lg bg-terracotta-soft border border-terracotta/40 p-5 flex items-start gap-3">
+                <span class="material-symbols-outlined text-[24px] text-on-terracotta shrink-0" aria-hidden="true">airport_shuttle</span>
+                <div>
+                  <h3 class="font-title text-title-md text-on-terracotta">Free airport pickup</h3>
+                  <p class="font-body text-body-sm text-on-terracotta mt-1">Complimentary one-way sedan from GYD Airport for Family Suite bookings.</p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Amenities Grid -->
+          <section id="amenities" class="bg-surface-card rounded-lg border border-outline-variant p-6 flex flex-col gap-5">
+            <h2 class="font-headline text-headline-md text-on-surface">Amenities</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+              <div class="flex flex-col gap-2">
+                <h3 class="font-title text-title-md text-on-surface">Room &amp; Comfort</h3>
+                <ul class="flex flex-col gap-2 font-body text-body-md text-on-surface-variant">
+                  <li class="flex items-center gap-2"><span class="material-symbols-outlined text-[18px] text-primary" aria-hidden="true">wifi</span> High-speed Wi-Fi</li>
+                  <li class="flex items-center gap-2"><span class="material-symbols-outlined text-[18px] text-primary" aria-hidden="true">ac_unit</span> Quiet climate control</li>
+                  <li class="flex items-center gap-2"><span class="material-symbols-outlined text-[18px] text-primary" aria-hidden="true">crib</span> Free baby cot on request</li>
+                </ul>
+              </div>
+              <div class="flex flex-col gap-2">
+                <h3 class="font-title text-title-md text-on-surface">Food &amp; Tea</h3>
+                <ul class="flex flex-col gap-2 font-body text-body-md text-on-surface-variant">
+                  <li class="flex items-center gap-2"><span class="material-symbols-outlined text-[18px] text-primary" aria-hidden="true">bakery_dining</span> Fresh tandir breakfast</li>
+                  <li class="flex items-center gap-2"><span class="material-symbols-outlined text-[18px] text-primary" aria-hidden="true">local_cafe</span> Courtyard tea service</li>
+                </ul>
+              </div>
+              <div class="flex flex-col gap-2">
+                <h3 class="font-title text-title-md text-on-surface">Transport &amp; Access</h3>
+                <ul class="flex flex-col gap-2 font-body text-body-md text-on-surface-variant">
+                  <li class="flex items-center gap-2"><span class="material-symbols-outlined text-[18px] text-primary" aria-hidden="true">airport_shuttle</span> Airport transfer</li>
+                  <li class="flex items-center gap-2"><span class="material-symbols-outlined text-[18px] text-primary" aria-hidden="true">luggage</span> Free luggage hold</li>
+                </ul>
+              </div>
+            </div>
+          </section>
+
+          <!-- Location & How to get here from the airport -->
+          <section id="location" class="bg-surface-card rounded-lg border border-outline-variant p-6 flex flex-col gap-5">
+            <h2 class="font-headline text-headline-md text-on-surface">Location &amp; getting here</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
+              <div class="rounded-lg bg-sage-soft border border-outline-variant h-52 flex flex-col items-center justify-center p-4 text-center gap-2">
+                <span class="material-symbols-outlined text-[32px] text-primary" aria-hidden="true">location_on</span>
+                <p class="font-title text-title-md text-on-surface">Icherisheher, 14 Boyuk Qala</p>
+                <p class="font-body text-body-sm text-on-surface-variant">Old City 600 m · Fountain Square 900 m · Boulevard 750 m</p>
+              </div>
+              <div class="flex flex-col gap-3">
+                <h3 class="font-title text-title-md text-on-surface">How to get here from the airport (GYD)</h3>
+                <div class="p-3 rounded-md bg-surface border border-outline-variant flex justify-between items-center">
+                  <span class="font-body text-body-md">Hotel / BakuWay Taxi</span>
+                  <span class="font-label text-label-md text-primary tabular-nums">25 ₼ ≈ $15</span>
+                </div>
+                <div class="p-3 rounded-md bg-surface border border-outline-variant flex justify-between items-center">
+                  <span class="font-body text-body-md">Aero Express Bus H1 + walk</span>
+                  <span class="font-label text-label-md text-primary tabular-nums">1.30 ₼ ≈ $0.80</span>
+                </div>
+                <div class="p-3 rounded-md bg-surface border border-outline-variant flex justify-between items-center">
+                  <span class="font-body text-body-md">Bus + Red Line Metro (Icherisheher)</span>
+                  <span class="font-label text-label-md text-primary tabular-nums">1.80 ₼ ≈ $1.05</span>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Reviews -->
+          <section id="reviews" class="bg-surface-card rounded-lg border border-outline-variant p-6 flex flex-col gap-6">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div>
+                <h2 class="font-headline text-headline-md text-on-surface">Guest reviews · 8.9 Excellent</h2>
+                <p class="font-body text-body-md text-on-surface-variant">Based on 214 verified stays</p>
+              </div>
+              <div class="flex flex-wrap gap-2">
+                <button type="button" class="px-3.5 py-1.5 rounded-full bg-primary text-on-primary font-label text-label-md">All</button>
+                <button type="button" class="px-3.5 py-1.5 rounded-full bg-surface border border-outline font-label text-label-md hover:bg-sand">Families</button>
+                <button type="button" class="px-3.5 py-1.5 rounded-full bg-surface border border-outline font-label text-label-md hover:bg-sand">Couples</button>
+                <button type="button" class="px-3.5 py-1.5 rounded-full bg-surface border border-outline font-label text-label-md hover:bg-sand">Solo</button>
+              </div>
+            </div>
+
+            <!-- Category Bars -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div class="flex flex-col gap-1">
+                <div class="flex justify-between font-label text-label-md"><span>Cleanliness</span><span class="tabular-nums">9.2</span></div>
+                <div class="h-2 rounded-full bg-sand overflow-hidden"><div class="h-full bg-primary w-[92%]"></div></div>
+              </div>
+              <div class="flex flex-col gap-1">
+                <div class="flex justify-between font-label text-label-md"><span>Location</span><span class="tabular-nums">9.5</span></div>
+                <div class="h-2 rounded-full bg-sand overflow-hidden"><div class="h-full bg-primary w-[95%]"></div></div>
+              </div>
+              <div class="flex flex-col gap-1">
+                <div class="flex justify-between font-label text-label-md"><span>Staff</span><span class="tabular-nums">9.1</span></div>
+                <div class="h-2 rounded-full bg-sand overflow-hidden"><div class="h-full bg-primary w-[91%]"></div></div>
+              </div>
+              <div class="flex flex-col gap-1">
+                <div class="flex justify-between font-label text-label-md"><span>Value</span><span class="tabular-nums">8.8</span></div>
+                <div class="h-2 rounded-full bg-sand overflow-hidden"><div class="h-full bg-primary w-[88%]"></div></div>
+              </div>
+            </div>
+
+            <!-- Review Card with Hotel's Reply -->
+            <div class="p-4 rounded-md bg-surface border border-outline-variant flex flex-col gap-3">
+              <div class="flex items-center justify-between">
+                <span class="font-title text-title-md text-on-surface">Clara &amp; Jonas W. · Family</span>
+                <span class="font-label text-label-md text-primary tabular-nums">9.4 / 10</span>
+              </div>
+              <p class="font-body text-body-md text-on-surface-variant">“Quiet rooms despite being steps from Maiden Tower. The staff prepared warm qutab and tea for our kids every morning.”</p>
+              <div class="pl-4 border-l-2 border-sage bg-surface-card p-3 rounded-r-md">
+                <p class="font-label text-label-md text-primary">Hotel’s reply</p>
+                <p class="font-body text-body-sm text-on-surface-variant mt-0.5">Thank you, Clara! We loved hosting your family and hope to welcome you back in spring.</p>
+              </div>
+            </div>
+          </section>
+
+          <!-- Policies -->
+          <section id="policies" class="bg-surface-card rounded-lg border border-outline-variant p-6 flex flex-col gap-4">
+            <h2 class="font-headline text-headline-md text-on-surface">Policies</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 font-body text-body-md text-on-surface-variant">
+              <div><strong class="text-on-surface">Cancellation:</strong> Free cancellation up to 48 hours before arrival.</div>
+              <div><strong class="text-on-surface">Children:</strong> Kids under 6 stay free; baby cots provided at no charge.</div>
+              <div><strong class="text-on-surface">Pets:</strong> Small pets are not permitted in historic rooms.</div>
+              <div><strong class="text-on-surface">Payment:</strong> Pay at the hotel in AZN cash or Visa / Mastercard.</div>
+            </div>
+          </section>
+        </div>
+
+        <!-- Right Sticky Booking Card (4 cols) -->
+        <aside class="lg:col-span-4 lg:sticky lg:top-36">
+          <div class="bg-surface-card rounded-lg border border-outline-variant shadow-[0_8px_28px_rgba(46,42,38,0.08)] p-6 flex flex-col gap-4">
+            <div class="flex items-baseline justify-between">
+              <div>
+                <span class="font-headline text-headline-md text-primary tabular-nums">85 ₼</span>
+                <span class="font-body text-body-sm text-on-surface-variant">/ night (≈ $50)</span>
+              </div>
+              <span class="px-2.5 py-0.5 rounded-full bg-terracotta text-on-terracotta font-label text-label-sm">-15% applied</span>
+            </div>
+
+            <div class="grid grid-cols-2 gap-2">
+              <div class="p-3 rounded-md bg-surface border border-outline-variant">
+                <span class="block font-label text-label-sm text-on-surface-variant">Check-in</span>
+                <span class="font-label text-label-md text-on-surface">Dec 10, 2026</span>
+              </div>
+              <div class="p-3 rounded-md bg-surface border border-outline-variant">
+                <span class="block font-label text-label-sm text-on-surface-variant">Check-out</span>
+                <span class="font-label text-label-md text-on-surface">Dec 13, 2026</span>
+              </div>
+            </div>
+
+            <div class="p-3 rounded-md bg-surface border border-outline-variant flex justify-between items-center">
+              <div>
+                <span class="block font-label text-label-sm text-on-surface-variant">Guests</span>
+                <span class="font-label text-label-md text-on-surface">2 adults, 1 child</span>
+              </div>
+              <span class="font-label text-label-md text-primary">Deluxe Courtyard</span>
+            </div>
+
+            <div class="border-t border-outline-variant pt-3 flex justify-between items-baseline">
+              <span class="font-title text-title-md text-on-surface">Total (3 nights)</span>
+              <div class="text-right">
+                <span class="font-headline text-headline-sm text-primary tabular-nums">255 ₼</span>
+                <span class="block font-body text-body-sm text-on-surface-variant tabular-nums">≈ $150</span>
+              </div>
+            </div>
+
+            <p class="font-label text-label-md text-success flex items-center gap-1.5">
+              <span class="material-symbols-outlined text-[18px]" aria-hidden="true">check_circle</span>
+              No payment now, pay at the hotel
+            </p>
+
+            <a href="../room-selection/RoomSelection.html" class="w-full py-3 rounded-md bg-primary text-on-primary text-center font-label text-label-lg hover:opacity-90 transition-colors">
+              Send booking request
+            </a>
+
+            <p class="text-center font-body text-body-sm text-on-surface-variant">Hotel replies within 2 hours</p>
+
+            <button type="button" onclick="showToast(&#39;Opening chat with Shirvanshah Boutique Hotel...&#39;)" class="text-center font-label text-label-md text-primary hover:underline">
+              Ask a question
+            </button>
+          </div>
+        </aside>
+      </div>
+
+      <!-- Similar Hotels Nearby -->
+      <section class="border-t border-outline-variant pt-8 flex flex-col gap-5">
+        <h2 class="font-headline text-headline-md text-on-surface">Similar hotels nearby</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <a href="../hotel-detail/HotelDetail.html" class="bg-surface-card rounded-lg border border-outline-variant/60 overflow-hidden flex flex-col hover:shadow-md transition-shadow">
+            <img src="https://lh3.googleusercontent.com/aida/ALJJyrCfYlgoFhS-Ahlr407ifWNjCgfCkwVFSUGhsZMQiLbO1fgMg7RFdd7GOEzNpE0bktQ9hZzOPj_XFnyX1HWE3gtdS_KNm2sc7KwKgd-x7tqroAZxM_f594YSyKEaJt6qZEfabpSNrFM61tJoALdBY1dnxrGW5XZ5ZsVow2e2vi4NNvksEDdmfN2UTai562ntmpToJW1nmleQUYRtpDrlSmYxyFEaaUF7yFePpaCwK9yLpsVgyAxaHaDO7hA0HSUUS2Y" alt="Boulevard Family Suites" class="w-full aspect-video object-cover">
+            <div class="p-4">
+              <h3 class="font-title text-title-md text-on-surface">Boulevard Family Suites</h3>
+              <p class="font-body text-body-sm text-on-surface-variant">Seaside Boulevard · 170 ₼ / night (≈ $100)</p>
+            </div>
+          </a>
+          <a href="../hotel-detail/HotelDetail.html" class="bg-surface-card rounded-lg border border-outline-variant/60 overflow-hidden flex flex-col hover:shadow-md transition-shadow">
+            <img src="https://lh3.googleusercontent.com/aida/ALJJyrBIa0d-w5Pcu1bI5uq81dHRwrscJOvcGqgZspbxtosWcOHPBF_dhxsRF8Zu9wRi_cCCnaZNPLXU52VFA5prJ0e2SXC0tKwqu_eizLEyoLr0UyoVfHI3ZiqmsYkle7ytmcOUmMiMEQS2t9Ud5VON2a_eVOaDEZIg7ocag7YsCnYYIQMEFCbv6hxsS28eU-z-McqOK2tWULWL5qnlYDHhJMElz8lZk1njkIaVdhsvJirr_IfM6U2svofnqC4PQIc" alt="Nizami Garden Inn" class="w-full aspect-video object-cover">
+            <div class="p-4">
+              <h3 class="font-title text-title-md text-on-surface">Nizami Garden Inn</h3>
+              <p class="font-body text-body-sm text-on-surface-variant">Nasimi · 110 ₼ / night (≈ $65)</p>
+            </div>
+          </a>
+          <a href="../hotel-detail/HotelDetail.html" class="bg-surface-card rounded-lg border border-outline-variant/60 overflow-hidden flex flex-col hover:shadow-md transition-shadow">
+            <img src="https://lh3.googleusercontent.com/aida/ALJJyrClLMDEpNussWlfdV8GA8tmzfTwSk7KePSRGFyUvVxrUiywrAO168lXfBIFZ-SGmyMMfZYWtNO39ySZJcfGcwvY4Fsxu5jpA3yAMP9OR7ArSiLsXPYbaLcBc4sCi90Xv9qFtAn4wHPAORiuy8RAhOyCAIEUWBRLQgOiSlqvwvEgxQEzr5bL8M9ZWnFimtkqSRp6rpkHGYWFyPa-iXAq5zgbZRTNHJBxreubBS5rRbiJKut8fA8PBN0oUTJNmxI" alt="Caspian Pearl Residence" class="w-full aspect-video object-cover">
+            <div class="p-4">
+              <h3 class="font-title text-title-md text-on-surface">Caspian Pearl Residence</h3>
+              <p class="font-body text-body-sm text-on-surface-variant">Seaside Boulevard · 135 ₼ / night (≈ $79)</p>
+            </div>
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-sand text-on-sand border-t border-outline mt-12">
+      <div class="max-w-[1200px] mx-auto px-6 py-12 flex flex-col gap-10">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+          <div class="md:col-span-4 flex flex-col gap-3">
+            <span class="font-headline text-headline-sm text-on-sand">BakuWay</span>
+            <p class="font-body text-body-md text-on-surface-variant max-w-xs text-balance">Calm, independent travel planning for Baku and Azerbaijan.</p>
+          </div>
+          <div class="md:col-span-3 flex flex-col gap-2 font-body text-body-md text-on-surface-variant">
+            <h3 class="font-title text-title-md text-on-sand">Explore</h3>
+            <a href="../hotels-search/HotelsSearch.html">Stay in Baku</a>
+            <a href="../home/Home.html#eat">Where to eat</a>
+            <a href="../home/Home.html#places">Popular places</a>
+          </div>
+          <div class="md:col-span-3 flex flex-col gap-2 font-body text-body-md text-on-surface-variant">
+            <h3 class="font-title text-title-md text-on-sand">For business</h3>
+            <a href="../home/Home.html">Become a partner</a>
+            <a href="../home/Home.html">Driver sign up</a>
+            <a href="../home/Home.html">Partner login</a>
+          </div>
+          <div class="md:col-span-2 flex flex-col gap-2 font-body text-body-md text-on-surface-variant">
+            <h3 class="font-title text-title-md text-on-sand">Help</h3>
+            <a href="../home/Home.html">FAQ</a>
+            <a href="../home/Home.html">Contact</a>
+            <a href="../home/Home.html">Terms &amp; Privacy</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <div id="toast" role="status" aria-live="polite" class="hidden fixed bottom-6 right-6 z-50 bg-primary text-on-primary px-4 py-3 rounded-md shadow-lg flex items-center gap-2.5 font-body text-body-md">
+    <span class="material-symbols-outlined text-[18px]" aria-hidden="true">check_circle</span>
+    <span id="toast-message"></span>
+  </div>
+  <script>
+    let toastTimer;
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      document.getElementById('toast-message').textContent = msg;
+      toast.classList.remove('hidden');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.add('hidden'), 3000);
+    }
+    window.addEventListener('scroll', () => {
+      const header = document.getElementById('site-header');
+      if (!header) return;
+      if (window.scrollY > 10) {
+        header.classList.remove('bg-surface');
+        header.classList.add('bg-surface-card/90', 'backdrop-blur-sm');
+      } else {
+        header.classList.add('bg-surface');
+        header.classList.remove('bg-surface-card/90', 'backdrop-blur-sm');
+      }
+    });
+  </script>
+
+
+</body></html>

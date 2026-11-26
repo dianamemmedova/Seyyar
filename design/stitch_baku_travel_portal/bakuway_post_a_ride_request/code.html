@@ -1,0 +1,326 @@
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BakuWay — Post a Ride Request</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script id="tailwind-config">/** @type {import('tailwindcss').Config} */
+globalThis.tailwind = globalThis.tailwind || {};
+globalThis.tailwind.config = {
+  darkMode: 'class',
+  theme: {
+    extend: {
+      colors: {
+        'primary': '#3F5E4A',
+        'on-primary': '#FFFFFF',
+        'primary-container': '#D6F9DF',
+        'on-primary-container': '#183625',
+        'sage': '#7A9E7E',
+        'on-sage': '#15351E',
+        'sage-soft': '#EBF2EC',
+        'secondary': '#8B6B4F',
+        'on-secondary': '#FFFFFF',
+        'secondary-container': '#FFEEE1',
+        'on-secondary-container': '#432B14',
+        'terracotta': '#C98B6B',
+        'on-terracotta': '#2E1A10',
+        'terracotta-soft': '#F7EAE2',
+        'surface': '#F7F3EC',
+        'on-surface': '#2E2A26',
+        'surface-card': '#FFFFFF',
+        'on-surface-card': '#2E2A26',
+        'sand': '#E8DFD0',
+        'on-sand': '#2E2A26',
+        'on-surface-variant': '#655D56',
+        'muted': '#7A716A',
+        'outline': '#DDD5C7',
+        'outline-variant': '#EAE1D2',
+        'success': '#4A7C59',
+        'on-success': '#FFFFFF',
+        'warning': '#B58238',
+        'on-warning': '#201B15',
+        'error': '#A84A42',
+        'on-error': '#FFFFFF',
+      },
+      borderRadius: {
+        'sm': '8px',
+        'DEFAULT': '12px',
+        'md': '12px',
+        'lg': '16px',
+        'xl': '24px',
+        'full': '9999px',
+      },
+      spacing: {
+        'gutter-xs': '4px',
+        'gutter-sm': '8px',
+        'gutter-md': '16px',
+        'gutter-lg': '24px',
+        'gutter-xl': '32px',
+        'section': '64px',
+        'page-margin': '24px',
+      },
+      fontFamily: {
+        'display': ['"Plus Jakarta Sans"', 'sans-serif'],
+        'headline': ['"Plus Jakarta Sans"', 'sans-serif'],
+        'title': ['"Plus Jakarta Sans"', 'sans-serif'],
+        'body': ['"Plus Jakarta Sans"', 'sans-serif'],
+        'label': ['"Plus Jakarta Sans"', 'sans-serif'],
+      },
+      fontSize: {
+        'display-lg': ['44px', { lineHeight: '52px', letterSpacing: '-0.5px', fontWeight: '700' }],
+        'display-lg-mobile': ['30px', { lineHeight: '38px', letterSpacing: '-0.25px', fontWeight: '700' }],
+        'headline-lg': ['32px', { lineHeight: '40px', letterSpacing: '-0.25px', fontWeight: '700' }],
+        'headline-md': ['24px', { lineHeight: '32px', letterSpacing: '-0.15px', fontWeight: '700' }],
+        'headline-sm': ['18px', { lineHeight: '26px', letterSpacing: '0px', fontWeight: '600' }],
+        'title-md': ['16px', { lineHeight: '24px', letterSpacing: '0px', fontWeight: '600' }],
+        'body-lg': ['16px', { lineHeight: '26px', letterSpacing: '0px', fontWeight: '400' }],
+        'body-md': ['14px', { lineHeight: '22px', letterSpacing: '0px', fontWeight: '400' }],
+        'body-sm': ['13px', { lineHeight: '18px', letterSpacing: '0px', fontWeight: '400' }],
+        'label-lg': ['14px', { lineHeight: '20px', letterSpacing: '0px', fontWeight: '600' }],
+        'label-md': ['12px', { lineHeight: '16px', letterSpacing: '0.2px', fontWeight: '600' }],
+        'label-sm': ['11px', { lineHeight: '14px', letterSpacing: '0.3px', fontWeight: '600' }],
+      },
+      transitionDuration: {
+        'state-change': '150ms',
+        'surface-enter': '250ms',
+        'surface-exit': '150ms',
+      },
+      transitionDelay: {
+        'state-change': '0ms',
+        'surface-enter': '0ms',
+        'surface-exit': '0ms',
+      },
+      transitionTimingFunction: {
+        'state-change': 'ease-out',
+        'surface-enter': 'cubic-bezier(0.2, 0, 0, 1)',
+        'surface-exit': 'cubic-bezier(0.3, 0, 1, 1)',
+      },
+    },
+  },
+};
+if (typeof module !== 'undefined') module.exports = globalThis.tailwind.config;
+</script>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block" rel="stylesheet">
+  <style>
+    .material-symbols-outlined { display: inline-block; width: 1em; height: 1em; line-height: 1 !important; box-sizing: content-box; overflow: hidden; white-space: nowrap; direction: ltr; vertical-align: middle; }
+  </style>
+</head>
+<body class="bg-surface text-on-surface font-body antialiased">
+  <div class="min-h-[1024px] flex flex-col" data-stitch-vh="min-h-[1024px]===min-h-screen">
+
+    <!-- Sticky Header -->
+    <header id="site-header" class="sticky top-0 z-40 bg-surface shadow-[0_4px_16px_rgba(46,42,38,0.05)] transition-colors duration-state-change">
+      <div class="max-w-[1200px] mx-auto px-6 min-h-[72px] py-2 flex items-center justify-between gap-4">
+        <a href="../home/Home.html" class="flex items-center gap-2.5 shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-md">
+          <span class="w-9 h-9 rounded-md bg-sage text-on-sage flex items-center justify-center">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M12 4C8 4 5 7.5 5 11.5C5 16 8.5 19.5 12 20C15.5 19.5 19 16 19 11.5C19 7.5 16 4 12 4Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"></path>
+              <path d="M12 8V17M12 12L15 9.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path>
+            </svg>
+          </span>
+          <span class="font-headline text-headline-sm text-primary font-bold tracking-tight">BakuWay</span>
+        </a>
+
+        <nav aria-label="Primary" class="hidden lg:flex items-center gap-2">
+          <a href="../hotels-search/HotelsSearch.html" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full font-label text-label-md text-on-surface-variant hover:bg-sand hover:text-on-surface transition-colors">
+            <span class="material-symbols-outlined text-[18px]" aria-hidden="true">hotel</span>
+            <span>Stay</span>
+          </a>
+          <a href="../restaurants-search/RestaurantsSearch.html" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full font-label text-label-md text-on-surface-variant hover:bg-sand hover:text-on-surface transition-colors">
+            <span class="material-symbols-outlined text-[18px]" aria-hidden="true">restaurant</span>
+            <span>Eat</span>
+          </a>
+          <a href="../explore-baku/ExploreBaku.html" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full font-label text-label-md text-on-surface-variant hover:bg-sand hover:text-on-surface transition-colors">
+            <span class="material-symbols-outlined text-[18px]" aria-hidden="true">explore</span>
+            <span>Explore</span>
+          </a>
+          <a href="../getting-around/GettingAround.html" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full font-label text-label-md text-on-surface-variant hover:bg-sand hover:text-on-surface transition-colors">
+            <span class="material-symbols-outlined text-[18px]" aria-hidden="true">commute</span>
+            <span>Getting around</span>
+          </a>
+          <a href="../regions-compare/RegionsCompare.html" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-sage-soft text-primary font-label text-label-md font-semibold">
+            <span class="material-symbols-outlined text-[18px]" aria-hidden="true">directions_car</span>
+            <span>Rides to regions</span>
+          </a>
+        </nav>
+
+        <div class="flex items-center gap-2.5 shrink-0">
+          <button type="button" aria-label="Search" class="inline-flex items-center justify-center w-9 h-9 rounded-full bg-surface-card text-on-surface-variant hover:bg-sand hover:text-on-surface transition-colors">
+            <span class="material-symbols-outlined text-[19px]" aria-hidden="true">search</span>
+          </button>
+          <span class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface-card border border-outline-variant text-on-surface font-label text-label-md">EN · ₼</span>
+          <button type="button" aria-label="Saved favorites" class="hidden sm:inline-flex items-center justify-center w-9 h-9 rounded-full bg-surface-card text-on-surface-variant hover:bg-sand hover:text-on-surface transition-colors">
+            <span class="material-symbols-outlined text-[19px]" aria-hidden="true">favorite</span>
+          </button>
+          <button type="button" class="hidden md:inline-flex items-center px-2 py-1.5 font-label text-label-md text-on-surface-variant hover:text-primary transition-colors">Log in</button>
+          <button type="button" class="hidden sm:inline-flex items-center justify-center px-3.5 py-1.5 rounded-md bg-surface-card text-secondary border border-secondary font-label text-label-md hover:bg-secondary-container transition-colors">Become a partner</button>
+          <button type="button" aria-label="Open navigation menu" onclick="document.getElementById(&#39;mobile-drawer&#39;).classList.remove(&#39;hidden&#39;)" class="lg:hidden inline-flex items-center justify-center w-9 h-9 rounded-full bg-surface-card text-on-surface hover:bg-sand transition-colors">
+            <span class="material-symbols-outlined text-[20px]" aria-hidden="true">menu</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Mobile Full-Height Drawer -->
+    <div id="mobile-drawer" class="hidden fixed inset-0 z-50">
+      <div class="fixed inset-0 bg-on-surface/40" onclick="this.parentElement.classList.add(&#39;hidden&#39;)"></div>
+      <aside class="fixed top-0 right-0 bottom-0 w-72 bg-surface-card p-6 flex flex-col gap-6 shadow-xl">
+        <div class="flex items-center justify-between">
+          <span class="font-headline text-headline-sm text-primary font-bold">BakuWay</span>
+          <button type="button" aria-label="Close menu" onclick="document.getElementById(&#39;mobile-drawer&#39;).classList.add(&#39;hidden&#39;)" class="w-9 h-9 rounded-full hover:bg-sand flex items-center justify-center">
+            <span class="material-symbols-outlined text-[20px]">close</span>
+          </button>
+        </div>
+        <nav class="flex flex-col gap-2">
+          <a href="../hotels-search/HotelsSearch.html" class="flex items-center gap-3 px-3 py-2.5 rounded-full text-on-surface-variant hover:bg-sand font-label text-label-lg"><span class="material-symbols-outlined text-[20px]">hotel</span> Stay</a>
+          <a href="../restaurants-search/RestaurantsSearch.html" class="flex items-center gap-3 px-3 py-2.5 rounded-full text-on-surface-variant hover:bg-sand font-label text-label-lg"><span class="material-symbols-outlined text-[20px]">restaurant</span> Eat</a>
+          <a href="../explore-baku/ExploreBaku.html" class="flex items-center gap-3 px-3 py-2.5 rounded-full text-on-surface-variant hover:bg-sand font-label text-label-lg"><span class="material-symbols-outlined text-[20px]">explore</span> Explore</a>
+          <a href="../getting-around/GettingAround.html" class="flex items-center gap-3 px-3 py-2.5 rounded-full text-on-surface-variant hover:bg-sand font-label text-label-lg"><span class="material-symbols-outlined text-[20px]">commute</span> Getting around</a>
+          <a href="../regions-compare/RegionsCompare.html" class="flex items-center gap-3 px-3 py-2.5 rounded-full bg-sage-soft text-primary font-label text-label-lg"><span class="material-symbols-outlined text-[20px]">directions_car</span> Rides to regions</a>
+        </nav>
+      </aside>
+    </div>
+
+    <main class="flex-1 max-w-[1200px] w-full mx-auto px-6 py-8 flex flex-col gap-10">
+
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+        <h1 class="font-headline text-headline-lg text-on-surface">Post a ride request &amp; driver offers</h1>
+        <span class="px-3 py-1 rounded-full bg-sage-soft text-on-sage font-label text-label-md self-start tabular-nums">Request open for 23 h</span>
+      </div>
+
+      <!-- Post Request Form -->
+      <form onsubmit="event.preventDefault(); showToast(&#39;Ride request posted! Drivers will reply shortly.&#39;);" class="bg-surface-card rounded-lg border border-outline-variant p-6 flex flex-col gap-5 shadow-[0_4px_20px_rgba(46,42,38,0.05)]">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <label class="flex flex-col gap-1">
+            <span class="font-label text-label-sm text-on-surface-variant">From</span>
+            <input type="text" value="Baku (Old City)" class="px-3 py-2.5 rounded-md bg-surface border border-outline font-body text-body-md">
+          </label>
+          <label class="flex flex-col gap-1">
+            <span class="font-label text-label-sm text-on-surface-variant">To</span>
+            <select class="px-3 py-2.5 rounded-md bg-surface border border-outline font-body text-body-md">
+              <option>Gabala</option>
+              <option selected>Sheki</option>
+              <option>Guba</option>
+            </select>
+          </label>
+          <label class="flex flex-col gap-1">
+            <span class="font-label text-label-sm text-on-surface-variant">Date</span>
+            <input type="date" value="2026-12-13" class="px-3 py-2.5 rounded-md bg-surface border border-outline font-body text-body-md">
+          </label>
+          <label class="flex flex-col gap-1">
+            <span class="font-label text-label-sm text-on-surface-variant">Preferred time</span>
+            <input type="time" value="08:30" class="px-3 py-2.5 rounded-md bg-surface border border-outline font-body text-body-md">
+          </label>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <label class="flex flex-col gap-1">
+            <span class="font-label text-label-sm text-on-surface-variant">Passengers</span>
+            <select class="px-3 py-2.5 rounded-md bg-surface border border-outline font-body text-body-md">
+              <option>2 passengers</option>
+              <option selected>3 passengers</option>
+              <option>4 passengers</option>
+            </select>
+          </label>
+          <label class="flex flex-col gap-1">
+            <span class="font-label text-label-sm text-on-surface-variant">Luggage</span>
+            <select class="px-3 py-2.5 rounded-md bg-surface border border-outline font-body text-body-md">
+              <option>None</option>
+              <option>Small backpacks</option>
+              <option selected>Large suitcases (2–3)</option>
+            </select>
+          </label>
+          <label class="flex flex-col gap-1">
+            <span class="font-label text-label-sm text-on-surface-variant">Ride type</span>
+            <select class="px-3 py-2.5 rounded-md bg-surface border border-outline font-body text-body-md">
+              <option>Shared seats</option>
+              <option selected>Whole car</option>
+            </select>
+          </label>
+        </div>
+
+        <label class="flex flex-col gap-1">
+          <span class="font-label text-label-sm text-on-surface-variant">Note for drivers</span>
+          <input type="text" placeholder="e.g. Traveling with a 6-year-old, would love a brief coffee stop on the way." class="px-3.5 py-2.5 rounded-md bg-surface border border-outline font-body text-body-md">
+        </label>
+
+        <button type="submit" class="self-start px-6 py-2.5 rounded-md bg-primary text-on-primary font-label text-label-lg hover:opacity-90">Post request</button>
+      </form>
+
+      <!-- Driver Offers List -->
+      <section class="flex flex-col gap-4">
+        <h2 class="font-headline text-headline-md text-on-surface">Offers from verified drivers (2)</h2>
+
+        <article class="bg-surface-card rounded-lg border border-outline-variant p-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 shadow-[0_4px_20px_rgba(46,42,38,0.05)]">
+          <div class="flex items-center gap-4">
+            <img src="https://lh3.googleusercontent.com/aida/ALJJyrD9nEYmeZz79PsvsVHdzYT-pjTWGaR4OoqNuf8yA9E4TZKH8uIK3WAZfIspio6TQnqwOlq120_30LoJMf2ughmkhLgfv_D3m_5Qp-vA218xbD4G9aLTBf7qN8KHOJuub3azsdgsQrh4McnRpsQeE-RgnWPylFVWqku4-KUtC8dHLdFzdK3CPEcY4j-uXQdPR4rHzIX6ItrH438ZKO-kyCEffZuovTdHOAQuy4Zv4UfVlTJNcH-7ew" alt="Elchin M." class="w-14 h-14 rounded-full object-cover shrink-0">
+            <div>
+              <h3 class="font-title text-title-md text-on-surface">Elchin M. · <span class="text-primary tabular-nums">4.9</span></h3>
+              <p class="font-body text-body-sm text-on-surface-variant">Silver Mercedes Vito · Departure 08:30</p>
+            </div>
+          </div>
+          <div class="flex flex-wrap items-center gap-3 w-full md:w-auto justify-between md:justify-end">
+            <span class="font-headline text-headline-sm text-primary tabular-nums">85 ₼ <span class="text-body-sm text-on-surface-variant font-normal">whole car</span></span>
+            <div class="flex gap-2">
+              <button type="button" onclick="this.closest(&#39;article&#39;).remove()" class="px-4 py-2 rounded-md bg-surface border border-outline font-label text-label-md hover:bg-sand">Decline</button>
+              <a href="../ride-confirmation/RideConfirmation.html" class="px-4 py-2 rounded-md bg-primary text-on-primary font-label text-label-md hover:opacity-90">Accept</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="bg-surface-card rounded-lg border border-outline-variant p-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 shadow-[0_4px_20px_rgba(46,42,38,0.05)]">
+          <div class="flex items-center gap-4">
+            <img src="https://lh3.googleusercontent.com/aida/ALJJyrBiKa6Dc0SLtDd0TCBNDR1DnOzJu75RZL4VRrGiZPFc97x-ScepYXm5bgh0APvMTePFO_6Vf3yBHoeb7YjpiRaQpVSHMo7MTj-2kCR101FYTMg4Tu2nzPQXuB-kjouJ-8tYfFPJK9sPou2zy_PBDiMJnYDHkuAC-84MX5o45sov1QeQIdTe2EZdqlwoffHRTnlnRpGFNItQuh5cnWjrxBKRPaDt1eOU81o8_qGqrb19Z1jCmYc" alt="Leyla R." class="w-14 h-14 rounded-full object-cover shrink-0">
+            <div>
+              <h3 class="font-title text-title-md text-on-surface">Leyla R. · <span class="text-primary tabular-nums">4.9</span></h3>
+              <p class="font-body text-body-sm text-on-surface-variant">White Hyundai Tucson · Departure 09:00</p>
+            </div>
+          </div>
+          <div class="flex flex-wrap items-center gap-3 w-full md:w-auto justify-between md:justify-end">
+            <span class="font-headline text-headline-sm text-primary tabular-nums">80 ₼ <span class="text-body-sm text-on-surface-variant font-normal">whole car</span></span>
+            <div class="flex gap-2">
+              <button type="button" onclick="this.closest(&#39;article&#39;).remove()" class="px-4 py-2 rounded-md bg-surface border border-outline font-label text-label-md hover:bg-sand">Decline</button>
+              <a href="../ride-confirmation/RideConfirmation.html" class="px-4 py-2 rounded-md bg-primary text-on-primary font-label text-label-md hover:opacity-90">Accept</a>
+            </div>
+          </div>
+        </article>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-sand text-on-sand border-t border-outline mt-12">
+      <div class="max-w-[1200px] mx-auto px-6 py-10 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <span class="font-headline text-headline-sm text-on-sand">BakuWay</span>
+        <p class="font-body text-body-sm text-on-surface-variant">© 2026 BakuWay. Made for curious travelers in Azerbaijan.</p>
+      </div>
+    </footer>
+  </div>
+
+  <div id="toast" role="status" aria-live="polite" class="hidden fixed bottom-6 right-6 z-50 bg-primary text-on-primary px-4 py-3 rounded-md shadow-lg flex items-center gap-2.5 font-body text-body-md">
+    <span class="material-symbols-outlined text-[18px]" aria-hidden="true">check_circle</span>
+    <span id="toast-message"></span>
+  </div>
+  <script>
+    let toastTimer;
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      document.getElementById('toast-message').textContent = msg;
+      toast.classList.remove('hidden');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.add('hidden'), 3000);
+    }
+    window.addEventListener('scroll', () => {
+      const header = document.getElementById('site-header');
+      if (!header) return;
+      if (window.scrollY > 10) {
+        header.classList.remove('bg-surface');
+        header.classList.add('bg-surface-card/90', 'backdrop-blur-sm');
+      } else {
+        header.classList.add('bg-surface');
+        header.classList.remove('bg-surface-card/90', 'backdrop-blur-sm');
+      }
+    });
+  </script>
+
+
+</body></html>

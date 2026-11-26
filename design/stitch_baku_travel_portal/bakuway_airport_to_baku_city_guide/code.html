@@ -1,0 +1,332 @@
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BakuWay — Airport to Baku City Guide</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script id="tailwind-config">/** @type {import('tailwindcss').Config} */
+globalThis.tailwind = globalThis.tailwind || {};
+globalThis.tailwind.config = {
+  darkMode: 'class',
+  theme: {
+    extend: {
+      colors: {
+        'primary': '#3F5E4A',
+        'on-primary': '#FFFFFF',
+        'primary-container': '#D6F9DF',
+        'on-primary-container': '#183625',
+        'sage': '#7A9E7E',
+        'on-sage': '#15351E',
+        'sage-soft': '#EBF2EC',
+        'secondary': '#8B6B4F',
+        'on-secondary': '#FFFFFF',
+        'secondary-container': '#FFEEE1',
+        'on-secondary-container': '#432B14',
+        'terracotta': '#C98B6B',
+        'on-terracotta': '#2E1A10',
+        'terracotta-soft': '#F7EAE2',
+        'surface': '#F7F3EC',
+        'on-surface': '#2E2A26',
+        'surface-card': '#FFFFFF',
+        'on-surface-card': '#2E2A26',
+        'sand': '#E8DFD0',
+        'on-sand': '#2E2A26',
+        'on-surface-variant': '#655D56',
+        'muted': '#7A716A',
+        'outline': '#DDD5C7',
+        'outline-variant': '#EAE1D2',
+        'success': '#4A7C59',
+        'on-success': '#FFFFFF',
+        'warning': '#B58238',
+        'on-warning': '#201B15',
+        'error': '#A84A42',
+        'on-error': '#FFFFFF',
+      },
+      borderRadius: {
+        'sm': '8px',
+        'DEFAULT': '12px',
+        'md': '12px',
+        'lg': '16px',
+        'xl': '24px',
+        'full': '9999px',
+      },
+      spacing: {
+        'gutter-xs': '4px',
+        'gutter-sm': '8px',
+        'gutter-md': '16px',
+        'gutter-lg': '24px',
+        'gutter-xl': '32px',
+        'section': '64px',
+        'page-margin': '24px',
+      },
+      fontFamily: {
+        'display': ['"Plus Jakarta Sans"', 'sans-serif'],
+        'headline': ['"Plus Jakarta Sans"', 'sans-serif'],
+        'title': ['"Plus Jakarta Sans"', 'sans-serif'],
+        'body': ['"Plus Jakarta Sans"', 'sans-serif'],
+        'label': ['"Plus Jakarta Sans"', 'sans-serif'],
+      },
+      fontSize: {
+        'display-lg': ['44px', { lineHeight: '52px', letterSpacing: '-0.5px', fontWeight: '700' }],
+        'display-lg-mobile': ['30px', { lineHeight: '38px', letterSpacing: '-0.25px', fontWeight: '700' }],
+        'headline-lg': ['32px', { lineHeight: '40px', letterSpacing: '-0.25px', fontWeight: '700' }],
+        'headline-md': ['24px', { lineHeight: '32px', letterSpacing: '-0.15px', fontWeight: '700' }],
+        'headline-sm': ['18px', { lineHeight: '26px', letterSpacing: '0px', fontWeight: '600' }],
+        'title-md': ['16px', { lineHeight: '24px', letterSpacing: '0px', fontWeight: '600' }],
+        'body-lg': ['16px', { lineHeight: '26px', letterSpacing: '0px', fontWeight: '400' }],
+        'body-md': ['14px', { lineHeight: '22px', letterSpacing: '0px', fontWeight: '400' }],
+        'body-sm': ['13px', { lineHeight: '18px', letterSpacing: '0px', fontWeight: '400' }],
+        'label-lg': ['14px', { lineHeight: '20px', letterSpacing: '0px', fontWeight: '600' }],
+        'label-md': ['12px', { lineHeight: '16px', letterSpacing: '0.2px', fontWeight: '600' }],
+        'label-sm': ['11px', { lineHeight: '14px', letterSpacing: '0.3px', fontWeight: '600' }],
+      },
+      transitionDuration: {
+        'state-change': '150ms',
+        'surface-enter': '250ms',
+        'surface-exit': '150ms',
+      },
+      transitionDelay: {
+        'state-change': '0ms',
+        'surface-enter': '0ms',
+        'surface-exit': '0ms',
+      },
+      transitionTimingFunction: {
+        'state-change': 'ease-out',
+        'surface-enter': 'cubic-bezier(0.2, 0, 0, 1)',
+        'surface-exit': 'cubic-bezier(0.3, 0, 1, 1)',
+      },
+    },
+  },
+};
+if (typeof module !== 'undefined') module.exports = globalThis.tailwind.config;
+</script>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block" rel="stylesheet">
+  <style>
+    .material-symbols-outlined { display: inline-block; width: 1em; height: 1em; line-height: 1 !important; box-sizing: content-box; overflow: hidden; white-space: nowrap; direction: ltr; vertical-align: middle; }
+  </style>
+</head>
+<body class="bg-surface text-on-surface font-body antialiased">
+  <div class="min-h-[1024px] flex flex-col" data-stitch-vh="min-h-[1024px]===min-h-screen">
+
+    <!-- Sticky Header -->
+    <header id="site-header" class="sticky top-0 z-40 bg-surface shadow-[0_4px_16px_rgba(46,42,38,0.05)] transition-colors duration-state-change">
+      <div class="max-w-[1200px] mx-auto px-6 min-h-[72px] py-2 flex items-center justify-between gap-4">
+        <a href="../home/Home.html" class="flex items-center gap-2.5 shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-md">
+          <span class="w-9 h-9 rounded-md bg-sage text-on-sage flex items-center justify-center">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M12 4C8 4 5 7.5 5 11.5C5 16 8.5 19.5 12 20C15.5 19.5 19 16 19 11.5C19 7.5 16 4 12 4Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"></path>
+              <path d="M12 8V17M12 12L15 9.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path>
+            </svg>
+          </span>
+          <span class="font-headline text-headline-sm text-primary font-bold tracking-tight">BakuWay</span>
+        </a>
+
+        <nav aria-label="Primary" class="hidden lg:flex items-center gap-2">
+          <a href="../hotels-search/HotelsSearch.html" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full font-label text-label-md text-on-surface-variant hover:bg-sand hover:text-on-surface transition-colors">
+            <span class="material-symbols-outlined text-[18px]" aria-hidden="true">hotel</span>
+            <span>Stay</span>
+          </a>
+          <a href="../restaurants-search/RestaurantsSearch.html" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full font-label text-label-md text-on-surface-variant hover:bg-sand hover:text-on-surface transition-colors">
+            <span class="material-symbols-outlined text-[18px]" aria-hidden="true">restaurant</span>
+            <span>Eat</span>
+          </a>
+          <a href="../explore-baku/ExploreBaku.html" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full font-label text-label-md text-on-surface-variant hover:bg-sand hover:text-on-surface transition-colors">
+            <span class="material-symbols-outlined text-[18px]" aria-hidden="true">explore</span>
+            <span>Explore</span>
+          </a>
+          <a href="../getting-around/GettingAround.html" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-sage-soft text-primary font-label text-label-md font-semibold">
+            <span class="material-symbols-outlined text-[18px]" aria-hidden="true">commute</span>
+            <span>Getting around</span>
+          </a>
+          <a href="../home/Home.html#intercity" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full font-label text-label-md text-on-surface-variant hover:bg-sand hover:text-on-surface transition-colors">
+            <span class="material-symbols-outlined text-[18px]" aria-hidden="true">directions_car</span>
+            <span>Rides to regions</span>
+          </a>
+        </nav>
+
+        <div class="flex items-center gap-2.5 shrink-0">
+          <button type="button" aria-label="Search" onclick="window.location.href=&#39;../route-planner/RoutePlanner.html&#39;" class="inline-flex items-center justify-center w-9 h-9 rounded-full bg-surface-card text-on-surface-variant hover:bg-sand hover:text-on-surface transition-colors">
+            <span class="material-symbols-outlined text-[19px]" aria-hidden="true">search</span>
+          </button>
+          <span class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface-card border border-outline-variant text-on-surface font-label text-label-md">EN · ₼</span>
+          <button type="button" aria-label="Saved favorites" class="hidden sm:inline-flex items-center justify-center w-9 h-9 rounded-full bg-surface-card text-on-surface-variant hover:bg-sand hover:text-on-surface transition-colors">
+            <span class="material-symbols-outlined text-[19px]" aria-hidden="true">favorite</span>
+          </button>
+          <button type="button" class="hidden md:inline-flex items-center px-2 py-1.5 font-label text-label-md text-on-surface-variant hover:text-primary transition-colors">Log in</button>
+          <button type="button" class="hidden sm:inline-flex items-center justify-center px-3.5 py-1.5 rounded-md bg-surface-card text-secondary border border-secondary font-label text-label-md hover:bg-secondary-container transition-colors">Become a partner</button>
+          <button type="button" aria-label="Open navigation menu" onclick="document.getElementById(&#39;mobile-drawer&#39;).classList.remove(&#39;hidden&#39;)" class="lg:hidden inline-flex items-center justify-center w-9 h-9 rounded-full bg-surface-card text-on-surface hover:bg-sand transition-colors">
+            <span class="material-symbols-outlined text-[20px]" aria-hidden="true">menu</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Mobile Full-Height Drawer -->
+    <div id="mobile-drawer" class="hidden fixed inset-0 z-50">
+      <div class="fixed inset-0 bg-on-surface/40" onclick="this.parentElement.classList.add(&#39;hidden&#39;)"></div>
+      <aside class="fixed top-0 right-0 bottom-0 w-72 bg-surface-card p-6 flex flex-col gap-6 shadow-xl">
+        <div class="flex items-center justify-between">
+          <span class="font-headline text-headline-sm text-primary font-bold">BakuWay</span>
+          <button type="button" aria-label="Close menu" onclick="document.getElementById(&#39;mobile-drawer&#39;).classList.add(&#39;hidden&#39;)" class="w-9 h-9 rounded-full hover:bg-sand flex items-center justify-center">
+            <span class="material-symbols-outlined text-[20px]">close</span>
+          </button>
+        </div>
+        <nav class="flex flex-col gap-2">
+          <a href="../hotels-search/HotelsSearch.html" class="flex items-center gap-3 px-3 py-2.5 rounded-full text-on-surface-variant hover:bg-sand font-label text-label-lg"><span class="material-symbols-outlined text-[20px]">hotel</span> Stay</a>
+          <a href="../restaurants-search/RestaurantsSearch.html" class="flex items-center gap-3 px-3 py-2.5 rounded-full text-on-surface-variant hover:bg-sand font-label text-label-lg"><span class="material-symbols-outlined text-[20px]">restaurant</span> Eat</a>
+          <a href="../explore-baku/ExploreBaku.html" class="flex items-center gap-3 px-3 py-2.5 rounded-full text-on-surface-variant hover:bg-sand font-label text-label-lg"><span class="material-symbols-outlined text-[20px]">explore</span> Explore</a>
+          <a href="../getting-around/GettingAround.html" class="flex items-center gap-3 px-3 py-2.5 rounded-full bg-sage-soft text-primary font-label text-label-lg"><span class="material-symbols-outlined text-[20px]">commute</span> Getting around</a>
+          <a href="../home/Home.html#intercity" class="flex items-center gap-3 px-3 py-2.5 rounded-full text-on-surface-variant hover:bg-sand font-label text-label-lg"><span class="material-symbols-outlined text-[20px]">directions_car</span> Rides to regions</a>
+        </nav>
+      </aside>
+    </div>
+
+    <main class="flex-1 max-w-[1200px] w-full mx-auto px-6 py-8 flex flex-col gap-10">
+
+      <div class="flex flex-col gap-2">
+        <a href="../getting-around/GettingAround.html" class="inline-flex items-center gap-1 font-label text-label-md text-primary hover:underline">
+          <span class="material-symbols-outlined text-[16px]" aria-hidden="true">arrow_back</span> Getting around Baku
+        </a>
+        <h1 class="font-headline text-headline-lg text-on-surface">Heydar Aliyev Airport (GYD) to Baku City</h1>
+        <p class="font-body text-body-md text-on-surface-variant">Compare your three main options and expand any card for terminal pickup photos.</p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+
+        <!-- Left Comparison Cards (8 cols) -->
+        <div class="lg:col-span-8 flex flex-col gap-6">
+
+          <!-- Option 1: Taxi -->
+          <details open class="bg-surface-card rounded-lg border border-outline-variant p-6 shadow-[0_4px_20px_rgba(46,42,38,0.05)]">
+            <summary class="cursor-pointer list-none flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div class="flex flex-col gap-1">
+                <span class="px-2.5 py-0.5 rounded-full bg-sage-soft text-on-sage font-label text-label-sm self-start">Best with luggage</span>
+                <h2 class="font-headline text-headline-sm text-on-surface">Taxi (Bolt or Yango)</h2>
+                <p class="font-body text-body-md text-on-surface-variant tabular-nums">30–40 min · Direct to your hotel door</p>
+              </div>
+              <div class="text-left sm:text-right shrink-0">
+                <span class="font-headline text-headline-md text-primary tabular-nums block">25–35 ₼</span>
+                <span class="font-body text-body-sm text-on-surface-variant tabular-nums">≈ $15–21</span>
+              </div>
+            </summary>
+            <div class="pt-5 mt-5 border-t border-outline-variant flex flex-col gap-4">
+              <img src="https://lh3.googleusercontent.com/aida/ALJJyrDHrOQ4qN0iWLRAbE6mjpYlUwKPFbFPNEIkI7Sf11zVmiHjrcude9kNtc82JCfWJX1bCpZMQr0Q1KLDjirZ17PyAD0hjK497BZqHtsiIm3lZpx1U2p4maMEsBTWwkXIxFuWvOOJIqvIrBHbqBc-dvYTYbVJnfLHzBWyBumUqgKiAGPmdjFHDpSGmRYOMp6mwK039NxuqDby_et70LCvrm80dqTHHwqeaMasiV4FzCXpX9oTr0_p5qfvvIJuSrB4ze4" alt="Airport taxi pickup zone" class="w-full h-48 object-cover rounded-md">
+              <ol class="flex flex-col gap-1.5 font-body text-body-md text-on-surface-variant list-decimal pl-5">
+                <li>Exit Terminal 1 Arrivals and cross the first pedestrian lane to Zone B.</li>
+                <li>Open Bolt or Yango instead of negotiating with terminal touts.</li>
+              </ol>
+              <div class="flex flex-wrap gap-3">
+                <a href="../city-taxi/CityTaxi.html" class="px-4 py-2 rounded-md bg-primary text-on-primary font-label text-label-md hover:opacity-90">Open in Bolt</a>
+                <a href="../city-taxi/CityTaxi.html" class="px-4 py-2 rounded-md bg-surface border border-outline text-on-surface font-label text-label-md hover:bg-sand">Open in Yango</a>
+              </div>
+            </div>
+          </details>
+
+          <!-- Option 2: Airport Express Bus -->
+          <details class="bg-surface-card rounded-lg border border-outline-variant p-6 shadow-[0_4px_20px_rgba(46,42,38,0.05)]">
+            <summary class="cursor-pointer list-none flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div class="flex flex-col gap-1">
+                <div class="flex gap-2">
+                  <span class="px-2.5 py-0.5 rounded-full bg-sage-soft text-on-sage font-label text-label-sm">Cheapest</span>
+                  <span class="px-2.5 py-0.5 rounded-full bg-terracotta-soft text-on-terracotta font-label text-label-sm">Needs BakuCard</span>
+                </div>
+                <h2 class="font-headline text-headline-sm text-on-surface">Aero Express Bus (H1)</h2>
+                <p class="font-body text-body-md text-on-surface-variant tabular-nums">40–50 min · Every 30 min to 28 May Metro</p>
+              </div>
+              <div class="text-left sm:text-right shrink-0">
+                <span class="font-headline text-headline-md text-primary tabular-nums block">1.50 ₼</span>
+                <span class="font-body text-body-sm text-on-surface-variant tabular-nums">≈ $0.90</span>
+              </div>
+            </summary>
+            <div class="pt-5 mt-5 border-t border-outline-variant flex flex-col gap-4">
+              <img src="https://lh3.googleusercontent.com/aida/ALJJyrBqO3ISU69nOu_jCdK0z9zjkZUR5UEZACZZsstIJkvjDIdLclQcqMQY-8VT2xd0bzuJCV4ZFKajzTPiLj3voltSYMbyys-2Izsa_mUCSwBV-ZG3UiRUvjTW1DYPlVeFxY15gd5ykBr4jBs1znWEvjEQf3hZw_IaowwDcTxhfxDCFILea5OM41H87MtCXcq3WdzNkO2-NdXJu6PyL7TCaxoAjnGj3BlHJYPv9z1g9BKCEDcgeWCbnOtu0SQJCQ" alt="Aero Express Bus H1 at Terminal 1" class="w-full h-48 object-cover rounded-md">
+              <ol class="flex flex-col gap-1.5 font-body text-body-md text-on-surface-variant list-decimal pl-5">
+                <li>Buy a BakuCard (2 ₼ + 3 ₼ top-up) at the red kiosk right outside Terminal 1 doors.</li>
+                <li>Board the H1 express bus at the dedicated bay on the right.</li>
+              </ol>
+            </div>
+          </details>
+
+          <!-- Option 3: Bus + Metro -->
+          <details class="bg-surface-card rounded-lg border border-outline-variant p-6 shadow-[0_4px_20px_rgba(46,42,38,0.05)]">
+            <summary class="cursor-pointer list-none flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div class="flex flex-col gap-1">
+                <span class="px-2.5 py-0.5 rounded-full bg-sand text-on-sand font-label text-label-sm self-start">1 transfer</span>
+                <h2 class="font-headline text-headline-sm text-on-surface">Bus H1 + Baku Metro</h2>
+                <p class="font-body text-body-md text-on-surface-variant tabular-nums">60 min · Reach Old City or Nizami</p>
+              </div>
+              <div class="text-left sm:text-right shrink-0">
+                <span class="font-headline text-headline-md text-primary tabular-nums block">Under 2 ₼</span>
+                <span class="font-body text-body-sm text-on-surface-variant tabular-nums">≈ $1.20</span>
+              </div>
+            </summary>
+            <div class="pt-5 mt-5 border-t border-outline-variant flex flex-col gap-4">
+              <img src="https://lh3.googleusercontent.com/aida/ALJJyrBY-vFRRCk-upmONKqtJqAekB1p3mw-XXN0U4hDSxjhsM0KtNjSsytrJE1RFLhq4MetYPuzV4YW_6k_3kSqDb95z0z-hu9upKQcwlZ07-LCX9Z1-A24-eAEkQVvNMjd9FcrLoSSQ8qgZMZ3uXDzz2doRbZxBYd1LVV7hRT0uGxih0ok1Y-L5fuH1cPiYEcV8JH0po9OoTrD7hGO68LCmkA5KJQnzAXYT65wSYVQUce0HgQTATMajvHP8a--" alt="28 May Metro station" class="w-full h-48 object-cover rounded-md">
+              <p class="font-body text-body-md text-on-surface-variant">Ride H1 to the final stop (28 May), walk 2 minutes underground to the Red Line, and take 2 stops to Icherisheher (0.50 ₼).</p>
+            </div>
+          </details>
+
+          <!-- Good to Know -->
+          <section class="rounded-lg bg-sand p-6 flex flex-col gap-4">
+            <div class="flex items-center justify-between">
+              <h2 class="font-headline text-headline-sm text-on-sand">Good to know on arrival</h2>
+              <span class="font-body text-body-sm text-on-surface-variant">Last update: Nov 25, 2026</span>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 font-body text-body-md text-on-surface-variant">
+              <div><strong class="text-on-sand">SIM cards:</strong> Azercell &amp; Bakcell booths in Arrivals sell 10 GB tourist SIMs for ~20 ₼.</div>
+              <div><strong class="text-on-sand">Currency:</strong> ATMs in Arrivals give fair rates; exchange only a small amount at the airport desk.</div>
+              <div><strong class="text-on-sand">BakuCard:</strong> Keep 5 ₼ loaded for your first 2 days of metro and bus rides.</div>
+              <div><strong class="text-on-sand">Taxi tip:</strong> Always confirm the license plate in Bolt/Yango before loading bags.</div>
+            </div>
+          </section>
+        </div>
+
+        <!-- Right Sticky Card: Going to your hotel? (4 cols) -->
+        <aside class="lg:col-span-4 lg:sticky lg:top-24">
+          <div class="bg-surface-card rounded-lg border border-outline-variant p-6 flex flex-col gap-4 shadow-[0_4px_20px_rgba(46,42,38,0.05)]">
+            <h2 class="font-headline text-headline-sm text-on-surface">Going to your hotel?</h2>
+            <p class="font-body text-body-md text-on-surface-variant">Enter your hotel name to see the exact door-to-door route from Terminal 1.</p>
+            <input type="text" value="Shirvanshah Boutique Hotel, Old City" aria-label="Hotel name" class="px-3.5 py-2.5 rounded-md bg-surface border border-outline font-body text-body-md">
+            <a href="../route-planner/RoutePlanner.html" class="w-full py-3 rounded-md bg-primary text-on-primary font-label text-label-lg text-center hover:opacity-90">See route from airport</a>
+          </div>
+        </aside>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-sand text-on-sand border-t border-outline mt-12">
+      <div class="max-w-[1200px] mx-auto px-6 py-10 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <span class="font-headline text-headline-sm text-on-sand">BakuWay</span>
+        <p class="font-body text-body-sm text-on-surface-variant">© 2026 BakuWay. Made for curious travelers in Azerbaijan.</p>
+      </div>
+    </footer>
+  </div>
+
+  <div id="toast" role="status" aria-live="polite" class="hidden fixed bottom-6 right-6 z-50 bg-primary text-on-primary px-4 py-3 rounded-md shadow-lg flex items-center gap-2.5 font-body text-body-md">
+    <span class="material-symbols-outlined text-[18px]" aria-hidden="true">check_circle</span>
+    <span id="toast-message"></span>
+  </div>
+  <script>
+    let toastTimer;
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      document.getElementById('toast-message').textContent = msg;
+      toast.classList.remove('hidden');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.add('hidden'), 3000);
+    }
+    window.addEventListener('scroll', () => {
+      const header = document.getElementById('site-header');
+      if (!header) return;
+      if (window.scrollY > 10) {
+        header.classList.remove('bg-surface');
+        header.classList.add('bg-surface-card/90', 'backdrop-blur-sm');
+      } else {
+        header.classList.add('bg-surface');
+        header.classList.remove('bg-surface-card/90', 'backdrop-blur-sm');
+      }
+    });
+  </script>
+
+
+</body></html>

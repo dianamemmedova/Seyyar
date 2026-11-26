@@ -1,0 +1,321 @@
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Partner Panel — Profile Editor</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script id="tailwind-config">/** @type {import('tailwindcss').Config} */
+globalThis.tailwind = globalThis.tailwind || {};
+globalThis.tailwind.config = {
+  darkMode: 'class',
+  theme: {
+    extend: {
+      colors: {
+        'primary': '#3F5E4A',
+        'on-primary': '#FFFFFF',
+        'primary-container': '#D6F9DF',
+        'on-primary-container': '#183625',
+        'sage': '#7A9E7E',
+        'on-sage': '#15351E',
+        'sage-soft': '#EBF2EC',
+        'secondary': '#8B6B4F',
+        'on-secondary': '#FFFFFF',
+        'secondary-container': '#FFEEE1',
+        'on-secondary-container': '#432B14',
+        'terracotta': '#C98B6B',
+        'on-terracotta': '#2E1A10',
+        'terracotta-soft': '#F7EAE2',
+        'surface': '#F7F3EC',
+        'on-surface': '#2E2A26',
+        'surface-card': '#FFFFFF',
+        'on-surface-card': '#2E2A26',
+        'sand': '#E8DFD0',
+        'on-sand': '#2E2A26',
+        'on-surface-variant': '#655D56',
+        'muted': '#7A716A',
+        'outline': '#DDD5C7',
+        'outline-variant': '#EAE1D2',
+        'success': '#4A7C59',
+        'on-success': '#FFFFFF',
+        'warning': '#B58238',
+        'on-warning': '#201B15',
+        'error': '#A84A42',
+        'on-error': '#FFFFFF',
+      },
+      borderRadius: {
+        'sm': '8px',
+        'DEFAULT': '12px',
+        'md': '12px',
+        'lg': '16px',
+        'xl': '24px',
+        'full': '9999px',
+      },
+      spacing: {
+        'gutter-xs': '4px',
+        'gutter-sm': '8px',
+        'gutter-md': '16px',
+        'gutter-lg': '24px',
+        'gutter-xl': '32px',
+        'section': '64px',
+        'page-margin': '24px',
+      },
+      fontFamily: {
+        'display': ['"Plus Jakarta Sans"', 'sans-serif'],
+        'headline': ['"Plus Jakarta Sans"', 'sans-serif'],
+        'title': ['"Plus Jakarta Sans"', 'sans-serif'],
+        'body': ['"Plus Jakarta Sans"', 'sans-serif'],
+        'label': ['"Plus Jakarta Sans"', 'sans-serif'],
+      },
+      fontSize: {
+        'display-lg': ['44px', { lineHeight: '52px', letterSpacing: '-0.5px', fontWeight: '700' }],
+        'display-lg-mobile': ['30px', { lineHeight: '38px', letterSpacing: '-0.25px', fontWeight: '700' }],
+        'headline-lg': ['32px', { lineHeight: '40px', letterSpacing: '-0.25px', fontWeight: '700' }],
+        'headline-md': ['24px', { lineHeight: '32px', letterSpacing: '-0.15px', fontWeight: '700' }],
+        'headline-sm': ['18px', { lineHeight: '26px', letterSpacing: '0px', fontWeight: '600' }],
+        'title-md': ['16px', { lineHeight: '24px', letterSpacing: '0px', fontWeight: '600' }],
+        'body-lg': ['16px', { lineHeight: '26px', letterSpacing: '0px', fontWeight: '400' }],
+        'body-md': ['14px', { lineHeight: '22px', letterSpacing: '0px', fontWeight: '400' }],
+        'body-sm': ['13px', { lineHeight: '18px', letterSpacing: '0px', fontWeight: '400' }],
+        'label-lg': ['14px', { lineHeight: '20px', letterSpacing: '0px', fontWeight: '600' }],
+        'label-md': ['12px', { lineHeight: '16px', letterSpacing: '0.2px', fontWeight: '600' }],
+        'label-sm': ['11px', { lineHeight: '14px', letterSpacing: '0.3px', fontWeight: '600' }],
+      },
+      transitionDuration: {
+        'state-change': '150ms',
+        'surface-enter': '250ms',
+        'surface-exit': '150ms',
+      },
+      transitionDelay: {
+        'state-change': '0ms',
+        'surface-enter': '0ms',
+        'surface-exit': '0ms',
+      },
+      transitionTimingFunction: {
+        'state-change': 'ease-out',
+        'surface-enter': 'cubic-bezier(0.2, 0, 0, 1)',
+        'surface-exit': 'cubic-bezier(0.3, 0, 1, 1)',
+      },
+    },
+  },
+};
+if (typeof module !== 'undefined') module.exports = globalThis.tailwind.config;
+</script>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block" rel="stylesheet">
+  <style>
+    .material-symbols-outlined { display: inline-block; width: 1em; height: 1em; line-height: 1 !important; box-sizing: content-box; overflow: hidden; white-space: nowrap; direction: ltr; vertical-align: middle; }
+  </style>
+</head>
+<body class="bg-surface text-on-surface font-body antialiased">
+  <div class="min-h-[1024px] flex flex-col lg:flex-row" data-stitch-vh="min-h-[1024px]===min-h-screen">
+
+    <!-- Mobile Top Bar -->
+    <div class="lg:hidden sticky top-0 z-40 bg-surface-card border-b border-outline-variant px-4 py-3 flex items-center justify-between">
+      <div class="flex items-center gap-2.5">
+        <img src="https://lh3.googleusercontent.com/aida/ALJJyrA7vM1ovkU9Uv36AKnPStPNuRmATuO3LdGVQMv6V_RFJ9Pg2ZCWfsr8m8SCvJut7Lkd85-T7J8V9RlQg6pEsBRrlfXxJiicMwLH7c5hYNwsccIfaDSAgwsXnPP7DRCkaFPuWldLmqVHWZyG6iDSW9QTeO3O9mFk62EMC0AhBBfx35L4iKJ48q5Ep4ZPJCtB1RmogTdTZpV7gFtoSYHuuASJyvWpR5-XjtjRr18_TUDGpYI9Gfs8iOKwBYnG" alt="Shirvanshah Boutique Hotel" class="w-8 h-8 rounded-md object-cover">
+        <span class="font-title text-title-md text-on-surface">Shirvanshah Hotel</span>
+      </div>
+      <a href="../partner-dashboard/PartnerDashboard.html" class="font-label text-label-md text-primary">Dashboard</a>
+    </div>
+
+    <!-- Desktop Left Sidebar -->
+    <aside class="hidden lg:flex lg:w-64 shrink-0 bg-surface-card border-r border-outline-variant p-5 flex-col justify-between min-h-[1024px] sticky top-0 self-start" data-stitch-vh="min-h-[1024px]===min-h-screen">
+      <div class="flex flex-col gap-6">
+        <div class="flex items-center gap-3 pb-4 border-b border-outline-variant">
+          <img src="https://lh3.googleusercontent.com/aida/ALJJyrA7vM1ovkU9Uv36AKnPStPNuRmATuO3LdGVQMv6V_RFJ9Pg2ZCWfsr8m8SCvJut7Lkd85-T7J8V9RlQg6pEsBRrlfXxJiicMwLH7c5hYNwsccIfaDSAgwsXnPP7DRCkaFPuWldLmqVHWZyG6iDSW9QTeO3O9mFk62EMC0AhBBfx35L4iKJ48q5Ep4ZPJCtB1RmogTdTZpV7gFtoSYHuuASJyvWpR5-XjtjRr18_TUDGpYI9Gfs8iOKwBYnG" alt="Shirvanshah Boutique Hotel" class="w-11 h-11 rounded-md object-cover shrink-0">
+          <div class="min-w-0">
+            <h2 class="font-title text-title-md text-on-surface truncate">Shirvanshah Hotel</h2>
+            <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-sage-soft text-on-sage font-label text-label-sm mt-0.5">
+              <span class="material-symbols-outlined text-[13px]" aria-hidden="true">verified</span>
+              <span>Verified partner</span>
+            </span>
+          </div>
+        </div>
+
+        <nav aria-label="Partner" class="flex flex-col gap-1">
+          <a href="../partner-dashboard/PartnerDashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-md text-on-surface-variant hover:bg-sand hover:text-on-surface font-label text-label-md transition-colors">
+            <span class="material-symbols-outlined text-[19px]" aria-hidden="true">dashboard</span>
+            <span>Dashboard</span>
+          </a>
+          <a href="../partner-requests/PartnerRequests.html" class="flex items-center justify-between px-3 py-2.5 rounded-md text-on-surface-variant hover:bg-sand hover:text-on-surface font-label text-label-md transition-colors">
+            <span class="flex items-center gap-3"><span class="material-symbols-outlined text-[19px]" aria-hidden="true">inbox</span><span>Requests</span></span>
+            <span class="px-2 py-0.5 rounded-full bg-terracotta text-on-terracotta font-label text-label-sm tabular-nums">3</span>
+          </a>
+          <a href="../partner-profile/PartnerProfile.html" class="flex items-center gap-3 px-3 py-2.5 rounded-md bg-sage-soft text-primary font-label text-label-md">
+            <span class="material-symbols-outlined text-[19px]" aria-hidden="true">storefront</span>
+            <span>Profile</span>
+          </a>
+          <a href="../partner-rooms-menu/PartnerRoomsMenu.html" class="flex items-center gap-3 px-3 py-2.5 rounded-md text-on-surface-variant hover:bg-sand hover:text-on-surface font-label text-label-md transition-colors">
+            <span class="material-symbols-outlined text-[19px]" aria-hidden="true">bed</span>
+            <span>Rooms / Menu</span>
+          </a>
+          <a href="../partner-offers-billing/PartnerOffersBilling.html#offers" class="flex items-center gap-3 px-3 py-2.5 rounded-md text-on-surface-variant hover:bg-sand hover:text-on-surface font-label text-label-md transition-colors">
+            <span class="material-symbols-outlined text-[19px]" aria-hidden="true">local_offer</span>
+            <span>Offers</span>
+          </a>
+          <a href="../partner-dashboard/PartnerDashboard.html#reviews" class="flex items-center gap-3 px-3 py-2.5 rounded-md text-on-surface-variant hover:bg-sand hover:text-on-surface font-label text-label-md transition-colors">
+            <span class="material-symbols-outlined text-[19px]" aria-hidden="true">reviews</span>
+            <span>Reviews</span>
+          </a>
+          <a href="../partner-offers-billing/PartnerOffersBilling.html#statistics" class="flex items-center gap-3 px-3 py-2.5 rounded-md text-on-surface-variant hover:bg-sand hover:text-on-surface font-label text-label-md transition-colors">
+            <span class="material-symbols-outlined text-[19px]" aria-hidden="true">bar_chart</span>
+            <span>Statistics</span>
+          </a>
+          <a href="../partner-offers-billing/PartnerOffersBilling.html#billing" class="flex items-center gap-3 px-3 py-2.5 rounded-md text-on-surface-variant hover:bg-sand hover:text-on-surface font-label text-label-md transition-colors">
+            <span class="material-symbols-outlined text-[19px]" aria-hidden="true">receipt</span>
+            <span>Billing</span>
+          </a>
+          <a href="../partner-profile/PartnerProfile.html#settings" class="flex items-center gap-3 px-3 py-2.5 rounded-md text-on-surface-variant hover:bg-sand hover:text-on-surface font-label text-label-md transition-colors">
+            <span class="material-symbols-outlined text-[19px]" aria-hidden="true">settings</span>
+            <span>Settings</span>
+          </a>
+        </nav>
+      </div>
+
+      <a href="../hotel-detail/HotelDetail.html" class="flex items-center gap-2 px-3 py-2 rounded-md bg-surface border border-outline-variant font-label text-label-md text-primary hover:bg-sand">
+        <span class="material-symbols-outlined text-[18px]" aria-hidden="true">open_in_new</span>
+        <span>View public listing</span>
+      </a>
+    </aside>
+
+    <!-- Main Profile Editor -->
+    <main class="flex-1 p-6 lg:p-8 pb-24 flex flex-col gap-6 max-w-[1160px]">
+      <div class="flex flex-wrap items-center justify-between gap-4">
+        <div>
+          <h1 class="font-headline text-headline-lg text-on-surface">Profile editor</h1>
+          <p class="font-body text-body-md text-on-surface-variant">Changes are published after a quick review by our Baku team.</p>
+        </div>
+        <button type="button" onclick="showToast(&#39;Changes submitted for review&#39;)" class="px-5 py-2.5 rounded-md bg-primary text-on-primary font-label text-label-lg hover:opacity-90">Save &amp; submit</button>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+
+        <!-- Left Editor Forms -->
+        <div class="lg:col-span-7 flex flex-col gap-6">
+          <!-- Photo Grid -->
+          <section class="bg-surface-card rounded-lg border border-outline-variant p-6 flex flex-col gap-4 shadow-[0_4px_20px_rgba(46,42,38,0.05)]">
+            <div class="flex items-center justify-between">
+              <h2 class="font-headline text-headline-sm text-on-surface">Photos (drag to reorder)</h2>
+              <button type="button" onclick="showToast(&#39;Photo uploader opened&#39;)" class="font-label text-label-md text-primary hover:underline">+ Add photo</button>
+            </div>
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+              <div class="relative rounded-md overflow-hidden border-2 border-primary">
+                <img src="https://lh3.googleusercontent.com/aida/ALJJyrA7vM1ovkU9Uv36AKnPStPNuRmATuO3LdGVQMv6V_RFJ9Pg2ZCWfsr8m8SCvJut7Lkd85-T7J8V9RlQg6pEsBRrlfXxJiicMwLH7c5hYNwsccIfaDSAgwsXnPP7DRCkaFPuWldLmqVHWZyG6iDSW9QTeO3O9mFk62EMC0AhBBfx35L4iKJ48q5Ep4ZPJCtB1RmogTdTZpV7gFtoSYHuuASJyvWpR5-XjtjRr18_TUDGpYI9Gfs8iOKwBYnG" alt="Cover photo" class="w-full h-28 object-cover">
+                <span class="absolute top-2 left-2 px-2 py-0.5 rounded-full bg-primary text-on-primary font-label text-label-sm">Cover</span>
+                <span class="absolute top-2 right-2 w-6 h-6 rounded bg-surface-card/90 flex items-center justify-center"><span class="material-symbols-outlined text-[16px]">drag_indicator</span></span>
+              </div>
+              <div class="relative rounded-md overflow-hidden border border-outline-variant">
+                <img src="https://lh3.googleusercontent.com/aida/ALJJyrAsyg8pQnTsjy6oQ-XemUWX056GMpJe5HsMBTBnQU8jBzHSmFNyau_2W9yVq0qfLu5Lf7LYt12JLA__z-5E_DBgp08WFCAsBWPHq26OYA9-ktaVP2dGiwyl-Shiyax5xmJjIjXNbraS_Bmw8z8Cxa-XGZ1RSFCsdkx14EewT6Z6fXHxAVts13JFLj4uKlgRHcEli_fuaS2XP6BPTPcJWd6RlbvQEsRTgWq6ONOCFnMbt-OorziUxWrrkIKl1953Sg" alt="Courtyard room" class="w-full h-28 object-cover">
+                <span class="absolute top-2 right-2 w-6 h-6 rounded bg-surface-card/90 flex items-center justify-center"><span class="material-symbols-outlined text-[16px]">drag_indicator</span></span>
+              </div>
+              <div class="relative rounded-md overflow-hidden border border-outline-variant">
+                <img src="https://lh3.googleusercontent.com/aida/ALJJyrAVaT4raZ3ZVtWWnL6VUzrNIVkeLNFG0zl2jyuvRIkfCGv_J2Vrx2Vn8TEaTlVQgg9fnC-HMOsJ_j9_6ZT8VzA1BFoFd5CQXuJhQxvfreZk2tdb6JaEox-S7mkSGtkyofS8BZHSrnwLkwo2G9omlyPgYWAsxcZ8-cRE3zatZiCvSnheodEjHhkfUGGdmWvTBM3cG_S2Ur-HoTA5QcONYjMW6ev5_yIsnpgkL2s5uHke82N30NiRJfNX2pLn" alt="Family suite" class="w-full h-28 object-cover">
+                <span class="absolute top-2 right-2 w-6 h-6 rounded bg-surface-card/90 flex items-center justify-center"><span class="material-symbols-outlined text-[16px]">drag_indicator</span></span>
+              </div>
+            </div>
+          </section>
+
+          <!-- Name & Multilingual Description -->
+          <section class="bg-surface-card rounded-lg border border-outline-variant p-6 flex flex-col gap-4 shadow-[0_4px_20px_rgba(46,42,38,0.05)]">
+            <div>
+              <label for="biz-name" class="block font-label text-label-md text-on-surface mb-1.5">Business name</label>
+              <input id="biz-name" type="text" value="Shirvanshah Boutique Hotel" oninput="document.getElementById(&#39;preview-name&#39;).textContent = this.value" class="w-full rounded-md border border-outline bg-surface px-3.5 py-2.5 font-body text-body-md text-on-surface focus:border-primary focus:ring-primary">
+            </div>
+
+            <div>
+              <div class="flex items-center justify-between mb-1.5">
+                <label for="biz-desc" class="font-label text-label-md text-on-surface">Description</label>
+                <div class="flex gap-1 bg-surface p-0.5 rounded-md border border-outline-variant">
+                  <button type="button" onclick="setLang(&#39;en&#39;, this)" class="lang-btn px-2.5 py-1 rounded-sm bg-primary text-on-primary font-label text-label-sm">EN</button>
+                  <button type="button" onclick="setLang(&#39;ru&#39;, this)" class="lang-btn px-2.5 py-1 rounded-sm text-on-surface-variant font-label text-label-sm">RU</button>
+                  <button type="button" onclick="setLang(&#39;az&#39;, this)" class="lang-btn px-2.5 py-1 rounded-sm text-on-surface-variant font-label text-label-sm">AZ</button>
+                </div>
+              </div>
+              <textarea id="biz-desc" rows="3" class="w-full rounded-md border border-outline bg-surface px-3.5 py-2.5 font-body text-body-md text-on-surface focus:border-primary focus:ring-primary">Restored 19th-century stone mansion in Old City (Icherisheher) with a quiet pomegranate courtyard and homemade Azerbaijani breakfast.</textarea>
+            </div>
+          </section>
+
+          <!-- Address, Working Hours & Amenities -->
+          <section id="settings" class="bg-surface-card rounded-lg border border-outline-variant p-6 flex flex-col gap-4 shadow-[0_4px_20px_rgba(46,42,38,0.05)]">
+            <h2 class="font-headline text-headline-sm text-on-surface">Location, hours &amp; amenities</h2>
+            <div>
+              <label for="biz-addr" class="block font-label text-label-md text-on-surface mb-1.5">Address &amp; map pin</label>
+              <input id="biz-addr" type="text" value="Asaf Zeynalli 42, Old City, Baku" class="w-full rounded-md border border-outline bg-surface px-3.5 py-2.5 font-body text-body-md text-on-surface focus:border-primary focus:ring-primary">
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-body-sm">
+              <div class="p-3 rounded-md bg-surface border border-outline-variant flex justify-between">
+                <span>Mon – Sat</span>
+                <span class="font-label tabular-nums">07:30 – 23:00</span>
+              </div>
+              <div class="p-3 rounded-md bg-surface border border-outline-variant flex justify-between">
+                <span>Sunday</span>
+                <span class="font-label tabular-nums">08:00 – 22:00</span>
+              </div>
+            </div>
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5 pt-2 text-body-sm">
+              <label class="flex items-center gap-2"><input type="checkbox" checked class="rounded text-primary"> Free Wi-Fi</label>
+              <label class="flex items-center gap-2"><input type="checkbox" checked class="rounded text-primary"> Breakfast</label>
+              <label class="flex items-center gap-2"><input type="checkbox" checked class="rounded text-primary"> Family friendly</label>
+              <label class="flex items-center gap-2"><input type="checkbox" checked class="rounded text-primary"> Airport transfer</label>
+              <label class="flex items-center gap-2"><input type="checkbox" class="rounded text-primary"> Parking</label>
+              <label class="flex items-center gap-2"><input type="checkbox" checked class="rounded text-primary"> Courtyard</label>
+            </div>
+          </section>
+        </div>
+
+        <!-- Right Live Preview Card -->
+        <aside class="lg:col-span-5 lg:sticky lg:top-8 flex flex-col gap-3">
+          <span class="font-label text-label-md text-on-surface-variant">Live public listing preview</span>
+          <div class="bg-surface-card rounded-lg border border-outline-variant overflow-hidden shadow-[0_4px_20px_rgba(46,42,38,0.05)] flex flex-col">
+            <div class="relative">
+              <img src="https://lh3.googleusercontent.com/aida/ALJJyrA7vM1ovkU9Uv36AKnPStPNuRmATuO3LdGVQMv6V_RFJ9Pg2ZCWfsr8m8SCvJut7Lkd85-T7J8V9RlQg6pEsBRrlfXxJiicMwLH7c5hYNwsccIfaDSAgwsXnPP7DRCkaFPuWldLmqVHWZyG6iDSW9QTeO3O9mFk62EMC0AhBBfx35L4iKJ48q5Ep4ZPJCtB1RmogTdTZpV7gFtoSYHuuASJyvWpR5-XjtjRr18_TUDGpYI9Gfs8iOKwBYnG" alt="Public listing preview" class="w-full aspect-video object-cover">
+              <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-sage-soft text-on-sage font-label text-label-sm">Verified partner</span>
+            </div>
+            <div class="p-5 flex flex-col gap-2">
+              <div class="flex items-center justify-between gap-2">
+                <h2 id="preview-name" class="font-headline text-headline-sm text-on-surface">Shirvanshah Boutique Hotel</h2>
+                <span class="font-label text-label-md text-primary tabular-nums">9.1</span>
+              </div>
+              <p class="font-body text-body-sm text-on-surface-variant">Old City · 400 m to Icherisheher Metro</p>
+              <p class="font-body text-body-sm text-on-surface text-pretty">Restored 19th-century stone mansion with courtyard and homemade breakfast.</p>
+              <div class="flex items-center justify-between pt-3 border-t border-outline-variant mt-1">
+                <span class="font-title text-title-md text-primary tabular-nums">from 110 ₼ / night</span>
+                <span class="px-3 py-1.5 rounded-md bg-primary text-on-primary font-label text-label-md">View</span>
+              </div>
+            </div>
+          </div>
+        </aside>
+
+      </div>
+    </main>
+  </div>
+
+  <div id="toast" role="status" aria-live="polite" class="hidden fixed bottom-6 right-6 z-50 bg-primary text-on-primary px-4 py-3 rounded-md shadow-lg flex items-center gap-2.5 font-body text-body-md">
+    <span class="material-symbols-outlined text-[18px]" aria-hidden="true">check_circle</span>
+    <span id="toast-message"></span>
+  </div>
+
+  <script>
+    const descs = {
+      en: 'Restored 19th-century stone mansion in Old City (Icherisheher) with a quiet pomegranate courtyard and homemade Azerbaijani breakfast.',
+      ru: 'Отреставрированный каменный особняк XIX века в Ичеришехер с тихим гранатовым двориком и домашним азербайджанским завтраком.',
+      az: 'İçərişəhərdə sakit nar bağçası və ev sayağı Azərbaycan səhər yeməyi olan bərpa edilmiş XIX əsr butik otel.'
+    };
+    function setLang(lang, btn) {
+      document.querySelectorAll('.lang-btn').forEach(b => {
+        b.className = 'lang-btn px-2.5 py-1 rounded-sm text-on-surface-variant font-label text-label-sm';
+      });
+      btn.className = 'lang-btn px-2.5 py-1 rounded-sm bg-primary text-on-primary font-label text-label-sm';
+      document.getElementById('biz-desc').value = descs[lang];
+    }
+    let toastTimer;
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      document.getElementById('toast-message').textContent = msg;
+      toast.classList.remove('hidden');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.add('hidden'), 3000);
+    }
+  </script>
+
+
+</body></html>

@@ -1,0 +1,487 @@
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BakuWay — Favorites &amp; My Trip</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script id="tailwind-config">/** @type {import('tailwindcss').Config} */
+globalThis.tailwind = globalThis.tailwind || {};
+globalThis.tailwind.config = {
+  darkMode: 'class',
+  theme: {
+    extend: {
+      colors: {
+        'primary': '#3F5E4A',
+        'on-primary': '#FFFFFF',
+        'primary-container': '#D6F9DF',
+        'on-primary-container': '#183625',
+        'sage': '#7A9E7E',
+        'on-sage': '#15351E',
+        'sage-soft': '#EBF2EC',
+        'secondary': '#8B6B4F',
+        'on-secondary': '#FFFFFF',
+        'secondary-container': '#FFEEE1',
+        'on-secondary-container': '#432B14',
+        'terracotta': '#C98B6B',
+        'on-terracotta': '#2E1A10',
+        'terracotta-soft': '#F7EAE2',
+        'surface': '#F7F3EC',
+        'on-surface': '#2E2A26',
+        'surface-card': '#FFFFFF',
+        'on-surface-card': '#2E2A26',
+        'sand': '#E8DFD0',
+        'on-sand': '#2E2A26',
+        'on-surface-variant': '#655D56',
+        'muted': '#7A716A',
+        'outline': '#DDD5C7',
+        'outline-variant': '#EAE1D2',
+        'success': '#4A7C59',
+        'on-success': '#FFFFFF',
+        'warning': '#B58238',
+        'on-warning': '#201B15',
+        'error': '#A84A42',
+        'on-error': '#FFFFFF',
+      },
+      borderRadius: {
+        'sm': '8px',
+        'DEFAULT': '12px',
+        'md': '12px',
+        'lg': '16px',
+        'xl': '24px',
+        'full': '9999px',
+      },
+      spacing: {
+        'gutter-xs': '4px',
+        'gutter-sm': '8px',
+        'gutter-md': '16px',
+        'gutter-lg': '24px',
+        'gutter-xl': '32px',
+        'section': '64px',
+        'page-margin': '24px',
+      },
+      fontFamily: {
+        'display': ['"Plus Jakarta Sans"', 'sans-serif'],
+        'headline': ['"Plus Jakarta Sans"', 'sans-serif'],
+        'title': ['"Plus Jakarta Sans"', 'sans-serif'],
+        'body': ['"Plus Jakarta Sans"', 'sans-serif'],
+        'label': ['"Plus Jakarta Sans"', 'sans-serif'],
+      },
+      fontSize: {
+        'display-lg': ['44px', { lineHeight: '52px', letterSpacing: '-0.5px', fontWeight: '700' }],
+        'display-lg-mobile': ['30px', { lineHeight: '38px', letterSpacing: '-0.25px', fontWeight: '700' }],
+        'headline-lg': ['32px', { lineHeight: '40px', letterSpacing: '-0.25px', fontWeight: '700' }],
+        'headline-md': ['24px', { lineHeight: '32px', letterSpacing: '-0.15px', fontWeight: '700' }],
+        'headline-sm': ['18px', { lineHeight: '26px', letterSpacing: '0px', fontWeight: '600' }],
+        'title-md': ['16px', { lineHeight: '24px', letterSpacing: '0px', fontWeight: '600' }],
+        'body-lg': ['16px', { lineHeight: '26px', letterSpacing: '0px', fontWeight: '400' }],
+        'body-md': ['14px', { lineHeight: '22px', letterSpacing: '0px', fontWeight: '400' }],
+        'body-sm': ['13px', { lineHeight: '18px', letterSpacing: '0px', fontWeight: '400' }],
+        'label-lg': ['14px', { lineHeight: '20px', letterSpacing: '0px', fontWeight: '600' }],
+        'label-md': ['12px', { lineHeight: '16px', letterSpacing: '0.2px', fontWeight: '600' }],
+        'label-sm': ['11px', { lineHeight: '14px', letterSpacing: '0.3px', fontWeight: '600' }],
+      },
+      transitionDuration: {
+        'state-change': '150ms',
+        'surface-enter': '250ms',
+        'surface-exit': '150ms',
+      },
+      transitionDelay: {
+        'state-change': '0ms',
+        'surface-enter': '0ms',
+        'surface-exit': '0ms',
+      },
+      transitionTimingFunction: {
+        'state-change': 'ease-out',
+        'surface-enter': 'cubic-bezier(0.2, 0, 0, 1)',
+        'surface-exit': 'cubic-bezier(0.3, 0, 1, 1)',
+      },
+    },
+  },
+};
+if (typeof module !== 'undefined') module.exports = globalThis.tailwind.config;
+</script>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block" rel="stylesheet">
+  <style>
+    .material-symbols-outlined { display: inline-block; width: 1em; height: 1em; line-height: 1 !important; box-sizing: content-box; overflow: hidden; white-space: nowrap; direction: ltr; vertical-align: middle; }
+  </style>
+</head>
+<body class="bg-surface text-on-surface font-body antialiased">
+  <div class="min-h-[1024px] flex flex-col" data-stitch-vh="min-h-[1024px]===min-h-screen">
+
+    <!-- Sticky Header -->
+    <header id="site-header" class="sticky top-0 z-40 bg-surface shadow-[0_4px_16px_rgba(46,42,38,0.05)] transition-colors duration-state-change">
+      <div class="max-w-[1200px] mx-auto px-6 min-h-[72px] py-2 flex items-center justify-between gap-4">
+        <a href="../home/Home.html" class="flex items-center gap-2.5 shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-md">
+          <span class="w-9 h-9 rounded-md bg-sage text-on-sage flex items-center justify-center">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M12 4C8 4 5 7.5 5 11.5C5 16 8.5 19.5 12 20C15.5 19.5 19 16 19 11.5C19 7.5 16 4 12 4Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"></path>
+              <path d="M12 8V17M12 12L15 9.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path>
+            </svg>
+          </span>
+          <span class="font-headline text-headline-sm text-primary font-bold tracking-tight">BakuWay</span>
+        </a>
+
+        <nav aria-label="Primary" class="hidden lg:flex items-center gap-2">
+          <a href="../hotels-search/HotelsSearch.html" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full font-label text-label-md text-on-surface-variant hover:bg-sand hover:text-on-surface transition-colors">
+            <span class="material-symbols-outlined text-[18px]" aria-hidden="true">hotel</span>
+            <span>Stay</span>
+          </a>
+          <a href="../restaurants-search/RestaurantsSearch.html" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full font-label text-label-md text-on-surface-variant hover:bg-sand hover:text-on-surface transition-colors">
+            <span class="material-symbols-outlined text-[18px]" aria-hidden="true">restaurant</span>
+            <span>Eat</span>
+          </a>
+          <a href="../explore-baku/ExploreBaku.html" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full font-label text-label-md text-on-surface-variant hover:bg-sand hover:text-on-surface transition-colors">
+            <span class="material-symbols-outlined text-[18px]" aria-hidden="true">explore</span>
+            <span>Explore</span>
+          </a>
+          <a href="../getting-around/GettingAround.html" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full font-label text-label-md text-on-surface-variant hover:bg-sand hover:text-on-surface transition-colors">
+            <span class="material-symbols-outlined text-[18px]" aria-hidden="true">commute</span>
+            <span>Getting around</span>
+          </a>
+          <a href="../regions-compare/RegionsCompare.html" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full font-label text-label-md text-on-surface-variant hover:bg-sand hover:text-on-surface transition-colors">
+            <span class="material-symbols-outlined text-[18px]" aria-hidden="true">directions_car</span>
+            <span>Rides to regions</span>
+          </a>
+        </nav>
+
+        <div class="flex items-center gap-2.5 shrink-0">
+          <button type="button" aria-label="Search" class="inline-flex items-center justify-center w-9 h-9 rounded-full bg-surface-card text-on-surface-variant hover:bg-sand hover:text-on-surface transition-colors">
+            <span class="material-symbols-outlined text-[19px]" aria-hidden="true">search</span>
+          </button>
+          <span class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface-card border border-outline-variant text-on-surface font-label text-label-md">EN · ₼</span>
+          <a href="../favorites-trip/FavoritesTrip.html" aria-label="Saved favorites" class="hidden sm:inline-flex items-center justify-center w-9 h-9 rounded-full bg-sage-soft text-primary transition-colors">
+            <span class="material-symbols-outlined text-[19px]" style="font-variation-settings: &#39;FILL&#39; 1;" aria-hidden="true">favorite</span>
+          </a>
+          <a href="../account-auth/AccountAuth.html" class="hidden md:inline-flex items-center px-2 py-1.5 font-label text-label-md text-on-surface-variant hover:text-primary transition-colors">Log in</a>
+          <button type="button" class="hidden sm:inline-flex items-center justify-center px-3.5 py-1.5 rounded-md bg-surface-card text-secondary border border-secondary font-label text-label-md hover:bg-secondary-container transition-colors">Become a partner</button>
+          <button type="button" aria-label="Open navigation menu" onclick="document.getElementById(&#39;mobile-drawer&#39;).classList.remove(&#39;hidden&#39;)" class="lg:hidden inline-flex items-center justify-center w-9 h-9 rounded-full bg-surface-card text-on-surface hover:bg-sand transition-colors">
+            <span class="material-symbols-outlined text-[20px]" aria-hidden="true">menu</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Mobile Full-Height Drawer -->
+    <div id="mobile-drawer" class="hidden fixed inset-0 z-50">
+      <div class="fixed inset-0 bg-on-surface/40" onclick="this.parentElement.classList.add(&#39;hidden&#39;)"></div>
+      <aside class="fixed top-0 right-0 bottom-0 w-72 bg-surface-card p-6 flex flex-col gap-6 shadow-xl">
+        <div class="flex items-center justify-between">
+          <span class="font-headline text-headline-sm text-primary font-bold">BakuWay</span>
+          <button type="button" aria-label="Close menu" onclick="document.getElementById(&#39;mobile-drawer&#39;).classList.add(&#39;hidden&#39;)" class="w-9 h-9 rounded-full hover:bg-sand flex items-center justify-center">
+            <span class="material-symbols-outlined text-[20px]">close</span>
+          </button>
+        </div>
+        <nav class="flex flex-col gap-2">
+          <a href="../hotels-search/HotelsSearch.html" class="flex items-center gap-3 px-3 py-2.5 rounded-full text-on-surface-variant hover:bg-sand font-label text-label-lg"><span class="material-symbols-outlined text-[20px]">hotel</span> Stay</a>
+          <a href="../restaurants-search/RestaurantsSearch.html" class="flex items-center gap-3 px-3 py-2.5 rounded-full text-on-surface-variant hover:bg-sand font-label text-label-lg"><span class="material-symbols-outlined text-[20px]">restaurant</span> Eat</a>
+          <a href="../explore-baku/ExploreBaku.html" class="flex items-center gap-3 px-3 py-2.5 rounded-full text-on-surface-variant hover:bg-sand font-label text-label-lg"><span class="material-symbols-outlined text-[20px]">explore</span> Explore</a>
+          <a href="../getting-around/GettingAround.html" class="flex items-center gap-3 px-3 py-2.5 rounded-full text-on-surface-variant hover:bg-sand font-label text-label-lg"><span class="material-symbols-outlined text-[20px]">commute</span> Getting around</a>
+          <a href="../regions-compare/RegionsCompare.html" class="flex items-center gap-3 px-3 py-2.5 rounded-full text-on-surface-variant hover:bg-sand font-label text-label-lg"><span class="material-symbols-outlined text-[20px]">directions_car</span> Rides to regions</a>
+        </nav>
+      </aside>
+    </div>
+
+    <main class="flex-1 max-w-[1200px] w-full mx-auto px-6 py-8 pb-24">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+
+        <!-- Left Account Sidebar -->
+        <aside class="lg:col-span-3 bg-surface-card rounded-lg border border-outline-variant p-5 flex flex-col gap-5 shadow-[0_4px_20px_rgba(46,42,38,0.05)]">
+          <div class="flex items-center gap-3 pb-4 border-b border-outline-variant">
+            <img src="https://lh3.googleusercontent.com/aida/ALJJyrBk_9MHj8Zwd5D_mQ4vHVScsfMCjn_9Ki5MfqX1jr2xWW6QPRGcc7d8br8azxFyNWIm-Wk5MPvdrDlGfEnlM8fvsPueSc1DOdSSLlvtE7Ar_eZKvHPrDEDd5LyiyHLSRqvtQ1F4PzqjH6iXqEh08IOINsJPdZ5g93JFVApdnSX-IBbhQMqzocZliVdAqh788SUIfVdNf1N3MadPQScNuH2pU6efnuHvSsFlw7I5xYb-pyIQZQpjsAeYa6Op1w" alt="Claire Bennett" class="w-12 h-12 rounded-full object-cover shrink-0">
+            <div class="min-w-0">
+              <h2 class="font-title text-title-md text-on-surface truncate">Claire Bennett</h2>
+              <p class="font-body text-body-sm text-on-surface-variant truncate">claire.bennett@mail.com</p>
+            </div>
+          </div>
+
+          <nav aria-label="Account" class="flex flex-col gap-1.5">
+            <a href="../my-requests/MyRequests.html" class="flex items-center gap-3 px-3.5 py-2.5 rounded-md text-on-surface-variant hover:bg-sand hover:text-on-surface font-label text-label-lg transition-colors">
+              <span class="material-symbols-outlined text-[20px]" aria-hidden="true">receipt_long</span>
+              <span>My requests</span>
+            </a>
+            <a href="../favorites-trip/FavoritesTrip.html" class="flex items-center gap-3 px-3.5 py-2.5 rounded-md bg-sage-soft text-primary font-label text-label-lg">
+              <span class="material-symbols-outlined text-[20px]" aria-hidden="true">favorite</span>
+              <span>Favorites</span>
+            </a>
+            <a href="../account-settings/AccountSettings.html#reviews" class="flex items-center gap-3 px-3.5 py-2.5 rounded-md text-on-surface-variant hover:bg-sand hover:text-on-surface font-label text-label-lg transition-colors">
+              <span class="material-symbols-outlined text-[20px]" aria-hidden="true">rate_review</span>
+              <span>My reviews</span>
+            </a>
+            <a href="../account-settings/AccountSettings.html" class="flex items-center gap-3 px-3.5 py-2.5 rounded-md text-on-surface-variant hover:bg-sand hover:text-on-surface font-label text-label-lg transition-colors">
+              <span class="material-symbols-outlined text-[20px]" aria-hidden="true">settings</span>
+              <span>Settings</span>
+            </a>
+            <a href="../account-auth/AccountAuth.html" class="flex items-center gap-3 px-3.5 py-2.5 rounded-md text-error hover:bg-terracotta-soft font-label text-label-lg transition-colors mt-2">
+              <span class="material-symbols-outlined text-[20px]" aria-hidden="true">logout</span>
+              <span>Log out</span>
+            </a>
+          </nav>
+        </aside>
+
+        <!-- Main Favorites & Trip Content -->
+        <section class="lg:col-span-9 flex flex-col gap-6">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div>
+              <h1 class="font-headline text-headline-lg text-on-surface">Favorites &amp; my trip</h1>
+              <p class="font-body text-body-md text-on-surface-variant">Saved places grouped by category or arranged day-by-day on the map.</p>
+            </div>
+            <div class="flex items-center gap-1 bg-surface-card p-1 rounded-md border border-outline-variant self-start">
+              <button type="button" id="btn-grid-view" onclick="switchView(&#39;grid&#39;)" class="px-3.5 py-1.5 rounded-sm bg-primary text-on-primary font-label text-label-md">Saved grid</button>
+              <button type="button" id="btn-trip-view" onclick="switchView(&#39;trip&#39;)" class="px-3.5 py-1.5 rounded-sm text-on-surface-variant hover:text-on-surface font-label text-label-md">My trip map</button>
+            </div>
+          </div>
+
+          <!-- Grid View -->
+          <div id="view-grid" class="flex flex-col gap-5">
+            <div class="flex flex-wrap gap-2">
+              <button type="button" onclick="filterFav(&#39;hotels&#39;, this)" class="fav-tab px-4 py-1.5 rounded-full bg-primary text-on-primary font-label text-label-md">Hotels (2)</button>
+              <button type="button" onclick="filterFav(&#39;restaurants&#39;, this)" class="fav-tab px-4 py-1.5 rounded-full bg-surface-card border border-outline-variant text-on-surface font-label text-label-md hover:bg-sand">Restaurants (2)</button>
+              <button type="button" onclick="filterFav(&#39;places&#39;, this)" class="fav-tab px-4 py-1.5 rounded-full bg-surface-card border border-outline-variant text-on-surface font-label text-label-md hover:bg-sand">Places (2)</button>
+              <button type="button" onclick="filterFav(&#39;itineraries&#39;, this)" class="fav-tab px-4 py-1.5 rounded-full bg-surface-card border border-outline-variant text-on-surface font-label text-label-md hover:bg-sand">Itineraries (1)</button>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+              <!-- Hotels -->
+              <article data-cat="hotels" class="fav-card bg-surface-card rounded-lg border border-outline-variant overflow-hidden flex flex-col shadow-[0_4px_20px_rgba(46,42,38,0.05)]">
+                <div class="relative">
+                  <img src="https://lh3.googleusercontent.com/aida/ALJJyrCABpIo22MX0VeskZHDbBX8M7LvodoYIXyyCPEk9RQjIOg4rScx5ZH9d8FhfwNfKKblPjZ9YsgTu_HA-sv_FYASRCpT_bJdF4LCb25I4Vmu313sIEiVRU28Fz_QgQMyP2HYC2TxZ6nd9wpPN2UO1q9yzSG6DnA4VPCtRgnoVwMK9u7MnbDEJe1bmbvL9q6J_2xPrrRCGKcVWhOpZw0KahYmOnQ0a1H--HKkXE5-6DdZUtxkmTlA2yLL7_id" alt="Shirvanshah Boutique Hotel" class="w-full aspect-video object-cover">
+                  <button type="button" aria-label="Remove favorite" onclick="showToast(&#39;Removed from favorites&#39;)" class="absolute top-3 right-3 w-8 h-8 rounded-full bg-surface-card/90 text-terracotta flex items-center justify-center">
+                    <span class="material-symbols-outlined text-[18px]" style="font-variation-settings: &#39;FILL&#39; 1;">favorite</span>
+                  </button>
+                </div>
+                <div class="p-4 flex-1 flex flex-col justify-between gap-2">
+                  <div>
+                    <h2 class="font-title text-title-md text-on-surface">Shirvanshah Boutique Hotel</h2>
+                    <p class="font-body text-body-sm text-on-surface-variant">Old City · 9.1 · from 110 ₼ / night</p>
+                  </div>
+                  <a href="../hotel-detail/HotelDetail.html" class="font-label text-label-md text-primary hover:underline">View hotel →</a>
+                </div>
+              </article>
+
+              <article data-cat="hotels" class="fav-card bg-surface-card rounded-lg border border-outline-variant overflow-hidden flex flex-col shadow-[0_4px_20px_rgba(46,42,38,0.05)]">
+                <div class="relative">
+                  <img src="https://lh3.googleusercontent.com/aida/ALJJyrClLMDEpNussWlfdV8GA8tmzfTwSk7KePSRGFyUvVxrUiywrAO168lXfBIFZ-SGmyMMfZYWtNO39ySZJcfGcwvY4Fsxu5jpA3yAMP9OR7ArSiLsXPYbaLcBc4sCi90Xv9qFtAn4wHPAORiuy8RAhOyCAIEUWBRLQgOiSlqvwvEgxQEzr5bL8M9ZWnFimtkqSRp6rpkHGYWFyPa-iXAq5zgbZRTNHJBxreubBS5rRbiJKut8fA8PBN0oUTJNmxI" alt="Caspian Pearl Hotel" class="w-full aspect-video object-cover">
+                  <button type="button" aria-label="Remove favorite" onclick="showToast(&#39;Removed from favorites&#39;)" class="absolute top-3 right-3 w-8 h-8 rounded-full bg-surface-card/90 text-terracotta flex items-center justify-center">
+                    <span class="material-symbols-outlined text-[18px]" style="font-variation-settings: &#39;FILL&#39; 1;">favorite</span>
+                  </button>
+                </div>
+                <div class="p-4 flex-1 flex flex-col justify-between gap-2">
+                  <div>
+                    <h2 class="font-title text-title-md text-on-surface">Caspian Pearl Hotel</h2>
+                    <p class="font-body text-body-sm text-on-surface-variant">Boulevard · 8.9 · from 85 ₼ / night</p>
+                  </div>
+                  <a href="../hotel-detail/HotelDetail.html" class="font-label text-label-md text-primary hover:underline">View hotel →</a>
+                </div>
+              </article>
+
+              <!-- Restaurants -->
+              <article data-cat="restaurants" class="fav-card hidden bg-surface-card rounded-lg border border-outline-variant overflow-hidden flex flex-col shadow-[0_4px_20px_rgba(46,42,38,0.05)]">
+                <div class="relative">
+                  <img src="https://lh3.googleusercontent.com/aida/ALJJyrBEDBFdSzdRBwmNVYlMzFBC0lgkO2_Gxmc-1K7h8MGk1iu99J-tQA75HEHM7zYpGsAH1qAZexJYxMjUI_gbadtYWsVrJs-Lh6UB2QRJXYNFGEZldL0Oy8u-MV_9Zg76Fr2CuO9MeAnbYKbAX_MEJoJ-Qo8XHZIuB-3Kn0bq4SMe47k4WeDnejpIEJcrr01PrMynb4-8PqyPiLetKa6etk5W3jPRNL7AZl_enRacKOTgQrqIa5Dnf3Ri03Ss" alt="Dolma Kitchen" class="w-full aspect-video object-cover">
+                  <button type="button" aria-label="Remove favorite" onclick="showToast(&#39;Removed from favorites&#39;)" class="absolute top-3 right-3 w-8 h-8 rounded-full bg-surface-card/90 text-terracotta flex items-center justify-center">
+                    <span class="material-symbols-outlined text-[18px]" style="font-variation-settings: &#39;FILL&#39; 1;">favorite</span>
+                  </button>
+                </div>
+                <div class="p-4 flex-1 flex flex-col justify-between gap-2">
+                  <div>
+                    <h2 class="font-title text-title-md text-on-surface">Dolma Kitchen &amp; Tea House</h2>
+                    <p class="font-body text-body-sm text-on-surface-variant">Azerbaijani · ₼₼ · ≈ 25 ₼ / person</p>
+                  </div>
+                  <a href="../restaurant-detail/RestaurantDetail.html" class="font-label text-label-md text-primary hover:underline">View menu →</a>
+                </div>
+              </article>
+
+              <article data-cat="restaurants" class="fav-card hidden bg-surface-card rounded-lg border border-outline-variant overflow-hidden flex flex-col shadow-[0_4px_20px_rgba(46,42,38,0.05)]">
+                <div class="relative">
+                  <img src="https://lh3.googleusercontent.com/aida/ALJJyrCYI4i8MebLLqE-cwYHwuosObupsKPDtMuZehPF4u-A988v_aGgnbS3dcRBlf5yjT8np9FhKkfvG6RpI8XuK9jDeyfTg8fySx0KJm247kdFUEsWJtx4p4eeOpJJWVFhxEhFP_mEUF4ZPftjFOXjy5NNqaNUOrHrmoXh8cImgntMIc4lIaYX0cULkhWDsVZLSkltOmin6KrpFJB-6FxxI8ryt3CQYqAwtQ9yzIAFwnRt_N7ooS8" alt="Old City Cayxana" class="w-full aspect-video object-cover">
+                  <button type="button" aria-label="Remove favorite" onclick="showToast(&#39;Removed from favorites&#39;)" class="absolute top-3 right-3 w-8 h-8 rounded-full bg-surface-card/90 text-terracotta flex items-center justify-center">
+                    <span class="material-symbols-outlined text-[18px]" style="font-variation-settings: &#39;FILL&#39; 1;">favorite</span>
+                  </button>
+                </div>
+                <div class="p-4 flex-1 flex flex-col justify-between gap-2">
+                  <div>
+                    <h2 class="font-title text-title-md text-on-surface">Old City Cayxana</h2>
+                    <p class="font-body text-body-sm text-on-surface-variant">Tea &amp; Sweets · ₼ · ≈ 12 ₼ / person</p>
+                  </div>
+                  <a href="../restaurant-detail/RestaurantDetail.html" class="font-label text-label-md text-primary hover:underline">View menu →</a>
+                </div>
+              </article>
+
+              <!-- Places -->
+              <article data-cat="places" class="fav-card hidden bg-surface-card rounded-lg border border-outline-variant overflow-hidden flex flex-col shadow-[0_4px_20px_rgba(46,42,38,0.05)]">
+                <div class="relative">
+                  <img src="https://lh3.googleusercontent.com/aida/ALJJyrCDVGMKJn_OVmg-yG2v7ms_l2VX7p6gS6TPkS0aWw1r4vQ_3RWEUK3lz69scI3lU9b1wzgojsmJOt4vcMWIrCWn4W5BnzI_FNFYLJ_zNS5VkvmoqrUR2OA2GvSPsKMqOsnXKZMthBSgFDXF1RkxW48g36snsTeSYvOFDGpOuvGk1WBgg0Firjj0xPr-5f3BalFiniHsBYDh1mHYr6eVVQW5vzhfNseuwbq6Ru1bOJzjna7S4ZPfn6oPqJp-Hi4" alt="Heydar Aliyev Center" class="w-full aspect-video object-cover">
+                  <button type="button" aria-label="Remove favorite" onclick="showToast(&#39;Removed from favorites&#39;)" class="absolute top-3 right-3 w-8 h-8 rounded-full bg-surface-card/90 text-terracotta flex items-center justify-center">
+                    <span class="material-symbols-outlined text-[18px]" style="font-variation-settings: &#39;FILL&#39; 1;">favorite</span>
+                  </button>
+                </div>
+                <div class="p-4 flex-1 flex flex-col justify-between gap-2">
+                  <div>
+                    <h2 class="font-title text-title-md text-on-surface">Heydar Aliyev Center</h2>
+                    <p class="font-body text-body-sm text-on-surface-variant">Architecture · 15 ₼ · 2 hours</p>
+                  </div>
+                  <a href="../place-detail/PlaceDetail.html" class="font-label text-label-md text-primary hover:underline">View place →</a>
+                </div>
+              </article>
+
+              <article data-cat="places" class="fav-card hidden bg-surface-card rounded-lg border border-outline-variant overflow-hidden flex flex-col shadow-[0_4px_20px_rgba(46,42,38,0.05)]">
+                <div class="relative">
+                  <img src="https://lh3.googleusercontent.com/aida/ALJJyrAbqMxkOFldQHwSY3_5HIGtv7KXzq1hmiMq3i5HTFWsG6IQ6kQplGq1Ggm5OZr8zCV83iBxwslBZ9RqsCrTEKS2gz261IDx2CIuPgX-URZUKllL9vmd_rXyvp5CeSa5aA2D4SY_YatSbkvdfG20cO5XGfQ_Hbadm12Kwc-N8oy3NNLamRcF1QGhuUEHC8-fsYRzdelZ8qjZsyjq5Vmgz4vEezMcXxNHN8MbiVdv0VEDzUkb0PgUN4haZoLDzlw" alt="Azerbaijan Carpet Museum" class="w-full aspect-video object-cover">
+                  <button type="button" aria-label="Remove favorite" onclick="showToast(&#39;Removed from favorites&#39;)" class="absolute top-3 right-3 w-8 h-8 rounded-full bg-surface-card/90 text-terracotta flex items-center justify-center">
+                    <span class="material-symbols-outlined text-[18px]" style="font-variation-settings: &#39;FILL&#39; 1;">favorite</span>
+                  </button>
+                </div>
+                <div class="p-4 flex-1 flex flex-col justify-between gap-2">
+                  <div>
+                    <h2 class="font-title text-title-md text-on-surface">Azerbaijan Carpet Museum</h2>
+                    <p class="font-body text-body-sm text-on-surface-variant">Museum · 10 ₼ · 1.5 hours</p>
+                  </div>
+                  <a href="../place-detail/PlaceDetail.html" class="font-label text-label-md text-primary hover:underline">View place →</a>
+                </div>
+              </article>
+
+              <!-- Itineraries -->
+              <article data-cat="itineraries" class="fav-card hidden bg-surface-card rounded-lg border border-outline-variant overflow-hidden flex flex-col shadow-[0_4px_20px_rgba(46,42,38,0.05)]">
+                <div class="relative">
+                  <img src="https://lh3.googleusercontent.com/aida/ALJJyrDHv18phdnvFv9h3Jw57p2b8Cugn98XzWgZJx3jHV0FwlT-p2BhbOvo3SneTM2k7zx-pw_5vc6nNdfokMALiadvVbVZDS39D0GF3PlmAyX3ulsDLOx_BsNTSQ2__UDoiLetpLh-aGOk8qN5Dms23kUbYv8TBrV30krHcDuC16OOaJsMJtP4b067doz7g4MrGYZTqb7AiDSaCB9rqTPZcsEOoN91GLnoTQdH5gi2Hw4zRy6Jz5RfdMjo" alt="1 Day in Baku" class="w-full aspect-video object-cover">
+                  <button type="button" aria-label="Remove favorite" onclick="showToast(&#39;Removed from favorites&#39;)" class="absolute top-3 right-3 w-8 h-8 rounded-full bg-surface-card/90 text-terracotta flex items-center justify-center">
+                    <span class="material-symbols-outlined text-[18px]" style="font-variation-settings: &#39;FILL&#39; 1;">favorite</span>
+                  </button>
+                </div>
+                <div class="p-4 flex-1 flex flex-col justify-between gap-2">
+                  <div>
+                    <h2 class="font-title text-title-md text-on-surface">1 Day in Baku</h2>
+                    <p class="font-body text-body-sm text-on-surface-variant">6 stops · Walking &amp; metro</p>
+                  </div>
+                  <a href="../itineraries/Itineraries.html" class="font-label text-label-md text-primary hover:underline">Open itinerary →</a>
+                </div>
+              </article>
+            </div>
+          </div>
+
+          <!-- My Trip Map View (always rendered below or toggled) -->
+          <section id="view-trip" class="grid grid-cols-1 lg:grid-cols-12 gap-5 items-start pt-4 border-t border-outline-variant">
+            <div class="lg:col-span-5 flex flex-col gap-4">
+              <h2 class="font-headline text-headline-sm text-on-surface">My trip — Dec 10–13, 2026</h2>
+
+              <div class="bg-surface-card rounded-lg border border-outline-variant p-4 flex flex-col gap-2.5">
+                <span class="inline-flex items-center gap-2 font-label text-label-md text-primary">
+                  <span class="w-2.5 h-2.5 rounded-full bg-primary"></span>
+                  Day 1 · Old City &amp; Boulevard
+                </span>
+                <div class="text-body-sm text-on-surface flex flex-col gap-1 pl-4">
+                  <span>• Shirvanshah Boutique Hotel (Check-in)</span>
+                  <span>• Old City Cayxana (Afternoon tea)</span>
+                  <span>• Azerbaijan Carpet Museum</span>
+                </div>
+              </div>
+
+              <div class="bg-surface-card rounded-lg border border-outline-variant p-4 flex flex-col gap-2.5">
+                <span class="inline-flex items-center gap-2 font-label text-label-md text-secondary">
+                  <span class="w-2.5 h-2.5 rounded-full bg-secondary"></span>
+                  Day 2 · Modern Baku
+                </span>
+                <div class="text-body-sm text-on-surface flex flex-col gap-1 pl-4">
+                  <span>• Heydar Aliyev Center (10:00)</span>
+                  <span>• Dolma Kitchen &amp; Tea House (19:30)</span>
+                </div>
+              </div>
+
+              <div class="bg-surface-card rounded-lg border border-outline-variant p-4 flex flex-col gap-2.5">
+                <span class="inline-flex items-center gap-2 font-label text-label-md text-on-terracotta">
+                  <span class="w-2.5 h-2.5 rounded-full bg-terracotta"></span>
+                  Day 3 · Gabala Day Trip
+                </span>
+                <div class="text-body-sm text-on-surface flex flex-col gap-1 pl-4">
+                  <span>• Shared ride with Elchin M. (09:00)</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Interactive Trip Map -->
+            <div class="lg:col-span-7 bg-sand rounded-lg border border-outline relative h-80 lg:h-96 overflow-hidden">
+              <svg class="w-full h-full" viewBox="0 0 600 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+                <rect width="600" height="400" fill="#E8DFD0"></rect>
+                <path d="M0 320 Q200 280 420 330 T600 300 L600 400 L0 400 Z" fill="#D2DDD5"></path>
+                <path d="M60 90 L520 90 M180 40 L180 310 M380 40 L380 310" stroke="#F7F3EC" stroke-width="5" fill="none"></path>
+                <path d="M160 220 L220 260 L380 120" stroke="#3F5E4A" stroke-width="2.5" stroke-dasharray="6 4" fill="none"></path>
+              </svg>
+              <button type="button" onclick="showToast(&#39;Day 1: Shirvanshah Hotel (Old City)&#39;)" class="absolute top-48 left-28 px-2.5 py-1 rounded-full bg-primary text-on-primary font-label text-label-sm shadow">Day 1 · Old City</button>
+              <button type="button" onclick="showToast(&#39;Day 1: Carpet Museum (Boulevard)&#39;)" class="absolute bottom-24 left-44 px-2.5 py-1 rounded-full bg-primary text-on-primary font-label text-label-sm shadow">Day 1 · Museum</button>
+              <button type="button" onclick="showToast(&#39;Day 2: Heydar Aliyev Center&#39;)" class="absolute top-20 right-24 px-2.5 py-1 rounded-full bg-secondary text-on-secondary font-label text-label-sm shadow">Day 2 · Center</button>
+              <button type="button" onclick="showToast(&#39;Day 3: Departure to Gabala&#39;)" class="absolute top-12 left-16 px-2.5 py-1 rounded-full bg-terracotta text-on-terracotta font-label text-label-sm shadow">Day 3 · Gabala</button>
+            </div>
+          </section>
+
+        </section>
+
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-sand text-on-sand border-t border-outline mt-12">
+      <div class="max-w-[1200px] mx-auto px-6 py-10 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <span class="font-headline text-headline-sm text-on-sand">BakuWay</span>
+        <p class="font-body text-body-sm text-on-surface-variant">© 2026 BakuWay. Made for curious travelers in Azerbaijan.</p>
+      </div>
+    </footer>
+  </div>
+
+  <div id="toast" role="status" aria-live="polite" class="hidden fixed bottom-6 right-6 z-50 bg-primary text-on-primary px-4 py-3 rounded-md shadow-lg flex items-center gap-2.5 font-body text-body-md">
+    <span class="material-symbols-outlined text-[18px]" aria-hidden="true">check_circle</span>
+    <span id="toast-message"></span>
+  </div>
+
+  <script>
+    let toastTimer;
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      document.getElementById('toast-message').textContent = msg;
+      toast.classList.remove('hidden');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.add('hidden'), 3000);
+    }
+
+    function filterFav(cat, btn) {
+      document.querySelectorAll('.fav-tab').forEach(b => {
+        b.className = 'fav-tab px-4 py-1.5 rounded-full bg-surface-card border border-outline-variant text-on-surface font-label text-label-md hover:bg-sand';
+      });
+      btn.className = 'fav-tab px-4 py-1.5 rounded-full bg-primary text-on-primary font-label text-label-md';
+      document.querySelectorAll('.fav-card').forEach(c => {
+        c.classList.toggle('hidden', c.dataset.cat !== cat);
+      });
+    }
+
+    function switchView(mode) {
+      const gridBtn = document.getElementById('btn-grid-view');
+      const tripBtn = document.getElementById('btn-trip-view');
+      const grid = document.getElementById('view-grid');
+      const trip = document.getElementById('view-trip');
+      if (mode === 'grid') {
+        gridBtn.className = 'px-3.5 py-1.5 rounded-sm bg-primary text-on-primary font-label text-label-md';
+        tripBtn.className = 'px-3.5 py-1.5 rounded-sm text-on-surface-variant hover:text-on-surface font-label text-label-md';
+        grid.classList.remove('hidden');
+        trip.scrollIntoView({ behavior: 'smooth' });
+      } else {
+        tripBtn.className = 'px-3.5 py-1.5 rounded-sm bg-primary text-on-primary font-label text-label-md';
+        gridBtn.className = 'px-3.5 py-1.5 rounded-sm text-on-surface-variant hover:text-on-surface font-label text-label-md';
+        grid.classList.add('hidden');
+        trip.classList.remove('hidden');
+      }
+    }
+
+    window.addEventListener('scroll', () => {
+      const header = document.getElementById('site-header');
+      if (!header) return;
+      if (window.scrollY > 10) {
+        header.classList.remove('bg-surface');
+        header.classList.add('bg-surface-card');
+      } else {
+        header.classList.add('bg-surface');
+        header.classList.remove('bg-surface-card');
+      }
+    });
+  </script>
+
+
+</body></html>

@@ -1,0 +1,292 @@
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Driver Panel — Post &amp; My Rides</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script id="tailwind-config">/** @type {import('tailwindcss').Config} */
+globalThis.tailwind = globalThis.tailwind || {};
+globalThis.tailwind.config = {
+  darkMode: 'class',
+  theme: {
+    extend: {
+      colors: {
+        'primary': '#3F5E4A',
+        'on-primary': '#FFFFFF',
+        'primary-container': '#D6F9DF',
+        'on-primary-container': '#183625',
+        'sage': '#7A9E7E',
+        'on-sage': '#15351E',
+        'sage-soft': '#EBF2EC',
+        'secondary': '#8B6B4F',
+        'on-secondary': '#FFFFFF',
+        'secondary-container': '#FFEEE1',
+        'on-secondary-container': '#432B14',
+        'terracotta': '#C98B6B',
+        'on-terracotta': '#2E1A10',
+        'terracotta-soft': '#F7EAE2',
+        'surface': '#F7F3EC',
+        'on-surface': '#2E2A26',
+        'surface-card': '#FFFFFF',
+        'on-surface-card': '#2E2A26',
+        'sand': '#E8DFD0',
+        'on-sand': '#2E2A26',
+        'on-surface-variant': '#655D56',
+        'muted': '#7A716A',
+        'outline': '#DDD5C7',
+        'outline-variant': '#EAE1D2',
+        'success': '#4A7C59',
+        'on-success': '#FFFFFF',
+        'warning': '#B58238',
+        'on-warning': '#201B15',
+        'error': '#A84A42',
+        'on-error': '#FFFFFF',
+      },
+      borderRadius: {
+        'sm': '8px',
+        'DEFAULT': '12px',
+        'md': '12px',
+        'lg': '16px',
+        'xl': '24px',
+        'full': '9999px',
+      },
+      spacing: {
+        'gutter-xs': '4px',
+        'gutter-sm': '8px',
+        'gutter-md': '16px',
+        'gutter-lg': '24px',
+        'gutter-xl': '32px',
+        'section': '64px',
+        'page-margin': '24px',
+      },
+      fontFamily: {
+        'display': ['"Plus Jakarta Sans"', 'sans-serif'],
+        'headline': ['"Plus Jakarta Sans"', 'sans-serif'],
+        'title': ['"Plus Jakarta Sans"', 'sans-serif'],
+        'body': ['"Plus Jakarta Sans"', 'sans-serif'],
+        'label': ['"Plus Jakarta Sans"', 'sans-serif'],
+      },
+      fontSize: {
+        'display-lg': ['44px', { lineHeight: '52px', letterSpacing: '-0.5px', fontWeight: '700' }],
+        'display-lg-mobile': ['30px', { lineHeight: '38px', letterSpacing: '-0.25px', fontWeight: '700' }],
+        'headline-lg': ['32px', { lineHeight: '40px', letterSpacing: '-0.25px', fontWeight: '700' }],
+        'headline-md': ['24px', { lineHeight: '32px', letterSpacing: '-0.15px', fontWeight: '700' }],
+        'headline-sm': ['18px', { lineHeight: '26px', letterSpacing: '0px', fontWeight: '600' }],
+        'title-md': ['16px', { lineHeight: '24px', letterSpacing: '0px', fontWeight: '600' }],
+        'body-lg': ['16px', { lineHeight: '26px', letterSpacing: '0px', fontWeight: '400' }],
+        'body-md': ['14px', { lineHeight: '22px', letterSpacing: '0px', fontWeight: '400' }],
+        'body-sm': ['13px', { lineHeight: '18px', letterSpacing: '0px', fontWeight: '400' }],
+        'label-lg': ['14px', { lineHeight: '20px', letterSpacing: '0px', fontWeight: '600' }],
+        'label-md': ['12px', { lineHeight: '16px', letterSpacing: '0.2px', fontWeight: '600' }],
+        'label-sm': ['11px', { lineHeight: '14px', letterSpacing: '0.3px', fontWeight: '600' }],
+      },
+      transitionDuration: {
+        'state-change': '150ms',
+        'surface-enter': '250ms',
+        'surface-exit': '150ms',
+      },
+      transitionDelay: {
+        'state-change': '0ms',
+        'surface-enter': '0ms',
+        'surface-exit': '0ms',
+      },
+      transitionTimingFunction: {
+        'state-change': 'ease-out',
+        'surface-enter': 'cubic-bezier(0.2, 0, 0, 1)',
+        'surface-exit': 'cubic-bezier(0.3, 0, 1, 1)',
+      },
+    },
+  },
+};
+if (typeof module !== 'undefined') module.exports = globalThis.tailwind.config;
+</script>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block" rel="stylesheet">
+  <style>
+    .material-symbols-outlined { display: inline-block; width: 1em; height: 1em; line-height: 1 !important; box-sizing: content-box; overflow: hidden; white-space: nowrap; direction: ltr; vertical-align: middle; }
+  </style>
+</head>
+<body class="bg-surface text-on-surface font-body antialiased">
+  <div class="min-h-[1024px] flex flex-col" data-stitch-vh="min-h-[1024px]===min-h-screen">
+
+    <!-- Driver Top Bar -->
+    <header class="sticky top-0 z-40 bg-surface-card border-b border-outline-variant shadow-[0_4px_16px_rgba(46,42,38,0.04)]">
+      <div class="max-w-[1100px] mx-auto px-4 sm:px-6 min-h-[68px] py-2 flex flex-wrap items-center justify-between gap-3">
+        <div class="flex items-center gap-3">
+          <img src="https://lh3.googleusercontent.com/aida/ALJJyrA5W1JrKcCqPpZSEDP9MHFpi5W9elpPg5MsMfr6gA4Nd2qFRh6W9rDdcmd59L65fVkal8Z3fdTF_6Qpp7F1b0yWtRdMbnaYOwyetu4lxVwO9kAGSRI-XeWadyZMzJtgYKElhuvv3r-zKDrJsvEaI0bke5OJ5_6JNG8wUu_GejmtAhshZQB6tz44srqcncWTRtbMtfU6FyVCfpZP9KeU9FeRdVnSy9Q9w9kuR_M17RH30xzclglbVA" alt="Elchin M." class="w-10 h-10 rounded-full object-cover shrink-0">
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="font-title text-title-md text-on-surface">Elchin M.</span>
+              <span class="px-2 py-0.5 rounded-full bg-sage-soft text-on-sage font-label text-label-sm">Verified driver</span>
+            </div>
+            <span class="font-body text-body-sm text-on-surface-variant">Mercedes Vito · 99-AZ-418</span>
+          </div>
+        </div>
+
+        <nav aria-label="Driver" class="flex items-center gap-1.5 overflow-x-auto">
+          <a href="../driver-dashboard/DriverDashboard.html" class="px-3.5 py-2 rounded-full text-on-surface-variant hover:bg-sand font-label text-label-md whitespace-nowrap">Dashboard</a>
+          <a href="../driver-rides/DriverRides.html" class="px-3.5 py-2 rounded-full bg-sage-soft text-primary font-label text-label-md whitespace-nowrap">Post &amp; my rides</a>
+          <a href="../driver-requests/DriverRequests.html" class="px-3.5 py-2 rounded-full text-on-surface-variant hover:bg-sand font-label text-label-md whitespace-nowrap">Tourist requests (3)</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="flex-1 max-w-[1100px] w-full mx-auto px-4 sm:px-6 py-8 pb-24 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+
+      <!-- Left: Post a Ride Form -->
+      <section class="lg:col-span-5 bg-surface-card rounded-lg border border-outline-variant p-6 flex flex-col gap-4 shadow-[0_4px_20px_rgba(46,42,38,0.05)]">
+        <h1 class="font-headline text-headline-md text-on-surface">Post a new ride</h1>
+        <form onsubmit="event.preventDefault(); showToast(&#39;Ride published! Tourists can now book seats.&#39;);" class="flex flex-col gap-4">
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label for="r-from" class="block font-label text-label-md mb-1">From</label>
+              <select id="r-from" class="w-full rounded-md border border-outline bg-surface px-3 py-2 text-body-md">
+                <option>Baku</option>
+                <option>Gabala</option>
+                <option>Sheki</option>
+              </select>
+            </div>
+            <div>
+              <label for="r-to" class="block font-label text-label-md mb-1">To</label>
+              <select id="r-to" class="w-full rounded-md border border-outline bg-surface px-3 py-2 text-body-md">
+                <option>Gabala</option>
+                <option>Sheki</option>
+                <option>Guba</option>
+                <option>Lankaran</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label for="r-date" class="block font-label text-label-md mb-1">Date</label>
+              <input id="r-date" type="date" value="2026-12-15" class="w-full rounded-md border border-outline bg-surface px-3 py-2 text-body-md tabular-nums">
+            </div>
+            <div>
+              <label for="r-time" class="block font-label text-label-md mb-1">Departure time</label>
+              <input id="r-time" type="time" value="09:00" class="w-full rounded-md border border-outline bg-surface px-3 py-2 text-body-md tabular-nums">
+            </div>
+          </div>
+
+          <div class="grid grid-cols-3 gap-3">
+            <div>
+              <label for="r-seats" class="block font-label text-label-md mb-1">Free seats</label>
+              <input id="r-seats" type="number" value="4" min="1" max="7" class="w-full rounded-md border border-outline bg-surface px-3 py-2 text-body-md tabular-nums">
+            </div>
+            <div>
+              <label for="r-seat-price" class="block font-label text-label-md mb-1">Seat (₼)</label>
+              <input id="r-seat-price" type="number" value="20" class="w-full rounded-md border border-outline bg-surface px-3 py-2 text-body-md tabular-nums">
+            </div>
+            <div>
+              <label for="r-car-price" class="block font-label text-label-md mb-1">Whole car (₼)</label>
+              <input id="r-car-price" type="number" value="70" class="w-full rounded-md border border-outline bg-surface px-3 py-2 text-body-md tabular-nums">
+            </div>
+          </div>
+
+          <div>
+            <span class="block font-label text-label-md mb-1.5">Meeting point on map</span>
+            <div class="bg-sand rounded-md border border-outline relative h-32 overflow-hidden">
+              <svg class="w-full h-full" viewBox="0 0 400 140" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+                <rect width="400" height="140" fill="#E8DFD0"></rect>
+                <path d="M20 70 L380 70 M140 10 L140 130 M280 10 L280 130" stroke="#F7F3EC" stroke-width="4" fill="none"></path>
+              </svg>
+              <button type="button" onclick="showToast(&#39;Meeting point set: 28 May Metro&#39;)" class="absolute top-12 left-28 px-2.5 py-1 rounded-full bg-primary text-on-primary font-label text-label-sm shadow">28 May Metro</button>
+              <button type="button" onclick="showToast(&#39;Meeting point set: Old City Gate&#39;)" class="absolute bottom-4 right-12 px-2.5 py-1 rounded-full bg-surface-card text-on-surface border border-outline font-label text-label-sm shadow">Old City Gate</button>
+            </div>
+          </div>
+
+          <label class="flex items-center justify-between gap-3 p-3 rounded-md bg-surface border border-outline-variant cursor-pointer">
+            <span class="font-label text-label-md text-on-surface">Luggage allowed (1 suitcase / seat)</span>
+            <input type="checkbox" checked class="w-5 h-5 rounded border-outline text-primary focus:ring-primary">
+          </label>
+
+          <button type="submit" class="w-full py-3 px-4 rounded-md bg-primary text-on-primary font-label text-label-lg hover:opacity-90">Publish ride</button>
+        </form>
+      </section>
+
+      <!-- Right: My Rides & Passengers -->
+      <section class="lg:col-span-7 flex flex-col gap-5">
+        <h2 class="font-headline text-headline-md text-on-surface">My rides</h2>
+
+        <!-- Ride 1 -->
+        <article class="bg-surface-card rounded-lg border border-outline-variant p-6 flex flex-col gap-4 shadow-[0_4px_20px_rgba(46,42,38,0.05)]">
+          <div class="flex flex-wrap items-start justify-between gap-2 pb-3 border-b border-outline-variant">
+            <div>
+              <h3 class="font-headline text-headline-sm text-on-surface">Baku → Gabala</h3>
+              <p class="font-body text-body-md text-on-surface-variant tabular-nums">Sat, Dec 12 · 09:00 · 20 ₼/seat · 70 ₼ car</p>
+            </div>
+            <span class="px-3 py-1 rounded-full bg-sage-soft text-on-sage font-label text-label-md tabular-nums">3 / 4 seats booked</span>
+          </div>
+
+          <div class="flex flex-col gap-3">
+            <span class="font-label text-label-md text-on-surface-variant">Passengers</span>
+            <div class="p-3.5 rounded-md bg-surface border border-outline-variant flex flex-wrap items-center justify-between gap-3">
+              <div>
+                <span class="font-title text-title-md text-on-surface block">Claire Bennett (2 seats)</span>
+                <span class="font-body text-body-sm text-on-surface-variant">Pickup: Shirvanshah Hotel · Code TRZ-3419</span>
+              </div>
+              <div class="flex gap-2">
+                <button type="button" onclick="showToast(&#39;Calling Claire (+44 7700 900123)...&#39;)" class="px-3 py-1.5 rounded-md bg-surface-card border border-outline font-label text-label-md hover:bg-sand">Call</button>
+                <button type="button" onclick="showToast(&#39;Opening WhatsApp...&#39;)" class="px-3 py-1.5 rounded-md bg-primary text-on-primary font-label text-label-md hover:opacity-90">WhatsApp</button>
+              </div>
+            </div>
+
+            <div class="p-3.5 rounded-md bg-surface border border-outline-variant flex flex-wrap items-center justify-between gap-3">
+              <div>
+                <span class="font-title text-title-md text-on-surface block">Tariq Hasan (1 seat)</span>
+                <span class="font-body text-body-sm text-on-surface-variant">Pickup: 28 May Metro · Code TRZ-3422</span>
+              </div>
+              <div class="flex gap-2">
+                <button type="button" onclick="showToast(&#39;Calling Tariq (+971 50 310 22 40)...&#39;)" class="px-3 py-1.5 rounded-md bg-surface-card border border-outline font-label text-label-md hover:bg-sand">Call</button>
+                <button type="button" onclick="showToast(&#39;Opening WhatsApp...&#39;)" class="px-3 py-1.5 rounded-md bg-primary text-on-primary font-label text-label-md hover:opacity-90">WhatsApp</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex justify-end pt-2 border-t border-outline-variant">
+            <button type="button" onclick="showToast(&#39;Ride cancellation dialog opened&#39;)" class="px-4 py-2 rounded-md border border-error text-error font-label text-label-md hover:bg-terracotta-soft">Cancel ride</button>
+          </div>
+        </article>
+
+        <!-- Ride 2 -->
+        <article class="bg-surface-card rounded-lg border border-outline-variant p-6 flex flex-col gap-4 shadow-[0_4px_20px_rgba(46,42,38,0.05)]">
+          <div class="flex flex-wrap items-start justify-between gap-2 pb-3 border-b border-outline-variant">
+            <div>
+              <h3 class="font-headline text-headline-sm text-on-surface">Gabala → Baku</h3>
+              <p class="font-body text-body-md text-on-surface-variant tabular-nums">Sun, Dec 13 · 16:00 · 20 ₼/seat · 70 ₼ car</p>
+            </div>
+            <span class="px-3 py-1 rounded-full bg-secondary-container text-on-secondary-container font-label text-label-md tabular-nums">2 / 4 seats booked</span>
+          </div>
+          <div class="p-3.5 rounded-md bg-surface border border-outline-variant flex flex-wrap items-center justify-between gap-3">
+            <div>
+              <span class="font-title text-title-md text-on-surface block">Claire Bennett (2 seats)</span>
+              <span class="font-body text-body-sm text-on-surface-variant">Pickup: Gabala Center</span>
+            </div>
+            <button type="button" onclick="showToast(&#39;Calling Claire...&#39;)" class="px-3 py-1.5 rounded-md bg-surface-card border border-outline font-label text-label-md hover:bg-sand">Call</button>
+          </div>
+          <div class="flex justify-end pt-2 border-t border-outline-variant">
+            <button type="button" onclick="showToast(&#39;Ride cancellation dialog opened&#39;)" class="px-4 py-2 rounded-md border border-error text-error font-label text-label-md hover:bg-terracotta-soft">Cancel ride</button>
+          </div>
+        </article>
+
+      </section>
+    </main>
+  </div>
+
+  <div id="toast" role="status" aria-live="polite" class="hidden fixed bottom-6 right-6 z-50 bg-primary text-on-primary px-4 py-3 rounded-md shadow-lg flex items-center gap-2.5 font-body text-body-md">
+    <span class="material-symbols-outlined text-[18px]" aria-hidden="true">check_circle</span>
+    <span id="toast-message"></span>
+  </div>
+
+  <script>
+    let toastTimer;
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      document.getElementById('toast-message').textContent = msg;
+      toast.classList.remove('hidden');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.add('hidden'), 3000);
+    }
+  </script>
+
+
+</body></html>

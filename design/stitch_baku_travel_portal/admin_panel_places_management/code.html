@@ -1,0 +1,354 @@
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel — Places Management</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script id="tailwind-config">/** @type {import('tailwindcss').Config} */
+globalThis.tailwind = globalThis.tailwind || {};
+globalThis.tailwind.config = {
+  darkMode: 'class',
+  theme: {
+    extend: {
+      colors: {
+        'primary': '#3F5E4A',
+        'on-primary': '#FFFFFF',
+        'primary-container': '#D6F9DF',
+        'on-primary-container': '#183625',
+        'sage': '#7A9E7E',
+        'on-sage': '#15351E',
+        'sage-soft': '#EBF2EC',
+        'secondary': '#8B6B4F',
+        'on-secondary': '#FFFFFF',
+        'secondary-container': '#FFEEE1',
+        'on-secondary-container': '#432B14',
+        'terracotta': '#C98B6B',
+        'on-terracotta': '#2E1A10',
+        'terracotta-soft': '#F7EAE2',
+        'surface': '#F7F3EC',
+        'on-surface': '#2E2A26',
+        'surface-card': '#FFFFFF',
+        'on-surface-card': '#2E2A26',
+        'sand': '#E8DFD0',
+        'on-sand': '#2E2A26',
+        'on-surface-variant': '#655D56',
+        'muted': '#7A716A',
+        'outline': '#DDD5C7',
+        'outline-variant': '#EAE1D2',
+        'success': '#4A7C59',
+        'on-success': '#FFFFFF',
+        'warning': '#B58238',
+        'on-warning': '#201B15',
+        'error': '#A84A42',
+        'on-error': '#FFFFFF',
+      },
+      borderRadius: {
+        'sm': '8px',
+        'DEFAULT': '12px',
+        'md': '12px',
+        'lg': '16px',
+        'xl': '24px',
+        'full': '9999px',
+      },
+      spacing: {
+        'gutter-xs': '4px',
+        'gutter-sm': '8px',
+        'gutter-md': '16px',
+        'gutter-lg': '24px',
+        'gutter-xl': '32px',
+        'section': '64px',
+        'page-margin': '24px',
+      },
+      fontFamily: {
+        'display': ['"Plus Jakarta Sans"', 'sans-serif'],
+        'headline': ['"Plus Jakarta Sans"', 'sans-serif'],
+        'title': ['"Plus Jakarta Sans"', 'sans-serif'],
+        'body': ['"Plus Jakarta Sans"', 'sans-serif'],
+        'label': ['"Plus Jakarta Sans"', 'sans-serif'],
+      },
+      fontSize: {
+        'display-lg': ['44px', { lineHeight: '52px', letterSpacing: '-0.5px', fontWeight: '700' }],
+        'display-lg-mobile': ['30px', { lineHeight: '38px', letterSpacing: '-0.25px', fontWeight: '700' }],
+        'headline-lg': ['32px', { lineHeight: '40px', letterSpacing: '-0.25px', fontWeight: '700' }],
+        'headline-md': ['24px', { lineHeight: '32px', letterSpacing: '-0.15px', fontWeight: '700' }],
+        'headline-sm': ['18px', { lineHeight: '26px', letterSpacing: '0px', fontWeight: '600' }],
+        'title-md': ['16px', { lineHeight: '24px', letterSpacing: '0px', fontWeight: '600' }],
+        'body-lg': ['16px', { lineHeight: '26px', letterSpacing: '0px', fontWeight: '400' }],
+        'body-md': ['14px', { lineHeight: '22px', letterSpacing: '0px', fontWeight: '400' }],
+        'body-sm': ['13px', { lineHeight: '18px', letterSpacing: '0px', fontWeight: '400' }],
+        'label-lg': ['14px', { lineHeight: '20px', letterSpacing: '0px', fontWeight: '600' }],
+        'label-md': ['12px', { lineHeight: '16px', letterSpacing: '0.2px', fontWeight: '600' }],
+        'label-sm': ['11px', { lineHeight: '14px', letterSpacing: '0.3px', fontWeight: '600' }],
+      },
+      transitionDuration: {
+        'state-change': '150ms',
+        'surface-enter': '250ms',
+        'surface-exit': '150ms',
+      },
+      transitionDelay: {
+        'state-change': '0ms',
+        'surface-enter': '0ms',
+        'surface-exit': '0ms',
+      },
+      transitionTimingFunction: {
+        'state-change': 'ease-out',
+        'surface-enter': 'cubic-bezier(0.2, 0, 0, 1)',
+        'surface-exit': 'cubic-bezier(0.3, 0, 1, 1)',
+      },
+    },
+  },
+};
+if (typeof module !== 'undefined') module.exports = globalThis.tailwind.config;
+</script>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block" rel="stylesheet">
+  <style>
+    .material-symbols-outlined { display: inline-block; width: 1em; height: 1em; line-height: 1 !important; box-sizing: content-box; overflow: hidden; white-space: nowrap; direction: ltr; vertical-align: middle; }
+  </style>
+</head>
+<body class="bg-surface text-on-surface font-body antialiased">
+  <div class="min-h-[1024px] flex flex-col lg:flex-row" data-stitch-vh="min-h-[1024px]===min-h-screen">
+
+    <!-- Mobile Top Bar -->
+    <div class="lg:hidden sticky top-0 z-40 bg-surface-card border-b border-outline-variant px-4 py-3 flex items-center justify-between">
+      <span class="font-headline text-headline-sm text-primary font-bold">BakuWay Admin</span>
+      <a href="../admin-dashboard/AdminDashboard.html" class="font-label text-label-md text-primary">Dashboard</a>
+    </div>
+
+    <!-- Desktop Left Sidebar -->
+    <aside class="hidden lg:flex lg:w-64 shrink-0 bg-surface-card border-r border-outline-variant p-5 flex-col justify-between min-h-[1024px] sticky top-0 self-start" data-stitch-vh="min-h-[1024px]===min-h-screen">
+      <div class="flex flex-col gap-5">
+        <div class="flex items-center gap-2.5 pb-4 border-b border-outline-variant">
+          <span class="w-9 h-9 rounded-md bg-primary text-on-primary flex items-center justify-center font-headline text-headline-sm">B</span>
+          <div>
+            <span class="font-headline text-headline-sm text-primary font-bold block">BakuWay</span>
+            <span class="font-label text-label-sm text-on-surface-variant">Admin Panel</span>
+          </div>
+        </div>
+
+        <nav aria-label="Admin" class="flex flex-col gap-1">
+          <a href="../admin-dashboard/AdminDashboard.html" class="flex items-center gap-3 px-3 py-2 rounded-md text-on-surface-variant hover:bg-sand font-label text-label-md"><span class="material-symbols-outlined text-[18px]">dashboard</span> Dashboard</a>
+          <a href="../admin-places/AdminPlaces.html" class="flex items-center gap-3 px-3 py-2 rounded-md bg-sage-soft text-primary font-label text-label-md"><span class="material-symbols-outlined text-[18px]">place</span> Places</a>
+          <a href="../admin-applications/AdminApplications.html" class="flex items-center justify-between px-3 py-2 rounded-md text-on-surface-variant hover:bg-sand font-label text-label-md"><span class="flex items-center gap-3"><span class="material-symbols-outlined text-[18px]">assignment_ind</span> Partner applications</span><span class="px-2 py-0.5 rounded-full bg-terracotta text-on-terracotta text-label-sm tabular-nums">4</span></a>
+          <a href="../admin-applications/AdminApplications.html#drivers" class="flex items-center gap-3 px-3 py-2 rounded-md text-on-surface-variant hover:bg-sand font-label text-label-md"><span class="material-symbols-outlined text-[18px]">directions_car</span> Drivers</a>
+          <a href="#content" class="flex items-center gap-3 px-3 py-2 rounded-md text-on-surface-variant hover:bg-sand font-label text-label-md"><span class="material-symbols-outlined text-[18px]">article</span> Content</a>
+          <a href="../admin-dashboard/AdminDashboard.html#requests" class="flex items-center gap-3 px-3 py-2 rounded-md text-on-surface-variant hover:bg-sand font-label text-label-md"><span class="material-symbols-outlined text-[18px]">inbox</span> Requests</a>
+          <a href="../admin-finance-moderation/AdminFinanceModeration.html#moderation" class="flex items-center gap-3 px-3 py-2 rounded-md text-on-surface-variant hover:bg-sand font-label text-label-md"><span class="material-symbols-outlined text-[18px]">flag</span> Reviews &amp; complaints</a>
+          <a href="../admin-finance-moderation/AdminFinanceModeration.html#finance" class="flex items-center gap-3 px-3 py-2 rounded-md text-on-surface-variant hover:bg-sand font-label text-label-md"><span class="material-symbols-outlined text-[18px]">payments</span> Finance</a>
+          <a href="../admin-dashboard/AdminDashboard.html#analytics" class="flex items-center gap-3 px-3 py-2 rounded-md text-on-surface-variant hover:bg-sand font-label text-label-md"><span class="material-symbols-outlined text-[18px]">analytics</span> Analytics</a>
+          <a href="../admin-finance-moderation/AdminFinanceModeration.html#settings" class="flex items-center gap-3 px-3 py-2 rounded-md text-on-surface-variant hover:bg-sand font-label text-label-md"><span class="material-symbols-outlined text-[18px]">settings</span> Settings</a>
+        </nav>
+      </div>
+
+      <a href="../home/Home.html" class="flex items-center gap-2 px-3 py-2 rounded-md bg-surface border border-outline-variant font-label text-label-md text-primary hover:bg-sand">
+        <span class="material-symbols-outlined text-[18px]">open_in_new</span>
+        <span>Public site</span>
+      </a>
+    </aside>
+
+    <!-- Main Places Management -->
+    <main class="flex-1 p-6 lg:p-8 pb-24 flex flex-col gap-6 max-w-[1160px]">
+      <div class="flex flex-wrap items-center justify-between gap-4">
+        <div>
+          <h1 class="font-headline text-headline-lg text-on-surface">Places management</h1>
+          <p class="font-body text-body-md text-on-surface-variant">Review, edit, and publish hotels, restaurants, sights, and routes.</p>
+        </div>
+        <button type="button" onclick="openEditDrawer(&#39;New Listing&#39;)" class="px-4 py-2.5 rounded-md bg-primary text-on-primary font-label text-label-md hover:opacity-90">+ Add place</button>
+      </div>
+
+      <!-- Category Tabs -->
+      <div id="content" class="flex flex-wrap gap-2">
+        <button type="button" onclick="filterCat(&#39;hotels&#39;, this)" class="cat-tab px-4 py-2 rounded-full bg-primary text-on-primary font-label text-label-md">Hotels (94)</button>
+        <button type="button" onclick="filterCat(&#39;restaurants&#39;, this)" class="cat-tab px-4 py-2 rounded-full bg-surface-card border border-outline-variant text-on-surface font-label text-label-md hover:bg-sand">Restaurants (48)</button>
+        <button type="button" onclick="filterCat(&#39;places&#39;, this)" class="cat-tab px-4 py-2 rounded-full bg-surface-card border border-outline-variant text-on-surface font-label text-label-md hover:bg-sand">Places to see (32)</button>
+        <button type="button" onclick="filterCat(&#39;routes&#39;, this)" class="cat-tab px-4 py-2 rounded-full bg-surface-card border border-outline-variant text-on-surface font-label text-label-md hover:bg-sand">Routes (14)</button>
+      </div>
+
+      <!-- Search & Filters -->
+      <div class="bg-surface-card rounded-lg border border-outline-variant p-4 grid grid-cols-1 sm:grid-cols-4 gap-3">
+        <input type="search" placeholder="Search place name..." class="rounded-md border border-outline bg-surface px-3 py-2 text-body-sm">
+        <select aria-label="Filter by status" class="rounded-md border border-outline bg-surface px-3 py-2 text-body-sm">
+          <option>Status: All</option>
+          <option>Published</option>
+          <option>Pending review</option>
+          <option>Frozen</option>
+        </select>
+        <select aria-label="Filter by area" class="rounded-md border border-outline bg-surface px-3 py-2 text-body-sm">
+          <option>Area: All</option>
+          <option>Old City</option>
+          <option>Boulevard</option>
+          <option>Nasimi</option>
+        </select>
+        <select aria-label="Filter by source" class="rounded-md border border-outline bg-surface px-3 py-2 text-body-sm">
+          <option>Source: All</option>
+          <option>Partner</option>
+          <option>Booking</option>
+          <option>Manual</option>
+        </select>
+      </div>
+
+      <!-- Places Table -->
+      <section class="bg-surface-card rounded-lg border border-outline-variant overflow-x-auto shadow-[0_4px_20px_rgba(46,42,38,0.05)]">
+        <table class="w-full text-left border-collapse min-w-[780px]">
+          <thead>
+            <tr class="border-b border-outline-variant bg-surface font-label text-label-md text-on-surface-variant">
+              <th class="py-3 px-4">Place</th>
+              <th class="py-3 px-4">Type</th>
+              <th class="py-3 px-4">Area</th>
+              <th class="py-3 px-4">Source</th>
+              <th class="py-3 px-4">Status</th>
+              <th class="py-3 px-4">Updated</th>
+              <th class="py-3 px-4 text-right">Actions</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-outline-variant font-body text-body-sm">
+            <tr>
+              <td class="py-3.5 px-4 flex items-center gap-3">
+                <img src="https://lh3.googleusercontent.com/aida/ALJJyrA7vM1ovkU9Uv36AKnPStPNuRmATuO3LdGVQMv6V_RFJ9Pg2ZCWfsr8m8SCvJut7Lkd85-T7J8V9RlQg6pEsBRrlfXxJiicMwLH7c5hYNwsccIfaDSAgwsXnPP7DRCkaFPuWldLmqVHWZyG6iDSW9QTeO3O9mFk62EMC0AhBBfx35L4iKJ48q5Ep4ZPJCtB1RmogTdTZpV7gFtoSYHuuASJyvWpR5-XjtjRr18_TUDGpYI9Gfs8iOKwBYnG" alt="Shirvanshah Boutique Hotel" class="w-12 h-9 rounded-sm object-cover shrink-0">
+                <span class="font-title text-on-surface">Shirvanshah Boutique Hotel</span>
+              </td>
+              <td class="py-3.5 px-4">Hotel</td>
+              <td class="py-3.5 px-4">Old City</td>
+              <td class="py-3.5 px-4"><span class="px-2.5 py-0.5 rounded-full bg-sage-soft text-on-sage font-label text-label-sm">Partner</span></td>
+              <td class="py-3.5 px-4"><span class="px-2.5 py-0.5 rounded-full bg-sage-soft text-on-sage font-label text-label-sm">Published</span></td>
+              <td class="py-3.5 px-4 tabular-nums text-on-surface-variant">Today</td>
+              <td class="py-3.5 px-4 text-right whitespace-nowrap">
+                <button type="button" onclick="openEditDrawer(&#39;Shirvanshah Boutique Hotel&#39;)" class="px-3 py-1 rounded-md bg-primary text-on-primary font-label text-label-sm mr-1">Edit</button>
+                <button type="button" onclick="showToast(&#39;Listing frozen&#39;)" class="px-3 py-1 rounded-md bg-surface border border-outline font-label text-label-sm">Freeze</button>
+              </td>
+            </tr>
+            <tr>
+              <td class="py-3.5 px-4 flex items-center gap-3">
+                <img src="https://lh3.googleusercontent.com/aida/ALJJyrDMPlEPpnObgVY3iBp1-WuCzSEN7Pf7oisBAyLwBihfNI3m69IR1DrknwgcYOH8MnoZwtg192L-8KhDWEtpTUEmDsZx_XrvfXASU9975xZVyZz2AaTbuXxs9fiJygJQ8rXilbv5dEYECBhiMtBYEjrpJfrFM99bYGaS7rht3cXfSjxyd5uKyQMQlay-iXMmMME2n6Ff6KsN0aCkMkDALiHWgH_AaRyC4YA0WwvYmlsVCukOlF5cAQEZmYIb" alt="Dolma Kitchen" class="w-12 h-9 rounded-sm object-cover shrink-0">
+                <span class="font-title text-on-surface">Dolma Kitchen &amp; Tea House</span>
+              </td>
+              <td class="py-3.5 px-4">Restaurant</td>
+              <td class="py-3.5 px-4">Fountain Sq</td>
+              <td class="py-3.5 px-4"><span class="px-2.5 py-0.5 rounded-full bg-sage-soft text-on-sage font-label text-label-sm">Partner</span></td>
+              <td class="py-3.5 px-4"><span class="px-2.5 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label text-label-sm">Pending review</span></td>
+              <td class="py-3.5 px-4 tabular-nums text-on-surface-variant">Yesterday</td>
+              <td class="py-3.5 px-4 text-right whitespace-nowrap">
+                <button type="button" onclick="openEditDrawer(&#39;Dolma Kitchen &amp; Tea House&#39;)" class="px-3 py-1 rounded-md bg-primary text-on-primary font-label text-label-sm mr-1">Edit</button>
+                <button type="button" onclick="showToast(&#39;Published Dolma Kitchen&#39;)" class="px-3 py-1 rounded-md bg-sage-soft text-primary font-label text-label-sm">Publish</button>
+              </td>
+            </tr>
+            <tr>
+              <td class="py-3.5 px-4 flex items-center gap-3">
+                <img src="https://lh3.googleusercontent.com/aida/ALJJyrCHdJc8mMgXMTJw2-7kUmgKxn0JFQCYxlIvlRSfs8lXT6B9pCsUrTSqrKUeYINyMoZngf51mDAz0mJ5pB2N_vyDS33nlrgX304MNma3uFO0jjFS4iCxXECPO322_zxXGCkj1mQcn-r-zebnVfYfdssLrWIFQE3XPuU-QoYRLmlSTKyReqaEJXD_UB0S88PqILxW_8XcU0DxzGMFYZMcUiDBWGbhj5jaZoEmZlsKj5UiT6wEYabRX6yj0sdctRnJqLI" alt="Boulevard Suites" class="w-12 h-9 rounded-sm object-cover shrink-0">
+                <span class="font-title text-on-surface">Boulevard Suites Baku</span>
+              </td>
+              <td class="py-3.5 px-4">Hotel</td>
+              <td class="py-3.5 px-4">Boulevard</td>
+              <td class="py-3.5 px-4"><span class="px-2.5 py-0.5 rounded-full bg-sand text-on-sand font-label text-label-sm">Booking</span></td>
+              <td class="py-3.5 px-4"><span class="px-2.5 py-0.5 rounded-full bg-error text-on-error font-label text-label-sm">Frozen</span></td>
+              <td class="py-3.5 px-4 tabular-nums text-on-surface-variant">Nov 20</td>
+              <td class="py-3.5 px-4 text-right whitespace-nowrap">
+                <button type="button" onclick="openEditDrawer(&#39;Boulevard Suites Baku&#39;)" class="px-3 py-1 rounded-md bg-primary text-on-primary font-label text-label-sm mr-1">Edit</button>
+                <button type="button" onclick="showToast(&#39;Unfroze Boulevard Suites&#39;)" class="px-3 py-1 rounded-md bg-surface border border-outline font-label text-label-sm">Unfreeze</button>
+              </td>
+            </tr>
+            <tr>
+              <td class="py-3.5 px-4 flex items-center gap-3">
+                <img src="https://lh3.googleusercontent.com/aida/ALJJyrDKriY5nmYJ6T2vy3W_VMERoNS5AahNjhuMtcrQI_PKdz2p0Sge9HltVZ0tM2HRkP-zQxo_7nXfJ056yAMx2etSc4yndYDUdxlYGKbzieMSTfTcrJKXLTExdmBe3zqbrRD21q4QpfUF1jMphfpp2FiDMRmndOqyIuZ1_rMde32elYGyLH0XVprtG7Qb8im1kAZzShxPwf8f5tB77RW_TZ3wpUrBMyzjGY8VPEA3o5q6YCNeeQwSAjOkb5JGMOU" alt="Heydar Aliyev Center" class="w-12 h-9 rounded-sm object-cover shrink-0">
+                <span class="font-title text-on-surface">Heydar Aliyev Center</span>
+              </td>
+              <td class="py-3.5 px-4">Place to see</td>
+              <td class="py-3.5 px-4">Narimanov</td>
+              <td class="py-3.5 px-4"><span class="px-2.5 py-0.5 rounded-full bg-sand text-on-sand font-label text-label-sm">Manual</span></td>
+              <td class="py-3.5 px-4"><span class="px-2.5 py-0.5 rounded-full bg-sage-soft text-on-sage font-label text-label-sm">Published</span></td>
+              <td class="py-3.5 px-4 tabular-nums text-on-surface-variant">Nov 18</td>
+              <td class="py-3.5 px-4 text-right whitespace-nowrap">
+                <button type="button" onclick="openEditDrawer(&#39;Heydar Aliyev Center&#39;)" class="px-3 py-1 rounded-md bg-primary text-on-primary font-label text-label-sm">Edit</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </main>
+  </div>
+
+  <!-- Right Edit Drawer -->
+  <div id="edit-drawer" class="hidden fixed inset-0 z-50">
+    <div class="fixed inset-0 bg-on-surface/40" onclick="this.parentElement.classList.add(&#39;hidden&#39;)"></div>
+    <aside class="fixed top-0 right-0 bottom-0 w-full max-w-lg bg-surface-card p-6 flex flex-col justify-between gap-5 shadow-xl overflow-y-auto">
+      <div class="flex flex-col gap-4">
+        <div class="flex items-center justify-between border-b border-outline-variant pb-4">
+          <h2 id="drawer-title" class="font-headline text-headline-sm text-on-surface">Edit: Shirvanshah Boutique Hotel</h2>
+          <button type="button" aria-label="Close drawer" onclick="document.getElementById(&#39;edit-drawer&#39;).classList.add(&#39;hidden&#39;)" class="w-8 h-8 rounded-full hover:bg-sand flex items-center justify-center">
+            <span class="material-symbols-outlined text-[20px]">close</span>
+          </button>
+        </div>
+
+        <div class="flex flex-wrap gap-1.5 border-b border-outline-variant pb-3">
+          <button type="button" class="px-3 py-1.5 rounded-md bg-primary text-on-primary font-label text-label-sm">General</button>
+          <button type="button" class="px-3 py-1.5 rounded-md bg-surface text-on-surface-variant font-label text-label-sm hover:bg-sand">Photos</button>
+          <button type="button" class="px-3 py-1.5 rounded-md bg-surface text-on-surface-variant font-label text-label-sm hover:bg-sand">Prices</button>
+          <button type="button" class="px-3 py-1.5 rounded-md bg-surface text-on-surface-variant font-label text-label-sm hover:bg-sand">Location</button>
+          <button type="button" class="px-3 py-1.5 rounded-md bg-surface text-on-surface-variant font-label text-label-sm hover:bg-sand">Translations</button>
+        </div>
+
+        <div class="flex flex-col gap-3">
+          <div>
+            <label class="block font-label text-label-md mb-1">Listing name</label>
+            <input type="text" value="Shirvanshah Boutique Hotel" class="w-full rounded-md border border-outline bg-surface px-3 py-2 text-body-md">
+          </div>
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="block font-label text-label-md mb-1">Area</label>
+              <select class="w-full rounded-md border border-outline bg-surface px-3 py-2 text-body-md">
+                <option>Old City</option>
+                <option>Boulevard</option>
+                <option>Nasimi</option>
+              </select>
+            </div>
+            <div>
+              <label class="block font-label text-label-md mb-1">Status</label>
+              <select class="w-full rounded-md border border-outline bg-surface px-3 py-2 text-body-md">
+                <option>Published</option>
+                <option>Pending review</option>
+                <option>Frozen</option>
+              </select>
+            </div>
+          </div>
+          <div>
+            <label class="block font-label text-label-md mb-1">Admin note</label>
+            <textarea rows="3" class="w-full rounded-md border border-outline bg-surface px-3 py-2 text-body-md">Verified in person Nov 2026.</textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex justify-end gap-2 pt-3 border-t border-outline-variant">
+        <button type="button" onclick="document.getElementById(&#39;edit-drawer&#39;).classList.add(&#39;hidden&#39;)" class="px-4 py-2 rounded-md bg-surface border border-outline font-label text-label-md">Cancel</button>
+        <button type="button" onclick="document.getElementById(&#39;edit-drawer&#39;).classList.add(&#39;hidden&#39;); showToast(&#39;Place updated&#39;);" class="px-5 py-2 rounded-md bg-primary text-on-primary font-label text-label-md">Save changes</button>
+      </div>
+    </aside>
+  </div>
+
+  <div id="toast" role="status" aria-live="polite" class="hidden fixed bottom-6 right-6 z-50 bg-primary text-on-primary px-4 py-3 rounded-md shadow-lg flex items-center gap-2.5 font-body text-body-md">
+    <span class="material-symbols-outlined text-[18px]" aria-hidden="true">check_circle</span>
+    <span id="toast-message"></span>
+  </div>
+
+  <script>
+    let toastTimer;
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      document.getElementById('toast-message').textContent = msg;
+      toast.classList.remove('hidden');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.add('hidden'), 3000);
+    }
+    function openEditDrawer(name) {
+      document.getElementById('drawer-title').textContent = 'Edit: ' + name;
+      document.getElementById('edit-drawer').classList.remove('hidden');
+    }
+    function filterCat(cat, btn) {
+      document.querySelectorAll('.cat-tab').forEach(b => {
+        b.className = 'cat-tab px-4 py-2 rounded-full bg-surface-card border border-outline-variant text-on-surface font-label text-label-md hover:bg-sand';
+      });
+      btn.className = 'cat-tab px-4 py-2 rounded-full bg-primary text-on-primary font-label text-label-md';
+      showToast('Showing ' + cat);
+    }
+  </script>
+
+
+</body></html>

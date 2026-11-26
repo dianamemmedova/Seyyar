@@ -1,0 +1,355 @@
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BakuWay — Request Detail</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script id="tailwind-config">/** @type {import('tailwindcss').Config} */
+globalThis.tailwind = globalThis.tailwind || {};
+globalThis.tailwind.config = {
+  darkMode: 'class',
+  theme: {
+    extend: {
+      colors: {
+        'primary': '#3F5E4A',
+        'on-primary': '#FFFFFF',
+        'primary-container': '#D6F9DF',
+        'on-primary-container': '#183625',
+        'sage': '#7A9E7E',
+        'on-sage': '#15351E',
+        'sage-soft': '#EBF2EC',
+        'secondary': '#8B6B4F',
+        'on-secondary': '#FFFFFF',
+        'secondary-container': '#FFEEE1',
+        'on-secondary-container': '#432B14',
+        'terracotta': '#C98B6B',
+        'on-terracotta': '#2E1A10',
+        'terracotta-soft': '#F7EAE2',
+        'surface': '#F7F3EC',
+        'on-surface': '#2E2A26',
+        'surface-card': '#FFFFFF',
+        'on-surface-card': '#2E2A26',
+        'sand': '#E8DFD0',
+        'on-sand': '#2E2A26',
+        'on-surface-variant': '#655D56',
+        'muted': '#7A716A',
+        'outline': '#DDD5C7',
+        'outline-variant': '#EAE1D2',
+        'success': '#4A7C59',
+        'on-success': '#FFFFFF',
+        'warning': '#B58238',
+        'on-warning': '#201B15',
+        'error': '#A84A42',
+        'on-error': '#FFFFFF',
+      },
+      borderRadius: {
+        'sm': '8px',
+        'DEFAULT': '12px',
+        'md': '12px',
+        'lg': '16px',
+        'xl': '24px',
+        'full': '9999px',
+      },
+      spacing: {
+        'gutter-xs': '4px',
+        'gutter-sm': '8px',
+        'gutter-md': '16px',
+        'gutter-lg': '24px',
+        'gutter-xl': '32px',
+        'section': '64px',
+        'page-margin': '24px',
+      },
+      fontFamily: {
+        'display': ['"Plus Jakarta Sans"', 'sans-serif'],
+        'headline': ['"Plus Jakarta Sans"', 'sans-serif'],
+        'title': ['"Plus Jakarta Sans"', 'sans-serif'],
+        'body': ['"Plus Jakarta Sans"', 'sans-serif'],
+        'label': ['"Plus Jakarta Sans"', 'sans-serif'],
+      },
+      fontSize: {
+        'display-lg': ['44px', { lineHeight: '52px', letterSpacing: '-0.5px', fontWeight: '700' }],
+        'display-lg-mobile': ['30px', { lineHeight: '38px', letterSpacing: '-0.25px', fontWeight: '700' }],
+        'headline-lg': ['32px', { lineHeight: '40px', letterSpacing: '-0.25px', fontWeight: '700' }],
+        'headline-md': ['24px', { lineHeight: '32px', letterSpacing: '-0.15px', fontWeight: '700' }],
+        'headline-sm': ['18px', { lineHeight: '26px', letterSpacing: '0px', fontWeight: '600' }],
+        'title-md': ['16px', { lineHeight: '24px', letterSpacing: '0px', fontWeight: '600' }],
+        'body-lg': ['16px', { lineHeight: '26px', letterSpacing: '0px', fontWeight: '400' }],
+        'body-md': ['14px', { lineHeight: '22px', letterSpacing: '0px', fontWeight: '400' }],
+        'body-sm': ['13px', { lineHeight: '18px', letterSpacing: '0px', fontWeight: '400' }],
+        'label-lg': ['14px', { lineHeight: '20px', letterSpacing: '0px', fontWeight: '600' }],
+        'label-md': ['12px', { lineHeight: '16px', letterSpacing: '0.2px', fontWeight: '600' }],
+        'label-sm': ['11px', { lineHeight: '14px', letterSpacing: '0.3px', fontWeight: '600' }],
+      },
+      transitionDuration: {
+        'state-change': '150ms',
+        'surface-enter': '250ms',
+        'surface-exit': '150ms',
+      },
+      transitionDelay: {
+        'state-change': '0ms',
+        'surface-enter': '0ms',
+        'surface-exit': '0ms',
+      },
+      transitionTimingFunction: {
+        'state-change': 'ease-out',
+        'surface-enter': 'cubic-bezier(0.2, 0, 0, 1)',
+        'surface-exit': 'cubic-bezier(0.3, 0, 1, 1)',
+      },
+    },
+  },
+};
+if (typeof module !== 'undefined') module.exports = globalThis.tailwind.config;
+</script>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block" rel="stylesheet">
+  <style>
+    .material-symbols-outlined { display: inline-block; width: 1em; height: 1em; line-height: 1 !important; box-sizing: content-box; overflow: hidden; white-space: nowrap; direction: ltr; vertical-align: middle; }
+  </style>
+</head>
+<body class="bg-surface text-on-surface font-body antialiased">
+  <div class="min-h-[1024px] flex flex-col" data-stitch-vh="min-h-[1024px]===min-h-screen">
+
+    <!-- Sticky Header -->
+    <header id="site-header" class="sticky top-0 z-40 bg-surface shadow-[0_4px_16px_rgba(46,42,38,0.05)] transition-colors duration-state-change">
+      <div class="max-w-[1200px] mx-auto px-6 min-h-[72px] py-2 flex items-center justify-between gap-4">
+        <a href="../home/Home.html" class="flex items-center gap-2.5 shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-md">
+          <span class="w-9 h-9 rounded-md bg-sage text-on-sage flex items-center justify-center">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M12 4C8 4 5 7.5 5 11.5C5 16 8.5 19.5 12 20C15.5 19.5 19 16 19 11.5C19 7.5 16 4 12 4Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"></path>
+              <path d="M12 8V17M12 12L15 9.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path>
+            </svg>
+          </span>
+          <span class="font-headline text-headline-sm text-primary font-bold tracking-tight">BakuWay</span>
+        </a>
+
+        <nav aria-label="Primary" class="hidden lg:flex items-center gap-2">
+          <a href="../hotels-search/HotelsSearch.html" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full font-label text-label-md text-on-surface-variant hover:bg-sand hover:text-on-surface transition-colors">
+            <span class="material-symbols-outlined text-[18px]" aria-hidden="true">hotel</span>
+            <span>Stay</span>
+          </a>
+          <a href="../restaurants-search/RestaurantsSearch.html" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full font-label text-label-md text-on-surface-variant hover:bg-sand hover:text-on-surface transition-colors">
+            <span class="material-symbols-outlined text-[18px]" aria-hidden="true">restaurant</span>
+            <span>Eat</span>
+          </a>
+          <a href="../explore-baku/ExploreBaku.html" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full font-label text-label-md text-on-surface-variant hover:bg-sand hover:text-on-surface transition-colors">
+            <span class="material-symbols-outlined text-[18px]" aria-hidden="true">explore</span>
+            <span>Explore</span>
+          </a>
+          <a href="../getting-around/GettingAround.html" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full font-label text-label-md text-on-surface-variant hover:bg-sand hover:text-on-surface transition-colors">
+            <span class="material-symbols-outlined text-[18px]" aria-hidden="true">commute</span>
+            <span>Getting around</span>
+          </a>
+          <a href="../regions-compare/RegionsCompare.html" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full font-label text-label-md text-on-surface-variant hover:bg-sand hover:text-on-surface transition-colors">
+            <span class="material-symbols-outlined text-[18px]" aria-hidden="true">directions_car</span>
+            <span>Rides to regions</span>
+          </a>
+        </nav>
+
+        <div class="flex items-center gap-2.5 shrink-0">
+          <button type="button" aria-label="Search" class="inline-flex items-center justify-center w-9 h-9 rounded-full bg-surface-card text-on-surface-variant hover:bg-sand hover:text-on-surface transition-colors">
+            <span class="material-symbols-outlined text-[19px]" aria-hidden="true">search</span>
+          </button>
+          <span class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface-card border border-outline-variant text-on-surface font-label text-label-md">EN · ₼</span>
+          <a href="../favorites-trip/FavoritesTrip.html" aria-label="Saved favorites" class="hidden sm:inline-flex items-center justify-center w-9 h-9 rounded-full bg-surface-card text-on-surface-variant hover:bg-sand hover:text-on-surface transition-colors">
+            <span class="material-symbols-outlined text-[19px]" aria-hidden="true">favorite</span>
+          </a>
+          <a href="../account-auth/AccountAuth.html" class="hidden md:inline-flex items-center px-2 py-1.5 font-label text-label-md text-on-surface-variant hover:text-primary transition-colors">Log in</a>
+          <button type="button" class="hidden sm:inline-flex items-center justify-center px-3.5 py-1.5 rounded-md bg-surface-card text-secondary border border-secondary font-label text-label-md hover:bg-secondary-container transition-colors">Become a partner</button>
+          <button type="button" aria-label="Open navigation menu" onclick="document.getElementById(&#39;mobile-drawer&#39;).classList.remove(&#39;hidden&#39;)" class="lg:hidden inline-flex items-center justify-center w-9 h-9 rounded-full bg-surface-card text-on-surface hover:bg-sand transition-colors">
+            <span class="material-symbols-outlined text-[20px]" aria-hidden="true">menu</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Mobile Full-Height Drawer -->
+    <div id="mobile-drawer" class="hidden fixed inset-0 z-50">
+      <div class="fixed inset-0 bg-on-surface/40" onclick="this.parentElement.classList.add(&#39;hidden&#39;)"></div>
+      <aside class="fixed top-0 right-0 bottom-0 w-72 bg-surface-card p-6 flex flex-col gap-6 shadow-xl">
+        <div class="flex items-center justify-between">
+          <span class="font-headline text-headline-sm text-primary font-bold">BakuWay</span>
+          <button type="button" aria-label="Close menu" onclick="document.getElementById(&#39;mobile-drawer&#39;).classList.add(&#39;hidden&#39;)" class="w-9 h-9 rounded-full hover:bg-sand flex items-center justify-center">
+            <span class="material-symbols-outlined text-[20px]">close</span>
+          </button>
+        </div>
+        <nav class="flex flex-col gap-2">
+          <a href="../hotels-search/HotelsSearch.html" class="flex items-center gap-3 px-3 py-2.5 rounded-full text-on-surface-variant hover:bg-sand font-label text-label-lg"><span class="material-symbols-outlined text-[20px]">hotel</span> Stay</a>
+          <a href="../restaurants-search/RestaurantsSearch.html" class="flex items-center gap-3 px-3 py-2.5 rounded-full text-on-surface-variant hover:bg-sand font-label text-label-lg"><span class="material-symbols-outlined text-[20px]">restaurant</span> Eat</a>
+          <a href="../explore-baku/ExploreBaku.html" class="flex items-center gap-3 px-3 py-2.5 rounded-full text-on-surface-variant hover:bg-sand font-label text-label-lg"><span class="material-symbols-outlined text-[20px]">explore</span> Explore</a>
+          <a href="../getting-around/GettingAround.html" class="flex items-center gap-3 px-3 py-2.5 rounded-full text-on-surface-variant hover:bg-sand font-label text-label-lg"><span class="material-symbols-outlined text-[20px]">commute</span> Getting around</a>
+          <a href="../regions-compare/RegionsCompare.html" class="flex items-center gap-3 px-3 py-2.5 rounded-full text-on-surface-variant hover:bg-sand font-label text-label-lg"><span class="material-symbols-outlined text-[20px]">directions_car</span> Rides to regions</a>
+        </nav>
+      </aside>
+    </div>
+
+    <main class="flex-1 max-w-[1200px] w-full mx-auto px-6 py-8 pb-24 flex flex-col gap-6">
+      <a href="../my-requests/MyRequests.html" class="inline-flex items-center gap-1.5 font-label text-label-md text-primary self-start hover:underline">
+        <span class="material-symbols-outlined text-[18px]" aria-hidden="true">arrow_back</span>
+        <span>Back to My requests</span>
+      </a>
+
+      <!-- Header Summary + Status Timeline -->
+      <section class="bg-surface-card rounded-lg border border-outline-variant p-6 flex flex-col gap-6 shadow-[0_4px_20px_rgba(46,42,38,0.05)]">
+        <div class="flex flex-wrap items-start justify-between gap-4">
+          <div class="flex items-center gap-4">
+            <img src="https://lh3.googleusercontent.com/aida/ALJJyrCABpIo22MX0VeskZHDbBX8M7LvodoYIXyyCPEk9RQjIOg4rScx5ZH9d8FhfwNfKKblPjZ9YsgTu_HA-sv_FYASRCpT_bJdF4LCb25I4Vmu313sIEiVRU28Fz_QgQMyP2HYC2TxZ6nd9wpPN2UO1q9yzSG6DnA4VPCtRgnoVwMK9u7MnbDEJe1bmbvL9q6J_2xPrrRCGKcVWhOpZw0KahYmOnQ0a1H--HKkXE5-6DdZUtxkmTlA2yLL7_id" alt="Shirvanshah Boutique Hotel" class="w-16 h-16 rounded-md object-cover shrink-0">
+            <div>
+              <div class="flex items-center gap-2 mb-1">
+                <span class="font-label text-label-md text-on-surface-variant tabular-nums">Request TRZ-1042</span>
+                <span class="px-2.5 py-0.5 rounded-full bg-sage-soft text-on-sage font-label text-label-sm">Confirmed</span>
+              </div>
+              <h1 class="font-headline text-headline-md text-on-surface">Shirvanshah Boutique Hotel</h1>
+              <p class="font-body text-body-sm text-on-surface-variant">Asaf Zeynalli 42, Old City (Icherisheher) · +994 12 492 18 40</p>
+            </div>
+          </div>
+          <div class="flex flex-wrap gap-2.5">
+            <button type="button" onclick="showToast(&#39;Request TRZ-1042 cancelled&#39;)" class="px-4 py-2 rounded-md bg-surface-card border border-error text-error font-label text-label-md hover:bg-terracotta-soft">Cancel request</button>
+            <a href="../account-settings/AccountSettings.html#write-review" class="px-4 py-2 rounded-md bg-sand text-on-surface-variant font-label text-label-md hover:bg-outline">Write a review (after Dec 13)</a>
+          </div>
+        </div>
+
+        <!-- Status Timeline -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+          <div class="p-3.5 rounded-md bg-sage-soft text-on-sage">
+            <span class="font-label text-label-sm block">1. Request sent</span>
+            <span class="font-body text-body-sm tabular-nums">Nov 24, 14:15</span>
+          </div>
+          <div class="p-3.5 rounded-md bg-sage-soft text-on-sage">
+            <span class="font-label text-label-sm block">2. Partner confirmed</span>
+            <span class="font-body text-body-sm tabular-nums">Nov 24, 15:02</span>
+          </div>
+          <div class="p-3.5 rounded-md bg-surface border border-outline-variant text-on-surface">
+            <span class="font-label text-label-sm block">3. Check-in</span>
+            <span class="font-body text-body-sm tabular-nums">Dec 10, 14:00</span>
+          </div>
+          <div class="p-3.5 rounded-md bg-surface border border-outline-variant text-on-surface-variant">
+            <span class="font-label text-label-sm block">4. Write review</span>
+            <span class="font-body text-body-sm tabular-nums">After Dec 13</span>
+          </div>
+        </div>
+      </section>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+
+        <!-- Left Column: Full Details + Partner Reply + Policy -->
+        <div class="lg:col-span-5 flex flex-col gap-6">
+          <section class="bg-surface-card rounded-lg border border-outline-variant p-6 flex flex-col gap-4 shadow-[0_4px_20px_rgba(46,42,38,0.05)]">
+            <h2 class="font-headline text-headline-sm text-on-surface">Booking details</h2>
+            <dl class="grid grid-cols-2 gap-y-3 text-body-md">
+              <dt class="text-on-surface-variant">Room</dt>
+              <dd class="font-label text-on-surface text-right">Deluxe Courtyard</dd>
+              <dt class="text-on-surface-variant">Check-in</dt>
+              <dd class="font-label text-on-surface text-right tabular-nums">Thu, Dec 10 (14:00)</dd>
+              <dt class="text-on-surface-variant">Check-out</dt>
+              <dd class="font-label text-on-surface text-right tabular-nums">Sun, Dec 13 (12:00)</dd>
+              <dt class="text-on-surface-variant">Guests</dt>
+              <dd class="font-label text-on-surface text-right">2 adults</dd>
+              <dt class="text-on-surface-variant">Breakfast</dt>
+              <dd class="font-label text-primary text-right">Included</dd>
+              <dt class="text-on-surface-variant border-t border-outline-variant pt-3">Total (pay at hotel)</dt>
+              <dd class="font-headline text-headline-sm text-primary text-right border-t border-outline-variant pt-3 tabular-nums">340 ₼</dd>
+            </dl>
+          </section>
+
+          <section class="bg-sage-soft rounded-lg p-5 flex flex-col gap-2">
+            <div class="flex items-center gap-2 text-on-sage">
+              <span class="material-symbols-outlined text-[20px]" aria-hidden="true">mark_chat_read</span>
+              <h2 class="font-title text-title-md">Partner’s reply</h2>
+            </div>
+            <p class="font-body text-body-md text-on-sage text-pretty">“Welcome to Baku! Your quiet courtyard room on the second floor is reserved. We also noted your late arrival around 18:00 and can arrange an airport taxi if needed.”</p>
+            <span class="font-body text-body-sm text-on-sage/80 tabular-nums">Farida H. · Front Desk Manager · Nov 24</span>
+          </section>
+
+          <section class="bg-surface-card rounded-lg border border-outline-variant p-5 flex flex-col gap-2">
+            <h2 class="font-title text-title-md text-on-surface">Cancellation policy</h2>
+            <p class="font-body text-body-md text-on-surface-variant text-pretty">Free cancellation until <strong class="text-on-surface tabular-nums">Dec 8, 2026 at 14:00</strong>. After that, the first night (115 ₼) applies.</p>
+          </section>
+        </div>
+
+        <!-- Right Column: Chat Thread -->
+        <section class="lg:col-span-7 bg-surface-card rounded-lg border border-outline-variant p-6 flex flex-col gap-5 shadow-[0_4px_20px_rgba(46,42,38,0.05)]">
+          <div class="flex items-center justify-between border-b border-outline-variant pb-4">
+            <div>
+              <h2 class="font-headline text-headline-sm text-on-surface">Messages with Shirvanshah Hotel</h2>
+              <p class="font-body text-body-sm text-on-surface-variant">Usually replies within 30 minutes</p>
+            </div>
+            <button type="button" onclick="showToast(&#39;Opening WhatsApp chat...&#39;)" class="px-3.5 py-2 rounded-md bg-sage-soft text-primary font-label text-label-md hover:opacity-90">Open in WhatsApp</button>
+          </div>
+
+          <div id="chat-messages" class="flex flex-col gap-4">
+            <div class="self-end max-w-[85%] bg-primary text-on-primary rounded-lg p-4">
+              <p class="font-body text-body-md">Hello! We are arriving at Heydar Aliyev Airport around 17:00 on Dec 10. Could we request a quiet room away from the street?</p>
+              <span class="font-body text-body-sm opacity-80 block mt-1 tabular-nums">Claire · Nov 24, 14:15</span>
+            </div>
+
+            <div class="self-start max-w-[85%] bg-surface border border-outline-variant text-on-surface rounded-lg p-4">
+              <p class="font-body text-body-md">Salam Claire! Yes, we assigned Room 204 facing our inner pomegranate courtyard. Breakfast is served from 07:30 to 10:30.</p>
+              <span class="font-body text-body-sm text-on-surface-variant block mt-1 tabular-nums">Farida H. · Nov 24, 15:02</span>
+            </div>
+
+            <div class="self-end max-w-[85%] bg-primary text-on-primary rounded-lg p-4">
+              <p class="font-body text-body-md">Thank you so much, that sounds lovely!</p>
+              <span class="font-body text-body-sm opacity-80 block mt-1 tabular-nums">Claire · Nov 24, 15:18</span>
+            </div>
+          </div>
+
+          <form onsubmit="event.preventDefault(); sendChat();" class="flex gap-2.5 pt-3 border-t border-outline-variant">
+            <input id="chat-input" type="text" placeholder="Write a message to the hotel..." class="flex-1 rounded-md border border-outline bg-surface px-3.5 py-2.5 font-body text-body-md text-on-surface focus:border-primary focus:ring-primary">
+            <button type="submit" class="px-5 py-2.5 rounded-md bg-primary text-on-primary font-label text-label-lg hover:opacity-90">Send</button>
+          </form>
+        </section>
+
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-sand text-on-sand border-t border-outline mt-12">
+      <div class="max-w-[1200px] mx-auto px-6 py-10 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <span class="font-headline text-headline-sm text-on-sand">BakuWay</span>
+        <p class="font-body text-body-sm text-on-surface-variant">© 2026 BakuWay. Made for curious travelers in Azerbaijan.</p>
+      </div>
+    </footer>
+  </div>
+
+  <div id="toast" role="status" aria-live="polite" class="hidden fixed bottom-6 right-6 z-50 bg-primary text-on-primary px-4 py-3 rounded-md shadow-lg flex items-center gap-2.5 font-body text-body-md">
+    <span class="material-symbols-outlined text-[18px]" aria-hidden="true">check_circle</span>
+    <span id="toast-message"></span>
+  </div>
+
+  <script>
+    let toastTimer;
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      document.getElementById('toast-message').textContent = msg;
+      toast.classList.remove('hidden');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.add('hidden'), 3000);
+    }
+
+    function sendChat() {
+      const input = document.getElementById('chat-input');
+      const text = input.value.trim();
+      if (!text) return;
+      const msg = document.createElement('div');
+      msg.className = 'self-end max-w-[85%] bg-primary text-on-primary rounded-lg p-4';
+      msg.innerHTML = `<p class="font-body text-body-md"></p><span class="font-body text-body-sm opacity-80 block mt-1 tabular-nums">Claire · Just now</span>`;
+      msg.querySelector('p').textContent = text;
+      document.getElementById('chat-messages').appendChild(msg);
+      input.value = '';
+      showToast('Message sent to Shirvanshah Hotel');
+    }
+
+    window.addEventListener('scroll', () => {
+      const header = document.getElementById('site-header');
+      if (!header) return;
+      if (window.scrollY > 10) {
+        header.classList.remove('bg-surface');
+        header.classList.add('bg-surface-card');
+      } else {
+        header.classList.add('bg-surface');
+        header.classList.remove('bg-surface-card');
+      }
+    });
+  </script>
+
+
+</body></html>

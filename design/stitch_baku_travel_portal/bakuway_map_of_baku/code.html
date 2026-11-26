@@ -1,0 +1,301 @@
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BakuWay — Map of Baku</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script id="tailwind-config">/** @type {import('tailwindcss').Config} */
+globalThis.tailwind = globalThis.tailwind || {};
+globalThis.tailwind.config = {
+  darkMode: 'class',
+  theme: {
+    extend: {
+      colors: {
+        'primary': '#3F5E4A',
+        'on-primary': '#FFFFFF',
+        'primary-container': '#D6F9DF',
+        'on-primary-container': '#183625',
+        'sage': '#7A9E7E',
+        'on-sage': '#15351E',
+        'sage-soft': '#EBF2EC',
+        'secondary': '#8B6B4F',
+        'on-secondary': '#FFFFFF',
+        'secondary-container': '#FFEEE1',
+        'on-secondary-container': '#432B14',
+        'terracotta': '#C98B6B',
+        'on-terracotta': '#2E1A10',
+        'terracotta-soft': '#F7EAE2',
+        'surface': '#F7F3EC',
+        'on-surface': '#2E2A26',
+        'surface-card': '#FFFFFF',
+        'on-surface-card': '#2E2A26',
+        'sand': '#E8DFD0',
+        'on-sand': '#2E2A26',
+        'on-surface-variant': '#655D56',
+        'muted': '#7A716A',
+        'outline': '#DDD5C7',
+        'outline-variant': '#EAE1D2',
+        'success': '#4A7C59',
+        'on-success': '#FFFFFF',
+        'warning': '#B58238',
+        'on-warning': '#201B15',
+        'error': '#A84A42',
+        'on-error': '#FFFFFF',
+      },
+      borderRadius: {
+        'sm': '8px',
+        'DEFAULT': '12px',
+        'md': '12px',
+        'lg': '16px',
+        'xl': '24px',
+        'full': '9999px',
+      },
+      spacing: {
+        'gutter-xs': '4px',
+        'gutter-sm': '8px',
+        'gutter-md': '16px',
+        'gutter-lg': '24px',
+        'gutter-xl': '32px',
+        'section': '64px',
+        'page-margin': '24px',
+      },
+      fontFamily: {
+        'display': ['"Plus Jakarta Sans"', 'sans-serif'],
+        'headline': ['"Plus Jakarta Sans"', 'sans-serif'],
+        'title': ['"Plus Jakarta Sans"', 'sans-serif'],
+        'body': ['"Plus Jakarta Sans"', 'sans-serif'],
+        'label': ['"Plus Jakarta Sans"', 'sans-serif'],
+      },
+      fontSize: {
+        'display-lg': ['44px', { lineHeight: '52px', letterSpacing: '-0.5px', fontWeight: '700' }],
+        'display-lg-mobile': ['30px', { lineHeight: '38px', letterSpacing: '-0.25px', fontWeight: '700' }],
+        'headline-lg': ['32px', { lineHeight: '40px', letterSpacing: '-0.25px', fontWeight: '700' }],
+        'headline-md': ['24px', { lineHeight: '32px', letterSpacing: '-0.15px', fontWeight: '700' }],
+        'headline-sm': ['18px', { lineHeight: '26px', letterSpacing: '0px', fontWeight: '600' }],
+        'title-md': ['16px', { lineHeight: '24px', letterSpacing: '0px', fontWeight: '600' }],
+        'body-lg': ['16px', { lineHeight: '26px', letterSpacing: '0px', fontWeight: '400' }],
+        'body-md': ['14px', { lineHeight: '22px', letterSpacing: '0px', fontWeight: '400' }],
+        'body-sm': ['13px', { lineHeight: '18px', letterSpacing: '0px', fontWeight: '400' }],
+        'label-lg': ['14px', { lineHeight: '20px', letterSpacing: '0px', fontWeight: '600' }],
+        'label-md': ['12px', { lineHeight: '16px', letterSpacing: '0.2px', fontWeight: '600' }],
+        'label-sm': ['11px', { lineHeight: '14px', letterSpacing: '0.3px', fontWeight: '600' }],
+      },
+      transitionDuration: {
+        'state-change': '150ms',
+        'surface-enter': '250ms',
+        'surface-exit': '150ms',
+      },
+      transitionDelay: {
+        'state-change': '0ms',
+        'surface-enter': '0ms',
+        'surface-exit': '0ms',
+      },
+      transitionTimingFunction: {
+        'state-change': 'ease-out',
+        'surface-enter': 'cubic-bezier(0.2, 0, 0, 1)',
+        'surface-exit': 'cubic-bezier(0.3, 0, 1, 1)',
+      },
+    },
+  },
+};
+if (typeof module !== 'undefined') module.exports = globalThis.tailwind.config;
+</script>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block" rel="stylesheet">
+  <style>
+    .material-symbols-outlined { display: inline-block; width: 1em; height: 1em; line-height: 1 !important; box-sizing: content-box; overflow: hidden; white-space: nowrap; direction: ltr; vertical-align: middle; }
+  </style>
+</head>
+<body class="bg-surface text-on-surface font-body antialiased">
+  <div class="min-h-[1024px] flex flex-col" data-stitch-vh="min-h-[1024px]===min-h-screen">
+
+    <!-- Sticky Header -->
+    <header id="site-header" class="sticky top-0 z-40 bg-surface shadow-[0_4px_16px_rgba(46,42,38,0.05)] transition-colors duration-state-change">
+      <div class="max-w-[1200px] mx-auto px-6 min-h-[72px] py-2 flex items-center justify-between gap-4">
+        <a href="../home/Home.html" class="flex items-center gap-2.5 shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-md">
+          <span class="w-9 h-9 rounded-md bg-sage text-on-sage flex items-center justify-center">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M12 4C8 4 5 7.5 5 11.5C5 16 8.5 19.5 12 20C15.5 19.5 19 16 19 11.5C19 7.5 16 4 12 4Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"></path>
+              <path d="M12 8V17M12 12L15 9.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path>
+            </svg>
+          </span>
+          <span class="font-headline text-headline-sm text-primary font-bold tracking-tight">BakuWay</span>
+        </a>
+
+        <nav aria-label="Primary" class="hidden lg:flex items-center gap-2">
+          <a href="../hotels-search/HotelsSearch.html" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full font-label text-label-md text-on-surface-variant hover:bg-sand hover:text-on-surface transition-colors">
+            <span class="material-symbols-outlined text-[18px]" aria-hidden="true">hotel</span>
+            <span>Stay</span>
+          </a>
+          <a href="../restaurants-search/RestaurantsSearch.html" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full font-label text-label-md text-on-surface-variant hover:bg-sand hover:text-on-surface transition-colors">
+            <span class="material-symbols-outlined text-[18px]" aria-hidden="true">restaurant</span>
+            <span>Eat</span>
+          </a>
+          <a href="../explore-baku/ExploreBaku.html" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-sage-soft text-primary font-label text-label-md font-semibold">
+            <span class="material-symbols-outlined text-[18px]" aria-hidden="true">explore</span>
+            <span>Explore</span>
+          </a>
+          <a href="../home/Home.html#airport-guide" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full font-label text-label-md text-on-surface-variant hover:bg-sand hover:text-on-surface transition-colors">
+            <span class="material-symbols-outlined text-[18px]" aria-hidden="true">commute</span>
+            <span>Getting around</span>
+          </a>
+          <a href="../home/Home.html#intercity" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full font-label text-label-md text-on-surface-variant hover:bg-sand hover:text-on-surface transition-colors">
+            <span class="material-symbols-outlined text-[18px]" aria-hidden="true">directions_car</span>
+            <span>Rides to regions</span>
+          </a>
+        </nav>
+
+        <div class="flex items-center gap-2.5 shrink-0">
+          <button type="button" aria-label="Search" onclick="document.getElementById(&#39;map-search-input&#39;).focus()" class="inline-flex items-center justify-center w-9 h-9 rounded-full bg-surface-card text-on-surface-variant hover:bg-sand hover:text-on-surface transition-colors">
+            <span class="material-symbols-outlined text-[19px]" aria-hidden="true">search</span>
+          </button>
+          <span class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface-card border border-outline-variant text-on-surface font-label text-label-md">EN · ₼</span>
+          <button type="button" aria-label="Saved favorites" class="hidden sm:inline-flex items-center justify-center w-9 h-9 rounded-full bg-surface-card text-on-surface-variant hover:bg-sand hover:text-on-surface transition-colors">
+            <span class="material-symbols-outlined text-[19px]" aria-hidden="true">favorite</span>
+          </button>
+          <button type="button" class="hidden md:inline-flex items-center px-2 py-1.5 font-label text-label-md text-on-surface-variant hover:text-primary transition-colors">Log in</button>
+          <button type="button" class="hidden sm:inline-flex items-center justify-center px-3.5 py-1.5 rounded-md bg-surface-card text-secondary border border-secondary font-label text-label-md hover:bg-secondary-container transition-colors">Become a partner</button>
+          <button type="button" aria-label="Open navigation menu" onclick="document.getElementById(&#39;mobile-drawer&#39;).classList.remove(&#39;hidden&#39;)" class="lg:hidden inline-flex items-center justify-center w-9 h-9 rounded-full bg-surface-card text-on-surface hover:bg-sand transition-colors">
+            <span class="material-symbols-outlined text-[20px]" aria-hidden="true">menu</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Mobile Full-Height Drawer -->
+    <div id="mobile-drawer" class="hidden fixed inset-0 z-50">
+      <div class="fixed inset-0 bg-on-surface/40" onclick="this.parentElement.classList.add(&#39;hidden&#39;)"></div>
+      <aside class="fixed top-0 right-0 bottom-0 w-72 bg-surface-card p-6 flex flex-col gap-6 shadow-xl">
+        <div class="flex items-center justify-between">
+          <span class="font-headline text-headline-sm text-primary font-bold">BakuWay</span>
+          <button type="button" aria-label="Close menu" onclick="document.getElementById(&#39;mobile-drawer&#39;).classList.add(&#39;hidden&#39;)" class="w-9 h-9 rounded-full hover:bg-sand flex items-center justify-center">
+            <span class="material-symbols-outlined text-[20px]">close</span>
+          </button>
+        </div>
+        <nav class="flex flex-col gap-2">
+          <a href="../hotels-search/HotelsSearch.html" class="flex items-center gap-3 px-3 py-2.5 rounded-full text-on-surface-variant hover:bg-sand font-label text-label-lg"><span class="material-symbols-outlined text-[20px]">hotel</span> Stay</a>
+          <a href="../restaurants-search/RestaurantsSearch.html" class="flex items-center gap-3 px-3 py-2.5 rounded-full text-on-surface-variant hover:bg-sand font-label text-label-lg"><span class="material-symbols-outlined text-[20px]">restaurant</span> Eat</a>
+          <a href="../explore-baku/ExploreBaku.html" class="flex items-center gap-3 px-3 py-2.5 rounded-full bg-sage-soft text-primary font-label text-label-lg"><span class="material-symbols-outlined text-[20px]">explore</span> Explore</a>
+          <a href="../home/Home.html#airport-guide" class="flex items-center gap-3 px-3 py-2.5 rounded-full text-on-surface-variant hover:bg-sand font-label text-label-lg"><span class="material-symbols-outlined text-[20px]">commute</span> Getting around</a>
+          <a href="../home/Home.html#intercity" class="flex items-center gap-3 px-3 py-2.5 rounded-full text-on-surface-variant hover:bg-sand font-label text-label-lg"><span class="material-symbols-outlined text-[20px]">directions_car</span> Rides to regions</a>
+        </nav>
+      </aside>
+    </div>
+
+    <main class="flex-1 max-w-[1200px] w-full mx-auto px-6 py-6 flex flex-col gap-6">
+
+      <!-- Layer Toggles Bar -->
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <h1 class="font-headline text-headline-md text-on-surface">Map of Baku</h1>
+        <div class="flex flex-wrap items-center gap-2">
+          <button type="button" onclick="toggleLayer(this, &#39;Places&#39;)" class="px-3.5 py-1.5 rounded-full bg-primary text-on-primary font-label text-label-md">Places</button>
+          <button type="button" onclick="toggleLayer(this, &#39;Hotels&#39;)" class="px-3.5 py-1.5 rounded-full bg-surface-card border border-outline-variant font-label text-label-md hover:bg-sand">Hotels</button>
+          <button type="button" onclick="toggleLayer(this, &#39;Restaurants&#39;)" class="px-3.5 py-1.5 rounded-full bg-surface-card border border-outline-variant font-label text-label-md hover:bg-sand">Restaurants</button>
+          <button type="button" onclick="toggleLayer(this, &#39;Metro stations&#39;)" class="px-3.5 py-1.5 rounded-full bg-sage-soft text-primary font-label text-label-md">Metro stations</button>
+        </div>
+      </div>
+
+      <!-- Full-Width Map + Synced Left Panel -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+
+        <!-- Left Synced List (4 cols) -->
+        <aside class="lg:col-span-4 bg-surface-card rounded-lg border border-outline-variant p-4 flex flex-col gap-3 shadow-[0_4px_20px_rgba(46,42,38,0.05)]">
+          <div class="relative flex items-center">
+            <span class="material-symbols-outlined text-[18px] text-on-surface-variant absolute left-3 pointer-events-none" aria-hidden="true">search</span>
+            <input id="map-search-input" type="text" placeholder="Search places, metro, hotels..." class="w-full pl-9 pr-3 py-2 rounded-md bg-surface border border-outline font-body text-body-md">
+          </div>
+
+          <article onclick="selectPin(&#39;Heydar Aliyev Center&#39;, &#39;15 ₼&#39;, &#39;../../images/place_heydar_aliyev.jpg&#39;, &#39;../place-detail/PlaceDetail.html&#39;)" class="cursor-pointer text-left p-3 rounded-md bg-sage-soft border border-primary flex items-center gap-3">
+            <img src="https://lh3.googleusercontent.com/aida/ALJJyrCDVGMKJn_OVmg-yG2v7ms_l2VX7p6gS6TPkS0aWw1r4vQ_3RWEUK3lz69scI3lU9b1wzgojsmJOt4vcMWIrCWn4W5BnzI_FNFYLJ_zNS5VkvmoqrUR2OA2GvSPsKMqOsnXKZMthBSgFDXF1RkxW48g36snsTeSYvOFDGpOuvGk1WBgg0Firjj0xPr-5f3BalFiniHsBYDh1mHYr6eVVQW5vzhfNseuwbq6Ru1bOJzjna7S4ZPfn6oPqJp-Hi4" alt="Heydar Aliyev Center" class="w-14 h-14 rounded-md object-cover shrink-0">
+            <div class="min-w-0">
+              <h2 class="font-title text-title-md text-on-surface">Heydar Aliyev Center</h2>
+              <p class="font-body text-body-sm text-on-surface-variant">Museum · 15 ₼</p>
+            </div>
+          </article>
+
+          <article onclick="selectPin(&#39;Old City (Icherisheher)&#39;, &#39;Free&#39;, &#39;../../images/place_old_city.jpg&#39;, &#39;../place-detail/PlaceDetail.html&#39;)" class="cursor-pointer text-left p-3 rounded-md bg-surface border border-outline-variant hover:bg-sand flex items-center gap-3">
+            <img src="https://lh3.googleusercontent.com/aida/ALJJyrDHv18phdnvFv9h3Jw57p2b8Cugn98XzWgZJx3jHV0FwlT-p2BhbOvo3SneTM2k7zx-pw_5vc6nNdfokMALiadvVbVZDS39D0GF3PlmAyX3ulsDLOx_BsNTSQ2__UDoiLetpLh-aGOk8qN5Dms23kUbYv8TBrV30krHcDuC16OOaJsMJtP4b067doz7g4MrGYZTqb7AiDSaCB9rqTPZcsEOoN91GLnoTQdH5gi2Hw4zRy6Jz5RfdMjo" alt="Old City" class="w-14 h-14 rounded-md object-cover shrink-0">
+            <div class="min-w-0">
+              <h2 class="font-title text-title-md text-on-surface">Old City (Icherisheher)</h2>
+              <p class="font-body text-body-sm text-on-surface-variant">Historic · Free</p>
+            </div>
+          </article>
+
+          <article onclick="selectPin(&#39;Dolma Kitchen &amp; Tea House&#39;, &#39;≈ 25 ₼&#39;, &#39;../../images/eat_dolma_kitchen.jpg&#39;, &#39;../restaurant-detail/RestaurantDetail.html&#39;)" class="cursor-pointer text-left p-3 rounded-md bg-surface border border-outline-variant hover:bg-sand flex items-center gap-3">
+            <img src="https://lh3.googleusercontent.com/aida/ALJJyrBEDBFdSzdRBwmNVYlMzFBC0lgkO2_Gxmc-1K7h8MGk1iu99J-tQA75HEHM7zYpGsAH1qAZexJYxMjUI_gbadtYWsVrJs-Lh6UB2QRJXYNFGEZldL0Oy8u-MV_9Zg76Fr2CuO9MeAnbYKbAX_MEJoJ-Qo8XHZIuB-3Kn0bq4SMe47k4WeDnejpIEJcrr01PrMynb4-8PqyPiLetKa6etk5W3jPRNL7AZl_enRacKOTgQrqIa5Dnf3Ri03Ss" alt="Dolma Kitchen" class="w-14 h-14 rounded-md object-cover shrink-0">
+            <div class="min-w-0">
+              <h2 class="font-title text-title-md text-on-surface">Dolma Kitchen &amp; Tea House</h2>
+              <p class="font-body text-body-sm text-on-surface-variant">Restaurant · ≈ 25 ₼</p>
+            </div>
+          </article>
+
+          <article onclick="selectPin(&#39;Shirvanshah Boutique Hotel&#39;, &#39;85 ₼ / night&#39;, &#39;../../images/hotel_shirvanshah.jpg&#39;, &#39;../hotel-detail/HotelDetail.html&#39;)" class="cursor-pointer text-left p-3 rounded-md bg-surface border border-outline-variant hover:bg-sand flex items-center gap-3">
+            <img src="https://lh3.googleusercontent.com/aida/ALJJyrCABpIo22MX0VeskZHDbBX8M7LvodoYIXyyCPEk9RQjIOg4rScx5ZH9d8FhfwNfKKblPjZ9YsgTu_HA-sv_FYASRCpT_bJdF4LCb25I4Vmu313sIEiVRU28Fz_QgQMyP2HYC2TxZ6nd9wpPN2UO1q9yzSG6DnA4VPCtRgnoVwMK9u7MnbDEJe1bmbvL9q6J_2xPrrRCGKcVWhOpZw0KahYmOnQ0a1H--HKkXE5-6DdZUtxkmTlA2yLL7_id" alt="Shirvanshah Hotel" class="w-14 h-14 rounded-md object-cover shrink-0">
+            <div class="min-w-0">
+              <h2 class="font-title text-title-md text-on-surface">Shirvanshah Boutique Hotel</h2>
+              <p class="font-body text-body-sm text-on-surface-variant">Hotel · 85 ₼ / night</p>
+            </div>
+          </article>
+        </aside>
+
+        <!-- Right Interactive Map Canvas (8 cols) -->
+        <div class="lg:col-span-8 relative min-h-[480px] rounded-lg bg-sand border border-outline-variant overflow-hidden">
+          <div class="absolute inset-0 bg-sage-soft/50"></div>
+
+          <!-- Metro & Place Pins -->
+          <button type="button" onclick="selectPin(&#39;Heydar Aliyev Center&#39;, &#39;15 ₼&#39;, &#39;../../images/place_heydar_aliyev.jpg&#39;, &#39;../place-detail/PlaceDetail.html&#39;)" class="absolute top-14 right-20 px-3 py-1.5 rounded-full bg-primary text-on-primary font-label text-label-md shadow-md">Heydar Aliyev Center · 15 ₼</button>
+          <button type="button" onclick="selectPin(&#39;Old City (Icherisheher)&#39;, &#39;Free&#39;, &#39;../../images/place_old_city.jpg&#39;, &#39;../place-detail/PlaceDetail.html&#39;)" class="absolute top-44 left-20 px-3 py-1.5 rounded-full bg-surface-card text-on-surface border border-outline font-label text-label-md shadow-md hover:bg-sage-soft">Old City · Free</button>
+          <button type="button" onclick="selectPin(&#39;Dolma Kitchen &amp; Tea House&#39;, &#39;≈ 25 ₼&#39;, &#39;../../images/eat_dolma_kitchen.jpg&#39;, &#39;../restaurant-detail/RestaurantDetail.html&#39;)" class="absolute top-64 left-48 px-3 py-1.5 rounded-full bg-surface-card text-on-surface border border-outline font-label text-label-md shadow-md hover:bg-sage-soft">Dolma Kitchen</button>
+          <span class="absolute top-32 left-40 px-2.5 py-1 rounded-full bg-secondary text-on-secondary font-label text-label-sm shadow">M · Icherisheher</span>
+          <span class="absolute top-24 right-44 px-2.5 py-1 rounded-full bg-secondary text-on-secondary font-label text-label-sm shadow">M · Narimanov</span>
+
+          <!-- Preview Card on Pin Click -->
+          <div id="map-preview-card" class="absolute bottom-5 left-5 right-5 sm:right-auto sm:w-80 bg-surface-card rounded-lg border border-outline-variant p-4 shadow-xl flex items-center gap-4">
+            <img id="preview-img" src="https://lh3.googleusercontent.com/aida/ALJJyrCDVGMKJn_OVmg-yG2v7ms_l2VX7p6gS6TPkS0aWw1r4vQ_3RWEUK3lz69scI3lU9b1wzgojsmJOt4vcMWIrCWn4W5BnzI_FNFYLJ_zNS5VkvmoqrUR2OA2GvSPsKMqOsnXKZMthBSgFDXF1RkxW48g36snsTeSYvOFDGpOuvGk1WBgg0Firjj0xPr-5f3BalFiniHsBYDh1mHYr6eVVQW5vzhfNseuwbq6Ru1bOJzjna7S4ZPfn6oPqJp-Hi4" alt="Selected place" class="w-20 h-20 rounded-md object-cover shrink-0">
+            <div class="flex flex-col gap-1 flex-1">
+              <h3 id="preview-title" class="font-title text-title-md text-on-surface">Heydar Aliyev Center</h3>
+              <p id="preview-price" class="font-body text-body-sm text-on-surface-variant tabular-nums">15 ₼ · Open until 19:00</p>
+              <a id="preview-link" href="../place-detail/PlaceDetail.html" class="font-label text-label-md text-primary hover:underline pt-1">View details</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-sand text-on-sand border-t border-outline mt-12">
+      <div class="max-w-[1200px] mx-auto px-6 py-10 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <span class="font-headline text-headline-sm text-on-sand">BakuWay</span>
+        <p class="font-body text-body-sm text-on-surface-variant">© 2026 BakuWay. Made for curious travelers in Azerbaijan.</p>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    function toggleLayer(btn) {
+      btn.classList.toggle('bg-primary');
+      btn.classList.toggle('text-on-primary');
+      btn.classList.toggle('bg-surface-card');
+      btn.classList.toggle('border');
+      btn.classList.toggle('border-outline-variant');
+    }
+    function selectPin(title, price, img, href) {
+      document.getElementById('preview-title').textContent = title;
+      document.getElementById('preview-price').textContent = price;
+      document.getElementById('preview-img').src = img;
+      document.getElementById('preview-link').href = href;
+    }
+    window.addEventListener('scroll', () => {
+      const header = document.getElementById('site-header');
+      if (!header) return;
+      if (window.scrollY > 10) {
+        header.classList.remove('bg-surface');
+        header.classList.add('bg-surface-card/90', 'backdrop-blur-sm');
+      } else {
+        header.classList.add('bg-surface');
+        header.classList.remove('bg-surface-card/90', 'backdrop-blur-sm');
+      }
+    });
+  </script>
+
+
+</body></html>

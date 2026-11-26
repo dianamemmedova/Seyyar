@@ -1,0 +1,464 @@
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BakuWay — Explore Baku</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script id="tailwind-config">/** @type {import('tailwindcss').Config} */
+globalThis.tailwind = globalThis.tailwind || {};
+globalThis.tailwind.config = {
+  darkMode: 'class',
+  theme: {
+    extend: {
+      colors: {
+        'primary': '#3F5E4A',
+        'on-primary': '#FFFFFF',
+        'primary-container': '#D6F9DF',
+        'on-primary-container': '#183625',
+        'sage': '#7A9E7E',
+        'on-sage': '#15351E',
+        'sage-soft': '#EBF2EC',
+        'secondary': '#8B6B4F',
+        'on-secondary': '#FFFFFF',
+        'secondary-container': '#FFEEE1',
+        'on-secondary-container': '#432B14',
+        'terracotta': '#C98B6B',
+        'on-terracotta': '#2E1A10',
+        'terracotta-soft': '#F7EAE2',
+        'surface': '#F7F3EC',
+        'on-surface': '#2E2A26',
+        'surface-card': '#FFFFFF',
+        'on-surface-card': '#2E2A26',
+        'sand': '#E8DFD0',
+        'on-sand': '#2E2A26',
+        'on-surface-variant': '#655D56',
+        'muted': '#7A716A',
+        'outline': '#DDD5C7',
+        'outline-variant': '#EAE1D2',
+        'success': '#4A7C59',
+        'on-success': '#FFFFFF',
+        'warning': '#B58238',
+        'on-warning': '#201B15',
+        'error': '#A84A42',
+        'on-error': '#FFFFFF',
+      },
+      borderRadius: {
+        'sm': '8px',
+        'DEFAULT': '12px',
+        'md': '12px',
+        'lg': '16px',
+        'xl': '24px',
+        'full': '9999px',
+      },
+      spacing: {
+        'gutter-xs': '4px',
+        'gutter-sm': '8px',
+        'gutter-md': '16px',
+        'gutter-lg': '24px',
+        'gutter-xl': '32px',
+        'section': '64px',
+        'page-margin': '24px',
+      },
+      fontFamily: {
+        'display': ['"Plus Jakarta Sans"', 'sans-serif'],
+        'headline': ['"Plus Jakarta Sans"', 'sans-serif'],
+        'title': ['"Plus Jakarta Sans"', 'sans-serif'],
+        'body': ['"Plus Jakarta Sans"', 'sans-serif'],
+        'label': ['"Plus Jakarta Sans"', 'sans-serif'],
+      },
+      fontSize: {
+        'display-lg': ['44px', { lineHeight: '52px', letterSpacing: '-0.5px', fontWeight: '700' }],
+        'display-lg-mobile': ['30px', { lineHeight: '38px', letterSpacing: '-0.25px', fontWeight: '700' }],
+        'headline-lg': ['32px', { lineHeight: '40px', letterSpacing: '-0.25px', fontWeight: '700' }],
+        'headline-md': ['24px', { lineHeight: '32px', letterSpacing: '-0.15px', fontWeight: '700' }],
+        'headline-sm': ['18px', { lineHeight: '26px', letterSpacing: '0px', fontWeight: '600' }],
+        'title-md': ['16px', { lineHeight: '24px', letterSpacing: '0px', fontWeight: '600' }],
+        'body-lg': ['16px', { lineHeight: '26px', letterSpacing: '0px', fontWeight: '400' }],
+        'body-md': ['14px', { lineHeight: '22px', letterSpacing: '0px', fontWeight: '400' }],
+        'body-sm': ['13px', { lineHeight: '18px', letterSpacing: '0px', fontWeight: '400' }],
+        'label-lg': ['14px', { lineHeight: '20px', letterSpacing: '0px', fontWeight: '600' }],
+        'label-md': ['12px', { lineHeight: '16px', letterSpacing: '0.2px', fontWeight: '600' }],
+        'label-sm': ['11px', { lineHeight: '14px', letterSpacing: '0.3px', fontWeight: '600' }],
+      },
+      transitionDuration: {
+        'state-change': '150ms',
+        'surface-enter': '250ms',
+        'surface-exit': '150ms',
+      },
+      transitionDelay: {
+        'state-change': '0ms',
+        'surface-enter': '0ms',
+        'surface-exit': '0ms',
+      },
+      transitionTimingFunction: {
+        'state-change': 'ease-out',
+        'surface-enter': 'cubic-bezier(0.2, 0, 0, 1)',
+        'surface-exit': 'cubic-bezier(0.3, 0, 1, 1)',
+      },
+    },
+  },
+};
+if (typeof module !== 'undefined') module.exports = globalThis.tailwind.config;
+</script>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block" rel="stylesheet">
+  <style>
+    .material-symbols-outlined { display: inline-block; width: 1em; height: 1em; line-height: 1 !important; box-sizing: content-box; overflow: hidden; white-space: nowrap; direction: ltr; vertical-align: middle; }
+  </style>
+</head>
+<body class="bg-surface text-on-surface font-body antialiased">
+  <div class="min-h-[1024px] flex flex-col" data-stitch-vh="min-h-[1024px]===min-h-screen">
+
+    <!-- Sticky Header -->
+    <header id="site-header" class="sticky top-0 z-40 bg-surface shadow-[0_4px_16px_rgba(46,42,38,0.05)] transition-colors duration-state-change">
+      <div class="max-w-[1200px] mx-auto px-6 min-h-[72px] py-2 flex items-center justify-between gap-4">
+        <a href="../home/Home.html" class="flex items-center gap-2.5 shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-md">
+          <span class="w-9 h-9 rounded-md bg-sage text-on-sage flex items-center justify-center">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M12 4C8 4 5 7.5 5 11.5C5 16 8.5 19.5 12 20C15.5 19.5 19 16 19 11.5C19 7.5 16 4 12 4Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"></path>
+              <path d="M12 8V17M12 12L15 9.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path>
+            </svg>
+          </span>
+          <span class="font-headline text-headline-sm text-primary font-bold tracking-tight" data-design-text-token="headline-sm">BakuWay</span>
+        </a>
+
+        <nav aria-label="Primary" class="hidden lg:flex items-center gap-2">
+          <a href="../hotels-search/HotelsSearch.html" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full font-label text-label-md text-on-surface-variant hover:bg-sand hover:text-on-surface transition-colors">
+            <span class="material-symbols-outlined text-[18px]" aria-hidden="true">hotel</span>
+            <span>Stay</span>
+          </a>
+          <a href="../restaurants-search/RestaurantsSearch.html" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full font-label text-label-md text-on-surface-variant hover:bg-sand hover:text-on-surface transition-colors">
+            <span class="material-symbols-outlined text-[18px]" aria-hidden="true">restaurant</span>
+            <span>Eat</span>
+          </a>
+          <a href="ExploreBaku.html" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-sage-soft text-primary font-label text-label-md font-semibold">
+            <span class="material-symbols-outlined text-[18px]" aria-hidden="true">explore</span>
+            <span>Explore</span>
+          </a>
+          <a href="../home/Home.html#airport-guide" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full font-label text-label-md text-on-surface-variant hover:bg-sand hover:text-on-surface transition-colors">
+            <span class="material-symbols-outlined text-[18px]" aria-hidden="true">commute</span>
+            <span>Getting around</span>
+          </a>
+          <a href="../home/Home.html#intercity" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full font-label text-label-md text-on-surface-variant hover:bg-sand hover:text-on-surface transition-colors">
+            <span class="material-symbols-outlined text-[18px]" aria-hidden="true">directions_car</span>
+            <span>Rides to regions</span>
+          </a>
+        </nav>
+
+        <div class="flex items-center gap-2.5 shrink-0">
+          <button type="button" aria-label="Search" onclick="window.location.href=&#39;../baku-map/BakuMap.html&#39;" class="inline-flex items-center justify-center w-9 h-9 rounded-full bg-surface-card text-on-surface-variant hover:bg-sand hover:text-on-surface transition-colors">
+            <span class="material-symbols-outlined text-[19px]" aria-hidden="true">search</span>
+          </button>
+          <span class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface-card border border-outline-variant text-on-surface font-label text-label-md">EN · ₼</span>
+          <button type="button" aria-label="Saved favorites" onclick="showToast(&#39;4 places saved in your Baku list.&#39;)" class="hidden sm:inline-flex relative items-center justify-center w-9 h-9 rounded-full bg-surface-card text-on-surface-variant hover:bg-sand hover:text-on-surface transition-colors">
+            <span class="material-symbols-outlined text-[19px]" aria-hidden="true">favorite</span>
+          </button>
+          <button type="button" onclick="showToast(&#39;Log in modal opened.&#39;)" class="hidden md:inline-flex items-center px-2 py-1.5 font-label text-label-md text-on-surface-variant hover:text-primary transition-colors">Log in</button>
+          <button type="button" onclick="showToast(&#39;Partner registration opened.&#39;)" class="hidden sm:inline-flex items-center justify-center px-3.5 py-1.5 rounded-md bg-surface-card text-secondary border border-secondary font-label text-label-md hover:bg-secondary-container transition-colors">Become a partner</button>
+          <button type="button" aria-label="Open navigation menu" onclick="document.getElementById(&#39;mobile-drawer&#39;).classList.remove(&#39;hidden&#39;)" class="lg:hidden inline-flex items-center justify-center w-9 h-9 rounded-full bg-surface-card text-on-surface hover:bg-sand transition-colors">
+            <span class="material-symbols-outlined text-[20px]" aria-hidden="true">menu</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Mobile Full-Height Drawer -->
+    <div id="mobile-drawer" class="hidden fixed inset-0 z-50">
+      <div class="fixed inset-0 bg-on-surface/40" onclick="this.parentElement.classList.add(&#39;hidden&#39;)"></div>
+      <aside class="fixed top-0 right-0 bottom-0 w-72 bg-surface-card p-6 flex flex-col gap-6 shadow-xl">
+        <div class="flex items-center justify-between">
+          <span class="font-headline text-headline-sm text-primary font-bold">BakuWay</span>
+          <button type="button" aria-label="Close menu" onclick="document.getElementById(&#39;mobile-drawer&#39;).classList.add(&#39;hidden&#39;)" class="w-9 h-9 rounded-full hover:bg-sand flex items-center justify-center">
+            <span class="material-symbols-outlined text-[20px]">close</span>
+          </button>
+        </div>
+        <nav class="flex flex-col gap-2">
+          <a href="../hotels-search/HotelsSearch.html" class="flex items-center gap-3 px-3 py-2.5 rounded-full text-on-surface-variant hover:bg-sand font-label text-label-lg"><span class="material-symbols-outlined text-[20px]">hotel</span> Stay</a>
+          <a href="../restaurants-search/RestaurantsSearch.html" class="flex items-center gap-3 px-3 py-2.5 rounded-full text-on-surface-variant hover:bg-sand font-label text-label-lg"><span class="material-symbols-outlined text-[20px]">restaurant</span> Eat</a>
+          <a href="ExploreBaku.html" class="flex items-center gap-3 px-3 py-2.5 rounded-full bg-sage-soft text-primary font-label text-label-lg"><span class="material-symbols-outlined text-[20px]">explore</span> Explore</a>
+          <a href="../home/Home.html#airport-guide" class="flex items-center gap-3 px-3 py-2.5 rounded-full text-on-surface-variant hover:bg-sand font-label text-label-lg"><span class="material-symbols-outlined text-[20px]">commute</span> Getting around</a>
+          <a href="../home/Home.html#intercity" class="flex items-center gap-3 px-3 py-2.5 rounded-full text-on-surface-variant hover:bg-sand font-label text-label-lg"><span class="material-symbols-outlined text-[20px]">directions_car</span> Rides to regions</a>
+        </nav>
+      </aside>
+    </div>
+
+    <main class="flex-1 max-w-[1200px] w-full mx-auto px-6 py-8 flex flex-col gap-10">
+
+      <!-- Featured Hero Card: Old City (Icherisheher) -->
+      <section class="rounded-xl bg-surface-card border border-outline-variant/60 shadow-[0_4px_20px_rgba(46,42,38,0.05)] overflow-hidden grid grid-cols-1 md:grid-cols-12 items-center">
+        <div class="md:col-span-6 h-64 md:h-full">
+          <img src="https://lh3.googleusercontent.com/aida/ALJJyrDHv18phdnvFv9h3Jw57p2b8Cugn98XzWgZJx3jHV0FwlT-p2BhbOvo3SneTM2k7zx-pw_5vc6nNdfokMALiadvVbVZDS39D0GF3PlmAyX3ulsDLOx_BsNTSQ2__UDoiLetpLh-aGOk8qN5Dms23kUbYv8TBrV30krHcDuC16OOaJsMJtP4b067doz7g4MrGYZTqb7AiDSaCB9rqTPZcsEOoN91GLnoTQdH5gi2Hw4zRy6Jz5RfdMjo" alt="Old City Icherisheher in Baku" class="w-full h-full object-cover">
+        </div>
+        <div class="md:col-span-6 p-8 flex flex-col gap-4">
+          <div class="flex flex-wrap items-center gap-2">
+            <span class="px-3 py-1 rounded-full bg-sage-soft text-on-sage font-label text-label-sm">UNESCO World Heritage</span>
+            <span class="px-3 py-1 rounded-full bg-sand text-on-sand font-label text-label-sm">Free to walk</span>
+          </div>
+          <h1 class="font-headline text-headline-lg text-on-surface text-balance">Old City (Icherisheher) — UNESCO World Heritage</h1>
+          <p class="font-body text-body-md text-on-surface-variant">Wander 12th-century limestone alleys, visit the Maiden Tower and Shirvanshahs’ Palace, and pause for tea under shaded mulberry trees.</p>
+          <div class="flex flex-wrap items-center gap-3 pt-1">
+            <a href="../place-detail/PlaceDetail.html" class="px-5 py-2.5 rounded-md bg-primary text-on-primary font-label text-label-lg hover:opacity-90">Explore guide</a>
+            <a href="../itineraries/Itineraries.html" class="px-4 py-2.5 rounded-md bg-sage-soft text-primary font-label text-label-lg hover:opacity-90">View 1-day itinerary</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Category Chips + List/Map Toggle -->
+      <section class="flex flex-col gap-4">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <h2 class="font-headline text-headline-md text-on-surface">Places to see in Baku</h2>
+          <div class="flex items-center gap-3">
+            <a href="../baku-map/BakuMap.html" class="font-label text-label-md text-primary hover:underline">Open full Baku map</a>
+            <div class="inline-flex rounded-full bg-surface-card p-1 border border-outline-variant">
+              <button type="button" id="explore-list-btn" onclick="setExploreView(&#39;list&#39;)" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-primary text-on-primary font-label text-label-md">
+                <span class="material-symbols-outlined text-[16px]" aria-hidden="true">view_module</span> List
+              </button>
+              <button type="button" id="explore-map-btn" onclick="setExploreView(&#39;map&#39;)" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-on-surface-variant hover:text-on-surface font-label text-label-md">
+                <span class="material-symbols-outlined text-[16px]" aria-hidden="true">map</span> Map
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-2">
+          <button type="button" onclick="selectCat(this)" class="cat-chip px-3.5 py-1.5 rounded-full bg-primary text-on-primary font-label text-label-md">All</button>
+          <button type="button" onclick="selectCat(this)" class="cat-chip px-3.5 py-1.5 rounded-full bg-surface-card border border-outline-variant font-label text-label-md hover:bg-sand">Historic</button>
+          <button type="button" onclick="selectCat(this)" class="cat-chip px-3.5 py-1.5 rounded-full bg-surface-card border border-outline-variant font-label text-label-md hover:bg-sand">Museums</button>
+          <button type="button" onclick="selectCat(this)" class="cat-chip px-3.5 py-1.5 rounded-full bg-surface-card border border-outline-variant font-label text-label-md hover:bg-sand">Parks</button>
+          <button type="button" onclick="selectCat(this)" class="cat-chip px-3.5 py-1.5 rounded-full bg-surface-card border border-outline-variant font-label text-label-md hover:bg-sand">Modern architecture</button>
+          <button type="button" onclick="selectCat(this)" class="cat-chip px-3.5 py-1.5 rounded-full bg-surface-card border border-outline-variant font-label text-label-md hover:bg-sand">Nature</button>
+          <button type="button" onclick="selectCat(this)" class="cat-chip px-3.5 py-1.5 rounded-full bg-surface-card border border-outline-variant font-label text-label-md hover:bg-sand">Viewpoints</button>
+          <button type="button" onclick="selectCat(this)" class="cat-chip px-3.5 py-1.5 rounded-full bg-surface-card border border-outline-variant font-label text-label-md hover:bg-sand">Free entry</button>
+          <button type="button" onclick="selectCat(this)" class="cat-chip px-3.5 py-1.5 rounded-full bg-surface-card border border-outline-variant font-label text-label-md hover:bg-sand">Good for kids</button>
+          <button type="button" onclick="selectCat(this)" class="cat-chip px-3.5 py-1.5 rounded-full bg-surface-card border border-outline-variant font-label text-label-md hover:bg-sand">Rainy day</button>
+        </div>
+
+        <!-- Filter Bar -->
+        <div class="bg-surface-card rounded-lg border border-outline-variant p-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 items-center">
+          <select aria-label="Duration" class="px-3 py-2 rounded-md bg-surface border border-outline font-body text-body-md">
+            <option selected>Duration: Any</option>
+            <option>1 hour</option>
+            <option>Half day</option>
+            <option>Full day</option>
+          </select>
+          <select aria-label="Entry price" class="px-3 py-2 rounded-md bg-surface border border-outline font-body text-body-md">
+            <option selected>Price: Free &amp; Paid</option>
+            <option>Free entry only</option>
+            <option>Paid tickets</option>
+          </select>
+          <select aria-label="Distance from hotel" class="px-3 py-2 rounded-md bg-surface border border-outline font-body text-body-md">
+            <option selected>Distance: Within 5 km</option>
+            <option>Within 1 km</option>
+            <option>Within 2 km</option>
+          </select>
+          <label class="flex items-center gap-2.5 px-3 py-2 font-body text-body-md">
+            <input type="checkbox" checked class="rounded border-outline text-primary focus:ring-primary">
+            <span>Open now</span>
+          </label>
+        </div>
+      </section>
+
+      <!-- Map Preview (hidden by default) -->
+      <div id="explore-map-panel" class="hidden rounded-lg bg-sand border border-outline-variant p-6 flex flex-col gap-4">
+        <div class="flex items-center justify-between">
+          <span class="font-title text-title-md text-on-surface">Baku Sights Map</span>
+          <a href="../baku-map/BakuMap.html" class="font-label text-label-md text-primary hover:underline">Open interactive full-screen map</a>
+        </div>
+        <div class="h-64 rounded-md bg-sage-soft border border-outline flex items-center justify-center relative">
+          <span class="px-3 py-1.5 rounded-full bg-primary text-on-primary font-label text-label-md shadow-md">Heydar Aliyev Center · 15 ₼</span>
+        </div>
+      </div>
+
+      <!-- Grid of Place Cards -->
+      <section id="explore-cards-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
+
+        <!-- Place 1: Heydar Aliyev Center -->
+        <article class="bg-surface-card rounded-lg border border-outline-variant/60 shadow-[0_4px_20px_rgba(46,42,38,0.05)] overflow-hidden flex flex-col h-full">
+          <div class="relative aspect-video overflow-hidden">
+            <img src="https://lh3.googleusercontent.com/aida/ALJJyrCDVGMKJn_OVmg-yG2v7ms_l2VX7p6gS6TPkS0aWw1r4vQ_3RWEUK3lz69scI3lU9b1wzgojsmJOt4vcMWIrCWn4W5BnzI_FNFYLJ_zNS5VkvmoqrUR2OA2GvSPsKMqOsnXKZMthBSgFDXF1RkxW48g36snsTeSYvOFDGpOuvGk1WBgg0Firjj0xPr-5f3BalFiniHsBYDh1mHYr6eVVQW5vzhfNseuwbq6Ru1bOJzjna7S4ZPfn6oPqJp-Hi4" alt="Heydar Aliyev Center" class="w-full h-full object-cover">
+            <button type="button" aria-label="Save place" onclick="showToast(&#39;Saved Heydar Aliyev Center.&#39;)" class="absolute top-3 right-3 w-8 h-8 rounded-full bg-surface-card/90 text-on-surface flex items-center justify-center hover:bg-surface-card">
+              <span class="material-symbols-outlined text-[18px]" aria-hidden="true">favorite</span>
+            </button>
+          </div>
+          <div class="p-4 flex flex-col gap-2.5 flex-1">
+            <div class="flex items-center justify-between text-on-surface-variant font-label text-label-sm">
+              <span class="inline-flex items-center gap-1"><span class="material-symbols-outlined text-[16px] text-primary" aria-hidden="true">museum</span> Modern architecture</span>
+              <span class="text-on-surface tabular-nums">4.9 (1,420)</span>
+            </div>
+            <a href="../place-detail/PlaceDetail.html" class="font-title text-title-md text-on-surface hover:text-primary">Heydar Aliyev Center</a>
+            <p class="font-body text-body-sm text-on-surface-variant tabular-nums">11:00–18:00 · Rec. 2 hrs · 3.8 km away</p>
+            <div class="mt-auto pt-3 border-t border-outline-variant flex items-center justify-between">
+              <span class="font-label text-label-lg text-on-surface tabular-nums">15 ₼ <span class="text-body-sm text-on-surface-variant font-normal">≈ $9</span></span>
+              <a href="../place-detail/PlaceDetail.html" class="font-label text-label-md text-primary hover:underline">Details</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Place 2: Azerbaijan Carpet Museum -->
+        <article class="bg-surface-card rounded-lg border border-outline-variant/60 shadow-[0_4px_20px_rgba(46,42,38,0.05)] overflow-hidden flex flex-col h-full">
+          <div class="relative aspect-video overflow-hidden">
+            <img src="https://lh3.googleusercontent.com/aida/ALJJyrCyAfw7SSS-8OJpnBOiWSv3QOhaUOx0bPqv8kT_wTvKo9SgflvOu2c9M4O7aRrdN7R9Q-ZMi_od4zYiClwVchuLU43TENce7lXzFlWofhFdGo7BqtlhuiRFiHezhsCcuMWi2eyDIDfbCyD4tVkeIj43k8MKqBjN_WMzlEGPj1M2FjZvlJ3zGtQewXOEWQlWX2JHdR5zVT-Dxidw_GE1mkFrq7V6wpI9HlWTRVWYwI7JhuQ-06gIT3IRolQM2Ek" alt="Azerbaijan National Carpet Museum" class="w-full h-full object-cover">
+            <button type="button" aria-label="Save place" onclick="showToast(&#39;Saved Carpet Museum.&#39;)" class="absolute top-3 right-3 w-8 h-8 rounded-full bg-surface-card/90 text-on-surface flex items-center justify-center hover:bg-surface-card">
+              <span class="material-symbols-outlined text-[18px]" aria-hidden="true">favorite</span>
+            </button>
+          </div>
+          <div class="p-4 flex flex-col gap-2.5 flex-1">
+            <div class="flex items-center justify-between text-on-surface-variant font-label text-label-sm">
+              <span class="inline-flex items-center gap-1"><span class="material-symbols-outlined text-[16px] text-primary" aria-hidden="true">museum</span> Museums · Rainy day</span>
+              <span class="text-on-surface tabular-nums">4.8 (860)</span>
+            </div>
+            <a href="../place-detail/PlaceDetail.html" class="font-title text-title-md text-on-surface hover:text-primary">Azerbaijan National Carpet Museum</a>
+            <p class="font-body text-body-sm text-on-surface-variant tabular-nums">10:00–18:00 · Rec. 1.5 hrs · 1.1 km away</p>
+            <div class="mt-auto pt-3 border-t border-outline-variant flex items-center justify-between">
+              <span class="font-label text-label-lg text-on-surface tabular-nums">10 ₼ <span class="text-body-sm text-on-surface-variant font-normal">≈ $6</span></span>
+              <a href="../place-detail/PlaceDetail.html" class="font-label text-label-md text-primary hover:underline">Details</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Place 3: Highland Park -->
+        <article class="bg-surface-card rounded-lg border border-outline-variant/60 shadow-[0_4px_20px_rgba(46,42,38,0.05)] overflow-hidden flex flex-col h-full">
+          <div class="relative aspect-video overflow-hidden">
+            <img src="https://lh3.googleusercontent.com/aida/ALJJyrC0E6tSaa22SsdKgHU4WjWiXe_smMCVPm4WExzdE6iLqwE1o_8XwvMcopO4ROhBOGJu5sQhMDSegVvx3ldB1UaaHvPj2o80FRtjzoJCR2NiQOWJ1vIkcQDag1gLB8PrHQyniaoYW-cdqPGXGmirPLpMlSRAKfvjQHpkHnBFc7ovx-IJMJApcxYlnbk5pnvzGDasv7Gw9LijpH20y2iwR3U-tSQsiJ3CxF-vg-09Bxj6MCQDffWanFI8Kx1KlHU" alt="Highland Park Viewpoint" class="w-full h-full object-cover">
+            <button type="button" aria-label="Save place" onclick="showToast(&#39;Saved Highland Park.&#39;)" class="absolute top-3 right-3 w-8 h-8 rounded-full bg-surface-card/90 text-on-surface flex items-center justify-center hover:bg-surface-card">
+              <span class="material-symbols-outlined text-[18px]" aria-hidden="true">favorite</span>
+            </button>
+          </div>
+          <div class="p-4 flex flex-col gap-2.5 flex-1">
+            <div class="flex items-center justify-between text-on-surface-variant font-label text-label-sm">
+              <span class="inline-flex items-center gap-1"><span class="material-symbols-outlined text-[16px] text-primary" aria-hidden="true">landscape</span> Viewpoints</span>
+              <span class="text-on-surface tabular-nums">4.9 (2,100)</span>
+            </div>
+            <a href="../place-detail/PlaceDetail.html" class="font-title text-title-md text-on-surface hover:text-primary">Highland Park &amp; Bay Viewpoint</a>
+            <p class="font-body text-body-sm text-on-surface-variant tabular-nums">Open 24 hrs · Rec. 1 hr · 1.5 km away</p>
+            <div class="mt-auto pt-3 border-t border-outline-variant flex items-center justify-between">
+              <span class="font-label text-label-lg text-success">Free</span>
+              <a href="../place-detail/PlaceDetail.html" class="font-label text-label-md text-primary hover:underline">Details</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Place 4: Baku Seaside Boulevard -->
+        <article class="bg-surface-card rounded-lg border border-outline-variant/60 shadow-[0_4px_20px_rgba(46,42,38,0.05)] overflow-hidden flex flex-col h-full">
+          <div class="relative aspect-video overflow-hidden">
+            <img src="https://lh3.googleusercontent.com/aida/ALJJyrCsYsMmqKZO_9zwepfu57qYPRQpXcB__pLLx2wumyTeBwO3jDMDWAQs8bqSkZptVruf0nq-ssAGpFPsTf8cDOAes2WE0He9HRNtBU3RKFO9_HaFIHqfvvA146phi6C5rUcV6dfDvYJMnQvTLkeOOwYqSOUmlgwi6tpxwpIikjX1eZls_GWvM0YKNDlAN7arFHCvy5D7QmkRdV0SBibqst8jsUP-qQWYiiDAGEmJMpnOom6FjxschSq-fL0X238o" alt="Baku Seaside Boulevard" class="w-full h-full object-cover">
+            <button type="button" aria-label="Save place" onclick="showToast(&#39;Saved Baku Boulevard.&#39;)" class="absolute top-3 right-3 w-8 h-8 rounded-full bg-surface-card/90 text-on-surface flex items-center justify-center hover:bg-surface-card">
+              <span class="material-symbols-outlined text-[18px]" aria-hidden="true">favorite</span>
+            </button>
+          </div>
+          <div class="p-4 flex flex-col gap-2.5 flex-1">
+            <div class="flex items-center justify-between text-on-surface-variant font-label text-label-sm">
+              <span class="inline-flex items-center gap-1"><span class="material-symbols-outlined text-[16px] text-primary" aria-hidden="true">park</span> Parks · Good for kids</span>
+              <span class="text-on-surface tabular-nums">4.8 (1,950)</span>
+            </div>
+            <a href="../place-detail/PlaceDetail.html" class="font-title text-title-md text-on-surface hover:text-primary">Baku Seaside Boulevard (Bulvar)</a>
+            <p class="font-body text-body-sm text-on-surface-variant tabular-nums">Open 24 hrs · Rec. 2 hrs · 700 m away</p>
+            <div class="mt-auto pt-3 border-t border-outline-variant flex items-center justify-between">
+              <span class="font-label text-label-lg text-success">Free</span>
+              <a href="../place-detail/PlaceDetail.html" class="font-label text-label-md text-primary hover:underline">Details</a>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <!-- Day Trips from Baku -->
+      <section class="flex flex-col gap-4 pt-4 border-t border-outline-variant">
+        <div class="flex items-center justify-between">
+          <h2 class="font-headline text-headline-md text-on-surface">Day trips from Baku</h2>
+          <a href="../itineraries/Itineraries.html" class="font-label text-label-md text-primary hover:underline">See itineraries</a>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <article class="bg-surface-card rounded-lg border border-outline-variant/60 overflow-hidden flex flex-col">
+            <img src="https://lh3.googleusercontent.com/aida/ALJJyrCmdliuGRIWIspQE3M8DUr-6FvRCiuJLHdIn6WNI1Vjyysf-liREBBUPrjp2t-rFNqw1sQI3gvqLgX29D-oyP-L2Juy8tVOIon-9YUA8PZNZRUwK4x71Eg85PiS9zvQYwidGxsKfzS2Yz7F1Z3yhLcPDvq5Ia9gcRgdEXbW1f8DpUAvJuOctMEm1N1C-Y2UxBU8AWnp0_ufIGmr88g6hVCGikhaL3SctlmzDFIBOBkQ3hNjJZthQKya" alt="Gobustan Rock Art" class="w-full aspect-video object-cover">
+            <div class="p-4 flex flex-col gap-1">
+              <h3 class="font-title text-title-md text-on-surface">Gobustan Rock Art Reserve</h3>
+              <p class="font-body text-body-sm text-on-surface-variant">Half day · 65 km south · Entry 10 ₼ (≈ $6)</p>
+            </div>
+          </article>
+          <article class="bg-surface-card rounded-lg border border-outline-variant/60 overflow-hidden flex flex-col">
+            <img src="https://lh3.googleusercontent.com/aida/ALJJyrAtoA6qe_WwdyD500kb_wE14AGmacqdPlSSAFv1QYpGkBg8KobIffTlRXV321MzSjgl00o9DndXlrCZ9990zEeNBws1tbxolViJJqXyU-EQNXFGfyEGQekl5BSDivTyaUTCu9S2H2soX2mGkSqfKCZHCRSh4hOMAxUK0VILW0V9iqMNPPgrThpMst8zJunGA2cCvO-_aZaZHobqWNIsg1l4n4hA1SQmsHH7ayb1rViLZELNlHPgDSsX9Xsq9oE" alt="Mud Volcanoes" class="w-full aspect-video object-cover">
+            <div class="p-4 flex flex-col gap-1">
+              <h3 class="font-title text-title-md text-on-surface">Gobustan Mud Volcanoes</h3>
+              <p class="font-body text-body-sm text-on-surface-variant">Half day · Natural phenomenon · Free entry</p>
+            </div>
+          </article>
+          <article class="bg-surface-card rounded-lg border border-outline-variant/60 overflow-hidden flex flex-col">
+            <img src="https://lh3.googleusercontent.com/aida/ALJJyrDQg0t2C_AaV2Jl5ZAvE0cumDJV3RyxbCzSr9cEgpuDx4V_WzWHe7mGZAOfCCOSPTgkdFly5KQNmQawBIdbN8pr-q0HdznfVLJIZVIBvihV1L6OmkZJr9K_lQ9yGkI1RUzBVHQlaEMZFOgRFmmGYVwTKedYRuEG4FAhjYhuW3gUaqht86-r1jf42Uah9bpLZq7DcxfY5hTPYPcc_QhVviYu0F0hsLzat3ipLSvHRk-gjmfdFT4WL3c3brxO" alt="Absheron Peninsula" class="w-full aspect-video object-cover">
+            <div class="p-4 flex flex-col gap-1">
+              <h3 class="font-title text-title-md text-on-surface">Absheron Peninsula (Ateshgah &amp; Yanardag)</h3>
+              <p class="font-body text-body-sm text-on-surface-variant">Half day · Fire temple &amp; burning hill · 15 ₼</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- Regions Coming Soon -->
+      <section class="rounded-xl bg-sand p-8 flex flex-col md:flex-row items-center justify-between gap-6">
+        <div class="flex flex-col gap-2 max-w-xl">
+          <span class="font-label text-label-sm text-primary uppercase">Regions coming soon</span>
+          <h2 class="font-headline text-headline-md text-on-sand">Sheki, Gabala &amp; Guba guides</h2>
+          <p class="font-body text-body-md text-on-surface-variant">We are mapping mountain trails, family guesthouses, and regional trains across Azerbaijan.</p>
+        </div>
+        <a href="../home/Home.html#intercity" class="px-5 py-2.5 rounded-md bg-primary text-on-primary font-label text-label-lg hover:opacity-90 shrink-0">View intercity rides</a>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-sand text-on-sand border-t border-outline mt-12">
+      <div class="max-w-[1200px] mx-auto px-6 py-10 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <span class="font-headline text-headline-sm text-on-sand">BakuWay</span>
+        <p class="font-body text-body-sm text-on-surface-variant">© 2026 BakuWay. Made for curious travelers in Azerbaijan.</p>
+      </div>
+    </footer>
+  </div>
+
+  <div id="toast" role="status" aria-live="polite" class="hidden fixed bottom-6 right-6 z-50 bg-primary text-on-primary px-4 py-3 rounded-md shadow-lg flex items-center gap-2.5 font-body text-body-md">
+    <span class="material-symbols-outlined text-[18px]" aria-hidden="true">check_circle</span>
+    <span id="toast-message"></span>
+  </div>
+  <script>
+    function selectCat(btn) {
+      document.querySelectorAll('.cat-chip').forEach((b) => {
+        b.className = 'cat-chip px-3.5 py-1.5 rounded-full bg-surface-card border border-outline-variant font-label text-label-md hover:bg-sand';
+      });
+      btn.className = 'cat-chip px-3.5 py-1.5 rounded-full bg-primary text-on-primary font-label text-label-md';
+    }
+    function setExploreView(mode) {
+      const mapPanel = document.getElementById('explore-map-panel');
+      const grid = document.getElementById('explore-cards-grid');
+      const listBtn = document.getElementById('explore-list-btn');
+      const mapBtn = document.getElementById('explore-map-btn');
+      if (mode === 'map') {
+        mapPanel.classList.remove('hidden');
+        grid.classList.add('hidden');
+        mapBtn.className = 'inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-primary text-on-primary font-label text-label-md';
+        listBtn.className = 'inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-on-surface-variant hover:text-on-surface font-label text-label-md';
+      } else {
+        mapPanel.classList.add('hidden');
+        grid.classList.remove('hidden');
+        listBtn.className = 'inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-primary text-on-primary font-label text-label-md';
+        mapBtn.className = 'inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-on-surface-variant hover:text-on-surface font-label text-label-md';
+      }
+    }
+    let toastTimer;
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      document.getElementById('toast-message').textContent = msg;
+      toast.classList.remove('hidden');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.add('hidden'), 3000);
+    }
+    window.addEventListener('scroll', () => {
+      const header = document.getElementById('site-header');
+      if (!header) return;
+      if (window.scrollY > 10) {
+        header.classList.remove('bg-surface');
+        header.classList.add('bg-surface-card/90', 'backdrop-blur-sm');
+      } else {
+        header.classList.add('bg-surface');
+        header.classList.remove('bg-surface-card/90', 'backdrop-blur-sm');
+      }
+    });
+  </script>
+
+
+</body></html>
