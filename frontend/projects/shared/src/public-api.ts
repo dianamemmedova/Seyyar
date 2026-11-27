@@ -3,6 +3,7 @@
  */
 export * from './lib/api/api.types';
 export * from './lib/api/places.types';
+export * from './lib/api/requests.types';
 export * from './lib/api/api-config';
 export * from './lib/api/api-error';
 export * from './lib/auth/auth.service';

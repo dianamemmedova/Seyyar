@@ -21,8 +21,9 @@ export class Login {
   private readonly auth = inject(AuthService);
   private readonly router = inject(Router);
 
-  // ?returnUrl=/places — where the admin wanted to go before login
-  readonly returnUrl = input<string>('/');
+  // ?returnUrl=/places — where the admin wanted to go before login.
+  // Without the query value the router sets undefined, so the fallback is in submit().
+  readonly returnUrl = input<string>();
 
   protected readonly form = inject(NonNullableFormBuilder).group({
     email: ['', [Validators.required, Validators.email]],
@@ -49,7 +50,7 @@ export class Login {
           this.fail('NOT_ADMIN');
           return;
         }
-        this.router.navigateByUrl(this.returnUrl());
+        this.router.navigateByUrl(this.returnUrl() ?? '/');
       },
       error: (err: unknown) => this.fail(toApiError(err).code),
     });

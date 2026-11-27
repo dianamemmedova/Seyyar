@@ -33,7 +33,7 @@ describe('SiteHeader', () => {
 
   it('shows "Log in" for visitors', async () => {
     const { page } = await render();
-    expect(page.querySelector('a[href="/en/login"]')).not.toBeNull();
+    expect(page.querySelector('a[href="/en/auth/login"]')).not.toBeNull();
   });
 
   it('shows the first name and the user menu after login', async () => {
@@ -58,7 +58,7 @@ describe('SiteHeader', () => {
       });
 
     const { fixture, page } = await render();
-    expect(page.querySelector('a[href="/en/login"]')).toBeNull();
+    expect(page.querySelector('a[href="/en/auth/login"]')).toBeNull();
     expect(page.textContent).toContain('Diana');
 
     // Open the user menu

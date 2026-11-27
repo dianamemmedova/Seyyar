@@ -5,7 +5,11 @@
     "backHome": "Back to home",
     "error": "Something went wrong. Please try again.",
     "loadError": "We could not load this part of the page.",
-    "retry": "Try again"
+    "retry": "Try again",
+    "wait": "Please wait…",
+    "pages": "Pages",
+    "previous": "Previous",
+    "next": "Next"
   },
   "languages": {
     "en": "English",
@@ -24,7 +28,8 @@
     "logout": "Log out",
     "favorites": "Saved places",
     "myRequests": "My requests",
-    "becomePartner": "Become a partner"
+    "becomePartner": "Become a partner",
+    "account": "My account"
   },
   "footer": {
     "about": "Calm, independent travel planning for Baku and Azerbaijan: stays, food, sights and honest rides.",
@@ -43,7 +48,8 @@
     "ticket": "ticket",
     "free": "Free entry",
     "openNow": "Open now",
-    "closed": "Closed now"
+    "closed": "Closed now",
+    "save": "Save to favorites"
   },
   "home": {
     "meta": {
@@ -129,5 +135,117 @@
   "notFound": {
     "title": "Page not found",
     "text": "The page you are looking for does not exist or was moved."
+  },
+  "errors": {
+    "INVALID_CREDENTIALS": "Email or password is incorrect.",
+    "EMAIL_TAKEN": "This email is already registered. Try logging in.",
+    "ACCOUNT_BLOCKED": "This account is blocked. Please contact us.",
+    "INVALID_RESET_TOKEN": "This link is invalid or has expired. Ask for a new one.",
+    "TOO_MANY_REQUESTS": "Too many attempts. Please try again later.",
+    "NETWORK_ERROR": "No connection to the server. Check your internet.",
+    "REQUEST_CLOSED": "This request is closed, messages cannot be sent.",
+    "INVALID_STATUS_TRANSITION": "This request can no longer be cancelled.",
+    "REVIEW_EXISTS": "You have already reviewed this visit.",
+    "REVIEW_NOT_ALLOWED": "You can write a review after your visit."
+  },
+  "auth": {
+    "loginTitle": "Welcome back",
+    "registerTitle": "Create an account",
+    "loginTab": "Log in",
+    "registerTab": "Sign up",
+    "fullName": "Full name",
+    "fullNameError": "Please enter your name (at least 2 characters).",
+    "email": "Email",
+    "emailError": "Please enter a valid email address.",
+    "phone": "Phone",
+    "optional": "optional",
+    "phoneError": "Please enter a valid phone number.",
+    "password": "Password",
+    "passwordRules": "At least 8 characters, with a letter and a digit.",
+    "passwordRequired": "Please enter your password.",
+    "loginButton": "Log in",
+    "registerButton": "Create account",
+    "forgotLink": "Forgot password?",
+    "forgotTitle": "Forgot your password?",
+    "forgotText": "Enter your email and we will send you a link to set a new password.",
+    "forgotButton": "Send link",
+    "forgotSent": "If this email is registered, we have sent a link. Check your inbox (and spam folder).",
+    "backToLogin": "Back to log in",
+    "resetTitle": "Set a new password",
+    "newPassword": "New password",
+    "repeatPassword": "Repeat new password",
+    "passwordsDiffer": "The passwords are not the same.",
+    "resetButton": "Save password",
+    "resetDone": "Your password has been changed. You can log in now."
+  },
+  "status": {
+    "NEW": "Waiting for answer",
+    "CONFIRMED": "Confirmed",
+    "DECLINED": "Declined",
+    "EXPIRED": "No answer",
+    "CANCELLED": "Cancelled",
+    "ARRIVED": "Visited",
+    "NO_SHOW": "No-show"
+  },
+  "account": {
+    "requestsTitle": "My requests",
+    "favoritesTitle": "Saved places",
+    "tabs": {
+      "active": "Active",
+      "past": "Past",
+      "cancelled": "Cancelled"
+    },
+    "noRequests": "No requests here yet.",
+    "findPlace": "Find a place",
+    "guests": "{{count}} guests",
+    "backToRequests": "All requests",
+    "reason": "Reason",
+    "details": "Details",
+    "checkIn": "Check-in",
+    "checkOut": "Check-out",
+    "nights": "Nights",
+    "date": "Date",
+    "guestsLabel": "Guests",
+    "children": "children",
+    "total": "Estimated total",
+    "payAtPlace": "You pay at the place. No prepayment.",
+    "contactPlace": "Contact the place",
+    "openMap": "Open on the map",
+    "messages": "Messages",
+    "noMessages": "No messages yet. You can ask the place anything here.",
+    "messagePlaceholder": "Write a message…",
+    "send": "Send",
+    "cancel": "Cancel request",
+    "cancelQuestion": "Cancel this request?",
+    "cancelYes": "Yes, cancel",
+    "cancelNo": "No, keep it",
+    "requestNotFound": "Request not found.",
+    "noFavorites": "You have not saved any places yet. Tap the heart on a card to save it.",
+    "explore": "Explore Baku",
+    "statusText": {
+      "NEW": "Your request has been sent. The place will answer soon — usually within 1–2 hours.",
+      "CONFIRMED": "The place confirmed your request. Show your request code when you arrive.",
+      "DECLINED": "Unfortunately the place could not accept this request.",
+      "EXPIRED": "The place did not answer in time, so the request was closed.",
+      "CANCELLED": "You cancelled this request.",
+      "ARRIVED": "Thank you for visiting! Tell other travelers how it was.",
+      "NO_SHOW": "The place marked that you did not come."
+    }
+  },
+  "review": {
+    "title": "How was your visit?",
+    "rating": "Your rating",
+    "ratingRequired": "Please choose 1 to 5 stars.",
+    "travelType": "You traveled as",
+    "types": {
+      "family": "Family",
+      "couple": "Couple",
+      "solo": "Solo",
+      "friends": "Friends"
+    },
+    "text": "Your review (optional)",
+    "textError": "Write at least 10 characters, or leave it empty.",
+    "send": "Send review",
+    "thanks": "Thank you! Your review is published."
   }
 }

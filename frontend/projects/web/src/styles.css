@@ -7,3 +7,19 @@
     @apply bg-surface font-sans text-on-surface antialiased;
   }
 }
+
+/* Small building blocks used by many forms */
+@layer components {
+  .field {
+    @apply flex flex-col gap-gutter-xs;
+  }
+  .input {
+    @apply w-full rounded-md border border-outline bg-surface-card px-gutter-md py-3 text-body-md outline-none placeholder:text-muted focus:border-primary;
+  }
+  .btn-primary {
+    @apply rounded-md bg-primary px-5 py-3 text-label-lg text-on-primary transition-opacity duration-150 hover:opacity-90 disabled:opacity-60;
+  }
+  .btn-secondary {
+    @apply rounded-md border border-outline bg-surface-card px-4 py-2.5 text-label-lg transition-colors duration-150 hover:bg-sand disabled:opacity-60;
+  }
+}

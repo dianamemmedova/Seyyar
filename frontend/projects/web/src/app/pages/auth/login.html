@@ -1,0 +1,136 @@
+<app-auth-card [heading]="(isRegister() ? 'auth.registerTitle' : 'auth.loginTitle') | translate">
+  <!-- Tabs -->
+  <div class="grid grid-cols-2 gap-1 rounded-md bg-surface p-1" role="tablist">
+    <a
+      role="tab"
+      [routerLink]="[]"
+      [queryParams]="{ tab: null }"
+      queryParamsHandling="merge"
+      [attr.aria-selected]="!isRegister()"
+      class="rounded-sm py-2 text-center text-label-lg transition-colors"
+      [class]="
+        !isRegister() ? 'bg-surface-card text-primary shadow-card' : 'text-on-surface-variant'
+      "
+      >{{ 'auth.loginTab' | translate }}</a
+    >
+    <a
+      role="tab"
+      [routerLink]="[]"
+      [queryParams]="{ tab: 'register' }"
+      queryParamsHandling="merge"
+      [attr.aria-selected]="isRegister()"
+      class="rounded-sm py-2 text-center text-label-lg transition-colors"
+      [class]="
+        isRegister() ? 'bg-surface-card text-primary shadow-card' : 'text-on-surface-variant'
+      "
+      >{{ 'auth.registerTab' | translate }}</a
+    >
+  </div>
+
+  @if (error(); as message) {
+    <p
+      class="rounded-md bg-terracotta-soft px-gutter-md py-gutter-sm text-body-md text-error"
+      role="alert"
+    >
+      {{ message | translate }}
+    </p>
+  }
+
+  @if (isRegister()) {
+    <form
+      [formGroup]="registerForm"
+      (ngSubmit)="submit()"
+      class="flex flex-col gap-gutter-md"
+      novalidate
+    >
+      <label class="field">
+        <span class="text-label-lg">{{ 'auth.fullName' | translate }}</span>
+        <input formControlName="fullName" autocomplete="name" class="input" />
+        @if (registerForm.controls.fullName.touched && registerForm.controls.fullName.invalid) {
+          <span class="text-body-sm text-error">{{ 'auth.fullNameError' | translate }}</span>
+        }
+      </label>
+      <label class="field">
+        <span class="text-label-lg">{{ 'auth.email' | translate }}</span>
+        <input type="email" formControlName="email" autocomplete="email" class="input" />
+        @if (registerForm.controls.email.touched && registerForm.controls.email.invalid) {
+          <span class="text-body-sm text-error">{{ 'auth.emailError' | translate }}</span>
+        }
+      </label>
+      <label class="field">
+        <span class="text-label-lg"
+          >{{ 'auth.phone' | translate }}
+          <span class="text-body-sm text-muted">({{ 'auth.optional' | translate }})</span></span
+        >
+        <input
+          type="tel"
+          formControlName="phone"
+          autocomplete="tel"
+          placeholder="+994 50 123 45 67"
+          class="input"
+        />
+        @if (registerForm.controls.phone.touched && registerForm.controls.phone.invalid) {
+          <span class="text-body-sm text-error">{{ 'auth.phoneError' | translate }}</span>
+        }
+      </label>
+      <label class="field">
+        <span class="text-label-lg">{{ 'auth.password' | translate }}</span>
+        <input
+          type="password"
+          formControlName="password"
+          autocomplete="new-password"
+          class="input"
+        />
+        <span
+          class="text-body-sm"
+          [class]="
+            registerForm.controls.password.touched && registerForm.controls.password.invalid
+              ? 'text-error'
+              : 'text-muted'
+          "
+          >{{ 'auth.passwordRules' | translate }}</span
+        >
+      </label>
+      <button type="submit" [disabled]="loading()" class="btn-primary">
+        {{ (loading() ? 'common.wait' : 'auth.registerButton') | translate }}
+      </button>
+    </form>
+  } @else {
+    <form
+      [formGroup]="loginForm"
+      (ngSubmit)="submit()"
+      class="flex flex-col gap-gutter-md"
+      novalidate
+    >
+      <label class="field">
+        <span class="text-label-lg">{{ 'auth.email' | translate }}</span>
+        <input type="email" formControlName="email" autocomplete="username" class="input" />
+        @if (loginForm.controls.email.touched && loginForm.controls.email.invalid) {
+          <span class="text-body-sm text-error">{{ 'auth.emailError' | translate }}</span>
+        }
+      </label>
+      <label class="field">
+        <span class="flex items-center justify-between">
+          <span class="text-label-lg">{{ 'auth.password' | translate }}</span>
+          <a
+            [routerLink]="['/', lang(), 'auth', 'forgot-password']"
+            class="text-label-md text-primary hover:underline"
+            >{{ 'auth.forgotLink' | translate }}</a
+          >
+        </span>
+        <input
+          type="password"
+          formControlName="password"
+          autocomplete="current-password"
+          class="input"
+        />
+        @if (loginForm.controls.password.touched && loginForm.controls.password.invalid) {
+          <span class="text-body-sm text-error">{{ 'auth.passwordRequired' | translate }}</span>
+        }
+      </label>
+      <button type="submit" [disabled]="loading()" class="btn-primary">
+        {{ (loading() ? 'common.wait' : 'auth.loginButton') | translate }}
+      </button>
+    </form>
+  }
+</app-auth-card>

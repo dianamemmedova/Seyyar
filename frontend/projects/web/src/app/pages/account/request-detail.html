@@ -1,0 +1,225 @@
+<section
+  class="mx-auto flex w-full max-w-[900px] flex-col gap-gutter-lg px-page-margin py-gutter-xl"
+>
+  <a
+    [routerLink]="['/', lang(), 'account', 'requests']"
+    class="inline-flex w-fit items-center gap-1 text-label-lg text-primary hover:underline"
+  >
+    <span class="material-symbols-outlined text-[18px]" aria-hidden="true">arrow_back</span>
+    {{ 'account.backToRequests' | translate }}
+  </a>
+
+  @if (data(); as r) {
+    <!-- Title -->
+    <div class="flex flex-wrap items-start justify-between gap-gutter-md">
+      <div>
+        <p class="text-label-lg text-muted">{{ r.code }}</p>
+        <h1 class="text-headline-lg">
+          <a [routerLink]="placeLink()" class="hover:text-primary">{{ r.place.name }}</a>
+        </h1>
+      </div>
+      <app-status-badge [status]="r.status" />
+    </div>
+
+    <p class="rounded-md bg-sage-soft px-gutter-md py-gutter-sm text-body-md text-on-sage">
+      {{ 'account.statusText.' + r.status | translate }}
+      @if (r.declineReason) {
+        <br /><strong>{{ 'account.reason' | translate }}:</strong> {{ r.declineReason }}
+      }
+    </p>
+
+    @if (actionError(); as message) {
+      <p
+        class="rounded-md bg-terracotta-soft px-gutter-md py-gutter-sm text-body-md text-error"
+        role="alert"
+      >
+        {{ message | translate }}
+      </p>
+    }
+
+    <div class="grid grid-cols-1 gap-gutter-lg md:grid-cols-2">
+      <!-- Booking -->
+      <div class="flex flex-col gap-gutter-sm rounded-lg bg-surface-card p-gutter-lg shadow-card">
+        <h2 class="text-title-md">{{ 'account.details' | translate }}</h2>
+        <dl class="grid grid-cols-[auto_1fr] gap-x-gutter-md gap-y-gutter-xs text-body-md">
+          @if (r.type === 'HOTEL') {
+            <dt class="text-muted">{{ 'account.checkIn' | translate }}</dt>
+            <dd>{{ r.dateFrom | date: 'EEE, d MMM y' : undefined : lang() }}</dd>
+            <dt class="text-muted">{{ 'account.checkOut' | translate }}</dt>
+            <dd>{{ r.dateTo | date: 'EEE, d MMM y' : undefined : lang() }}</dd>
+            <dt class="text-muted">{{ 'account.nights' | translate }}</dt>
+            <dd>{{ r.nights }}</dd>
+          } @else {
+            <dt class="text-muted">{{ 'account.date' | translate }}</dt>
+            <dd>{{ r.dateFrom | date: 'EEE, d MMM y' : undefined : lang() }}, {{ r.time }}</dd>
+          }
+          <dt class="text-muted">{{ 'account.guestsLabel' | translate }}</dt>
+          <dd>
+            {{ r.guests }}
+            @if (r.children > 0) {
+              + {{ r.children }} {{ 'account.children' | translate }}
+            }
+          </dd>
+        </dl>
+
+        @if (r.items.length > 0) {
+          <table class="mt-gutter-sm w-full text-body-md">
+            <tbody>
+              @for (item of r.items; track item.id) {
+                <tr class="border-t border-outline-variant">
+                  <td class="py-2">
+                    {{ item.quantity }} × {{ item.name }}
+                    @if (item.note) {
+                      <span class="block text-body-sm text-muted">{{ item.note }}</span>
+                    }
+                  </td>
+                  <td class="py-2 text-right tabular-nums">
+                    {{ item.lineTotal | azn }}
+                    @if (item.kind === 'ROOM') {
+                      <span class="text-body-sm text-muted">/ {{ 'card.night' | translate }}</span>
+                    }
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        }
+        @if (r.totalEstimate !== null) {
+          <p class="flex justify-between border-t border-outline-variant pt-2 text-title-md">
+            <span>{{ 'account.total' | translate }}</span>
+            <span class="text-primary tabular-nums">≈ {{ r.totalEstimate | azn }}</span>
+          </p>
+          <p class="text-body-sm text-muted">{{ 'account.payAtPlace' | translate }}</p>
+        }
+      </div>
+
+      <!-- Place contact -->
+      <div class="flex flex-col gap-gutter-sm rounded-lg bg-surface-card p-gutter-lg shadow-card">
+        <h2 class="text-title-md">{{ 'account.contactPlace' | translate }}</h2>
+        @if (r.place.address) {
+          <p class="flex gap-2 text-body-md">
+            <span class="material-symbols-outlined text-[20px] text-primary" aria-hidden="true"
+              >location_on</span
+            >
+            {{ r.place.address }}
+          </p>
+        }
+        @if (r.place.phone) {
+          <a [href]="'tel:' + r.place.phone" class="flex gap-2 text-body-md hover:text-primary">
+            <span class="material-symbols-outlined text-[20px] text-primary" aria-hidden="true"
+              >call</span
+            >
+            {{ r.place.phone }}
+          </a>
+        }
+        @if (r.place.whatsapp) {
+          <a
+            [href]="'https://wa.me/' + r.place.whatsapp.replace('+', '')"
+            target="_blank"
+            rel="noopener"
+            class="flex gap-2 text-body-md hover:text-primary"
+          >
+            <span class="material-symbols-outlined text-[20px] text-primary" aria-hidden="true"
+              >chat</span
+            >
+            WhatsApp
+          </a>
+        }
+        <a
+          [href]="
+            'https://www.openstreetmap.org/?mlat=' +
+            r.place.lat +
+            '&mlon=' +
+            r.place.lng +
+            '#map=17/' +
+            r.place.lat +
+            '/' +
+            r.place.lng
+          "
+          target="_blank"
+          rel="noopener"
+          class="flex gap-2 text-body-md hover:text-primary"
+        >
+          <span class="material-symbols-outlined text-[20px] text-primary" aria-hidden="true"
+            >map</span
+          >
+          {{ 'account.openMap' | translate }}
+        </a>
+      </div>
+    </div>
+
+    <!-- Review -->
+    @if (r.canReview) {
+      <!-- After sending, the form itself shows "Thank you"; next time the page opens canReview is false -->
+      <app-review-form [requestCode]="r.code" />
+    }
+
+    <!-- Messages -->
+    <div class="flex flex-col gap-gutter-md rounded-lg bg-surface-card p-gutter-lg shadow-card">
+      <h2 class="text-title-md">{{ 'account.messages' | translate }}</h2>
+      @if (r.messages.length === 0) {
+        <p class="text-body-md text-muted">{{ 'account.noMessages' | translate }}</p>
+      }
+      <ul class="flex flex-col gap-gutter-sm">
+        @for (message of r.messages; track message.id) {
+          <li
+            class="max-w-[80%] rounded-lg px-gutter-md py-gutter-sm"
+            [class]="message.fromMe ? 'self-end bg-primary-container' : 'self-start bg-surface'"
+          >
+            <p class="text-body-md whitespace-pre-line">{{ message.text }}</p>
+            <p class="text-body-sm text-muted">
+              {{ message.senderName }} ·
+              {{ message.createdAt | date: 'd MMM, HH:mm' : undefined : lang() }}
+            </p>
+          </li>
+        }
+      </ul>
+      @if (canWrite()) {
+        <form [formGroup]="messageForm" (ngSubmit)="sendMessage()" class="flex gap-gutter-sm">
+          <label class="sr-only" for="message-text">{{
+            'account.messagePlaceholder' | translate
+          }}</label>
+          <input
+            id="message-text"
+            formControlName="text"
+            [placeholder]="'account.messagePlaceholder' | translate"
+            class="input"
+          />
+          <button type="submit" [disabled]="sending()" class="btn-primary shrink-0">
+            {{ 'account.send' | translate }}
+          </button>
+        </form>
+      }
+    </div>
+
+    <!-- Cancel -->
+    @if (r.canCancel) {
+      <div class="flex flex-wrap items-center gap-gutter-md">
+        @if (confirmCancel()) {
+          <p class="text-body-md">{{ 'account.cancelQuestion' | translate }}</p>
+          <button
+            type="button"
+            (click)="cancel()"
+            [disabled]="cancelling()"
+            class="rounded-md bg-error px-4 py-2.5 text-label-lg text-on-error"
+          >
+            {{ 'account.cancelYes' | translate }}
+          </button>
+          <button type="button" (click)="confirmCancel.set(false)" class="btn-secondary">
+            {{ 'account.cancelNo' | translate }}
+          </button>
+        } @else {
+          <button type="button" (click)="confirmCancel.set(true)" class="btn-secondary text-error">
+            {{ 'account.cancel' | translate }}
+          </button>
+        }
+      </div>
+    }
+  } @else if (notFound()) {
+    <div class="rounded-lg bg-surface-card p-gutter-xl text-center shadow-card">
+      <p class="text-body-lg">{{ 'account.requestNotFound' | translate }}</p>
+    </div>
+  } @else {
+    <div class="h-64 animate-pulse rounded-lg bg-sand/60"></div>
+  }
+</section>

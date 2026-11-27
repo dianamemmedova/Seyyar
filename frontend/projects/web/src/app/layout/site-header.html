@@ -104,7 +104,7 @@
         </div>
       } @else {
         <a
-          [routerLink]="['/', lang(), 'login']"
+          [routerLink]="['/', lang(), 'auth', 'login']"
           class="hidden px-2 py-1.5 text-label-md text-on-surface-variant transition-colors hover:text-primary md:inline-flex"
           >{{ 'nav.login' | translate }}</a
         >
@@ -151,7 +151,7 @@
       <div class="mt-2 flex gap-2 border-t border-outline-variant pt-3">
         @if (!auth.user()) {
           <a
-            [routerLink]="['/', lang(), 'login']"
+            [routerLink]="['/', lang(), 'auth', 'login']"
             class="flex-1 rounded-md bg-primary px-4 py-2.5 text-center text-label-lg text-on-primary"
             >{{ 'nav.login' | translate }}</a
           >

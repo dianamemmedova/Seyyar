@@ -1,0 +1,119 @@
+<section
+  class="mx-auto flex w-full max-w-[900px] flex-col gap-gutter-lg px-page-margin py-gutter-xl"
+>
+  <app-account-nav />
+  <h1 class="text-headline-lg">{{ 'account.requestsTitle' | translate }}</h1>
+
+  <div class="flex gap-1 border-b border-outline-variant" role="tablist">
+    @for (tab of tabs; track tab) {
+      <a
+        role="tab"
+        [routerLink]="[]"
+        [queryParams]="{ status: tab, page: null }"
+        [attr.aria-selected]="status() === tab"
+        class="-mb-px border-b-2 px-4 py-2.5 text-label-lg transition-colors"
+        [class]="
+          status() === tab
+            ? 'border-primary text-primary'
+            : 'border-transparent text-on-surface-variant hover:text-on-surface'
+        "
+        >{{ 'account.tabs.' + tab | translate }}</a
+      >
+    }
+  </div>
+
+  @if (requests.error()) {
+    <div class="flex items-center justify-between gap-4 rounded-lg bg-terracotta-soft p-6">
+      <p class="text-body-md">{{ 'common.loadError' | translate }}</p>
+      <button type="button" (click)="requests.reload()" class="btn-secondary">
+        {{ 'common.retry' | translate }}
+      </button>
+    </div>
+  } @else if (requests.isLoading() && items().length === 0) {
+    @for (i of [1, 2, 3]; track i) {
+      <div class="h-28 animate-pulse rounded-lg bg-sand/60"></div>
+    }
+  } @else if (items().length === 0) {
+    <div
+      class="flex flex-col items-center gap-gutter-md rounded-lg bg-surface-card p-gutter-xl text-center shadow-card"
+    >
+      <span class="material-symbols-outlined text-headline-lg text-sage" aria-hidden="true"
+        >event_note</span
+      >
+      <p class="text-body-lg text-on-surface-variant">{{ 'account.noRequests' | translate }}</p>
+      <a [routerLink]="['/', lang(), 'hotels']" class="btn-primary">{{
+        'account.findPlace' | translate
+      }}</a>
+    </div>
+  } @else {
+    <ul class="flex flex-col gap-gutter-md">
+      @for (request of items(); track request.code) {
+        <li>
+          <a
+            [routerLink]="['/', lang(), 'account', 'requests', request.code]"
+            class="flex gap-gutter-md rounded-lg border border-outline-variant/60 bg-surface-card p-gutter-md shadow-card transition-all hover:-translate-y-0.5"
+          >
+            <div class="h-20 w-24 shrink-0 overflow-hidden rounded-md bg-sand">
+              @if (request.place.coverPhoto; as photo) {
+                <img
+                  [src]="photo"
+                  [alt]="request.place.name"
+                  class="h-full w-full object-cover"
+                  loading="lazy"
+                />
+              }
+            </div>
+            <div class="flex min-w-0 flex-1 flex-col gap-1">
+              <div class="flex flex-wrap items-center justify-between gap-2">
+                <h2 class="truncate text-title-md">{{ request.place.name }}</h2>
+                <app-status-badge [status]="request.status" />
+              </div>
+              <p class="text-body-sm text-muted">
+                {{ request.code }} ·
+                @if (request.type === 'HOTEL') {
+                  {{ request.dateFrom | date: 'd MMM' : undefined : lang() }} –
+                  {{ request.dateTo | date: 'd MMM y' : undefined : lang() }}
+                } @else {
+                  {{ request.dateFrom | date: 'd MMM y' : undefined : lang() }}, {{ request.time }}
+                }
+                · {{ 'account.guests' | translate: { count: request.guests + request.children } }}
+              </p>
+              @if (request.totalEstimate !== null) {
+                <p class="text-label-lg text-primary">≈ {{ request.totalEstimate | azn }}</p>
+              }
+            </div>
+          </a>
+        </li>
+      }
+    </ul>
+
+    @if (meta(); as m) {
+      @if (m.totalPages > 1) {
+        <nav
+          class="flex items-center justify-center gap-gutter-md"
+          [attr.aria-label]="'common.pages' | translate"
+        >
+          <a
+            [routerLink]="[]"
+            [queryParams]="{ page: m.page - 1 }"
+            queryParamsHandling="merge"
+            class="btn-secondary"
+            [class.pointer-events-none]="m.page <= 1"
+            [class.opacity-40]="m.page <= 1"
+            >{{ 'common.previous' | translate }}</a
+          >
+          <span class="text-body-md text-muted">{{ m.page }} / {{ m.totalPages }}</span>
+          <a
+            [routerLink]="[]"
+            [queryParams]="{ page: m.page + 1 }"
+            queryParamsHandling="merge"
+            class="btn-secondary"
+            [class.pointer-events-none]="m.page >= m.totalPages"
+            [class.opacity-40]="m.page >= m.totalPages"
+            >{{ 'common.next' | translate }}</a
+          >
+        </nav>
+      }
+    }
+  }
+</section>

@@ -5,7 +5,11 @@
     "backHome": "Ana səhifəyə qayıt",
     "error": "Xəta baş verdi. Yenidən cəhd edin.",
     "loadError": "Səhifənin bu hissəsini yükləmək alınmadı.",
-    "retry": "Yenidən cəhd et"
+    "retry": "Yenidən cəhd et",
+    "wait": "Gözləyin…",
+    "pages": "Səhifələr",
+    "previous": "Əvvəlki",
+    "next": "Növbəti"
   },
   "languages": {
     "en": "English",
@@ -24,7 +28,8 @@
     "logout": "Çıxış",
     "favorites": "Seçilmişlər",
     "myRequests": "Sorğularım",
-    "becomePartner": "Tərəfdaş ol"
+    "becomePartner": "Tərəfdaş ol",
+    "account": "Hesabım"
   },
   "footer": {
     "about": "Bakı və Azərbaycan üzrə sakit, müstəqil səyahət planı: qalmaq, yemək, görməli yerlər və etibarlı səfərlər.",
@@ -43,7 +48,8 @@
     "ticket": "bilet",
     "free": "Giriş pulsuzdur",
     "openNow": "İndi açıqdır",
-    "closed": "İndi bağlıdır"
+    "closed": "İndi bağlıdır",
+    "save": "Seçilmişlərə əlavə et"
   },
   "home": {
     "meta": {
@@ -129,5 +135,117 @@
   "notFound": {
     "title": "Səhifə tapılmadı",
     "text": "Axtardığınız səhifə yoxdur və ya başqa yerə köçürülüb."
+  },
+  "errors": {
+    "INVALID_CREDENTIALS": "E-poçt və ya şifrə yanlışdır.",
+    "EMAIL_TAKEN": "Bu e-poçt artıq qeydiyyatdadır. Daxil olmağa cəhd edin.",
+    "ACCOUNT_BLOCKED": "Bu hesab bloklanıb. Bizimlə əlaqə saxlayın.",
+    "INVALID_RESET_TOKEN": "Bu link etibarsızdır və ya vaxtı keçib. Yenisini istəyin.",
+    "TOO_MANY_REQUESTS": "Çox sayda cəhd. Bir az sonra yenidən yoxlayın.",
+    "NETWORK_ERROR": "Serverlə əlaqə yoxdur. İnterneti yoxlayın.",
+    "REQUEST_CLOSED": "Sorğu bağlanıb, mesaj göndərmək olmur.",
+    "INVALID_STATUS_TRANSITION": "Bu sorğunu artıq ləğv etmək olmaz.",
+    "REVIEW_EXISTS": "Bu ziyarət üçün artıq rəy yazmısınız.",
+    "REVIEW_NOT_ALLOWED": "Rəyi ziyarətdən sonra yazmaq olar."
+  },
+  "auth": {
+    "loginTitle": "Xoş gördük",
+    "registerTitle": "Hesab yaradın",
+    "loginTab": "Daxil ol",
+    "registerTab": "Qeydiyyat",
+    "fullName": "Ad və soyad",
+    "fullNameError": "Adınızı yazın (ən azı 2 simvol).",
+    "email": "E-poçt",
+    "emailError": "Düzgün e-poçt ünvanı yazın.",
+    "phone": "Telefon",
+    "optional": "istəyə bağlı",
+    "phoneError": "Düzgün telefon nömrəsi yazın.",
+    "password": "Şifrə",
+    "passwordRules": "Ən azı 8 simvol, hərf və rəqəm.",
+    "passwordRequired": "Şifrəni yazın.",
+    "loginButton": "Daxil ol",
+    "registerButton": "Hesab yarat",
+    "forgotLink": "Şifrəni unutmusunuz?",
+    "forgotTitle": "Şifrəni unutmusunuz?",
+    "forgotText": "E-poçtunuzu yazın, yeni şifrə üçün link göndərək.",
+    "forgotButton": "Link göndər",
+    "forgotSent": "Bu e-poçt qeydiyyatdadırsa, link göndərdik. Poçtunuzu (və spam qovluğunu) yoxlayın.",
+    "backToLogin": "Girişə qayıt",
+    "resetTitle": "Yeni şifrə",
+    "newPassword": "Yeni şifrə",
+    "repeatPassword": "Yeni şifrəni təkrarlayın",
+    "passwordsDiffer": "Şifrələr eyni deyil.",
+    "resetButton": "Şifrəni yadda saxla",
+    "resetDone": "Şifrəniz dəyişdi. İndi daxil ola bilərsiniz."
+  },
+  "status": {
+    "NEW": "Cavab gözləyir",
+    "CONFIRMED": "Təsdiqlənib",
+    "DECLINED": "Rədd edilib",
+    "EXPIRED": "Cavabsız qalıb",
+    "CANCELLED": "Ləğv edilib",
+    "ARRIVED": "Ziyarət edilib",
+    "NO_SHOW": "Gəlməyib"
+  },
+  "account": {
+    "requestsTitle": "Sorğularım",
+    "favoritesTitle": "Seçilmişlər",
+    "tabs": {
+      "active": "Aktiv",
+      "past": "Keçmiş",
+      "cancelled": "Ləğv olunmuş"
+    },
+    "noRequests": "Burada hələ sorğu yoxdur.",
+    "findPlace": "Yer tap",
+    "guests": "{{count}} qonaq",
+    "backToRequests": "Bütün sorğular",
+    "reason": "Səbəb",
+    "details": "Təfərrüatlar",
+    "checkIn": "Giriş",
+    "checkOut": "Çıxış",
+    "nights": "Gecə",
+    "date": "Tarix",
+    "guestsLabel": "Qonaqlar",
+    "children": "uşaq",
+    "total": "Təxmini məbləğ",
+    "payAtPlace": "Ödəniş yerində edilir. Qabaqcadan ödəniş yoxdur.",
+    "contactPlace": "Obyektlə əlaqə",
+    "openMap": "Xəritədə aç",
+    "messages": "Mesajlar",
+    "noMessages": "Hələ mesaj yoxdur. Burada obyektə istənilən sualı verə bilərsiniz.",
+    "messagePlaceholder": "Mesaj yazın…",
+    "send": "Göndər",
+    "cancel": "Sorğunu ləğv et",
+    "cancelQuestion": "Bu sorğu ləğv edilsin?",
+    "cancelYes": "Bəli, ləğv et",
+    "cancelNo": "Xeyr, saxla",
+    "requestNotFound": "Sorğu tapılmadı.",
+    "noFavorites": "Hələ heç nə yadda saxlamamısınız. Kartdakı ürəyə toxunun.",
+    "explore": "Bakını kəşf et",
+    "statusText": {
+      "NEW": "Sorğunuz göndərildi. Obyekt tezliklə cavab verəcək — adətən 1–2 saat ərzində.",
+      "CONFIRMED": "Obyekt sorğunu təsdiqlədi. Gələndə sorğu kodunu göstərin.",
+      "DECLINED": "Təəssüf ki, obyekt bu sorğunu qəbul edə bilmədi.",
+      "EXPIRED": "Obyekt vaxtında cavab vermədi, sorğu bağlandı.",
+      "CANCELLED": "Bu sorğunu ləğv etmisiniz.",
+      "ARRIVED": "Ziyarətiniz üçün təşəkkürlər! Necə keçdiyini digər səyyahlara danışın.",
+      "NO_SHOW": "Obyekt gəlmədiyinizi qeyd edib."
+    }
+  },
+  "review": {
+    "title": "Ziyarətiniz necə keçdi?",
+    "rating": "Qiymətiniz",
+    "ratingRequired": "1-dən 5-ə qədər ulduz seçin.",
+    "travelType": "Necə səyahət etdiniz",
+    "types": {
+      "family": "Ailə ilə",
+      "couple": "Cütlük",
+      "solo": "Tək",
+      "friends": "Dostlarla"
+    },
+    "text": "Rəyiniz (istəyə bağlı)",
+    "textError": "Ən azı 10 simvol yazın və ya boş saxlayın.",
+    "send": "Rəyi göndər",
+    "thanks": "Təşəkkürlər! Rəyiniz dərc olundu."
   }
 }
