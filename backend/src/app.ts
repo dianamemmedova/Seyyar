@@ -13,6 +13,8 @@ import placesRoutes from './routes/places.routes';
 import requestsRoutes from './routes/requests.routes';
 import favoritesRoutes from './routes/favorites.routes';
 import reviewsRoutes from './routes/reviews.routes';
+import transportRoutes from './routes/transport.routes';
+import itinerariesRoutes from './routes/itineraries.routes';
 
 const app = express();
 
@@ -42,6 +44,8 @@ app.use('/api/places', placesRoutes);
 app.use('/api/requests', requestsRoutes);
 app.use('/api/favorites', favoritesRoutes);
 app.use('/api/reviews', reviewsRoutes);
+app.use('/api/routes', transportRoutes);
+app.use('/api/itineraries', itinerariesRoutes);
 
 // 4. These two always stay at the very end, after all routes
 app.use(notFound);
