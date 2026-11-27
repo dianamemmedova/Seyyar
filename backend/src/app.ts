@@ -8,6 +8,8 @@ import { timing } from './middleware/timing';
 import { errorHandler, notFound } from './middleware/error-handler';
 import { prisma } from './lib/prisma';
 import authRoutes from './routes/auth.routes';
+import homeRoutes from './routes/home.routes';
+import placesRoutes from './routes/places.routes';
 
 const app = express();
 
@@ -32,6 +34,8 @@ app.get('/api/health', async (_req, res) => {
 });
 
 app.use('/api/auth', authRoutes);
+app.use('/api/home', homeRoutes);
+app.use('/api/places', placesRoutes);
 
 // 4. These two always stay at the very end, after all routes
 app.use(notFound);
