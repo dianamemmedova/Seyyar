@@ -1,6 +1,9 @@
 import 'dotenv/config';
 import * as z from 'zod';
 
+// In .env an empty value (SMTP_HOST=) means "not set"
+const emptyToUndefined = (value: unknown) => (value === '' ? undefined : value);
+
 export const envSchema = z.object({
   NODE_ENV: z.enum(['development', 'test', 'production']).default('development'),
   PORT: z.coerce
@@ -29,6 +32,21 @@ export const envSchema = z.object({
     }),
   JWT_ACCESS_TTL_SECONDS: z.coerce.number().int().min(60).default(900),
   REFRESH_TOKEN_TTL_DAYS: z.coerce.number().int().min(1).default(30),
+
+  // Address of the tourist website (used in links inside emails)
+  APP_WEB_URL: z.url({ error: 'APP_WEB_URL düzgün URL deyil' }).default('http://localhost:4200'),
+
+  // Email (SMTP). Without SMTP_HOST, emails are printed to the terminal (development)
+  SMTP_HOST: z.preprocess(emptyToUndefined, z.string().optional()),
+  SMTP_PORT: z.preprocess(emptyToUndefined, z.coerce.number().int().default(587)),
+  SMTP_USER: z.preprocess(emptyToUndefined, z.string().optional()),
+  SMTP_PASS: z.preprocess(emptyToUndefined, z.string().optional()),
+  MAIL_FROM: z.string().default('Seyyar <no-reply@seyyar.local>'),
+  // Receives request emails for places that have no email of their own
+  ADMIN_NOTIFY_EMAIL: z.preprocess(
+    emptyToUndefined,
+    z.email({ error: 'ADMIN_NOTIFY_EMAIL düzgün e-poçt deyil' }).optional(),
+  ),
 });
 
 export type Config = z.infer<typeof envSchema>;

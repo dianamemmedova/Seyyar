@@ -1,7 +1,8 @@
 import { createHash, randomBytes } from 'node:crypto';
 
-// Long random string (64 characters), impossible to guess
-export function generateRefreshToken(): string {
+// Long random string (64 characters), impossible to guess.
+// Used for refresh tokens and password reset links.
+export function generateSecureToken(): string {
   return randomBytes(48).toString('base64url');
 }
 

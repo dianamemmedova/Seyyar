@@ -3,12 +3,21 @@ import type { Role } from '../generated/prisma/client';
 import { config } from '../config';
 import { prisma } from '../lib/prisma';
 import { signAccessToken } from '../lib/jwt';
-import { generateRefreshToken, hashToken } from '../lib/tokens';
+import { generateSecureToken, hashToken } from '../lib/tokens';
+import { sendMailInBackground } from '../lib/mailer';
+import { passwordResetForUser } from '../emails/templates';
 import { isPrismaError, PrismaErrorCode } from '../lib/prisma-errors';
-import { ConflictError, ForbiddenError, NotFoundError, UnauthorizedError } from '../lib/errors';
+import {
+  BadRequestError,
+  ConflictError,
+  ForbiddenError,
+  NotFoundError,
+  UnauthorizedError,
+} from '../lib/errors';
 import type { LoginInput, RegisterInput } from '../schemas/auth.schema';
 
 const SALT_ROUNDS = 10;
+const RESET_TOKEN_TTL_MS = 60 * 60 * 1000; // 1 hour
 
 // Used when the email does not exist, so a wrong email takes as long as a wrong password
 const DUMMY_HASH = bcrypt.hashSync('dummy-password-for-timing', SALT_ROUNDS);
@@ -45,7 +54,7 @@ export type Session = {
 
 async function createSession(user: PublicUser): Promise<Session> {
   const accessToken = signAccessToken({ userId: user.id, role: user.role });
-  const refreshToken = generateRefreshToken();
+  const refreshToken = generateSecureToken();
   const refreshExpiresAt = new Date(Date.now() + config.REFRESH_TOKEN_TTL_DAYS * 24 * 60 * 60 * 1000);
 
   await prisma.refreshToken.create({
@@ -155,4 +164,53 @@ export async function getCurrentUser(userId: number): Promise<PublicUser> {
   }
 
   return user;
+}
+
+// ─────────────────────────────────────────────
+// Forgot / reset password
+// ─────────────────────────────────────────────
+
+export async function requestPasswordReset(email: string): Promise<void> {
+  const user = await prisma.user.findUnique({
+    where: { email },
+    select: { id: true, email: true, fullName: true, isBlocked: true },
+  });
+
+  // Same answer whether the email exists or not, so nobody can check who is registered
+  if (!user || user.isBlocked) return;
+
+  const token = generateSecureToken();
+
+  await prisma.passwordResetToken.create({
+    data: {
+      userId: user.id,
+      tokenHash: hashToken(token),
+      expiresAt: new Date(Date.now() + RESET_TOKEN_TTL_MS),
+    },
+  });
+
+  sendMailInBackground(passwordResetForUser(user.email, user.fullName, token));
+}
+
+export async function resetPassword(token: string, password: string): Promise<void> {
+  const stored = await prisma.passwordResetToken.findUnique({
+    where: { tokenHash: hashToken(token) },
+  });
+
+  if (!stored || stored.usedAt || stored.expiresAt < new Date()) {
+    throw new BadRequestError('This reset link is invalid or has expired', 'INVALID_RESET_TOKEN');
+  }
+
+  const passwordHash = await bcrypt.hash(password, SALT_ROUNDS);
+  const now = new Date();
+
+  // All three together: new password, link used up, logged out everywhere
+  await prisma.$transaction([
+    prisma.user.update({ where: { id: stored.userId }, data: { passwordHash } }),
+    prisma.passwordResetToken.update({ where: { id: stored.id }, data: { usedAt: now } }),
+    prisma.refreshToken.updateMany({
+      where: { userId: stored.userId, revokedAt: null },
+      data: { revokedAt: now },
+    }),
+  ]);
 }

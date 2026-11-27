@@ -23,3 +23,25 @@ export const registerLimiter = rateLimit({
     next(new TooManyRequestsError('Too many registrations from this IP. Try again in 1 hour'));
   },
 });
+
+// 20 new booking / table requests per IP per hour (stops spam to partners)
+export const createRequestLimiter = rateLimit({
+  windowMs: 60 * 60 * 1000,
+  limit: 20,
+  standardHeaders: 'draft-8',
+  legacyHeaders: false,
+  handler: (_req, _res, next) => {
+    next(new TooManyRequestsError('Too many requests sent. Try again in 1 hour'));
+  },
+});
+
+// 5 password reset emails per IP per hour
+export const passwordResetLimiter = rateLimit({
+  windowMs: 60 * 60 * 1000,
+  limit: 5,
+  standardHeaders: 'draft-8',
+  legacyHeaders: false,
+  handler: (_req, _res, next) => {
+    next(new TooManyRequestsError('Too many password reset attempts. Try again in 1 hour'));
+  },
+});

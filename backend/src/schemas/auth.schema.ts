@@ -36,5 +36,12 @@ export const loginSchema = z.object({
   password: z.string({ error: 'Password must be a string' }).min(1, { error: 'Password is required' }),
 });
 
+export const forgotPasswordSchema = z.object({ email });
+
+export const resetPasswordSchema = z.object({
+  token: z.string().trim().min(20).max(200),
+  password,
+});
+
 export type RegisterInput = z.infer<typeof registerSchema>;
 export type LoginInput = z.infer<typeof loginSchema>;
