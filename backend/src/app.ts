@@ -6,6 +6,7 @@ import { config } from './config';
 import { requestId } from './middleware/request-id';
 import { timing } from './middleware/timing';
 import { errorHandler, notFound } from './middleware/error-handler';
+import { prisma } from './lib/prisma';
 
 const app = express();
 
@@ -20,8 +21,13 @@ app.use(express.json({ limit: '1mb' }));
 app.use(cookieParser());
 
 // 3. Routes
-app.get('/api/health', (_req, res) => {
-  res.json({ status: 'ok', uptime: Math.round(process.uptime()) });
+app.get('/api/health', async (_req, res) => {
+  try {
+    await prisma.$queryRaw`SELECT 1`;
+    res.json({ status: 'ok', db: 'ok', uptime: Math.round(process.uptime()) });
+  } catch {
+    res.status(503).json({ status: 'error', db: 'down' });
+  }
 });
 
 // 4. These two always stay at the very end, after all routes

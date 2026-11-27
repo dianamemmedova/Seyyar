@@ -12,6 +12,9 @@ build/
 .angular/
 coverage/
 
+# Prisma generated client (created by "prisma generate")
+backend/src/generated/
+
 # Backend uploads (local images)
 backend/uploads/*
 !backend/uploads/.gitkeep

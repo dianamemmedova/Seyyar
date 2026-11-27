@@ -1,0 +1,664 @@
+// Seyyar — data model
+// Translatable texts are stored as Json: { "en": "...", "ru": "...", "az": "..." }
+// Table and column names in the database are snake_case (@@map / @map)
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ─────────────────────────────────────────────
+// Enums
+// ─────────────────────────────────────────────
+
+enum Role {
+  TOURIST
+  PARTNER
+  DRIVER
+  ADMIN
+}
+
+enum PlaceType {
+  HOTEL
+  RESTAURANT
+  ATTRACTION
+}
+
+enum PlaceStatus {
+  DRAFT
+  PENDING
+  PUBLISHED
+  FROZEN
+}
+
+enum PlaceSource {
+  PARTNER
+  BOOKING
+  MANUAL
+}
+
+enum PartnerPlan {
+  BASIC
+  PREMIUM
+}
+
+enum PartnerStatus {
+  ACTIVE
+  SUSPENDED
+}
+
+enum BusinessType {
+  HOTEL
+  RESTAURANT
+  GUEST_HOUSE
+  ATTRACTION
+}
+
+enum ApplicationStatus {
+  NEW
+  APPROVED
+  REJECTED
+}
+
+enum RequestType {
+  HOTEL
+  TABLE
+}
+
+enum RequestStatus {
+  NEW
+  CONFIRMED
+  DECLINED
+  EXPIRED
+  CANCELLED
+  ARRIVED
+  NO_SHOW
+}
+
+enum ReviewStatus {
+  PUBLISHED
+  HIDDEN
+}
+
+enum TransportMode {
+  WALK
+  METRO
+  BUS
+  AIRPORT_EXPRESS
+  TAXI
+  TRAIN
+}
+
+enum PriceUnit {
+  PER_PERSON
+  PER_VEHICLE
+}
+
+// ─────────────────────────────────────────────
+// Users and auth
+// ─────────────────────────────────────────────
+
+model User {
+  id              Int       @id @default(autoincrement())
+  email           String    @unique
+  phone           String?
+  passwordHash    String    @map("password_hash")
+  fullName        String    @map("full_name")
+  role            Role      @default(TOURIST)
+  language        String    @default("en")
+  currency        String    @default("AZN")
+  isBlocked       Boolean   @default(false) @map("is_blocked")
+  emailVerifiedAt DateTime? @map("email_verified_at")
+  createdAt       DateTime  @default(now()) @map("created_at")
+  updatedAt       DateTime  @updatedAt @map("updated_at")
+
+  refreshTokens       RefreshToken[]
+  passwordResetTokens PasswordResetToken[]
+  partner             Partner?
+  requests            BookingRequest[]
+  messages            RequestMessage[]
+  reviews             Review[]
+  favorites           Favorite[]
+
+  @@map("users")
+}
+
+model RefreshToken {
+  id        Int       @id @default(autoincrement())
+  userId    Int       @map("user_id")
+  tokenHash String    @unique @map("token_hash")
+  expiresAt DateTime  @map("expires_at")
+  revokedAt DateTime? @map("revoked_at")
+  createdAt DateTime  @default(now()) @map("created_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@map("refresh_tokens")
+}
+
+model PasswordResetToken {
+  id        Int       @id @default(autoincrement())
+  userId    Int       @map("user_id")
+  tokenHash String    @unique @map("token_hash")
+  expiresAt DateTime  @map("expires_at")
+  usedAt    DateTime? @map("used_at")
+  createdAt DateTime  @default(now()) @map("created_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@map("password_reset_tokens")
+}
+
+// ─────────────────────────────────────────────
+// Geography
+// ─────────────────────────────────────────────
+
+model Region {
+  id       Int     @id @default(autoincrement())
+  slug     String  @unique
+  name     Json
+  isActive Boolean @default(false) @map("is_active")
+
+  areas  Area[]
+  routes TransportRoute[]
+
+  @@map("regions")
+}
+
+model Area {
+  id       Int    @id @default(autoincrement())
+  regionId Int    @map("region_id")
+  slug     String
+  name     Json
+  lat      Float?
+  lng      Float?
+
+  region Region  @relation(fields: [regionId], references: [id])
+  places Place[]
+
+  @@unique([regionId, slug])
+  @@map("areas")
+}
+
+// ─────────────────────────────────────────────
+// Partners
+// ─────────────────────────────────────────────
+
+model Partner {
+  id           Int           @id @default(autoincrement())
+  businessName String        @map("business_name")
+  voen         String        @unique
+  ownerUserId  Int           @unique @map("owner_user_id")
+  plan         PartnerPlan   @default(BASIC)
+  status       PartnerStatus @default(ACTIVE)
+  contactEmail String        @map("contact_email")
+  contactPhone String        @map("contact_phone")
+  createdAt    DateTime      @default(now()) @map("created_at")
+
+  owner  User    @relation(fields: [ownerUserId], references: [id])
+  places Place[]
+
+  @@map("partners")
+}
+
+model PartnerApplication {
+  id           Int               @id @default(autoincrement())
+  businessType BusinessType      @map("business_type")
+  businessName String            @map("business_name")
+  voen         String
+  address      String
+  contactName  String            @map("contact_name")
+  phone        String
+  email        String
+  status       ApplicationStatus @default(NEW)
+  adminNote    String?           @map("admin_note")
+  createdAt    DateTime          @default(now()) @map("created_at")
+  reviewedAt   DateTime?         @map("reviewed_at")
+
+  @@index([status])
+  @@map("partner_applications")
+}
+
+// ─────────────────────────────────────────────
+// Places: hotels, restaurants, attractions
+// ─────────────────────────────────────────────
+
+model Place {
+  id                 Int         @id @default(autoincrement())
+  slug               String      @unique
+  type               PlaceType
+  status             PlaceStatus @default(DRAFT)
+  source             PlaceSource @default(MANUAL)
+  name               Json
+  description        Json?
+  address            String?
+  areaId             Int?        @map("area_id")
+  lat                Float
+  lng                Float
+  phone              String?
+  whatsapp           String?
+  email              String?
+  website            String?
+  // Hotel: price per night from; restaurant: average bill per person
+  priceFrom          Decimal?    @map("price_from") @db.Decimal(10, 2)
+  // Restaurant: 1 = ₼, 2 = ₼₼, 3 = ₼₼₼
+  priceLevel         Int?        @map("price_level")
+  // Hotel stars 1-5
+  stars              Int?
+  // Restaurant cuisines (azerbaijani, turkish, ...) or attraction categories (historic, museum, ...)
+  categories         String[]
+  // Attraction: recommended visit length in minutes
+  recommendedMinutes Int?        @map("recommended_minutes")
+  checkInTime        String?     @map("check_in_time")
+  checkOutTime       String?     @map("check_out_time")
+  bookingUrl         String?     @map("booking_url")
+  officialTicketUrl  String?     @map("official_ticket_url")
+  ratingAvg          Float       @default(0) @map("rating_avg")
+  ratingCount        Int         @default(0) @map("rating_count")
+  isFeatured         Boolean     @default(false) @map("is_featured")
+  featuredOrder      Int?        @map("featured_order")
+  partnerId          Int?        @map("partner_id")
+  publishedAt        DateTime?   @map("published_at")
+  createdAt          DateTime    @default(now()) @map("created_at")
+  updatedAt          DateTime    @updatedAt @map("updated_at")
+
+  area           Area?            @relation(fields: [areaId], references: [id])
+  partner        Partner?         @relation(fields: [partnerId], references: [id])
+  photos         PlacePhoto[]
+  amenities      PlaceAmenity[]
+  openingHours   OpeningHours[]
+  rooms          Room[]
+  menuCategories MenuCategory[]
+  ticketPrices   TicketPrice[]
+  offers         Offer[]
+  requests       BookingRequest[]
+  reviews        Review[]
+  favorites      Favorite[]
+  itineraryStops ItineraryStop[]
+
+  @@index([type, status])
+  @@index([areaId])
+  @@index([partnerId])
+  @@map("places")
+}
+
+model PlacePhoto {
+  id        Int     @id @default(autoincrement())
+  placeId   Int     @map("place_id")
+  url       String
+  alt       String?
+  sortOrder Int     @default(0) @map("sort_order")
+  isCover   Boolean @default(false) @map("is_cover")
+
+  place Place @relation(fields: [placeId], references: [id], onDelete: Cascade)
+
+  @@index([placeId])
+  @@map("place_photos")
+}
+
+model Amenity {
+  id   Int    @id @default(autoincrement())
+  code String @unique
+  name Json
+  icon String
+
+  places PlaceAmenity[]
+
+  @@map("amenities")
+}
+
+model PlaceAmenity {
+  placeId   Int @map("place_id")
+  amenityId Int @map("amenity_id")
+
+  place   Place   @relation(fields: [placeId], references: [id], onDelete: Cascade)
+  amenity Amenity @relation(fields: [amenityId], references: [id], onDelete: Cascade)
+
+  @@id([placeId, amenityId])
+  @@map("place_amenities")
+}
+
+model OpeningHours {
+  id        Int     @id @default(autoincrement())
+  placeId   Int     @map("place_id")
+  // 0 = Monday ... 6 = Sunday
+  dayOfWeek Int     @map("day_of_week")
+  // "09:00", "23:30"
+  opensAt   String? @map("opens_at")
+  closesAt  String? @map("closes_at")
+  isClosed  Boolean @default(false) @map("is_closed")
+
+  place Place @relation(fields: [placeId], references: [id], onDelete: Cascade)
+
+  @@unique([placeId, dayOfWeek])
+  @@map("opening_hours")
+}
+
+// Hotels
+model Room {
+  id                Int      @id @default(autoincrement())
+  placeId           Int      @map("place_id")
+  name              Json
+  description       Json?
+  sizeM2            Int?     @map("size_m2")
+  bedType           String?  @map("bed_type")
+  maxGuests         Int      @map("max_guests")
+  pricePerNight     Decimal  @map("price_per_night") @db.Decimal(10, 2)
+  freeCancellation  Boolean  @default(false) @map("free_cancellation")
+  breakfastIncluded Boolean  @default(false) @map("breakfast_included")
+  photos            String[]
+  isAvailable       Boolean  @default(true) @map("is_available")
+  sortOrder         Int      @default(0) @map("sort_order")
+
+  place        Place         @relation(fields: [placeId], references: [id], onDelete: Cascade)
+  requestItems RequestItem[]
+
+  @@index([placeId])
+  @@map("rooms")
+}
+
+// Restaurants
+model MenuCategory {
+  id        Int  @id @default(autoincrement())
+  placeId   Int  @map("place_id")
+  name      Json
+  sortOrder Int  @default(0) @map("sort_order")
+
+  place Place      @relation(fields: [placeId], references: [id], onDelete: Cascade)
+  items MenuItem[]
+
+  @@index([placeId])
+  @@map("menu_categories")
+}
+
+model MenuItem {
+  id          Int      @id @default(autoincrement())
+  categoryId  Int      @map("category_id")
+  name        Json
+  description Json?
+  price       Decimal  @db.Decimal(10, 2)
+  weightGrams Int?     @map("weight_grams")
+  photo       String?
+  // vegetarian, spicy, halal ...
+  tags        String[]
+  // true = a set menu ("Family set for 4")
+  isSet       Boolean  @default(false) @map("is_set")
+  isAvailable Boolean  @default(true) @map("is_available")
+  sortOrder   Int      @default(0) @map("sort_order")
+
+  category     MenuCategory  @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  requestItems RequestItem[]
+
+  @@index([categoryId])
+  @@map("menu_items")
+}
+
+// Attractions
+model TicketPrice {
+  id        Int     @id @default(autoincrement())
+  placeId   Int     @map("place_id")
+  // "Adult", "Student", "Child"
+  label     Json
+  price     Decimal @db.Decimal(10, 2)
+  sortOrder Int     @default(0) @map("sort_order")
+
+  place Place @relation(fields: [placeId], references: [id], onDelete: Cascade)
+
+  @@index([placeId])
+  @@map("ticket_prices")
+}
+
+model Offer {
+  id              Int      @id @default(autoincrement())
+  placeId         Int      @map("place_id")
+  title           Json
+  description     Json?
+  discountPercent Int?     @map("discount_percent")
+  startsAt        DateTime @map("starts_at")
+  endsAt          DateTime @map("ends_at")
+  isActive        Boolean  @default(true) @map("is_active")
+
+  place Place @relation(fields: [placeId], references: [id], onDelete: Cascade)
+
+  @@index([placeId])
+  @@map("offers")
+}
+
+// ─────────────────────────────────────────────
+// Requests (hotel booking requests and restaurant table requests)
+// ─────────────────────────────────────────────
+
+model BookingRequest {
+  id              Int           @id @default(autoincrement())
+  // Public code shown to the tourist: TRZ-1042
+  code            String        @unique
+  type            RequestType
+  status          RequestStatus @default(NEW)
+  userId          Int           @map("user_id")
+  placeId         Int           @map("place_id")
+  dateFrom        DateTime      @map("date_from") @db.Date
+  // Hotel only: check-out date
+  dateTo          DateTime?     @map("date_to") @db.Date
+  // Restaurant only: "13:30"
+  time            String?
+  guests          Int
+  children        Int           @default(0)
+  contactName     String        @map("contact_name")
+  contactEmail    String        @map("contact_email")
+  contactPhone    String        @map("contact_phone")
+  contactWhatsapp Boolean       @default(false) @map("contact_whatsapp")
+  note            String?
+  specialRequests String[]      @map("special_requests")
+  totalEstimate   Decimal?      @map("total_estimate") @db.Decimal(10, 2)
+  declineReason   String?       @map("decline_reason")
+  respondedAt     DateTime?     @map("responded_at")
+  cancelledAt     DateTime?     @map("cancelled_at")
+  createdAt       DateTime      @default(now()) @map("created_at")
+  updatedAt       DateTime      @updatedAt @map("updated_at")
+
+  user     User             @relation(fields: [userId], references: [id])
+  place    Place            @relation(fields: [placeId], references: [id])
+  items    RequestItem[]
+  messages RequestMessage[]
+  review   Review?
+
+  @@index([userId])
+  @@index([placeId, status])
+  @@map("booking_requests")
+}
+
+model RequestItem {
+  id         Int     @id @default(autoincrement())
+  requestId  Int     @map("request_id")
+  roomId     Int?    @map("room_id")
+  menuItemId Int?    @map("menu_item_id")
+  quantity   Int
+  unitPrice  Decimal @map("unit_price") @db.Decimal(10, 2)
+  note       String?
+
+  request  BookingRequest @relation(fields: [requestId], references: [id], onDelete: Cascade)
+  room     Room?          @relation(fields: [roomId], references: [id])
+  menuItem MenuItem?      @relation(fields: [menuItemId], references: [id])
+
+  @@index([requestId])
+  @@map("request_items")
+}
+
+model RequestMessage {
+  id        Int      @id @default(autoincrement())
+  requestId Int      @map("request_id")
+  senderId  Int      @map("sender_id")
+  text      String
+  createdAt DateTime @default(now()) @map("created_at")
+
+  request BookingRequest @relation(fields: [requestId], references: [id], onDelete: Cascade)
+  sender  User           @relation(fields: [senderId], references: [id])
+
+  @@index([requestId])
+  @@map("request_messages")
+}
+
+// ─────────────────────────────────────────────
+// Reviews and favorites
+// ─────────────────────────────────────────────
+
+model Review {
+  id               Int          @id @default(autoincrement())
+  userId           Int          @map("user_id")
+  placeId          Int          @map("place_id")
+  // One review per request; only after ARRIVED
+  requestId        Int          @unique @map("request_id")
+  rating           Int
+  // { "cleanliness": 5, "location": 4, "staff": 5, "value": 4 }
+  categoryRatings  Json?        @map("category_ratings")
+  text             String?
+  photos           String[]
+  // family, couple, solo, friends
+  travelType       String?      @map("travel_type")
+  partnerReply     String?      @map("partner_reply")
+  partnerRepliedAt DateTime?    @map("partner_replied_at")
+  status           ReviewStatus @default(PUBLISHED)
+  createdAt        DateTime     @default(now()) @map("created_at")
+
+  user    User           @relation(fields: [userId], references: [id])
+  place   Place          @relation(fields: [placeId], references: [id])
+  request BookingRequest @relation(fields: [requestId], references: [id])
+
+  @@index([placeId, status])
+  @@map("reviews")
+}
+
+model Favorite {
+  userId    Int      @map("user_id")
+  placeId   Int      @map("place_id")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  user  User  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  place Place @relation(fields: [placeId], references: [id], onDelete: Cascade)
+
+  @@id([userId, placeId])
+  @@map("favorites")
+}
+
+// ─────────────────────────────────────────────
+// Transport and itineraries
+// ─────────────────────────────────────────────
+
+model TransportRoute {
+  id          Int           @id @default(autoincrement())
+  slug        String        @unique
+  regionId    Int?          @map("region_id")
+  // Matching keys for the planner: "airport", "city-center", "bus-station"
+  fromKey     String        @map("from_key")
+  toKey       String        @map("to_key")
+  fromLabel   Json          @map("from_label")
+  toLabel     Json          @map("to_label")
+  // Main transport of the option (shown as the card icon)
+  mode        TransportMode
+  priceMin    Decimal       @map("price_min") @db.Decimal(10, 2)
+  priceMax    Decimal?      @map("price_max") @db.Decimal(10, 2)
+  priceUnit   PriceUnit     @default(PER_PERSON) @map("price_unit")
+  durationMin Int           @map("duration_min")
+  transfers   Int           @default(0)
+  walkMeters  Int           @default(0) @map("walk_meters")
+  // "Best with luggage", "Cheapest", "24/7"
+  tags        Json?
+  isPopular   Boolean       @default(false) @map("is_popular")
+  updatedAt   DateTime      @updatedAt @map("updated_at")
+
+  region Region?     @relation(fields: [regionId], references: [id])
+  steps  RouteStep[]
+
+  @@index([fromKey, toKey])
+  @@map("transport_routes")
+}
+
+model RouteStep {
+  id          Int           @id @default(autoincrement())
+  routeId     Int           @map("route_id")
+  sortOrder   Int           @map("sort_order")
+  mode        TransportMode
+  instruction Json
+  durationMin Int           @map("duration_min")
+  price       Decimal?      @db.Decimal(10, 2)
+  photo       String?
+
+  route TransportRoute @relation(fields: [routeId], references: [id], onDelete: Cascade)
+
+  @@index([routeId])
+  @@map("route_steps")
+}
+
+model Itinerary {
+  id          Int     @id @default(autoincrement())
+  slug        String  @unique
+  title       Json
+  description Json?
+  days        Int
+  coverPhoto  String? @map("cover_photo")
+  isPublished Boolean @default(false) @map("is_published")
+
+  stops ItineraryStop[]
+
+  @@map("itineraries")
+}
+
+model ItineraryStop {
+  id          Int     @id @default(autoincrement())
+  itineraryId Int     @map("itinerary_id")
+  placeId     Int     @map("place_id")
+  day         Int
+  // "09:00"
+  time        String?
+  sortOrder   Int     @map("sort_order")
+  note        Json?
+
+  itinerary Itinerary @relation(fields: [itineraryId], references: [id], onDelete: Cascade)
+  place     Place     @relation(fields: [placeId], references: [id])
+
+  @@index([itineraryId])
+  @@map("itinerary_stops")
+}
+
+// ─────────────────────────────────────────────
+// Content and forms
+// ─────────────────────────────────────────────
+
+model FaqItem {
+  id        Int     @id @default(autoincrement())
+  // visa, money, sim, safety, etiquette, best-time
+  category  String
+  question  Json
+  answer    Json
+  sortOrder Int     @default(0) @map("sort_order")
+  isActive  Boolean @default(true) @map("is_active")
+
+  @@map("faq_items")
+}
+
+model Subscriber {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  // REGIONS = "notify me when regions launch"
+  interest  String   @default("REGIONS")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@map("subscribers")
+}
+
+model ContactMessage {
+  id        Int       @id @default(autoincrement())
+  name      String
+  email     String
+  message   String
+  handledAt DateTime? @map("handled_at")
+  createdAt DateTime  @default(now()) @map("created_at")
+
+  @@map("contact_messages")
+}

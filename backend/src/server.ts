@@ -1,6 +1,7 @@
 import { config } from './config';
 import app from './app';
 import { registerProcessHandlers } from './lib/process-handlers';
+import { prisma } from './lib/prisma';
 
 registerProcessHandlers();
 
@@ -25,9 +26,9 @@ function shutdown(signal: NodeJS.Signals) {
   }, 10_000);
   forceExit.unref();
 
-  server.close(() => {
-    // B3: await prisma.$disconnect() will be added here
-    console.log('Server bağlandı. Çıxış.');
+  server.close(async () => {
+    await prisma.$disconnect();
+    console.log('Server və baza bağlantısı bağlandı. Çıxış.');
     process.exit(0);
   });
 }
