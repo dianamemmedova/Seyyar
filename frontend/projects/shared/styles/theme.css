@@ -1,0 +1,118 @@
+/*
+ * Seyyar design tokens (from design/stitch_baku_travel_portal/bakuway_design_system.md).
+ * Tailwind v4 turns every variable below into utility classes:
+ *   --color-primary   -> bg-primary, text-primary, border-primary ...
+ *   --text-headline-md -> text-headline-md (size + line height + weight)
+ *   --radius-lg       -> rounded-lg
+ */
+@theme {
+  --font-sans: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
+
+  /* Colors */
+  --color-primary: #3f5e4a;
+  --color-on-primary: #ffffff;
+  --color-primary-container: #d6f9df;
+  --color-on-primary-container: #183625;
+  --color-sage: #7a9e7e;
+  --color-on-sage: #15351e;
+  --color-sage-soft: #ebf2ec;
+  --color-secondary: #8b6b4f;
+  --color-on-secondary: #ffffff;
+  --color-secondary-container: #ffeee1;
+  --color-on-secondary-container: #432b14;
+  --color-terracotta: #c98b6b;
+  --color-on-terracotta: #2e1a10;
+  --color-terracotta-soft: #f7eae2;
+  --color-surface: #f7f3ec;
+  --color-on-surface: #2e2a26;
+  --color-surface-card: #ffffff;
+  --color-on-surface-card: #2e2a26;
+  --color-sand: #e8dfd0;
+  --color-on-sand: #2e2a26;
+  --color-on-surface-variant: #655d56;
+  --color-muted: #7a716a;
+  --color-outline: #ddd5c7;
+  --color-outline-variant: #eae1d2;
+  --color-success: #4a7c59;
+  --color-on-success: #ffffff;
+  --color-warning: #b58238;
+  --color-on-warning: #201b15;
+  --color-error: #a84a42;
+  --color-on-error: #ffffff;
+
+  /* Typography: size / line height / letter spacing / weight */
+  --text-display-lg: 44px;
+  --text-display-lg--line-height: 52px;
+  --text-display-lg--letter-spacing: -0.5px;
+  --text-display-lg--font-weight: 700;
+  --text-display-lg-mobile: 30px;
+  --text-display-lg-mobile--line-height: 38px;
+  --text-display-lg-mobile--letter-spacing: -0.25px;
+  --text-display-lg-mobile--font-weight: 700;
+  --text-headline-lg: 32px;
+  --text-headline-lg--line-height: 40px;
+  --text-headline-lg--letter-spacing: -0.25px;
+  --text-headline-lg--font-weight: 700;
+  --text-headline-md: 24px;
+  --text-headline-md--line-height: 32px;
+  --text-headline-md--letter-spacing: -0.15px;
+  --text-headline-md--font-weight: 700;
+  --text-headline-sm: 18px;
+  --text-headline-sm--line-height: 26px;
+  --text-headline-sm--font-weight: 600;
+  --text-title-md: 16px;
+  --text-title-md--line-height: 24px;
+  --text-title-md--font-weight: 600;
+  --text-body-lg: 16px;
+  --text-body-lg--line-height: 26px;
+  --text-body-md: 14px;
+  --text-body-md--line-height: 22px;
+  --text-body-sm: 13px;
+  --text-body-sm--line-height: 18px;
+  --text-label-lg: 14px;
+  --text-label-lg--line-height: 20px;
+  --text-label-lg--font-weight: 600;
+  --text-label-md: 12px;
+  --text-label-md--line-height: 16px;
+  --text-label-md--letter-spacing: 0.2px;
+  --text-label-md--font-weight: 600;
+  --text-label-sm: 11px;
+  --text-label-sm--line-height: 14px;
+  --text-label-sm--letter-spacing: 0.3px;
+  --text-label-sm--font-weight: 600;
+
+  /* Corners */
+  --radius-sm: 8px;
+  --radius: 12px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+
+  /* Spacing names from the design (p-gutter-md, gap-gutter-lg, py-section ...) */
+  --spacing-gutter-xs: 4px;
+  --spacing-gutter-sm: 8px;
+  --spacing-gutter-md: 16px;
+  --spacing-gutter-lg: 24px;
+  --spacing-gutter-xl: 32px;
+  --spacing-section: 64px;
+  --spacing-page-margin: 24px;
+
+  /* Soft, warm card shadow */
+  --shadow-card: 0 4px 20px rgba(46, 42, 38, 0.05);
+
+  /* Motion */
+  --ease-surface-enter: cubic-bezier(0.2, 0, 0, 1);
+  --ease-surface-exit: cubic-bezier(0.3, 0, 1, 1);
+}
+
+/* Google "Material Symbols Outlined" icons: <span class="material-symbols-outlined">hotel</span> */
+.material-symbols-outlined {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  line-height: 1;
+  overflow: hidden;
+  white-space: nowrap;
+  vertical-align: middle;
+  direction: ltr;
+}

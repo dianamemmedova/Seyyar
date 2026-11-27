@@ -1,0 +1,18 @@
+{
+  "common": {
+    "appName": "Seyyar",
+    "language": "Language",
+    "backHome": "Back to home"
+  },
+  "home": {
+    "title": "Everything for your trip to Baku, in one place",
+    "subtitle": "Hotels, restaurants, places to see and how to get there.",
+    "apiStatus": "API status",
+    "apiOk": "Working",
+    "apiDown": "Not available"
+  },
+  "notFound": {
+    "title": "Page not found",
+    "text": "The page you are looking for does not exist or was moved."
+  }
+}

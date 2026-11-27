@@ -1,0 +1,9 @@
+@import 'tailwindcss';
+@import '../../shared/styles/theme.css';
+
+/* Base look of every page: warm cream background, dark text, Plus Jakarta Sans */
+@layer base {
+  body {
+    @apply bg-surface font-sans text-on-surface antialiased;
+  }
+}

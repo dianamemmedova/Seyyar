@@ -1,0 +1,43 @@
+<main
+  class="mx-auto flex min-h-screen max-w-[1200px] flex-col justify-center gap-gutter-lg px-page-margin"
+>
+  <p class="text-label-lg text-primary">{{ 'common.appName' | translate }}</p>
+
+  <h1 class="text-display-lg-mobile text-on-surface md:text-display-lg">
+    {{ 'home.title' | translate }}
+  </h1>
+  <p class="max-w-xl text-body-lg text-on-surface-variant">{{ 'home.subtitle' | translate }}</p>
+
+  <nav class="flex gap-gutter-sm" [attr.aria-label]="'common.language' | translate">
+    @for (lang of langs; track lang) {
+      <a
+        [routerLink]="['/', lang]"
+        class="rounded-full px-4 py-2 text-label-lg uppercase transition-colors duration-150"
+        [class]="
+          lang === language.current()
+            ? 'bg-primary text-on-primary'
+            : 'bg-surface-card text-on-surface shadow-card'
+        "
+        >{{ lang }}</a
+      >
+    }
+  </nav>
+
+  <div
+    class="flex w-fit items-center gap-gutter-sm rounded-lg bg-surface-card px-gutter-md py-gutter-sm shadow-card"
+  >
+    <span class="material-symbols-outlined text-primary">dns</span>
+    <span class="text-body-md text-on-surface-variant">{{ 'home.apiStatus' | translate }}:</span>
+    @switch (apiOk()) {
+      @case (true) {
+        <span class="text-label-lg text-success">{{ 'home.apiOk' | translate }}</span>
+      }
+      @case (false) {
+        <span class="text-label-lg text-error">{{ 'home.apiDown' | translate }}</span>
+      }
+      @default {
+        <span class="text-label-lg text-muted">…</span>
+      }
+    }
+  </div>
+</main>

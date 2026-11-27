@@ -1,0 +1,42 @@
+{
+  "name": "seyyar-frontend",
+  "version": "0.0.0",
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve web",
+    "start:admin": "ng serve admin",
+    "build": "ng build web && ng build admin",
+    "test": "ng test shared --no-watch && ng test web --no-watch && ng test admin --no-watch",
+    "serve:ssr:web": "node dist/web/server/server.mjs"
+  },
+  "private": true,
+  "dependencies": {
+    "@angular/common": "^22.3.0",
+    "@angular/compiler": "^22.3.0",
+    "@angular/core": "^22.3.0",
+    "@angular/forms": "^22.3.0",
+    "@angular/platform-browser": "^22.3.0",
+    "@angular/platform-server": "^22.3.0",
+    "@angular/router": "^22.3.0",
+    "@angular/ssr": "^22.3.0",
+    "@ngx-translate/core": "^18.1.0",
+    "@tailwindcss/postcss": "^4.3.5",
+    "express": "^5.1.0",
+    "http-proxy-middleware": "^4.2.2",
+    "postcss": "^8.5.33",
+    "rxjs": "~7.8.0",
+    "tailwindcss": "^4.3.5",
+    "tslib": "^2.3.0"
+  },
+  "devDependencies": {
+    "@angular/build": "^22.3.0",
+    "@angular/cli": "^22.3.0",
+    "@angular/compiler-cli": "^22.3.0",
+    "@types/express": "^5.0.1",
+    "@types/node": "^22.12.0",
+    "jsdom": "^31.0.0",
+    "prettier": "^3.8.1",
+    "typescript": "~6.0.2",
+    "vitest": "^5.0.0"
+  }
+}

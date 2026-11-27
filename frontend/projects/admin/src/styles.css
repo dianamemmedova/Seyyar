@@ -1,0 +1,8 @@
+@import 'tailwindcss';
+@import '../../shared/styles/theme.css';
+
+@layer base {
+  body {
+    @apply bg-surface font-sans text-on-surface antialiased;
+  }
+}

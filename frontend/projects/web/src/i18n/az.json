@@ -1,0 +1,18 @@
+{
+  "common": {
+    "appName": "Seyyar",
+    "language": "Dil",
+    "backHome": "Ana səhifəyə qayıt"
+  },
+  "home": {
+    "title": "Bakı səfəriniz üçün hər şey bir yerdə",
+    "subtitle": "Otellər, restoranlar, görməli yerlər və oraya necə getmək.",
+    "apiStatus": "API vəziyyəti",
+    "apiOk": "İşləyir",
+    "apiDown": "Əlçatan deyil"
+  },
+  "notFound": {
+    "title": "Səhifə tapılmadı",
+    "text": "Axtardığınız səhifə yoxdur və ya başqa yerə köçürülüb."
+  }
+}
