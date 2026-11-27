@@ -7,6 +7,7 @@ import { requestId } from './middleware/request-id';
 import { timing } from './middleware/timing';
 import { errorHandler, notFound } from './middleware/error-handler';
 import { prisma } from './lib/prisma';
+import authRoutes from './routes/auth.routes';
 
 const app = express();
 
@@ -29,6 +30,8 @@ app.get('/api/health', async (_req, res) => {
     res.status(503).json({ status: 'error', db: 'down' });
   }
 });
+
+app.use('/api/auth', authRoutes);
 
 // 4. These two always stay at the very end, after all routes
 app.use(notFound);

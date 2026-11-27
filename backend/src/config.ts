@@ -8,7 +8,7 @@ export const envSchema = z.object({
     .int()
     .min(1)
     .max(65535)
-    .default(4000),
+    .default(5050),
   DATABASE_URL: z
     .string({ error: 'DATABASE_URL yoxdur' })
     .regex(/^postgres(ql)?:\/\//, { error: 'DATABASE_URL postgresql:// ilə başlamalıdır' }),
@@ -21,6 +21,14 @@ export const envSchema = z.object({
         .map((origin) => origin.trim().replace(/\/+$/, ''))
         .filter((origin) => origin.length > 0),
     ),
+  JWT_SECRET: z
+    .string({ error: 'JWT_SECRET yoxdur' })
+    .min(32, { error: 'JWT_SECRET ən azı 32 simvol olmalıdır' })
+    .refine((secret) => !secret.startsWith('CHANGE_ME'), {
+      error: 'JWT_SECRET hələ də nümunədir — öz secret-ini yaz',
+    }),
+  JWT_ACCESS_TTL_SECONDS: z.coerce.number().int().min(60).default(900),
+  REFRESH_TOKEN_TTL_DAYS: z.coerce.number().int().min(1).default(30),
 });
 
 export type Config = z.infer<typeof envSchema>;

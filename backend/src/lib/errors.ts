@@ -23,14 +23,14 @@ export class BadRequestError extends AppError {
 }
 
 export class UnauthorizedError extends AppError {
-  constructor(message = 'Authentication required') {
-    super(message, 401, 'UNAUTHORIZED');
+  constructor(message = 'Authentication required', code = 'UNAUTHORIZED') {
+    super(message, 401, code);
   }
 }
 
 export class ForbiddenError extends AppError {
-  constructor(message = 'You do not have permission to do this') {
-    super(message, 403, 'FORBIDDEN');
+  constructor(message = 'You do not have permission to do this', code = 'FORBIDDEN') {
+    super(message, 403, code);
   }
 }
 
@@ -43,5 +43,11 @@ export class NotFoundError extends AppError {
 export class ConflictError extends AppError {
   constructor(message = 'Conflict', code = 'CONFLICT') {
     super(message, 409, code);
+  }
+}
+
+export class TooManyRequestsError extends AppError {
+  constructor(message = 'Too many requests, please try again later') {
+    super(message, 429, 'TOO_MANY_REQUESTS');
   }
 }
