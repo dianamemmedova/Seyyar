@@ -11,6 +11,8 @@ import authRoutes from './routes/auth.routes';
 import homeRoutes from './routes/home.routes';
 import placesRoutes from './routes/places.routes';
 import requestsRoutes from './routes/requests.routes';
+import favoritesRoutes from './routes/favorites.routes';
+import reviewsRoutes from './routes/reviews.routes';
 
 const app = express();
 
@@ -38,6 +40,8 @@ app.use('/api/auth', authRoutes);
 app.use('/api/home', homeRoutes);
 app.use('/api/places', placesRoutes);
 app.use('/api/requests', requestsRoutes);
+app.use('/api/favorites', favoritesRoutes);
+app.use('/api/reviews', reviewsRoutes);
 
 // 4. These two always stay at the very end, after all routes
 app.use(notFound);
