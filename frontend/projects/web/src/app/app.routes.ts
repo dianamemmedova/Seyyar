@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { DEFAULT_LANG, langGuard } from './core/language';
+import { Shell } from './layout/shell';
 
 export const routes: Routes = [
   // "/" -> "/en"
@@ -8,6 +9,8 @@ export const routes: Routes = [
     // Every page starts with the language: /en, /ru/hotels, /az/restaurants/...
     path: ':lang',
     canActivate: [langGuard],
+    // Header + footer around every page
+    component: Shell,
     children: [
       { path: '', loadComponent: () => import('./pages/home/home').then((m) => m.Home) },
       {

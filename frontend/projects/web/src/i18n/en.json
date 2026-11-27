@@ -2,14 +2,129 @@
   "common": {
     "appName": "Seyyar",
     "language": "Language",
-    "backHome": "Back to home"
+    "backHome": "Back to home",
+    "error": "Something went wrong. Please try again.",
+    "loadError": "We could not load this part of the page.",
+    "retry": "Try again"
+  },
+  "languages": {
+    "en": "English",
+    "ru": "Русский",
+    "az": "Azərbaycanca"
+  },
+  "nav": {
+    "main": "Main menu",
+    "menu": "Menu",
+    "stay": "Stay",
+    "eat": "Eat",
+    "explore": "Explore",
+    "gettingAround": "Getting around",
+    "rides": "Rides to regions",
+    "login": "Log in",
+    "logout": "Log out",
+    "favorites": "Saved places",
+    "myRequests": "My requests",
+    "becomePartner": "Become a partner"
+  },
+  "footer": {
+    "about": "Calm, independent travel planning for Baku and Azerbaijan: stays, food, sights and honest rides.",
+    "explore": "Explore",
+    "business": "For business",
+    "drivers": "Drivers",
+    "help": "Help",
+    "faq": "Good to know (FAQ)",
+    "contact": "Contact",
+    "madeFor": "Made for curious travelers in Azerbaijan."
+  },
+  "card": {
+    "verified": "Verified partner",
+    "from": "from",
+    "night": "night",
+    "ticket": "ticket",
+    "free": "Free entry",
+    "openNow": "Open now",
+    "closed": "Closed now"
   },
   "home": {
-    "title": "Everything for your trip to Baku, in one place",
-    "subtitle": "Hotels, restaurants, places to see and how to get there.",
-    "apiStatus": "API status",
-    "apiOk": "Working",
-    "apiDown": "Not available"
+    "meta": {
+      "title": "Seyyar — everything for your trip to Baku",
+      "description": "Hotels, restaurants, places to see and transport in Baku, with honest prices in manat. Send a request and get an answer on WhatsApp."
+    },
+    "hero": {
+      "title": "Everything for your trip to Baku, in one place",
+      "subtitle": "Verified stays, local tea houses, sights, airport taxis and rides to the regions — for independent travelers and families.",
+      "whereLabel": "What are you looking for?",
+      "wherePlaceholder": "Hotel, restaurant or place name",
+      "typeLabel": "Category",
+      "search": "Search"
+    },
+    "categories": {
+      "stay": {
+        "title": "Stay",
+        "text": "Hotels & family apartments"
+      },
+      "eat": {
+        "title": "Eat",
+        "text": "Tea houses & local kitchens"
+      },
+      "explore": {
+        "title": "Explore",
+        "text": "Old City, museums & parks"
+      },
+      "gettingAround": {
+        "title": "Getting around",
+        "text": "BakuCard, taxis & transfers"
+      }
+    },
+    "airport": {
+      "title": "Just landed? Airport to city guide",
+      "text": "Compare the airport express bus, taxis and fixed-price pickups from Heydar Aliyev Airport to central Baku.",
+      "button": "Open arrival guide"
+    },
+    "seeAll": "See all",
+    "sections": {
+      "places": {
+        "title": "Popular places",
+        "text": "Easy to visit on your own, with clear entry fees."
+      },
+      "hotels": {
+        "title": "Recommended hotels",
+        "text": "Quiet, walkable stays for families and first-time visitors."
+      },
+      "eat": {
+        "title": "Where to eat",
+        "text": "Tea houses and local kitchens loved by guests."
+      },
+      "offers": {
+        "title": "Current offers",
+        "text": "Discounts from our partners right now."
+      }
+    },
+    "how": {
+      "title": "How it works",
+      "text": "No booking fees — just clear local options.",
+      "compare": {
+        "title": "Compare",
+        "text": "Browse hotels, restaurants and rides with honest prices in manat."
+      },
+      "request": {
+        "title": "Send a request",
+        "text": "Pick your dates and group size in seconds. You pay at the place."
+      },
+      "confirm": {
+        "title": "Get confirmation",
+        "text": "The place confirms your request, often on WhatsApp."
+      }
+    },
+    "regions": {
+      "badge": "Expanding across Azerbaijan",
+      "title": "Regions coming soon",
+      "text": "We are adding guesthouses, drivers and local kitchens in",
+      "email": "Email address",
+      "notify": "Notify me",
+      "done": "Thank you! We will write to you when new regions open.",
+      "invalid": "Please enter a valid email address."
+    }
   },
   "notFound": {
     "title": "Page not found",

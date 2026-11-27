@@ -116,3 +116,8 @@
   vertical-align: middle;
   direction: ltr;
 }
+
+/* Filled icon variant: <span class="material-symbols-outlined filled">star</span> */
+.material-symbols-outlined.filled {
+  font-variation-settings: 'FILL' 1;
+}

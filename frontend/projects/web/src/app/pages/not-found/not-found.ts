@@ -7,8 +7,8 @@ import { LanguageService } from '../../core/language';
   selector: 'app-not-found',
   imports: [RouterLink, TranslatePipe],
   template: `
-    <main
-      class="mx-auto flex min-h-screen max-w-[1200px] flex-col items-start justify-center gap-gutter-md px-page-margin"
+    <section
+      class="mx-auto flex max-w-[1200px] flex-col items-start gap-gutter-md px-page-margin py-section"
     >
       <span class="material-symbols-outlined text-headline-lg text-sage">explore_off</span>
       <h1 class="text-headline-lg">{{ 'notFound.title' | translate }}</h1>
@@ -19,7 +19,7 @@ import { LanguageService } from '../../core/language';
       >
         {{ 'common.backHome' | translate }}
       </a>
-    </main>
+    </section>
   `,
 })
 export class NotFound {

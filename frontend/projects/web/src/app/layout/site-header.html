@@ -1,0 +1,167 @@
+<header class="sticky top-0 z-40 bg-surface shadow-[0_4px_16px_rgba(46,42,38,0.05)]">
+  <div
+    class="mx-auto flex min-h-[72px] max-w-[1200px] items-center justify-between gap-4 px-page-margin py-2"
+  >
+    <a [routerLink]="['/', lang()]" class="shrink-0 rounded-md" aria-label="Seyyar">
+      <app-logo />
+    </a>
+
+    <!-- Main menu (desktop) -->
+    <nav class="hidden items-center gap-2 lg:flex" [attr.aria-label]="'nav.main' | translate">
+      @for (item of navItems; track item.path) {
+        <a
+          [routerLink]="['/', lang(), item.path]"
+          routerLinkActive="bg-sage-soft !text-primary"
+          class="inline-flex items-center gap-1.5 rounded-full px-3.5 py-2 text-label-md text-on-surface-variant transition-colors duration-150 hover:bg-sand hover:text-on-surface"
+        >
+          <span class="material-symbols-outlined text-[18px]" aria-hidden="true">{{
+            item.icon
+          }}</span>
+          {{ item.label | translate }}
+        </a>
+      }
+    </nav>
+
+    <div class="flex shrink-0 items-center gap-2.5">
+      <!-- Language -->
+      <div class="relative">
+        <button
+          type="button"
+          (click)="toggle('language')"
+          [attr.aria-expanded]="openMenu() === 'language'"
+          [attr.aria-label]="'common.language' | translate"
+          class="inline-flex items-center gap-1 rounded-full border border-outline-variant bg-surface-card px-3 py-1.5 text-label-md uppercase transition-colors hover:bg-sand"
+        >
+          {{ lang() }}
+          <span
+            class="material-symbols-outlined text-[16px] text-on-surface-variant"
+            aria-hidden="true"
+            >expand_more</span
+          >
+        </button>
+        @if (openMenu() === 'language') {
+          <div
+            class="absolute right-0 z-50 mt-2 flex w-40 flex-col rounded-lg border border-outline-variant bg-surface-card p-2 shadow-lg"
+          >
+            @for (option of langs; track option) {
+              <a
+                [href]="languageUrl(option)"
+                (click)="switchLanguage($event, option)"
+                class="rounded-sm px-3 py-2 text-label-lg"
+                [class]="option === lang() ? 'bg-sage-soft text-primary' : 'hover:bg-sand'"
+                [attr.lang]="option"
+                >{{ 'languages.' + option | translate }}</a
+              >
+            }
+          </div>
+        }
+      </div>
+
+      @if (auth.user()) {
+        <!-- Logged in: favorites + user menu -->
+        <a
+          [routerLink]="['/', lang(), 'account', 'favorites']"
+          [attr.aria-label]="'nav.favorites' | translate"
+          class="hidden h-9 w-9 items-center justify-center rounded-full bg-surface-card text-on-surface-variant transition-colors hover:bg-sand hover:text-on-surface sm:inline-flex"
+        >
+          <span class="material-symbols-outlined text-[19px]" aria-hidden="true">favorite</span>
+        </a>
+        <div class="relative">
+          <button
+            type="button"
+            (click)="toggle('user')"
+            [attr.aria-expanded]="openMenu() === 'user'"
+            class="inline-flex items-center gap-1.5 rounded-full bg-surface-card px-3 py-1.5 text-label-md transition-colors hover:bg-sand"
+          >
+            <span class="material-symbols-outlined text-[18px]" aria-hidden="true"
+              >account_circle</span
+            >
+            <span class="hidden sm:inline">{{ firstName() }}</span>
+          </button>
+          @if (openMenu() === 'user') {
+            <div
+              class="absolute right-0 z-50 mt-2 flex w-52 flex-col rounded-lg border border-outline-variant bg-surface-card p-2 shadow-lg"
+            >
+              <a
+                [routerLink]="['/', lang(), 'account', 'requests']"
+                class="rounded-sm px-3 py-2 text-label-lg hover:bg-sand"
+                >{{ 'nav.myRequests' | translate }}</a
+              >
+              <a
+                [routerLink]="['/', lang(), 'account', 'favorites']"
+                class="rounded-sm px-3 py-2 text-label-lg hover:bg-sand"
+                >{{ 'nav.favorites' | translate }}</a
+              >
+              <button
+                type="button"
+                (click)="logout()"
+                class="rounded-sm px-3 py-2 text-left text-label-lg text-error hover:bg-sand"
+              >
+                {{ 'nav.logout' | translate }}
+              </button>
+            </div>
+          }
+        </div>
+      } @else {
+        <a
+          [routerLink]="['/', lang(), 'login']"
+          class="hidden px-2 py-1.5 text-label-md text-on-surface-variant transition-colors hover:text-primary md:inline-flex"
+          >{{ 'nav.login' | translate }}</a
+        >
+      }
+
+      <a
+        [routerLink]="['/', lang(), 'partners']"
+        class="hidden items-center rounded-md border border-secondary bg-surface-card px-3.5 py-1.5 text-label-md text-secondary transition-colors hover:bg-secondary-container sm:inline-flex"
+        >{{ 'nav.becomePartner' | translate }}</a
+      >
+
+      <!-- Mobile menu button -->
+      <button
+        type="button"
+        (click)="toggle('mobile')"
+        [attr.aria-expanded]="openMenu() === 'mobile'"
+        [attr.aria-label]="'nav.menu' | translate"
+        class="inline-flex h-9 w-9 items-center justify-center rounded-full bg-surface-card transition-colors hover:bg-sand lg:hidden"
+      >
+        <span class="material-symbols-outlined text-[20px]" aria-hidden="true">{{
+          openMenu() === 'mobile' ? 'close' : 'menu'
+        }}</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile drawer -->
+  @if (openMenu() === 'mobile') {
+    <nav
+      class="flex flex-col gap-1 border-t border-outline-variant bg-surface-card px-page-margin py-gutter-md lg:hidden"
+      [attr.aria-label]="'nav.main' | translate"
+    >
+      @for (item of navItems; track item.path) {
+        <a
+          [routerLink]="['/', lang(), item.path]"
+          class="flex items-center gap-3 rounded-md px-3 py-3 text-label-lg hover:bg-sand"
+        >
+          <span class="material-symbols-outlined text-primary" aria-hidden="true">{{
+            item.icon
+          }}</span>
+          {{ item.label | translate }}
+        </a>
+      }
+      <div class="mt-2 flex gap-2 border-t border-outline-variant pt-3">
+        @if (!auth.user()) {
+          <a
+            [routerLink]="['/', lang(), 'login']"
+            class="flex-1 rounded-md bg-primary px-4 py-2.5 text-center text-label-lg text-on-primary"
+            >{{ 'nav.login' | translate }}</a
+          >
+        }
+        <a
+          [routerLink]="['/', lang(), 'partners']"
+          class="flex-1 rounded-md border border-secondary px-4 py-2.5 text-center text-label-lg text-secondary"
+          >{{ 'nav.becomePartner' | translate }}</a
+        >
+      </div>
+    </nav>
+  }
+</header>

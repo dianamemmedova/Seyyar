@@ -2,14 +2,129 @@
   "common": {
     "appName": "Seyyar",
     "language": "Dil",
-    "backHome": "Ana səhifəyə qayıt"
+    "backHome": "Ana səhifəyə qayıt",
+    "error": "Xəta baş verdi. Yenidən cəhd edin.",
+    "loadError": "Səhifənin bu hissəsini yükləmək alınmadı.",
+    "retry": "Yenidən cəhd et"
+  },
+  "languages": {
+    "en": "English",
+    "ru": "Русский",
+    "az": "Azərbaycanca"
+  },
+  "nav": {
+    "main": "Əsas menyu",
+    "menu": "Menyu",
+    "stay": "Qalmaq",
+    "eat": "Yemək",
+    "explore": "Gəzmək",
+    "gettingAround": "Nəqliyyat",
+    "rides": "Regionlara səfər",
+    "login": "Daxil ol",
+    "logout": "Çıxış",
+    "favorites": "Seçilmişlər",
+    "myRequests": "Sorğularım",
+    "becomePartner": "Tərəfdaş ol"
+  },
+  "footer": {
+    "about": "Bakı və Azərbaycan üzrə sakit, müstəqil səyahət planı: qalmaq, yemək, görməli yerlər və etibarlı səfərlər.",
+    "explore": "Kəşf et",
+    "business": "Biznes üçün",
+    "drivers": "Sürücülər",
+    "help": "Kömək",
+    "faq": "Bilməli olduqlarınız (FAQ)",
+    "contact": "Əlaqə",
+    "madeFor": "Azərbaycanı kəşf edən səyyahlar üçün."
+  },
+  "card": {
+    "verified": "Təsdiqlənmiş tərəfdaş",
+    "from": "",
+    "night": "gecə",
+    "ticket": "bilet",
+    "free": "Giriş pulsuzdur",
+    "openNow": "İndi açıqdır",
+    "closed": "İndi bağlıdır"
   },
   "home": {
-    "title": "Bakı səfəriniz üçün hər şey bir yerdə",
-    "subtitle": "Otellər, restoranlar, görməli yerlər və oraya necə getmək.",
-    "apiStatus": "API vəziyyəti",
-    "apiOk": "İşləyir",
-    "apiDown": "Əlçatan deyil"
+    "meta": {
+      "title": "Seyyar — Bakı səfəriniz üçün hər şey",
+      "description": "Bakıda otellər, restoranlar, görməli yerlər və nəqliyyat, manatla dürüst qiymətlər. Sorğu göndərin, cavabı WhatsApp-da alın."
+    },
+    "hero": {
+      "title": "Bakı səfəriniz üçün hər şey bir yerdə",
+      "subtitle": "Təsdiqlənmiş otellər, yerli çayxanalar, görməli yerlər, hava limanı taksisi və regionlara səfərlər — müstəqil səyyahlar və ailələr üçün.",
+      "whereLabel": "Nə axtarırsınız?",
+      "wherePlaceholder": "Otel, restoran və ya yer adı",
+      "typeLabel": "Kateqoriya",
+      "search": "Axtar"
+    },
+    "categories": {
+      "stay": {
+        "title": "Qalmaq",
+        "text": "Otellər və ailə mənzilləri"
+      },
+      "eat": {
+        "title": "Yemək",
+        "text": "Çayxanalar və yerli mətbəx"
+      },
+      "explore": {
+        "title": "Gəzmək",
+        "text": "İçərişəhər, muzeylər və parklar"
+      },
+      "gettingAround": {
+        "title": "Nəqliyyat",
+        "text": "BakuCard, taksi və transfer"
+      }
+    },
+    "airport": {
+      "title": "Yenicə gəldiniz? Hava limanından şəhərə",
+      "text": "Heydər Əliyev Hava Limanından Bakı mərkəzinə ekspres avtobus, taksi və sabit qiymətli transferi müqayisə edin.",
+      "button": "Gəliş bələdçisini aç"
+    },
+    "seeAll": "Hamısına bax",
+    "sections": {
+      "places": {
+        "title": "Populyar yerlər",
+        "text": "Təkbaşına asan gəzmək olar, giriş qiymətləri aydındır."
+      },
+      "hotels": {
+        "title": "Tövsiyə olunan otellər",
+        "text": "Ailələr və ilk dəfə gələnlər üçün sakit, rahat yerləşən otellər."
+      },
+      "eat": {
+        "title": "Harada yemək",
+        "text": "Qonaqların sevdiyi çayxanalar və yerli mətbəx."
+      },
+      "offers": {
+        "title": "Aktual təkliflər",
+        "text": "Tərəfdaşlarımızdan hazırda keçərli endirimlər."
+      }
+    },
+    "how": {
+      "title": "Necə işləyir",
+      "text": "Rezerv komissiyası yoxdur — sadəcə aydın yerli seçimlər.",
+      "compare": {
+        "title": "Müqayisə edin",
+        "text": "Otel, restoran və səfərləri manatla dürüst qiymətlərlə nəzərdən keçirin."
+      },
+      "request": {
+        "title": "Sorğu göndərin",
+        "text": "Tarixi və qonaq sayını bir neçə saniyəyə seçin. Ödəniş yerində edilir."
+      },
+      "confirm": {
+        "title": "Təsdiq alın",
+        "text": "Obyekt sorğunuzu təsdiqləyir, çox vaxt WhatsApp-da."
+      }
+    },
+    "regions": {
+      "badge": "Azərbaycan üzrə genişlənirik",
+      "title": "Regionlar tezliklə",
+      "text": "Qonaq evləri, sürücülər və yerli mətbəx əlavə edirik:",
+      "email": "E-poçt ünvanı",
+      "notify": "Mənə xəbər ver",
+      "done": "Təşəkkürlər! Yeni regionlar açılanda sizə yazacağıq.",
+      "invalid": "Düzgün e-poçt ünvanı yazın."
+    }
   },
   "notFound": {
     "title": "Səhifə tapılmadı",
