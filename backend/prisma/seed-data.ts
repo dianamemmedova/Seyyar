@@ -22,8 +22,18 @@ export const regions = [
 ];
 
 export const areas = [
-  { slug: 'old-city', name: t('Old City', 'Старый город', 'İçərişəhər'), lat: 40.3664, lng: 49.8357 },
-  { slug: 'sabail', name: t('Sabail (Seaside)', 'Сабаиль (Приморье)', 'Səbail (Dənizkənarı)'), lat: 40.364, lng: 49.845 },
+  {
+    slug: 'old-city',
+    name: t('Old City', 'Старый город', 'İçərişəhər'),
+    lat: 40.3664,
+    lng: 49.8357,
+  },
+  {
+    slug: 'sabail',
+    name: t('Sabail (Seaside)', 'Сабаиль (Приморье)', 'Səbail (Dənizkənarı)'),
+    lat: 40.364,
+    lng: 49.845,
+  },
   { slug: 'nasimi', name: t('Nasimi', 'Насими', 'Nəsimi'), lat: 40.385, lng: 49.828 },
   { slug: 'yasamal', name: t('Yasamal', 'Ясамал', 'Yasamal'), lat: 40.38, lng: 49.81 },
   { slug: 'narimanov', name: t('Narimanov', 'Нариманов', 'Nərimanov'), lat: 40.403, lng: 49.87 },
@@ -38,12 +48,24 @@ export const amenities = [
   { code: 'wifi', icon: 'wifi', name: t('Free Wi-Fi', 'Бесплатный Wi-Fi', 'Pulsuz Wi-Fi') },
   { code: 'parking', icon: 'local_parking', name: t('Parking', 'Парковка', 'Parkinq') },
   { code: 'breakfast', icon: 'free_breakfast', name: t('Breakfast', 'Завтрак', 'Səhər yeməyi') },
-  { code: 'airport-transfer', icon: 'airport_shuttle', name: t('Airport transfer', 'Трансфер из аэропорта', 'Aeroport transferi') },
+  {
+    code: 'airport-transfer',
+    icon: 'airport_shuttle',
+    name: t('Airport transfer', 'Трансфер из аэропорта', 'Aeroport transferi'),
+  },
   { code: 'pool', icon: 'pool', name: t('Swimming pool', 'Бассейн', 'Hovuz') },
   { code: 'gym', icon: 'fitness_center', name: t('Gym', 'Тренажёрный зал', 'İdman zalı') },
   { code: 'spa', icon: 'spa', name: t('Spa', 'Спа', 'Spa') },
-  { code: 'family-rooms', icon: 'family_restroom', name: t('Family rooms', 'Семейные номера', 'Ailə otaqları') },
-  { code: 'air-conditioning', icon: 'ac_unit', name: t('Air conditioning', 'Кондиционер', 'Kondisioner') },
+  {
+    code: 'family-rooms',
+    icon: 'family_restroom',
+    name: t('Family rooms', 'Семейные номера', 'Ailə otaqları'),
+  },
+  {
+    code: 'air-conditioning',
+    icon: 'ac_unit',
+    name: t('Air conditioning', 'Кондиционер', 'Kondisioner'),
+  },
   { code: 'kitchen', icon: 'kitchen', name: t('Kitchen', 'Кухня', 'Mətbəx') },
   { code: 'terrace', icon: 'deck', name: t('Terrace', 'Терраса', 'Terras') },
   { code: 'sea-view', icon: 'waves', name: t('Sea view', 'Вид на море', 'Dəniz mənzərəsi') },
@@ -51,9 +73,21 @@ export const amenities = [
   { code: 'halal', icon: 'verified', name: t('Halal', 'Халяль', 'Halal') },
   { code: 'live-music', icon: 'music_note', name: t('Live music', 'Живая музыка', 'Canlı musiqi') },
   { code: 'delivery', icon: 'delivery_dining', name: t('Delivery', 'Доставка', 'Çatdırılma') },
-  { code: 'card-payment', icon: 'credit_card', name: t('Card payment', 'Оплата картой', 'Kartla ödəniş') },
-  { code: 'family-friendly', icon: 'family_restroom', name: t('Family friendly', 'Подходит для семей', 'Ailə üçün uyğun') },
-  { code: 'wheelchair', icon: 'accessible', name: t('Wheelchair accessible', 'Доступно для колясок', 'Əlil arabası üçün əlçatan') },
+  {
+    code: 'card-payment',
+    icon: 'credit_card',
+    name: t('Card payment', 'Оплата картой', 'Kartla ödəniş'),
+  },
+  {
+    code: 'family-friendly',
+    icon: 'family_restroom',
+    name: t('Family friendly', 'Подходит для семей', 'Ailə üçün uyğun'),
+  },
+  {
+    code: 'wheelchair',
+    icon: 'accessible',
+    name: t('Wheelchair accessible', 'Доступно для колясок', 'Əlil arabası üçün əlçatan'),
+  },
   { code: 'audio-guide', icon: 'headphones', name: t('Audio guide', 'Аудиогид', 'Audio bələdçi') },
 ];
 
@@ -84,7 +118,13 @@ export type RoomSeed = {
   breakfastIncluded: boolean;
 };
 
-export type MenuItemSeed = [name: T, price: number, weightGrams: number | null, tags: string[], isSet?: boolean];
+export type MenuItemSeed = [
+  name: T,
+  price: number,
+  weightGrams: number | null,
+  tags: string[],
+  isSet?: boolean,
+];
 export type MenuCategorySeed = { name: T; items: MenuItemSeed[] };
 
 type BasePlace = {
@@ -139,7 +179,15 @@ const room = (
   pricePerNight: number,
   freeCancellation = true,
   breakfastIncluded = true,
-): RoomSeed => ({ name, sizeM2, bedType, maxGuests, pricePerNight, freeCancellation, breakfastIncluded });
+): RoomSeed => ({
+  name,
+  sizeM2,
+  bedType,
+  maxGuests,
+  pricePerNight,
+  freeCancellation,
+  breakfastIncluded,
+});
 
 const STANDARD = t('Standard Double', 'Стандартный двухместный', 'Standart ikinəfərlik');
 const DELUXE = t('Deluxe Room', 'Номер делюкс', 'Delüks otaq');
@@ -172,9 +220,16 @@ export const hotels: HotelSeed[] = [
     amenities: ['wifi', 'breakfast', 'airport-transfer', 'air-conditioning', 'family-rooms'],
     isFeatured: true,
     featuredOrder: 1,
-    offer: { title: t('Stay 3 nights, get 15% off', '3 ночи — скидка 15%', '3 gecə qal, 15% endirim'), discountPercent: 15 },
+    offer: {
+      title: t('Stay 3 nights, get 15% off', '3 ночи — скидка 15%', '3 gecə qal, 15% endirim'),
+      discountPercent: 15,
+    },
     photos: photos('shirvanshah-boutique-hotel'),
-    rooms: [room(STANDARD, 22, 'Double', 2, 120), room(DELUXE, 30, 'King', 2, 160), room(FAMILY, 38, 'Double + 2 Single', 4, 190)],
+    rooms: [
+      room(STANDARD, 22, 'Double', 2, 120),
+      room(DELUXE, 30, 'King', 2, 160),
+      room(FAMILY, 38, 'Double + 2 Single', 4, 190),
+    ],
   },
   {
     type: 'HOTEL',
@@ -194,11 +249,25 @@ export const hotels: HotelSeed[] = [
     checkInTime: '15:00',
     checkOutTime: '12:00',
     categories: ['hotel'],
-    amenities: ['wifi', 'parking', 'breakfast', 'airport-transfer', 'pool', 'gym', 'spa', 'sea-view', 'air-conditioning'],
+    amenities: [
+      'wifi',
+      'parking',
+      'breakfast',
+      'airport-transfer',
+      'pool',
+      'gym',
+      'spa',
+      'sea-view',
+      'air-conditioning',
+    ],
     isFeatured: true,
     featuredOrder: 2,
     photos: photos('caspian-breeze-hotel'),
-    rooms: [room(DELUXE, 34, 'King', 2, 220), room(SUITE, 60, 'King', 3, 380), room(FAMILY, 45, 'King + Sofa bed', 4, 290)],
+    rooms: [
+      room(DELUXE, 34, 'King', 2, 220),
+      room(SUITE, 60, 'King', 3, 380),
+      room(FAMILY, 45, 'King + Sofa bed', 4, 290),
+    ],
   },
   {
     type: 'HOTEL',
@@ -220,7 +289,10 @@ export const hotels: HotelSeed[] = [
     categories: ['hotel'],
     amenities: ['wifi', 'breakfast', 'air-conditioning'],
     photos: photos('maiden-gate-inn'),
-    rooms: [room(STANDARD, 18, 'Double', 2, 75), room(FAMILY, 28, 'Double + Single', 3, 105, false)],
+    rooms: [
+      room(STANDARD, 18, 'Double', 2, 75),
+      room(FAMILY, 28, 'Double + Single', 3, 105, false),
+    ],
   },
   {
     type: 'HOTEL',
@@ -243,7 +315,10 @@ export const hotels: HotelSeed[] = [
     amenities: ['wifi', 'breakfast', 'air-conditioning', 'kitchen', 'family-rooms'],
     isFeatured: true,
     featuredOrder: 3,
-    offer: { title: t('Early booking: 10% off', 'Раннее бронирование: −10%', 'Erkən rezerv: 10% endirim'), discountPercent: 10 },
+    offer: {
+      title: t('Early booking: 10% off', 'Раннее бронирование: −10%', 'Erkən rezerv: 10% endirim'),
+      discountPercent: 10,
+    },
     photos: photos('nizami-street-suites'),
     rooms: [room(STANDARD, 24, 'Queen', 2, 110), room(SUITE, 45, 'King + Sofa bed', 4, 175)],
   },
@@ -290,8 +365,24 @@ export const hotels: HotelSeed[] = [
     amenities: ['wifi', 'parking', 'kitchen', 'family-rooms', 'air-conditioning'],
     photos: photos('yasamal-family-apartments'),
     rooms: [
-      room(t('One-bedroom Apartment', 'Апартаменты с 1 спальней', 'Birotaqlı mənzil'), 45, 'Double + Sofa bed', 4, 65, true, false),
-      room(t('Two-bedroom Apartment', 'Апартаменты с 2 спальнями', 'İkiotaqlı mənzil'), 70, '2 Double', 6, 95, true, false),
+      room(
+        t('One-bedroom Apartment', 'Апартаменты с 1 спальней', 'Birotaqlı mənzil'),
+        45,
+        'Double + Sofa bed',
+        4,
+        65,
+        true,
+        false,
+      ),
+      room(
+        t('Two-bedroom Apartment', 'Апартаменты с 2 спальнями', 'İkiotaqlı mənzil'),
+        70,
+        '2 Double',
+        6,
+        95,
+        true,
+        false,
+      ),
     ],
   },
   {
@@ -337,8 +428,24 @@ export const hotels: HotelSeed[] = [
     amenities: ['wifi', 'kitchen', 'air-conditioning'],
     photos: photos('silk-road-hostel'),
     rooms: [
-      room(t('Bed in 6-bed dorm', 'Место в 6-местном номере', '6 nəfərlik otaqda çarpayı'), 24, 'Bunk bed', 1, 25, true, false),
-      room(t('Private Double', 'Отдельный двухместный', 'Fərdi ikinəfərlik'), 14, 'Double', 2, 60, true, false),
+      room(
+        t('Bed in 6-bed dorm', 'Место в 6-местном номере', '6 nəfərlik otaqda çarpayı'),
+        24,
+        'Bunk bed',
+        1,
+        25,
+        true,
+        false,
+      ),
+      room(
+        t('Private Double', 'Отдельный двухместный', 'Fərdi ikinəfərlik'),
+        14,
+        'Double',
+        2,
+        60,
+        true,
+        false,
+      ),
     ],
   },
   {
@@ -383,7 +490,11 @@ export const hotels: HotelSeed[] = [
     categories: ['hotel'],
     amenities: ['wifi', 'parking', 'breakfast', 'pool', 'gym', 'air-conditioning'],
     photos: photos('white-city-hotel'),
-    rooms: [room(STANDARD, 25, 'Queen', 2, 105), room(DELUXE, 33, 'King', 2, 140), room(SUITE, 55, 'King', 3, 230)],
+    rooms: [
+      room(STANDARD, 25, 'Queen', 2, 105),
+      room(DELUXE, 33, 'King', 2, 140),
+      room(SUITE, 55, 'King', 3, 230),
+    ],
   },
 ];
 
@@ -413,14 +524,25 @@ const azerbaijaniMenu: MenuCategorySeed[] = [
       [t('Shah plov', 'Шах-плов', 'Şah plov'), 22, 400, []],
       [t('Lamb kebab', 'Шашлык из баранины', 'Quzu kababı'), 14, 300, []],
       [t('Chicken lyulya kebab', 'Люля-кебаб из курицы', 'Toyuq lülə kababı'), 9, 250, []],
-      [t('Saj with lamb and vegetables', 'Садж с бараниной и овощами', 'Quzu ətli sac'), 25, 800, [], false],
+      [
+        t('Saj with lamb and vegetables', 'Садж с бараниной и овощами', 'Quzu ətli sac'),
+        25,
+        800,
+        [],
+        false,
+      ],
     ],
   },
   {
     name: t('Desserts and drinks', 'Десерты и напитки', 'Desertlər və içkilər'),
     items: [
       [t('Pakhlava', 'Пахлава', 'Paxlava'), 4, 100, ['vegetarian']],
-      [t('Tea set with jam', 'Чайный набор с вареньем', 'Mürəbbəli çay dəsti'), 8, null, ['vegetarian']],
+      [
+        t('Tea set with jam', 'Чайный набор с вареньем', 'Mürəbbəli çay dəsti'),
+        8,
+        null,
+        ['vegetarian'],
+      ],
       [t('Ayran', 'Айран', 'Ayran'), 2, 300, ['vegetarian']],
       [t('Family set for 4', 'Семейный сет на 4', '4 nəfərlik ailə seti'), 85, null, [], true],
     ],
@@ -431,7 +553,12 @@ const seafoodMenu: MenuCategorySeed[] = [
   {
     name: t('Starters', 'Закуски', 'Qəlyanaltılar'),
     items: [
-      [t('Caspian sprat with lemon', 'Каспийская килька с лимоном', 'Limonlu Xəzər kilkəsi'), 7, 200, []],
+      [
+        t('Caspian sprat with lemon', 'Каспийская килька с лимоном', 'Limonlu Xəzər kilkəsi'),
+        7,
+        200,
+        [],
+      ],
       [t('Seafood salad', 'Салат с морепродуктами', 'Dəniz məhsulları salatı'), 16, 250, []],
       [t('Lavash with herbs', 'Лаваш с зеленью', 'Göyərtili lavaş'), 3, 150, ['vegetarian']],
     ],
@@ -440,7 +567,16 @@ const seafoodMenu: MenuCategorySeed[] = [
     name: t('Fish', 'Рыба', 'Balıq'),
     items: [
       [t('Grilled sturgeon kebab', 'Шашлык из осетрины', 'Nərə balığı kababı'), 38, 300, []],
-      [t('Fried kutum with narsharab', 'Жареный кутум с наршарабом', 'Narşərablı qızardılmış kütüm'), 24, 350, []],
+      [
+        t(
+          'Fried kutum with narsharab',
+          'Жареный кутум с наршарабом',
+          'Narşərablı qızardılmış kütüm',
+        ),
+        24,
+        350,
+        [],
+      ],
       [t('Grilled sea bass', 'Сибас на гриле', 'Qrildə levrek'), 28, 350, []],
     ],
   },
@@ -476,7 +612,12 @@ const europeanMenu: MenuCategorySeed[] = [
     items: [
       [t('Cheesecake', 'Чизкейк', 'Çizkeyk'), 9, 150, ['vegetarian']],
       [t('Cappuccino', 'Капучино', 'Kapuçino'), 6, 250, ['vegetarian']],
-      [t('Fresh orange juice', 'Свежевыжатый апельсиновый сок', 'Təzə portağal şirəsi'), 8, 300, ['vegetarian']],
+      [
+        t('Fresh orange juice', 'Свежевыжатый апельсиновый сок', 'Təzə portağal şirəsi'),
+        8,
+        300,
+        ['vegetarian'],
+      ],
     ],
   },
 ];
@@ -512,9 +653,24 @@ const teaRoomMenu: MenuCategorySeed[] = [
   {
     name: t('Tea', 'Чай', 'Çay'),
     items: [
-      [t('Black tea in armudu glass', 'Чёрный чай в армуду', 'Armudu stəkanda qara çay'), 2, null, ['vegetarian']],
+      [
+        t('Black tea in armudu glass', 'Чёрный чай в армуду', 'Armudu stəkanda qara çay'),
+        2,
+        null,
+        ['vegetarian'],
+      ],
       [t('Thyme tea', 'Чай с чабрецом', 'Kəklikotu çayı'), 3, null, ['vegetarian']],
-      [t('Tea set for 2 with jams', 'Чайный набор на двоих с вареньем', '2 nəfərlik mürəbbəli çay dəsti'), 12, null, ['vegetarian'], true],
+      [
+        t(
+          'Tea set for 2 with jams',
+          'Чайный набор на двоих с вареньем',
+          '2 nəfərlik mürəbbəli çay dəsti',
+        ),
+        12,
+        null,
+        ['vegetarian'],
+        true,
+      ],
     ],
   },
   {
@@ -529,7 +685,12 @@ const teaRoomMenu: MenuCategorySeed[] = [
     name: t('Jams', 'Варенье', 'Mürəbbələr'),
     items: [
       [t('Fig jam', 'Инжирное варенье', 'Əncir mürəbbəsi'), 3, 100, ['vegetarian']],
-      [t('White cherry jam', 'Варенье из белой черешни', 'Ağ gilas mürəbbəsi'), 3, 100, ['vegetarian']],
+      [
+        t('White cherry jam', 'Варенье из белой черешни', 'Ağ gilas mürəbbəsi'),
+        3,
+        100,
+        ['vegetarian'],
+      ],
     ],
   },
 ];
@@ -548,7 +709,12 @@ const streetFoodMenu: MenuCategorySeed[] = [
     items: [
       [t('Chicken doner', 'Куриный донер', 'Toyuq dönəri'), 4, 300, []],
       [t('Beef doner', 'Говяжий донер', 'Mal əti dönəri'), 5, 300, []],
-      [t('Lavash wrap with cheese', 'Лаваш с сыром', 'Pendirli lavaş dürümü'), 3, 200, ['vegetarian']],
+      [
+        t('Lavash wrap with cheese', 'Лаваш с сыром', 'Pendirli lavaş dürümü'),
+        3,
+        200,
+        ['vegetarian'],
+      ],
     ],
   },
   {
@@ -592,7 +758,10 @@ export const restaurants: RestaurantSeed[] = [
     amenities: ['terrace', 'kids-menu', 'halal', 'card-payment', 'family-friendly'],
     isFeatured: true,
     featuredOrder: 1,
-    offer: { title: t('Lunch set -20%', 'Бизнес-ланч −20%', 'Nahar seti -20%'), discountPercent: 20 },
+    offer: {
+      title: t('Lunch set -20%', 'Бизнес-ланч −20%', 'Nahar seti -20%'),
+      discountPercent: 20,
+    },
     menu: azerbaijaniMenu,
   }),
   restaurant({
@@ -817,7 +986,11 @@ export const attractions: AttractionSeed[] = [
     amenities: ['audio-guide'],
     recommendedMinutes: 60,
     hours: everyDay('10:00', '18:00'),
-    tickets: [{ label: ADULT, price: 15 }, { label: STUDENT, price: 7 }, { label: CHILD, price: 0 }],
+    tickets: [
+      { label: ADULT, price: 15 },
+      { label: STUDENT, price: 7 },
+      { label: CHILD, price: 0 },
+    ],
     isFeatured: true,
     featuredOrder: 2,
   }),
@@ -837,7 +1010,11 @@ export const attractions: AttractionSeed[] = [
     amenities: ['audio-guide'],
     recommendedMinutes: 90,
     hours: everyDay('10:00', '18:00'),
-    tickets: [{ label: ADULT, price: 15 }, { label: STUDENT, price: 7 }, { label: CHILD, price: 0 }],
+    tickets: [
+      { label: ADULT, price: 15 },
+      { label: STUDENT, price: 7 },
+      { label: CHILD, price: 0 },
+    ],
   }),
   attraction({
     slug: 'heydar-aliyev-center',
@@ -855,13 +1032,21 @@ export const attractions: AttractionSeed[] = [
     amenities: ['wheelchair', 'family-friendly'],
     recommendedMinutes: 120,
     hours: closedMonday('11:00', '19:00'),
-    tickets: [{ label: ADULT, price: 15 }, { label: STUDENT, price: 7 }, { label: CHILD, price: 0 }],
+    tickets: [
+      { label: ADULT, price: 15 },
+      { label: STUDENT, price: 7 },
+      { label: CHILD, price: 0 },
+    ],
     isFeatured: true,
     featuredOrder: 3,
   }),
   attraction({
     slug: 'flame-towers-highland-park',
-    name: t('Highland Park & Flame Towers view', 'Нагорный парк и вид на Пламенные башни', 'Dağüstü park və Alov qüllələri'),
+    name: t(
+      'Highland Park & Flame Towers view',
+      'Нагорный парк и вид на Пламенные башни',
+      'Dağüstü park və Alov qüllələri',
+    ),
     description: t(
       'Hilltop park with the best panoramic view of Baku Bay and the Flame Towers.',
       'Парк на холме с лучшим панорамным видом на Бакинскую бухту и Пламенные башни.',
@@ -913,7 +1098,11 @@ export const attractions: AttractionSeed[] = [
     amenities: ['wheelchair', 'audio-guide'],
     recommendedMinutes: 90,
     hours: closedMonday('10:00', '18:00'),
-    tickets: [{ label: ADULT, price: 10 }, { label: STUDENT, price: 5 }, { label: CHILD, price: 0 }],
+    tickets: [
+      { label: ADULT, price: 10 },
+      { label: STUDENT, price: 5 },
+      { label: CHILD, price: 0 },
+    ],
   }),
   attraction({
     slug: 'ateshgah-fire-temple',
@@ -931,7 +1120,11 @@ export const attractions: AttractionSeed[] = [
     amenities: ['audio-guide'],
     recommendedMinutes: 60,
     hours: everyDay('09:00', '18:00'),
-    tickets: [{ label: ADULT, price: 10 }, { label: STUDENT, price: 5 }, { label: CHILD, price: 0 }],
+    tickets: [
+      { label: ADULT, price: 10 },
+      { label: STUDENT, price: 5 },
+      { label: CHILD, price: 0 },
+    ],
   }),
   attraction({
     slug: 'yanar-dag',
@@ -949,7 +1142,11 @@ export const attractions: AttractionSeed[] = [
     amenities: ['family-friendly'],
     recommendedMinutes: 60,
     hours: everyDay('09:00', '23:00'),
-    tickets: [{ label: ADULT, price: 10 }, { label: STUDENT, price: 5 }, { label: CHILD, price: 0 }],
+    tickets: [
+      { label: ADULT, price: 10 },
+      { label: STUDENT, price: 5 },
+      { label: CHILD, price: 0 },
+    ],
   }),
   attraction({
     slug: 'gobustan-national-park',
@@ -967,7 +1164,11 @@ export const attractions: AttractionSeed[] = [
     amenities: ['audio-guide'],
     recommendedMinutes: 240,
     hours: everyDay('09:00', '18:00'),
-    tickets: [{ label: ADULT, price: 15 }, { label: STUDENT, price: 7 }, { label: CHILD, price: 0 }],
+    tickets: [
+      { label: ADULT, price: 15 },
+      { label: STUDENT, price: 7 },
+      { label: CHILD, price: 0 },
+    ],
   }),
 ];
 
@@ -997,7 +1198,11 @@ export type RouteSeed = {
   steps: { mode: Mode; instruction: T; durationMin: number; price?: number }[];
 };
 
-const AIRPORT = t('Heydar Aliyev Airport', 'Аэропорт им. Гейдара Алиева', 'Heydər Əliyev Hava Limanı');
+const AIRPORT = t(
+  'Heydar Aliyev Airport',
+  'Аэропорт им. Гейдара Алиева',
+  'Heydər Əliyev Hava Limanı',
+);
 const CENTER = t('City center (28 May)', 'Центр города (28 Мая)', 'Şəhər mərkəzi (28 May)');
 const BUS_STATION = t('Baku Bus Station', 'Бакинский автовокзал', 'Bakı Avtovağzalı');
 const OLD_CITY = t('Old City', 'Старый город', 'İçərişəhər');
@@ -1233,7 +1438,11 @@ export const itineraries = [
 export const faqItems = [
   {
     category: 'money',
-    question: t('Which currency is used?', 'Какая валюта используется?', 'Hansı valyuta işlədilir?'),
+    question: t(
+      'Which currency is used?',
+      'Какая валюта используется?',
+      'Hansı valyuta işlədilir?',
+    ),
     answer: t(
       'The Azerbaijani manat (AZN, ₼). Cards are accepted in most hotels and restaurants; keep some cash for small shops and taxis.',
       'Азербайджанский манат (AZN, ₼). Карты принимают в большинстве отелей и ресторанов; держите немного наличных для мелких магазинов и такси.',
@@ -1260,7 +1469,11 @@ export const faqItems = [
   },
   {
     category: 'sim',
-    question: t('How do I get mobile internet?', 'Как получить мобильный интернет?', 'Mobil internetə necə qoşulum?'),
+    question: t(
+      'How do I get mobile internet?',
+      'Как получить мобильный интернет?',
+      'Mobil internetə necə qoşulum?',
+    ),
     answer: t(
       'Local SIM cards are sold at the airport and in operator shops; bring your passport.',
       'Местные SIM-карты продаются в аэропорту и в салонах операторов; возьмите паспорт.',

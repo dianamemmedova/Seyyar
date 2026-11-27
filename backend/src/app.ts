@@ -6,6 +6,7 @@ import { config } from './config';
 import { requestId } from './middleware/request-id';
 import { timing } from './middleware/timing';
 import { errorHandler, notFound } from './middleware/error-handler';
+import { apiLimiter } from './middleware/rate-limit';
 import { prisma } from './lib/prisma';
 import { uploadRoot } from './lib/images';
 import authRoutes from './routes/auth.routes';
@@ -21,6 +22,11 @@ import formsRoutes from './routes/forms.routes';
 
 const app = express();
 
+// Behind nginx the client IP comes in the X-Forwarded-For header
+if (config.TRUST_PROXY) {
+  app.set('trust proxy', 1);
+}
+
 // 1. Every request gets an ID and is timed
 app.use(requestId);
 app.use(timing);
@@ -35,6 +41,8 @@ app.use(cookieParser());
 app.use('/uploads', express.static(uploadRoot, { maxAge: '30d', immutable: true, index: false }));
 
 // 4. Routes
+app.use('/api', apiLimiter);
+
 app.get('/api/health', async (_req, res) => {
   try {
     await prisma.$queryRaw`SELECT 1`;

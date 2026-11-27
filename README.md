@@ -47,7 +47,35 @@ npx prisma db seed
 npm run dev
 ```
 
-API: http://localhost:3000/api/health
+API: http://localhost:5050/api/health
+
+| Script | What it does |
+| --- | --- |
+| `npm run dev` | Start the API and restart on changes |
+| `npm run typecheck` | Check TypeScript types |
+| `npm run format` | Format the code with Prettier |
+| `npm run build` / `npm start` | Production build and start |
+| `npm run db:migrate` | Create and apply a database migration |
+| `npm run db:seed` | Fill the database with sample data |
+| `npm run db:studio` | Open Prisma Studio |
+
+Postman: import `backend/postman/seyyar-api.postman_collection.json`, then run **Auth → Login** first.
+
+#### API overview
+
+| Area | Endpoints |
+| --- | --- |
+| Auth | `POST /api/auth/register`, `login`, `refresh`, `logout`, `forgot-password`, `reset-password`, `GET /api/auth/me` |
+| Places | `GET /api/home`, `/api/places`, `/api/places/map`, `/api/places/filters`, `/api/places/:slug`, `/:slug/reviews`, `/:slug/nearby` |
+| Requests | `POST /api/requests`, `GET /api/requests/my`, `GET /:code`, `PATCH /:code/cancel`, `POST /:code/messages` |
+| Favorites | `GET /api/favorites`, `GET /api/favorites/slugs`, `PUT` / `DELETE /api/favorites/:slug` |
+| Reviews | `POST /api/reviews`, `GET /api/reviews/my` |
+| Transport | `GET /api/routes`, `/api/routes/locations`, `/api/routes/plan`, `/api/routes/:slug` |
+| Itineraries | `GET /api/itineraries`, `/api/itineraries/:slug` |
+| Uploads | `POST /api/uploads/reviews`, `POST /api/uploads/places` (form field `photos`) |
+| Forms | `POST /api/contact`, `/api/subscribe`, `/api/partners/apply`, `GET /api/faq` |
+
+Responses: `{ "data": ..., "meta": ... }` on success, `{ "error": { "code", "message", "requestId", "details?" } }` on error.
 
 ### Frontend
 

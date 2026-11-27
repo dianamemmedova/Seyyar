@@ -6,12 +6,7 @@ const emptyToUndefined = (value: unknown) => (value === '' ? undefined : value);
 
 export const envSchema = z.object({
   NODE_ENV: z.enum(['development', 'test', 'production']).default('development'),
-  PORT: z.coerce
-    .number({ error: 'PORT rəqəm olmalıdır' })
-    .int()
-    .min(1)
-    .max(65535)
-    .default(5050),
+  PORT: z.coerce.number({ error: 'PORT rəqəm olmalıdır' }).int().min(1).max(65535).default(5050),
   DATABASE_URL: z
     .string({ error: 'DATABASE_URL yoxdur' })
     .regex(/^postgres(ql)?:\/\//, { error: 'DATABASE_URL postgresql:// ilə başlamalıdır' }),
@@ -32,6 +27,12 @@ export const envSchema = z.object({
     }),
   JWT_ACCESS_TTL_SECONDS: z.coerce.number().int().min(60).default(900),
   REFRESH_TOKEN_TTL_DAYS: z.coerce.number().int().min(1).default(30),
+
+  // true when the API runs behind nginx / a load balancer (real client IP for rate limits)
+  TRUST_PROXY: z
+    .enum(['true', 'false'])
+    .default('false')
+    .transform((value) => value === 'true'),
 
   // Public address of this API (used to build image URLs)
   PUBLIC_API_URL: z

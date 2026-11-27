@@ -1,6 +1,17 @@
 import { rateLimit } from 'express-rate-limit';
 import { TooManyRequestsError } from '../lib/errors';
 
+// Every API call: 300 per IP in 15 minutes (a normal visitor never gets close)
+export const apiLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  limit: 300,
+  standardHeaders: 'draft-8',
+  legacyHeaders: false,
+  handler: (_req, _res, next) => {
+    next(new TooManyRequestsError('Too many requests. Try again in a few minutes'));
+  },
+});
+
 // 10 failed login attempts per IP in 15 minutes (successful logins are not counted)
 export const loginLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,

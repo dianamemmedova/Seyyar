@@ -46,14 +46,19 @@ export const listPlacesQuerySchema = z
     openNow: booleanFlag.optional(),
     lat: z.coerce.number().min(-90).max(90).optional(),
     lng: z.coerce.number().min(-180).max(180).optional(),
-    sort: z.enum(['recommended', 'price_asc', 'price_desc', 'rating', 'nearest']).default('recommended'),
+    sort: z
+      .enum(['recommended', 'price_asc', 'price_desc', 'rating', 'nearest'])
+      .default('recommended'),
     page,
     limit: z.coerce.number().int().min(1).max(50).default(12),
   })
-  .refine((query) => query.sort !== 'nearest' || (query.lat !== undefined && query.lng !== undefined), {
-    error: 'lat and lng are required when sort=nearest',
-    path: ['sort'],
-  });
+  .refine(
+    (query) => query.sort !== 'nearest' || (query.lat !== undefined && query.lng !== undefined),
+    {
+      error: 'lat and lng are required when sort=nearest',
+      path: ['sort'],
+    },
+  );
 
 export const mapQuerySchema = z.object({
   lang,

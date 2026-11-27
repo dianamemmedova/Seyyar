@@ -33,7 +33,9 @@ export const registerSchema = z.object({
 
 export const loginSchema = z.object({
   email,
-  password: z.string({ error: 'Password must be a string' }).min(1, { error: 'Password is required' }),
+  password: z
+    .string({ error: 'Password must be a string' })
+    .min(1, { error: 'Password is required' }),
 });
 
 export const forgotPasswordSchema = z.object({ email });

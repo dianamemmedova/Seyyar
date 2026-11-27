@@ -24,11 +24,21 @@ function hasBodyParserType(err: unknown, type: string): boolean {
 function multerToAppError(err: multer.MulterError): AppError {
   switch (err.code) {
     case 'LIMIT_FILE_SIZE':
-      return new AppError(`Each image must be at most ${MAX_FILE_SIZE_MB} MB`, 413, 'FILE_TOO_LARGE');
+      return new AppError(
+        `Each image must be at most ${MAX_FILE_SIZE_MB} MB`,
+        413,
+        'FILE_TOO_LARGE',
+      );
     case 'LIMIT_FILE_COUNT':
-      return new BadRequestError(`You can upload at most ${MAX_FILES} images at once`, 'TOO_MANY_FILES');
+      return new BadRequestError(
+        `You can upload at most ${MAX_FILES} images at once`,
+        'TOO_MANY_FILES',
+      );
     case 'LIMIT_UNEXPECTED_FILE':
-      return new BadRequestError('Images must be sent in the "photos" field', 'UNEXPECTED_FILE_FIELD');
+      return new BadRequestError(
+        'Images must be sent in the "photos" field',
+        'UNEXPECTED_FILE_FIELD',
+      );
     default:
       return new BadRequestError('The upload could not be processed', 'UPLOAD_FAILED');
   }

@@ -20,7 +20,16 @@ const transporter = config.SMTP_HOST
 export async function sendMail(mail: Mail): Promise<void> {
   if (!transporter) {
     console.log(
-      ['', '──── [mail: dev] ────', `To: ${mail.to}`, `Subject: ${mail.subject}`, '', mail.text, '────────────────────', ''].join('\n'),
+      [
+        '',
+        '──── [mail: dev] ────',
+        `To: ${mail.to}`,
+        `Subject: ${mail.subject}`,
+        '',
+        mail.text,
+        '────────────────────',
+        '',
+      ].join('\n'),
     );
     return;
   }

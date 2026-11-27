@@ -124,7 +124,11 @@ export function toPlaceDetail(place: PlaceForDetail, lang: Lang) {
     checkInTime: place.checkInTime,
     checkOutTime: place.checkOutTime,
     recommendedMinutes: place.recommendedMinutes,
-    photos: place.photos.map((photo) => ({ url: photo.url, alt: photo.alt, isCover: photo.isCover })),
+    photos: place.photos.map((photo) => ({
+      url: photo.url,
+      alt: photo.alt,
+      isCover: photo.isCover,
+    })),
     amenities: place.amenities.map(({ amenity }) => ({
       code: amenity.code,
       name: localize(amenity.name, lang),

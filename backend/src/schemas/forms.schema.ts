@@ -1,8 +1,15 @@
 import * as z from 'zod';
 import { LANGS } from '../lib/i18n';
 
-const email = z.string().trim().toLowerCase().pipe(z.email({ error: 'Invalid email address' }));
-const phone = z.string().trim().regex(/^\+?[0-9\s-]{7,20}$/, { error: 'Invalid phone number' });
+const email = z
+  .string()
+  .trim()
+  .toLowerCase()
+  .pipe(z.email({ error: 'Invalid email address' }));
+const phone = z
+  .string()
+  .trim()
+  .regex(/^\+?[0-9\s-]{7,20}$/, { error: 'Invalid phone number' });
 
 // Hidden field on the website forms. People never see it, spam bots fill it in.
 const honeypot = z.string().optional();
@@ -10,11 +17,7 @@ const honeypot = z.string().optional();
 export const contactSchema = z.object({
   name: z.string().trim().min(2).max(100),
   email,
-  message: z
-    .string()
-    .trim()
-    .min(10, { error: 'Message must be at least 10 characters' })
-    .max(3000),
+  message: z.string().trim().min(10, { error: 'Message must be at least 10 characters' }).max(3000),
   website: honeypot,
 });
 

@@ -46,6 +46,8 @@ const escapeRegex = (value: string) => value.replace(/[.*+?^${}()|[\]\\]/g, '\\$
 
 // True only for URLs created by saveImage (so nobody can attach links to other websites)
 export function isUploadedImageUrl(url: string, folder: ImageFolder): boolean {
-  const pattern = new RegExp(`^${escapeRegex(config.PUBLIC_API_URL)}/uploads/${folder}/${UUID_WEBP}$`);
+  const pattern = new RegExp(
+    `^${escapeRegex(config.PUBLIC_API_URL)}/uploads/${folder}/${UUID_WEBP}$`,
+  );
   return pattern.test(url);
 }

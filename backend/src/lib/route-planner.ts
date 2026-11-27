@@ -46,9 +46,14 @@ function toOption<T extends Leg>(legs: T[], people: number): PlanOption<T> {
   return {
     legs,
     durationMin: legs.reduce((sum, leg) => sum + leg.durationMin, 0) + changes * CHANGE_PENALTY_MIN,
-    priceMin: round2(legs.reduce((sum, leg) => sum + groupPrice(leg.priceMin, leg.priceUnit, people), 0)),
+    priceMin: round2(
+      legs.reduce((sum, leg) => sum + groupPrice(leg.priceMin, leg.priceUnit, people), 0),
+    ),
     priceMax: round2(
-      legs.reduce((sum, leg) => sum + groupPrice(leg.priceMax ?? leg.priceMin, leg.priceUnit, people), 0),
+      legs.reduce(
+        (sum, leg) => sum + groupPrice(leg.priceMax ?? leg.priceMin, leg.priceUnit, people),
+        0,
+      ),
     ),
     transfers: legs.reduce((sum, leg) => sum + leg.transfers, 0) + changes,
     walkMeters: legs.reduce((sum, leg) => sum + leg.walkMeters, 0),

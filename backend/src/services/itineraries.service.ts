@@ -14,7 +14,11 @@ export async function listItineraries(lang: Lang) {
         // Only stops whose place is still published
         where: { place: { status: 'PUBLISHED' } },
         orderBy: [{ day: 'asc' }, { sortOrder: 'asc' }],
-        include: { place: { select: { photos: { where: { isCover: true }, take: 1, select: { url: true } } } } },
+        include: {
+          place: {
+            select: { photos: { where: { isCover: true }, take: 1, select: { url: true } } },
+          },
+        },
       },
     },
     orderBy: { days: 'asc' },

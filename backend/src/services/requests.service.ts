@@ -75,7 +75,10 @@ function contactFields(input: CreateRequestInput) {
 // Hotel request: dates, rooms, capacity, total
 // ─────────────────────────────────────────────
 
-async function buildHotelDraft(place: PlaceForRequest, input: HotelRequestInput): Promise<RequestDraft> {
+async function buildHotelDraft(
+  place: PlaceForRequest,
+  input: HotelRequestInput,
+): Promise<RequestDraft> {
   if (place.type !== 'HOTEL') {
     throw new BadRequestError('This place does not accept hotel requests', 'WRONG_REQUEST_TYPE');
   }
@@ -98,7 +101,11 @@ async function buildHotelDraft(place: PlaceForRequest, input: HotelRequestInput)
   }
 
   const rooms = await prisma.room.findMany({
-    where: { id: { in: input.rooms.map((room) => room.roomId) }, placeId: place.id, isAvailable: true },
+    where: {
+      id: { in: input.rooms.map((room) => room.roomId) },
+      placeId: place.id,
+      isAvailable: true,
+    },
   });
 
   if (rooms.length !== input.rooms.length) {
@@ -106,7 +113,10 @@ async function buildHotelDraft(place: PlaceForRequest, input: HotelRequestInput)
   }
 
   const roomById = new Map(rooms.map((room) => [room.id, room]));
-  const selected = input.rooms.map((choice) => ({ room: roomById.get(choice.roomId)!, quantity: choice.quantity }));
+  const selected = input.rooms.map((choice) => ({
+    room: roomById.get(choice.roomId)!,
+    quantity: choice.quantity,
+  }));
 
   const capacity = selected.reduce((sum, { room, quantity }) => sum + room.maxGuests * quantity, 0);
   if (capacity < input.guests + input.children) {
@@ -155,7 +165,10 @@ function isWithinOpeningHours(place: PlaceForRequest, date: string, time: string
   return time >= day.opensAt || time < day.closesAt;
 }
 
-async function buildTableDraft(place: PlaceForRequest, input: TableRequestInput): Promise<RequestDraft> {
+async function buildTableDraft(
+  place: PlaceForRequest,
+  input: TableRequestInput,
+): Promise<RequestDraft> {
   if (place.type !== 'RESTAURANT') {
     throw new BadRequestError('This place does not accept table requests', 'WRONG_REQUEST_TYPE');
   }
@@ -169,7 +182,10 @@ async function buildTableDraft(place: PlaceForRequest, input: TableRequestInput)
     throw new BadRequestError('The selected date is too far in the future', 'DATE_TOO_FAR');
   }
   if (!isWithinOpeningHours(place, input.date, input.time)) {
-    throw new BadRequestError('The restaurant is closed at the selected time', 'OUTSIDE_OPENING_HOURS');
+    throw new BadRequestError(
+      'The restaurant is closed at the selected time',
+      'OUTSIDE_OPENING_HOURS',
+    );
   }
 
   const menuItems = await prisma.menuItem.findMany({
@@ -181,7 +197,10 @@ async function buildTableDraft(place: PlaceForRequest, input: TableRequestInput)
   });
 
   if (menuItems.length !== new Set(input.items.map((item) => item.menuItemId)).size) {
-    throw new BadRequestError('Some of the selected dishes are not available', 'MENU_ITEM_NOT_AVAILABLE');
+    throw new BadRequestError(
+      'Some of the selected dishes are not available',
+      'MENU_ITEM_NOT_AVAILABLE',
+    );
   }
 
   const itemById = new Map(menuItems.map((item) => [item.id, item]));
@@ -241,7 +260,9 @@ export async function createRequest(userId: number, input: CreateRequestInput, l
   }
 
   const draft =
-    input.type === 'HOTEL' ? await buildHotelDraft(place, input) : await buildTableDraft(place, input);
+    input.type === 'HOTEL'
+      ? await buildHotelDraft(place, input)
+      : await buildTableDraft(place, input);
 
   const request = await withUniqueCode((code) =>
     prisma.bookingRequest.create({

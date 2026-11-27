@@ -3,7 +3,11 @@ import { prisma } from '../lib/prisma';
 import { localize, type Lang } from '../lib/i18n';
 import { BadRequestError, ConflictError, ForbiddenError, NotFoundError } from '../lib/errors';
 import { isPrismaError, PrismaErrorCode } from '../lib/prisma-errors';
-import { CATEGORY_KEYS, type CreateReviewInput, type MyReviewsQuery } from '../schemas/reviews.schema';
+import {
+  CATEGORY_KEYS,
+  type CreateReviewInput,
+  type MyReviewsQuery,
+} from '../schemas/reviews.schema';
 
 // Works with the normal client and inside a transaction
 type Db = Prisma.TransactionClient;

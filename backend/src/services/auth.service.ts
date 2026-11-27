@@ -55,7 +55,9 @@ export type Session = {
 async function createSession(user: PublicUser): Promise<Session> {
   const accessToken = signAccessToken({ userId: user.id, role: user.role });
   const refreshToken = generateSecureToken();
-  const refreshExpiresAt = new Date(Date.now() + config.REFRESH_TOKEN_TTL_DAYS * 24 * 60 * 60 * 1000);
+  const refreshExpiresAt = new Date(
+    Date.now() + config.REFRESH_TOKEN_TTL_DAYS * 24 * 60 * 60 * 1000,
+  );
 
   await prisma.refreshToken.create({
     data: { userId: user.id, tokenHash: hashToken(refreshToken), expiresAt: refreshExpiresAt },

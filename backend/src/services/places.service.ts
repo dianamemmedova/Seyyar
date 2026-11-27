@@ -102,7 +102,9 @@ function buildOrderBy(sort: ListPlacesQuery['sort']): Prisma.PlaceOrderByWithRel
 export async function listPlaces(query: ListPlacesQuery) {
   const where = await buildWhere(query);
   const origin =
-    query.lat !== undefined && query.lng !== undefined ? { lat: query.lat, lng: query.lng } : undefined;
+    query.lat !== undefined && query.lng !== undefined
+      ? { lat: query.lat, lng: query.lng }
+      : undefined;
 
   // "Open now" and "nearest" are calculated in code, so these need all rows first.
   // Everything else is filtered, sorted and paginated by the database.

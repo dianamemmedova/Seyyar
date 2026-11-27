@@ -4,12 +4,21 @@ import { LANGS } from '../lib/i18n';
 const lang = z.enum(LANGS).default('en');
 
 const date = z.iso.date({ error: 'Date must be in YYYY-MM-DD format' });
-const time = z.string().regex(/^([01]\d|2[0-3]):[0-5]\d$/, { error: 'Time must be in HH:MM format' });
+const time = z
+  .string()
+  .regex(/^([01]\d|2[0-3]):[0-5]\d$/, { error: 'Time must be in HH:MM format' });
 
 const contact = {
   contactName: z.string().trim().min(2).max(100),
-  contactEmail: z.string().trim().toLowerCase().pipe(z.email({ error: 'Invalid email address' })),
-  contactPhone: z.string().trim().regex(/^\+?[0-9\s-]{7,20}$/, { error: 'Invalid phone number' }),
+  contactEmail: z
+    .string()
+    .trim()
+    .toLowerCase()
+    .pipe(z.email({ error: 'Invalid email address' })),
+  contactPhone: z
+    .string()
+    .trim()
+    .regex(/^\+?[0-9\s-]{7,20}$/, { error: 'Invalid phone number' }),
   contactWhatsapp: z.boolean().default(false),
   note: z.string().trim().max(1000).optional(),
   specialRequests: z.array(z.string().trim().min(1).max(50)).max(10).default([]),
@@ -57,7 +66,10 @@ const tableRequestSchema = z.object({
 });
 
 // "type" decides which of the two shapes is expected
-export const createRequestSchema = z.discriminatedUnion('type', [hotelRequestSchema, tableRequestSchema]);
+export const createRequestSchema = z.discriminatedUnion('type', [
+  hotelRequestSchema,
+  tableRequestSchema,
+]);
 
 export const requestCodeParamsSchema = z.object({
   code: z

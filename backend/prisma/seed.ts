@@ -167,7 +167,11 @@ async function seedPlace(place: PlaceSeed, regionId: number) {
       data: place.hours.map((hours) => ({ ...hours, placeId: saved.id })),
     });
     await prisma.ticketPrice.createMany({
-      data: place.tickets.map((ticket, index) => ({ ...ticket, placeId: saved.id, sortOrder: index })),
+      data: place.tickets.map((ticket, index) => ({
+        ...ticket,
+        placeId: saved.id,
+        sortOrder: index,
+      })),
     });
   }
 }

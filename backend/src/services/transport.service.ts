@@ -12,7 +12,9 @@ const routeInclude = {
 type RouteWithSteps = Prisma.TransportRouteGetPayload<{ include: typeof routeInclude }>;
 
 // Stored routes only in the active region (Baku for now)
-const ACTIVE = { OR: [{ regionId: null }, { region: { isActive: true } }] } satisfies Prisma.TransportRouteWhereInput;
+const ACTIVE = {
+  OR: [{ regionId: null }, { region: { isActive: true } }],
+} satisfies Prisma.TransportRouteWhereInput;
 
 const toLeg = (route: RouteWithSteps): Leg & { route: RouteWithSteps } => ({
   id: route.id,
@@ -94,7 +96,8 @@ export async function listLocations(lang: Lang) {
 
   const locations = new Map<string, string>();
   for (const route of routes) {
-    if (!locations.has(route.fromKey)) locations.set(route.fromKey, localize(route.fromLabel, lang));
+    if (!locations.has(route.fromKey))
+      locations.set(route.fromKey, localize(route.fromLabel, lang));
     if (!locations.has(route.toKey)) locations.set(route.toKey, localize(route.toLabel, lang));
   }
 

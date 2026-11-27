@@ -8,7 +8,11 @@ export const CATEGORY_KEYS = {
   RESTAURANT: ['food', 'service', 'atmosphere', 'value'],
 } as const;
 
-const score = z.number().int().min(1, { error: 'Rating must be 1-5' }).max(5, { error: 'Rating must be 1-5' });
+const score = z
+  .number()
+  .int()
+  .min(1, { error: 'Rating must be 1-5' })
+  .max(5, { error: 'Rating must be 1-5' });
 
 export const createReviewSchema = z.object({
   requestCode: z
@@ -19,14 +23,22 @@ export const createReviewSchema = z.object({
   rating: score,
   // { "cleanliness": 5, "staff": 4 } - keys are checked in the service by place type
   categoryRatings: z.record(z.string(), score).optional(),
-  text: z.string().trim().min(10, { error: 'Review must be at least 10 characters' }).max(2000).optional(),
+  text: z
+    .string()
+    .trim()
+    .min(10, { error: 'Review must be at least 10 characters' })
+    .max(2000)
+    .optional(),
   travelType: z.enum(['family', 'couple', 'solo', 'friends']).optional(),
   // URLs returned by POST /api/uploads/reviews
   photos: z
     .array(
-      z.string().trim().refine((url) => isUploadedImageUrl(url, 'reviews'), {
-        error: 'Photos must be uploaded with /api/uploads/reviews first',
-      }),
+      z
+        .string()
+        .trim()
+        .refine((url) => isUploadedImageUrl(url, 'reviews'), {
+          error: 'Photos must be uploaded with /api/uploads/reviews first',
+        }),
     )
     .max(5, { error: 'At most 5 photos' })
     .default([]),
