@@ -55,7 +55,7 @@ type RequestFields = {
 
 type RequestDraft = {
   fields: RequestFields;
-  items: Prisma.RequestItemCreateWithoutRequestInput[];
+  items: Prisma.RequestItemCreateManyRequestInput[];
 };
 
 const round2 = (value: number) => Math.round(value * 100) / 100;
@@ -138,7 +138,7 @@ async function buildHotelDraft(
       ...contactFields(input),
     },
     items: selected.map(({ room, quantity }) => ({
-      room: { connect: { id: room.id } },
+      roomId: room.id,
       quantity,
       unitPrice: room.pricePerNight,
     })),
@@ -219,7 +219,7 @@ async function buildTableDraft(
       ...contactFields(input),
     },
     items: input.items.map((item) => ({
-      menuItem: { connect: { id: item.menuItemId } },
+      menuItemId: item.menuItemId,
       quantity: item.quantity,
       unitPrice: itemById.get(item.menuItemId)!.price,
       note: item.note ?? null,
@@ -272,7 +272,8 @@ export async function createRequest(userId: number, input: CreateRequestInput, l
         type: input.type,
         user: { connect: { id: userId } },
         place: { connect: { id: place.id } },
-        items: { create: draft.items },
+        // createMany keeps the items in the order the tourist chose them
+        items: { createMany: { data: draft.items } },
       },
       include: requestDetailInclude,
     }),

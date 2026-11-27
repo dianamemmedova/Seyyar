@@ -1,0 +1,11 @@
+{
+  // Type checking for the tests (npm run typecheck checks src and tests)
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "rootDir": "..",
+    "noEmit": true,
+    "allowImportingTsExtensions": true
+  },
+  "include": ["../src/**/*", "./**/*", "../vitest.config.ts"],
+  "exclude": ["../src/generated"]
+}

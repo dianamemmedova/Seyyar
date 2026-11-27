@@ -17,7 +17,15 @@ const transporter = config.SMTP_HOST
     })
   : null;
 
+// In automated tests emails are collected here instead of being sent or printed
+export const testOutbox: Mail[] = [];
+
 export async function sendMail(mail: Mail): Promise<void> {
+  if (config.NODE_ENV === 'test') {
+    testOutbox.push(mail);
+    return;
+  }
+
   if (!transporter) {
     console.log(
       [
