@@ -116,6 +116,7 @@ export async function createReview(userId: number, input: CreateReviewInput, lan
           categoryRatings: input.categoryRatings,
           text: input.text ?? null,
           travelType: input.travelType ?? null,
+          photos: input.photos,
         },
         include: reviewInclude,
       });

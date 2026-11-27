@@ -45,3 +45,14 @@ export const passwordResetLimiter = rateLimit({
     next(new TooManyRequestsError('Too many password reset attempts. Try again in 1 hour'));
   },
 });
+
+// 30 upload calls per IP per hour (each call can carry up to 5 images)
+export const uploadLimiter = rateLimit({
+  windowMs: 60 * 60 * 1000,
+  limit: 30,
+  standardHeaders: 'draft-8',
+  legacyHeaders: false,
+  handler: (_req, _res, next) => {
+    next(new TooManyRequestsError('Too many uploads. Try again in 1 hour'));
+  },
+});

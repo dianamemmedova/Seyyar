@@ -7,6 +7,7 @@ import { requestId } from './middleware/request-id';
 import { timing } from './middleware/timing';
 import { errorHandler, notFound } from './middleware/error-handler';
 import { prisma } from './lib/prisma';
+import { uploadRoot } from './lib/images';
 import authRoutes from './routes/auth.routes';
 import homeRoutes from './routes/home.routes';
 import placesRoutes from './routes/places.routes';
@@ -15,6 +16,7 @@ import favoritesRoutes from './routes/favorites.routes';
 import reviewsRoutes from './routes/reviews.routes';
 import transportRoutes from './routes/transport.routes';
 import itinerariesRoutes from './routes/itineraries.routes';
+import uploadsRoutes from './routes/uploads.routes';
 
 const app = express();
 
@@ -28,7 +30,10 @@ app.use(cors({ origin: config.CORS_ORIGINS, credentials: true }));
 app.use(express.json({ limit: '1mb' }));
 app.use(cookieParser());
 
-// 3. Routes
+// 3. Uploaded images (file names are random, so they can be cached for a long time)
+app.use('/uploads', express.static(uploadRoot, { maxAge: '30d', immutable: true, index: false }));
+
+// 4. Routes
 app.get('/api/health', async (_req, res) => {
   try {
     await prisma.$queryRaw`SELECT 1`;
@@ -46,8 +51,9 @@ app.use('/api/favorites', favoritesRoutes);
 app.use('/api/reviews', reviewsRoutes);
 app.use('/api/routes', transportRoutes);
 app.use('/api/itineraries', itinerariesRoutes);
+app.use('/api/uploads', uploadsRoutes);
 
-// 4. These two always stay at the very end, after all routes
+// 5. These two always stay at the very end, after all routes
 app.use(notFound);
 app.use(errorHandler);
 

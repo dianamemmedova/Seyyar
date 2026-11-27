@@ -1,5 +1,6 @@
 import * as z from 'zod';
 import { LANGS } from '../lib/i18n';
+import { isUploadedImageUrl } from '../lib/images';
 
 // Which category scores each place type can have
 export const CATEGORY_KEYS = {
@@ -20,6 +21,15 @@ export const createReviewSchema = z.object({
   categoryRatings: z.record(z.string(), score).optional(),
   text: z.string().trim().min(10, { error: 'Review must be at least 10 characters' }).max(2000).optional(),
   travelType: z.enum(['family', 'couple', 'solo', 'friends']).optional(),
+  // URLs returned by POST /api/uploads/reviews
+  photos: z
+    .array(
+      z.string().trim().refine((url) => isUploadedImageUrl(url, 'reviews'), {
+        error: 'Photos must be uploaded with /api/uploads/reviews first',
+      }),
+    )
+    .max(5, { error: 'At most 5 photos' })
+    .default([]),
 });
 
 export const myReviewsQuerySchema = z.object({

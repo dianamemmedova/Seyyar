@@ -33,6 +33,14 @@ export const envSchema = z.object({
   JWT_ACCESS_TTL_SECONDS: z.coerce.number().int().min(60).default(900),
   REFRESH_TOKEN_TTL_DAYS: z.coerce.number().int().min(1).default(30),
 
+  // Public address of this API (used to build image URLs)
+  PUBLIC_API_URL: z
+    .url({ error: 'PUBLIC_API_URL düzgün URL deyil' })
+    .default('http://localhost:5050')
+    .transform((value) => value.replace(/\/+$/, '')),
+  // Folder where uploaded images are saved (relative to the backend folder)
+  UPLOAD_DIR: z.string().default('uploads'),
+
   // Address of the tourist website (used in links inside emails)
   APP_WEB_URL: z.url({ error: 'APP_WEB_URL düzgün URL deyil' }).default('http://localhost:4200'),
 
