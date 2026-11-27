@@ -17,6 +17,7 @@ import reviewsRoutes from './routes/reviews.routes';
 import transportRoutes from './routes/transport.routes';
 import itinerariesRoutes from './routes/itineraries.routes';
 import uploadsRoutes from './routes/uploads.routes';
+import formsRoutes from './routes/forms.routes';
 
 const app = express();
 
@@ -52,6 +53,8 @@ app.use('/api/reviews', reviewsRoutes);
 app.use('/api/routes', transportRoutes);
 app.use('/api/itineraries', itinerariesRoutes);
 app.use('/api/uploads', uploadsRoutes);
+// /api/contact, /api/subscribe, /api/partners/apply, /api/faq
+app.use('/api', formsRoutes);
 
 // 5. These two always stay at the very end, after all routes
 app.use(notFound);

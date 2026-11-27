@@ -56,3 +56,14 @@ export const uploadLimiter = rateLimit({
     next(new TooManyRequestsError('Too many uploads. Try again in 1 hour'));
   },
 });
+
+// Public forms (contact, subscribe, partner application): 10 per IP per hour
+export const formLimiter = rateLimit({
+  windowMs: 60 * 60 * 1000,
+  limit: 10,
+  standardHeaders: 'draft-8',
+  legacyHeaders: false,
+  handler: (_req, _res, next) => {
+    next(new TooManyRequestsError('Too many form submissions. Try again in 1 hour'));
+  },
+});

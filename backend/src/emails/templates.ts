@@ -104,3 +104,71 @@ export function passwordResetForUser(to: string, fullName: string, token: string
 }
 
 export type { RequestSummary };
+
+// ─────────────────────────────────────────────
+// Forms
+// ─────────────────────────────────────────────
+
+const BUSINESS_TYPES: Record<string, string> = {
+  HOTEL: 'Otel',
+  RESTAURANT: 'Restoran',
+  GUEST_HOUSE: 'Qonaq evi',
+  ATTRACTION: 'Görməli yer',
+};
+
+export function contactMessageForAdmin(
+  to: string,
+  message: { id: number; name: string; email: string; message: string },
+): Mail {
+  return {
+    to,
+    subject: `Əlaqə formu #${message.id} — ${message.name}`,
+    text: [`Ad: ${message.name}`, `E-poçt: ${message.email}`, '', message.message].join('\n'),
+  };
+}
+
+type ApplicationSummary = {
+  id: number;
+  businessType: string;
+  businessName: string;
+  voen: string;
+  address: string;
+  contactName: string;
+  phone: string;
+  email: string;
+};
+
+export function partnerApplicationForAdmin(to: string, application: ApplicationSummary): Mail {
+  return {
+    to,
+    subject: `Yeni tərəfdaş müraciəti #${application.id} — ${application.businessName}`,
+    text: [
+      `Növ: ${BUSINESS_TYPES[application.businessType] ?? application.businessType}`,
+      `Ad: ${application.businessName}`,
+      `VÖEN: ${application.voen}`,
+      `Ünvan: ${application.address}`,
+      '',
+      `Əlaqə: ${application.contactName}`,
+      `Telefon: ${application.phone}`,
+      `E-poçt: ${application.email}`,
+      '',
+      'Müraciəti admin paneldə yoxlayın.',
+    ].join('\n'),
+  };
+}
+
+// To the business (local, so in Azerbaijani)
+export function partnerApplicationReceived(application: ApplicationSummary): Mail {
+  return {
+    to: application.email,
+    subject: `Seyyar: müraciətiniz qəbul edildi — ${application.businessName}`,
+    text: [
+      `Salam, ${application.contactName}!`,
+      '',
+      `"${application.businessName}" üçün tərəfdaşlıq müraciətiniz bizə çatdı.`,
+      'Komandamız məlumatları yoxlayıb 2 iş günü ərzində sizinlə əlaqə saxlayacaq.',
+      '',
+      'Seyyar',
+    ].join('\n'),
+  };
+}
