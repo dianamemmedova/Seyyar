@@ -247,5 +247,132 @@
     "textError": "Ən azı 10 simvol yazın və ya boş saxlayın.",
     "send": "Rəyi göndər",
     "thanks": "Təşəkkürlər! Rəyiniz dərc olundu."
+  },
+  "category": {
+    "hotel": "Otel",
+    "apartment": "Mənzil",
+    "hostel": "Hostel",
+    "azerbaijani": "Azərbaycan",
+    "seafood": "Dəniz məhsulları",
+    "kebab": "Kabab",
+    "turkish": "Türk",
+    "european": "Avropa",
+    "cafe": "Kafe",
+    "tea-house": "Çayxana",
+    "desserts": "Desertlər",
+    "street-food": "Küçə yeməkləri",
+    "historic": "Tarixi",
+    "museum": "Muzey",
+    "viewpoint": "Seyr yeri",
+    "park": "Park",
+    "modern": "Müasir memarlıq"
+  },
+  "filters": {
+    "title": "Filtrlər",
+    "clear": "Hamısını sıfırla",
+    "done": "Nəticələri göstər",
+    "search": "Ada görə axtar",
+    "searchPlaceholder": "məs. Şirvanşah",
+    "pricePerNight": "Bir gecənin qiyməti",
+    "ticketPrice": "Bilet qiyməti",
+    "priceMin": "Minimum qiymət",
+    "priceMax": "Maksimum qiymət",
+    "priceLevel": "Qiymət səviyyəsi",
+    "stars": "Ulduz",
+    "quick": "Tez filtrlər",
+    "openNow": "İndi açıqdır",
+    "hasDiscount": "Endirim var",
+    "verifiedOnly": "Yalnız təsdiqlənmiş tərəfdaşlar",
+    "area": "Ərazi",
+    "amenities": "Şərait",
+    "categories": {
+      "HOTEL": "Yerləşmə növü",
+      "RESTAURANT": "Mətbəx",
+      "ATTRACTION": "Yerin növü"
+    },
+    "close": "Bağla"
+  },
+  "list": {
+    "HOTEL": {
+      "title": "Bakıda otellər",
+      "subtitle": "Manatla qiymətləri olan otellər, mənzillər və hostellər. Sorğu göndərin, otel sizə cavab versin.",
+      "metaTitle": "Bakıda otellər — Seyyar"
+    },
+    "RESTAURANT": {
+      "title": "Bakıda harada yemək olar",
+      "subtitle": "Çayxanalar, ailə mətbəxləri və Xəzər sahilində terraslar. Real qiymətli menyular.",
+      "metaTitle": "Bakıda restoranlar — Seyyar"
+    },
+    "ATTRACTION": {
+      "title": "Bakıda görməli yerlər",
+      "subtitle": "Muzeylər, köhnə küçələr, parklar və seyr yerləri — iş saatları və bilet qiymətləri ilə.",
+      "metaTitle": "Bakıda görməli yerlər — Seyyar"
+    },
+    "found": "Tapıldı: {{count}}",
+    "sortBy": "Sıralama",
+    "sort": {
+      "recommended": "Tövsiyə olunan",
+      "rating": "Ən yüksək reytinq",
+      "price_asc": "Əvvəl ucuz",
+      "price_desc": "Əvvəl baha"
+    },
+    "view": "Görünüş",
+    "list": "Siyahı",
+    "map": "Xəritə",
+    "empty": "Bu filtrlərə uyğun heç nə tapılmadı."
+  },
+  "detail": {
+    "breadcrumb": "Naviqasiya",
+    "home": "Ana səhifə",
+    "photo": "Şəkil {{n}}",
+    "tabs": {
+      "about": "Ümumi",
+      "rooms": "Otaqlar",
+      "menu": "Menyu",
+      "amenities": "Şərait",
+      "location": "Yerləşmə",
+      "reviews": "Rəylər"
+    },
+    "about": {
+      "HOTEL": "Otel haqqında",
+      "RESTAURANT": "Restoran haqqında",
+      "ATTRACTION": "Bu yer haqqında"
+    },
+    "checkIn": "Otelə giriş: {{time}}",
+    "checkOut": "Oteldən çıxış: {{time}}",
+    "visitTime": "Ziyarət üçün təxminən {{hours}} saat",
+    "offers": "Aktiv təkliflər",
+    "offerUntil": "Etibarlıdır:",
+    "noRooms": "Hazırda sorğu üçün açıq otaq yoxdur.",
+    "tickets": "Bilet qiymətləri",
+    "free": "Pulsuz",
+    "openMap": "OpenStreetMap-də aç",
+    "chooseRoom": "Otaq seç",
+    "requestTable": "Masa sorğusu göndər",
+    "buyTicket": "Rəsmi saytda bilet al",
+    "openUntil": "{{time}}-dək açıqdır",
+    "website": "Sayt",
+    "closedDay": "Bağlıdır",
+    "nearby": {
+      "HOTEL": "Yaxınlıqdakı digər otellər",
+      "RESTAURANT": "Yaxınlıqdakı digər restoranlar",
+      "ATTRACTION": "Yaxınlıqdakı digər yerlər"
+    },
+    "reviewsCount": "{{count}} rəy",
+    "noReviews": "Hələ rəy yoxdur. Rəyləri yalnız həqiqətən gəlmiş qonaqlar yazır.",
+    "allReviews": "Hamısı",
+    "noReviewsOfType": "Bu növ səyahətçilərdən hələ rəy yoxdur.",
+    "partnerReply": "Sahibkarın cavabı",
+    "moreReviews": "Daha çox göstər",
+    "room": {
+      "guests": "{{count}} nəfərə qədər",
+      "breakfast": "Səhər yeməyi daxildir",
+      "freeCancellation": "Pulsuz ləğv",
+      "request": "Sorğu göndər"
+    },
+    "menu": {
+      "set": "Set",
+      "unavailable": "bu gün yoxdur"
+    }
   }
 }

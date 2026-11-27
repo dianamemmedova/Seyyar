@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, RESPONSE_INIT } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 import { LanguageService } from '../../core/language';
@@ -12,7 +12,9 @@ import { LanguageService } from '../../core/language';
     >
       <span class="material-symbols-outlined text-headline-lg text-sage">explore_off</span>
       <h1 class="text-headline-lg">{{ 'notFound.title' | translate }}</h1>
-      <p class="text-body-lg text-on-surface-variant">{{ 'notFound.text' | translate }}</p>
+      <p class="text-body-lg text-on-surface-variant">
+        {{ 'notFound.text' | translate }}
+      </p>
       <a
         [routerLink]="['/', language.current()]"
         class="rounded-md bg-primary px-5 py-3 text-label-lg text-on-primary"
@@ -24,4 +26,11 @@ import { LanguageService } from '../../core/language';
 })
 export class NotFound {
   protected readonly language = inject(LanguageService);
+
+  constructor() {
+    // On the server: answer with HTTP 404, so Google does not index an empty page.
+    // In the browser there is no response object (null).
+    const response = inject(RESPONSE_INIT, { optional: true });
+    if (response) response.status = 404;
+  }
 }

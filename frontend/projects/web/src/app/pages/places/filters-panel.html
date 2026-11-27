@@ -1,0 +1,198 @@
+<div class="flex flex-col gap-gutter-lg">
+  <div class="flex items-center justify-between">
+    <h2 class="text-title-md">{{ 'filters.title' | translate }}</h2>
+    @if (activeCount() > 0) {
+      <button
+        type="button"
+        class="text-label-lg text-primary hover:underline"
+        (click)="cleared.emit()"
+      >
+        {{ 'filters.clear' | translate }}
+      </button>
+    }
+  </div>
+
+  <!-- Search by name -->
+  <label class="field">
+    <span class="text-label-lg">{{ 'filters.search' | translate }}</span>
+    <input
+      #q
+      type="search"
+      class="input"
+      [value]="filters().q"
+      [placeholder]="'filters.searchPlaceholder' | translate"
+      (change)="search(q.value)"
+    />
+  </label>
+
+  <!-- Price from ... to (hotels per night, attractions per ticket) -->
+  @if (type() !== 'RESTAURANT' && options()?.price?.max) {
+    <fieldset class="flex flex-col gap-gutter-xs">
+      <legend class="mb-gutter-xs text-label-lg">
+        {{ (type() === 'HOTEL' ? 'filters.pricePerNight' : 'filters.ticketPrice') | translate }}
+      </legend>
+      <div class="flex items-center gap-gutter-sm">
+        <input
+          #min
+          type="number"
+          min="0"
+          inputmode="numeric"
+          class="input"
+          [attr.aria-label]="'filters.priceMin' | translate"
+          [value]="filters().priceMin ?? ''"
+          [placeholder]="options()?.price?.min ?? 0"
+          (change)="setPrice('priceMin', min.value)"
+        />
+        <span class="text-muted">–</span>
+        <input
+          #max
+          type="number"
+          min="0"
+          inputmode="numeric"
+          class="input"
+          [attr.aria-label]="'filters.priceMax' | translate"
+          [value]="filters().priceMax ?? ''"
+          [placeholder]="options()?.price?.max"
+          (change)="setPrice('priceMax', max.value)"
+        />
+        <span class="text-muted">₼</span>
+      </div>
+    </fieldset>
+  }
+
+  <!-- ₼ / ₼₼ / ₼₼₼ (restaurants) -->
+  @if (options()?.priceLevels?.length) {
+    <fieldset>
+      <legend class="mb-gutter-sm text-label-lg">
+        {{ 'filters.priceLevel' | translate }}
+      </legend>
+      <div class="flex flex-wrap gap-gutter-xs">
+        @for (level of options()!.priceLevels; track level) {
+          <button
+            type="button"
+            class="chip"
+            [attr.aria-pressed]="filters().priceLevel.includes(level)"
+            (click)="changed.emit({ priceLevel: toggle(filters().priceLevel, level) })"
+          >
+            {{ priceSymbols(level) }}
+          </button>
+        }
+      </div>
+    </fieldset>
+  }
+
+  <!-- 3★ 4★ 5★ (hotels) -->
+  @if (options()?.stars?.length) {
+    <fieldset>
+      <legend class="mb-gutter-sm text-label-lg">
+        {{ 'filters.stars' | translate }}
+      </legend>
+      <div class="flex flex-wrap gap-gutter-xs">
+        @for (star of options()!.stars; track star) {
+          <button
+            type="button"
+            class="chip"
+            [attr.aria-pressed]="filters().stars.includes(star)"
+            (click)="changed.emit({ stars: toggle(filters().stars, star) })"
+          >
+            {{ star }}★
+          </button>
+        }
+      </div>
+    </fieldset>
+  }
+
+  <!-- Quick switches -->
+  <fieldset class="flex flex-col gap-gutter-sm">
+    <legend class="mb-gutter-sm text-label-lg">
+      {{ 'filters.quick' | translate }}
+    </legend>
+    @if (type() !== 'HOTEL') {
+      <label class="check">
+        <input
+          type="checkbox"
+          [checked]="filters().openNow"
+          (change)="changed.emit({ openNow: !filters().openNow })"
+        />
+        {{ 'filters.openNow' | translate }}
+      </label>
+    }
+    <label class="check">
+      <input
+        type="checkbox"
+        [checked]="filters().hasDiscount"
+        (change)="changed.emit({ hasDiscount: !filters().hasDiscount })"
+      />
+      {{ 'filters.hasDiscount' | translate }}
+    </label>
+    <label class="check">
+      <input
+        type="checkbox"
+        [checked]="filters().verifiedOnly"
+        (change)="changed.emit({ verifiedOnly: !filters().verifiedOnly })"
+      />
+      {{ 'filters.verifiedOnly' | translate }}
+    </label>
+  </fieldset>
+
+  @if (options(); as opts) {
+    <!-- Area of Baku -->
+    @if (opts.areas.length) {
+      <fieldset class="flex flex-col gap-gutter-sm">
+        <legend class="mb-gutter-sm text-label-lg">
+          {{ 'filters.area' | translate }}
+        </legend>
+        @for (area of opts.areas; track area.slug) {
+          <label class="check">
+            <input
+              type="checkbox"
+              [checked]="filters().area.includes(area.slug)"
+              (change)="changed.emit({ area: toggle(filters().area, area.slug) })"
+            />
+            {{ area.name }}
+          </label>
+        }
+      </fieldset>
+    }
+
+    <!-- Hotel / hostel, cuisine, museum / park ... -->
+    @if (opts.categories.length > 1) {
+      <fieldset class="flex flex-col gap-gutter-sm">
+        <legend class="mb-gutter-sm text-label-lg">
+          {{ 'filters.categories.' + type() | translate }}
+        </legend>
+        @for (category of opts.categories; track category.value) {
+          <label class="check">
+            <input
+              type="checkbox"
+              [checked]="filters().categories.includes(category.value)"
+              (change)="changed.emit({ categories: toggle(filters().categories, category.value) })"
+            />
+            {{ 'category.' + category.value | translate }}
+            <span class="ml-auto text-body-sm text-muted tabular-nums">{{ category.count }}</span>
+          </label>
+        }
+      </fieldset>
+    }
+
+    <!-- Wi-Fi, parking, terrace ... (every chosen one must be there) -->
+    @if (opts.amenities.length) {
+      <fieldset class="flex flex-col gap-gutter-sm">
+        <legend class="mb-gutter-sm text-label-lg">
+          {{ 'filters.amenities' | translate }}
+        </legend>
+        @for (amenity of opts.amenities; track amenity.code) {
+          <label class="check">
+            <input
+              type="checkbox"
+              [checked]="filters().amenities.includes(amenity.code)"
+              (change)="changed.emit({ amenities: toggle(filters().amenities, amenity.code) })"
+            />
+            {{ amenity.name }}
+            <span class="ml-auto text-body-sm text-muted tabular-nums">{{ amenity.count }}</span>
+          </label>
+        }
+      </fieldset>
+    }
+  }
+</div>

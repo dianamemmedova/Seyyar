@@ -22,4 +22,24 @@
   .btn-secondary {
     @apply rounded-md border border-outline bg-surface-card px-4 py-2.5 text-label-lg transition-colors duration-150 hover:bg-sand disabled:opacity-60;
   }
+  /* Round toggle button: 4★, ₼₼, "List / Map". aria-pressed="true" = chosen */
+  .chip {
+    @apply rounded-full border border-outline bg-surface-card px-3.5 py-1.5 text-label-lg transition-colors duration-150 hover:bg-sand aria-pressed:border-primary aria-pressed:bg-primary aria-pressed:text-on-primary;
+  }
+  /* Checkbox with its text on one line */
+  .check {
+    @apply flex cursor-pointer items-center gap-gutter-sm text-body-md;
+  }
+  .check input {
+    @apply h-4 w-4 shrink-0 accent-primary;
+  }
+}
+
+/* Pins on the Leaflet map (ui/place-map.ts). Leaflet builds this HTML itself, so it is styled here. */
+.map-pin-wrap {
+  background: none;
+  border: none;
+}
+.map-pin {
+  @apply inline-block -translate-x-1/2 -translate-y-full cursor-pointer rounded-full border border-primary bg-surface-card px-2.5 py-1 text-label-md whitespace-nowrap text-primary shadow-card transition-colors hover:bg-primary hover:text-on-primary;
 }

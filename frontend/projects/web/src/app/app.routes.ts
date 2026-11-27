@@ -1,7 +1,23 @@
 import { Routes } from '@angular/router';
 import { accountGuard } from './core/account.guard';
 import { DEFAULT_LANG, langGuard } from './core/language';
+import { PLACE_SECTION } from './core/place-routes';
 import { Shell } from './layout/shell';
+
+// /hotels + /hotels/:slug, /restaurants + ..., /places + ... — the same two pages for each type.
+// data.type arrives in the component as the `type` input (withComponentInputBinding).
+const placeRoutes: Routes = Object.entries(PLACE_SECTION).flatMap(([type, section]) => [
+  {
+    path: section,
+    data: { type },
+    loadComponent: () => import('./pages/places/place-list').then((m) => m.PlaceList),
+  },
+  {
+    path: `${section}/:slug`,
+    data: { type },
+    loadComponent: () => import('./pages/places/place-detail').then((m) => m.PlaceDetail),
+  },
+]);
 
 export const routes: Routes = [
   // "/" -> "/en"
@@ -13,11 +29,18 @@ export const routes: Routes = [
     // Header + footer around every page
     component: Shell,
     children: [
-      { path: '', loadComponent: () => import('./pages/home/home').then((m) => m.Home) },
+      {
+        path: '',
+        loadComponent: () => import('./pages/home/home').then((m) => m.Home),
+      },
+      ...placeRoutes,
       {
         path: 'auth',
         children: [
-          { path: 'login', loadComponent: () => import('./pages/auth/login').then((m) => m.Login) },
+          {
+            path: 'login',
+            loadComponent: () => import('./pages/auth/login').then((m) => m.Login),
+          },
           {
             path: 'forgot-password',
             loadComponent: () =>

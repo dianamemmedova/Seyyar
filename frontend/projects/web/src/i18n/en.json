@@ -247,5 +247,132 @@
     "textError": "Write at least 10 characters, or leave it empty.",
     "send": "Send review",
     "thanks": "Thank you! Your review is published."
+  },
+  "category": {
+    "hotel": "Hotel",
+    "apartment": "Apartment",
+    "hostel": "Hostel",
+    "azerbaijani": "Azerbaijani",
+    "seafood": "Seafood",
+    "kebab": "Kebab",
+    "turkish": "Turkish",
+    "european": "European",
+    "cafe": "Cafe",
+    "tea-house": "Tea house",
+    "desserts": "Desserts",
+    "street-food": "Street food",
+    "historic": "Historic",
+    "museum": "Museum",
+    "viewpoint": "Viewpoint",
+    "park": "Park",
+    "modern": "Modern architecture"
+  },
+  "filters": {
+    "title": "Filters",
+    "clear": "Clear all",
+    "done": "Show results",
+    "search": "Search by name",
+    "searchPlaceholder": "e.g. Shirvanshah",
+    "pricePerNight": "Price per night",
+    "ticketPrice": "Ticket price",
+    "priceMin": "Minimum price",
+    "priceMax": "Maximum price",
+    "priceLevel": "Price level",
+    "stars": "Star rating",
+    "quick": "Quick filters",
+    "openNow": "Open now",
+    "hasDiscount": "Has a discount",
+    "verifiedOnly": "Verified partners only",
+    "area": "Area",
+    "amenities": "Amenities",
+    "categories": {
+      "HOTEL": "Property type",
+      "RESTAURANT": "Cuisine",
+      "ATTRACTION": "Kind of place"
+    },
+    "close": "Close"
+  },
+  "list": {
+    "HOTEL": {
+      "title": "Hotels in Baku",
+      "subtitle": "Hotels, apartments and hostels with prices in manat. Send a request and get an answer from the hotel.",
+      "metaTitle": "Hotels in Baku — Seyyar"
+    },
+    "RESTAURANT": {
+      "title": "Where to eat in Baku",
+      "subtitle": "Tea houses, family kitchens and Caspian terraces. Menus with real prices.",
+      "metaTitle": "Restaurants in Baku — Seyyar"
+    },
+    "ATTRACTION": {
+      "title": "Places to see in Baku",
+      "subtitle": "Museums, old streets, parks and viewpoints, with opening hours and ticket prices.",
+      "metaTitle": "Places to see in Baku — Seyyar"
+    },
+    "found": "Found: {{count}}",
+    "sortBy": "Sort by",
+    "sort": {
+      "recommended": "Recommended",
+      "rating": "Top rated",
+      "price_asc": "Price: low to high",
+      "price_desc": "Price: high to low"
+    },
+    "view": "View",
+    "list": "List",
+    "map": "Map",
+    "empty": "Nothing matches these filters."
+  },
+  "detail": {
+    "breadcrumb": "Breadcrumb",
+    "home": "Home",
+    "photo": "Photo {{n}}",
+    "tabs": {
+      "about": "Overview",
+      "rooms": "Rooms",
+      "menu": "Menu",
+      "amenities": "Amenities",
+      "location": "Location",
+      "reviews": "Reviews"
+    },
+    "about": {
+      "HOTEL": "About this stay",
+      "RESTAURANT": "About this restaurant",
+      "ATTRACTION": "About this place"
+    },
+    "checkIn": "Check-in from {{time}}",
+    "checkOut": "Check-out until {{time}}",
+    "visitTime": "Plan about {{hours}} h for a visit",
+    "offers": "Current offers",
+    "offerUntil": "Valid until",
+    "noRooms": "No rooms are open for requests right now.",
+    "tickets": "Ticket prices",
+    "free": "Free",
+    "openMap": "Open in OpenStreetMap",
+    "chooseRoom": "Choose a room",
+    "requestTable": "Request a table",
+    "buyTicket": "Buy a ticket on the official site",
+    "openUntil": "Open until {{time}}",
+    "website": "Website",
+    "closedDay": "Closed",
+    "nearby": {
+      "HOTEL": "Other hotels nearby",
+      "RESTAURANT": "Other restaurants nearby",
+      "ATTRACTION": "More places nearby"
+    },
+    "reviewsCount": "reviews: {{count}}",
+    "noReviews": "No reviews yet. Reviews come only from guests who really visited.",
+    "allReviews": "All",
+    "noReviewsOfType": "No reviews from this kind of trip yet.",
+    "partnerReply": "Reply from the owner",
+    "moreReviews": "Show more reviews",
+    "room": {
+      "guests": "Guests: up to {{count}}",
+      "breakfast": "Breakfast included",
+      "freeCancellation": "Free cancellation",
+      "request": "Send request"
+    },
+    "menu": {
+      "set": "Set",
+      "unavailable": "not available today"
+    }
   }
 }

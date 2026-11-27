@@ -24,7 +24,7 @@
                 "input": "projects/web/public"
               }
             ],
-            "styles": ["projects/web/src/styles.css"],
+            "styles": ["node_modules/leaflet/dist/leaflet.css", "projects/web/src/styles.css"],
             "server": "projects/web/src/main.server.ts",
             "outputMode": "server",
             "security": {

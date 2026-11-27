@@ -1,0 +1,417 @@
+@if (notFound()) {
+  <app-not-found />
+} @else if (place.error()) {
+  <section class="mx-auto max-w-[1200px] px-page-margin py-section">
+    <p class="mb-gutter-md text-body-md">{{ 'common.loadError' | translate }}</p>
+    <button type="button" class="btn-secondary" (click)="place.reload()">
+      {{ 'common.retry' | translate }}
+    </button>
+  </section>
+} @else if (data(); as p) {
+  <article class="mx-auto flex max-w-[1200px] flex-col gap-gutter-lg px-page-margin py-gutter-xl">
+    <!-- Breadcrumb -->
+    <nav class="text-body-sm text-muted" [attr.aria-label]="'detail.breadcrumb' | translate">
+      <a [routerLink]="['/', lang()]" class="hover:underline">{{ 'detail.home' | translate }}</a>
+      <span aria-hidden="true"> / </span>
+      <a [routerLink]="['/', lang(), section()]" class="hover:underline">{{
+        'list.' + p.type + '.title' | translate
+      }}</a>
+      <span aria-hidden="true"> / </span>
+      <span>{{ p.name }}</span>
+    </nav>
+
+    <!-- Title -->
+    <header class="flex flex-wrap items-start justify-between gap-gutter-md">
+      <div class="flex flex-col gap-gutter-xs">
+        <div class="flex flex-wrap gap-gutter-xs">
+          @if (p.isVerified) {
+            <span
+              class="inline-flex items-center gap-1 rounded-full bg-sage-soft px-2.5 py-0.5 text-label-md text-on-sage"
+            >
+              <span class="material-symbols-outlined text-[14px]" aria-hidden="true">verified</span>
+              {{ 'card.verified' | translate }}
+            </span>
+          }
+          @for (category of p.categories; track category) {
+            <span class="rounded-full bg-sand px-2.5 py-0.5 text-label-md text-on-sand">{{
+              'category.' + category | translate
+            }}</span>
+          }
+        </div>
+        <h1 class="text-headline-lg">
+          {{ p.name }}
+          @if (p.stars) {
+            <span
+              class="align-middle text-title-md text-secondary"
+              [attr.aria-label]="p.stars + '★'"
+              >{{ starsText() }}</span
+            >
+          }
+        </h1>
+        <p class="flex flex-wrap items-center gap-x-gutter-sm text-body-md text-on-surface-variant">
+          @if (p.ratingCount > 0) {
+            <span class="inline-flex items-center gap-1">
+              <span
+                class="material-symbols-outlined filled text-[18px] text-secondary"
+                aria-hidden="true"
+                >star</span
+              >
+              <span class="text-label-lg text-on-surface tabular-nums">{{
+                p.ratingAvg.toFixed(1)
+              }}</span>
+              <a [routerLink]="[]" fragment="reviews" class="hover:underline"
+                >({{ 'detail.reviewsCount' | translate: { count: p.ratingCount } }})</a
+              >
+            </span>
+            <span aria-hidden="true">·</span>
+          }
+          @if (p.type === 'RESTAURANT' && p.priceLevel) {
+            <span class="text-primary">{{ priceLevelText() }}</span>
+            <span aria-hidden="true">·</span>
+          }
+          <span>{{ p.address ?? p.area?.name }}</span>
+        </p>
+      </div>
+      <app-favorite-button [slug]="p.slug" />
+    </header>
+
+    <app-photo-gallery [photos]="p.photos" [name]="p.name" />
+
+    <!-- Jump links -->
+    <nav class="flex gap-gutter-md overflow-x-auto border-b border-outline-variant text-label-lg">
+      <a [routerLink]="[]" fragment="about" class="shrink-0 py-2 hover:text-primary">{{
+        'detail.tabs.about' | translate
+      }}</a>
+      @if (p.rooms.length) {
+        <a [routerLink]="[]" fragment="rooms" class="shrink-0 py-2 hover:text-primary">{{
+          'detail.tabs.rooms' | translate
+        }}</a>
+      }
+      @if (p.menu.length) {
+        <a [routerLink]="[]" fragment="menu" class="shrink-0 py-2 hover:text-primary">{{
+          'detail.tabs.menu' | translate
+        }}</a>
+      }
+      @if (p.amenities.length) {
+        <a [routerLink]="[]" fragment="amenities" class="shrink-0 py-2 hover:text-primary">{{
+          'detail.tabs.amenities' | translate
+        }}</a>
+      }
+      <a [routerLink]="[]" fragment="location" class="shrink-0 py-2 hover:text-primary">{{
+        'detail.tabs.location' | translate
+      }}</a>
+      <a [routerLink]="[]" fragment="reviews" class="shrink-0 py-2 hover:text-primary">{{
+        'detail.tabs.reviews' | translate
+      }}</a>
+    </nav>
+
+    <div class="flex flex-col gap-gutter-xl lg:flex-row lg:items-start">
+      <!-- ── Main column ───────────────────────── -->
+      <div class="flex min-w-0 flex-1 flex-col gap-gutter-xl">
+        <section id="about" class="flex scroll-mt-24 flex-col gap-gutter-md">
+          <h2 class="text-headline-sm">
+            {{ 'detail.about.' + p.type | translate }}
+          </h2>
+          @if (p.description) {
+            <p class="text-body-lg whitespace-pre-line text-on-surface-variant">
+              {{ p.description }}
+            </p>
+          }
+
+          <!-- Short facts -->
+          <ul class="grid grid-cols-1 gap-gutter-sm text-body-md sm:grid-cols-2">
+            @if (p.checkInTime) {
+              <li class="flex items-center gap-gutter-sm">
+                <span class="material-symbols-outlined text-sage" aria-hidden="true">login</span>
+                {{ 'detail.checkIn' | translate: { time: p.checkInTime } }}
+              </li>
+            }
+            @if (p.checkOutTime) {
+              <li class="flex items-center gap-gutter-sm">
+                <span class="material-symbols-outlined text-sage" aria-hidden="true">logout</span>
+                {{ 'detail.checkOut' | translate: { time: p.checkOutTime } }}
+              </li>
+            }
+            @if (visitHours(); as hours) {
+              <li class="flex items-center gap-gutter-sm">
+                <span class="material-symbols-outlined text-sage" aria-hidden="true">schedule</span>
+                {{ 'detail.visitTime' | translate: { hours } }}
+              </li>
+            }
+            @if (p.area) {
+              <li class="flex items-center gap-gutter-sm">
+                <span class="material-symbols-outlined text-sage" aria-hidden="true"
+                  >location_on</span
+                >
+                {{ p.area.name }}
+              </li>
+            }
+          </ul>
+        </section>
+
+        <!-- Offers -->
+        @if (p.offers.length) {
+          <section class="flex flex-col gap-gutter-sm">
+            <h2 class="text-headline-sm">{{ 'detail.offers' | translate }}</h2>
+            @for (offer of p.offers; track offer.title) {
+              <div class="flex gap-gutter-md rounded-lg bg-terracotta-soft p-gutter-md">
+                <span class="material-symbols-outlined text-terracotta" aria-hidden="true"
+                  >sell</span
+                >
+                <div>
+                  <p class="text-label-lg">
+                    {{ offer.title }}
+                    @if (offer.discountPercent) {
+                      <span class="text-terracotta tabular-nums">
+                        −{{ offer.discountPercent }}%</span
+                      >
+                    }
+                  </p>
+                  @if (offer.description) {
+                    <p class="text-body-md">{{ offer.description }}</p>
+                  }
+                  <p class="text-body-sm text-muted">
+                    {{ 'detail.offerUntil' | translate }}
+                    {{
+                      offer.endsAt
+                        | date
+                          : 'd
+              MMM y'
+                          : undefined
+                          : lang()
+                    }}
+                  </p>
+                </div>
+              </div>
+            }
+          </section>
+        }
+
+        <!-- Hotel rooms -->
+        @if (p.type === 'HOTEL') {
+          <section id="rooms" class="flex scroll-mt-24 flex-col gap-gutter-md">
+            <h2 class="text-headline-sm">{{ 'detail.tabs.rooms' | translate }}</h2>
+            @if (p.rooms.length) {
+              <app-rooms-list [slug]="p.slug" [rooms]="p.rooms" />
+            } @else {
+              <p class="text-body-md text-muted">
+                {{ 'detail.noRooms' | translate }}
+              </p>
+            }
+          </section>
+        }
+
+        <!-- Restaurant menu -->
+        @if (p.menu.length) {
+          <section id="menu" class="flex scroll-mt-24 flex-col gap-gutter-md">
+            <h2 class="text-headline-sm">{{ 'detail.tabs.menu' | translate }}</h2>
+            <app-menu-list [menu]="p.menu" />
+          </section>
+        }
+
+        <!-- Attraction tickets -->
+        @if (p.tickets.length) {
+          <section class="flex flex-col gap-gutter-md">
+            <h2 class="text-headline-sm">{{ 'detail.tickets' | translate }}</h2>
+            <table class="w-full rounded-lg bg-surface-card text-body-md">
+              <tbody>
+                @for (ticket of p.tickets; track ticket.label) {
+                  <tr class="border-b border-outline-variant/60 last:border-0">
+                    <th scope="row" class="p-gutter-sm text-left font-normal">
+                      {{ ticket.label }}
+                    </th>
+                    <td class="p-gutter-sm text-right text-label-lg tabular-nums">
+                      @if (ticket.isFree) {
+                        <span class="text-success">{{ 'detail.free' | translate }}</span>
+                      } @else {
+                        {{ ticket.price | azn }}
+                      }
+                    </td>
+                  </tr>
+                }
+              </tbody>
+            </table>
+          </section>
+        }
+
+        <!-- Amenities -->
+        @if (p.amenities.length) {
+          <section id="amenities" class="flex scroll-mt-24 flex-col gap-gutter-md">
+            <h2 class="text-headline-sm">
+              {{ 'detail.tabs.amenities' | translate }}
+            </h2>
+            <ul class="grid grid-cols-1 gap-gutter-sm text-body-md sm:grid-cols-2">
+              @for (amenity of p.amenities; track amenity.code) {
+                <li class="flex items-center gap-gutter-sm">
+                  <span class="material-symbols-outlined text-sage" aria-hidden="true">{{
+                    amenity.icon ?? 'check'
+                  }}</span>
+                  {{ amenity.name }}
+                </li>
+              }
+            </ul>
+          </section>
+        }
+
+        <!-- Map and contacts -->
+        <section id="location" class="flex scroll-mt-24 flex-col gap-gutter-md">
+          <h2 class="text-headline-sm">
+            {{ 'detail.tabs.location' | translate }}
+          </h2>
+          <app-place-map class="h-72" [pins]="pins()" [zoom]="16" />
+          <div class="flex flex-wrap items-center gap-gutter-md text-body-md">
+            <span class="flex items-center gap-1">
+              <span class="material-symbols-outlined text-sage" aria-hidden="true"
+                >location_on</span
+              >
+              {{ p.address ?? p.area?.name }}
+            </span>
+            @if (osmLink(); as link) {
+              <a
+                [href]="link"
+                target="_blank"
+                rel="noopener"
+                class="text-label-lg text-primary hover:underline"
+                >{{ 'detail.openMap' | translate }}</a
+              >
+            }
+          </div>
+        </section>
+
+        <section id="reviews" class="flex scroll-mt-24 flex-col gap-gutter-md">
+          <h2 class="text-headline-sm">
+            {{ 'detail.tabs.reviews' | translate }}
+          </h2>
+          <app-place-reviews [slug]="p.slug" />
+        </section>
+      </div>
+
+      <!-- ── Side card ─────────────────────────── -->
+      <aside
+        class="flex flex-col gap-gutter-md rounded-lg border border-outline-variant/60 bg-surface-card p-gutter-lg shadow-card lg:sticky lg:top-24 lg:w-80 lg:shrink-0"
+      >
+        @switch (p.type) {
+          @case ('HOTEL') {
+            @if (p.priceFrom !== null) {
+              <p>
+                <span class="text-body-sm text-muted">{{ 'card.from' | translate }} </span>
+                <span class="text-headline-sm text-primary tabular-nums">{{
+                  p.priceFrom | azn
+                }}</span>
+                <span class="text-body-sm text-muted"> / {{ 'card.night' | translate }}</span>
+              </p>
+            }
+            <a [routerLink]="[]" fragment="rooms" class="btn-primary text-center">{{
+              'detail.chooseRoom' | translate
+            }}</a>
+          }
+          @case ('RESTAURANT') {
+            <a
+              class="btn-primary text-center"
+              [routerLink]="['/', lang(), 'restaurants', p.slug, 'request']"
+              >{{ 'detail.requestTable' | translate }}</a
+            >
+          }
+          @default {
+            @if (p.tickets.length === 0 && !p.priceFrom) {
+              <p class="text-title-md text-success">{{ 'card.free' | translate }}</p>
+            } @else if (p.priceFrom) {
+              <p>
+                <span class="text-body-sm text-muted">{{ 'card.ticket' | translate }} </span>
+                <span class="text-headline-sm text-primary tabular-nums">{{
+                  p.priceFrom | azn
+                }}</span>
+              </p>
+            }
+            @if (p.officialTicketUrl) {
+              <a
+                [href]="p.officialTicketUrl"
+                target="_blank"
+                rel="noopener"
+                class="btn-primary text-center"
+                >{{ 'detail.buyTicket' | translate }}</a
+              >
+            }
+          }
+        }
+
+        <!-- Open now / hours -->
+        @if (p.isOpenNow !== null) {
+          <p
+            class="flex items-center gap-gutter-sm text-label-lg"
+            [class]="p.isOpenNow ? 'text-success' : 'text-muted'"
+          >
+            <span class="material-symbols-outlined text-[18px]" aria-hidden="true">schedule</span>
+            @if (p.isOpenNow && p.today?.closesAt) {
+              {{ 'detail.openUntil' | translate: { time: p.today!.closesAt } }}
+            } @else if (p.isOpenNow) {
+              {{ 'card.openNow' | translate }}
+            } @else {
+              {{ 'card.closed' | translate }}
+            }
+          </p>
+        }
+        @if (p.openingHours.length) {
+          <app-opening-hours [hours]="p.openingHours" />
+        }
+
+        <!-- Contacts -->
+        @if (p.contact.phone || whatsappLink() || p.contact.website) {
+          <div class="flex flex-col gap-gutter-sm border-t border-outline-variant/60 pt-gutter-md">
+            @if (p.contact.phone; as phone) {
+              <a
+                [href]="'tel:' + phone"
+                class="flex items-center gap-gutter-sm text-body-md hover:text-primary"
+              >
+                <span class="material-symbols-outlined text-sage" aria-hidden="true">call</span
+                >{{ phone }}
+              </a>
+            }
+            @if (whatsappLink(); as link) {
+              <a
+                [href]="link"
+                target="_blank"
+                rel="noopener"
+                class="flex items-center gap-gutter-sm text-body-md hover:text-primary"
+              >
+                <span class="material-symbols-outlined text-sage" aria-hidden="true">chat</span
+                >WhatsApp
+              </a>
+            }
+            @if (p.contact.website; as website) {
+              <a
+                [href]="website"
+                target="_blank"
+                rel="noopener"
+                class="flex items-center gap-gutter-sm text-body-md hover:text-primary"
+              >
+                <span class="material-symbols-outlined text-sage" aria-hidden="true">language</span
+                >{{ 'detail.website' | translate }}
+              </a>
+            }
+          </div>
+        }
+      </aside>
+    </div>
+
+    <!-- Nearby -->
+    @if (nearbyPlaces().length) {
+      <section class="flex flex-col gap-gutter-md">
+        <h2 class="text-headline-sm">
+          {{ 'detail.nearby.' + p.type | translate }}
+        </h2>
+        <div class="grid grid-cols-1 gap-gutter-lg md:grid-cols-3">
+          @for (near of nearbyPlaces(); track near.id) {
+            <app-place-card [place]="near" />
+          }
+        </div>
+      </section>
+    }
+  </article>
+} @else {
+  <!-- Loading -->
+  <div class="mx-auto flex max-w-[1200px] flex-col gap-gutter-lg px-page-margin py-gutter-xl">
+    <div class="h-10 w-2/3 animate-pulse rounded-md bg-sand"></div>
+    <div class="aspect-video animate-pulse rounded-lg bg-sand md:aspect-[21/9]"></div>
+  </div>
+}

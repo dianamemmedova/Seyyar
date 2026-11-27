@@ -1,0 +1,185 @@
+<section class="mx-auto flex max-w-[1200px] flex-col gap-gutter-lg px-page-margin py-gutter-xl">
+  <!-- Title -->
+  <header class="flex flex-col gap-gutter-xs">
+    <nav class="text-body-sm text-muted" [attr.aria-label]="'detail.breadcrumb' | translate">
+      <a [routerLink]="['/', lang()]" class="hover:underline">{{ 'detail.home' | translate }}</a>
+      <span aria-hidden="true"> / </span>
+      <span>{{ 'list.' + type() + '.title' | translate }}</span>
+    </nav>
+    <h1 class="text-headline-lg">
+      {{ 'list.' + type() + '.title' | translate }}
+    </h1>
+    <p class="text-body-lg text-on-surface-variant">
+      {{ 'list.' + type() + '.subtitle' | translate }}
+    </p>
+  </header>
+
+  <!-- Toolbar: filters (mobile), count, sort, list / map -->
+  <div class="flex flex-wrap items-center gap-gutter-md">
+    <button type="button" class="btn-secondary lg:hidden" (click)="filtersOpen.set(true)">
+      <span class="material-symbols-outlined align-middle text-[18px]" aria-hidden="true"
+        >tune</span
+      >
+      {{ 'filters.title' | translate }}
+      @if (activeCount() > 0) {
+        <span class="tabular-nums">({{ activeCount() }})</span>
+      }
+    </button>
+
+    @if (pageMeta(); as m) {
+      <p class="text-body-md text-on-surface-variant" aria-live="polite">
+        {{ 'list.found' | translate: { count: m.total } }}
+      </p>
+    }
+
+    <div class="ml-auto flex items-center gap-gutter-md">
+      <label class="flex items-center gap-gutter-sm text-body-md">
+        <span class="text-muted">{{ 'list.sortBy' | translate }}</span>
+        <select #sort class="input w-auto py-2" (change)="setSort(sort.value)">
+          @for (option of sorts; track option) {
+            <option [value]="option" [selected]="filters().sort === option">
+              {{ 'list.sort.' + option | translate }}
+            </option>
+          }
+        </select>
+      </label>
+
+      <div class="flex gap-gutter-xs" role="group" [attr.aria-label]="'list.view' | translate">
+        <button
+          type="button"
+          class="chip"
+          [attr.aria-pressed]="filters().view === 'list'"
+          (click)="update({ view: 'list', page: filters().page })"
+        >
+          {{ 'list.list' | translate }}
+        </button>
+        <button
+          type="button"
+          class="chip"
+          [attr.aria-pressed]="filters().view === 'map'"
+          (click)="update({ view: 'map' })"
+        >
+          {{ 'list.map' | translate }}
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="flex items-start gap-gutter-xl">
+    <!-- Filters: a column on desktop, a full-screen panel on mobile -->
+    <aside
+      class="lg:sticky lg:top-24 lg:block lg:w-72 lg:shrink-0"
+      [class]="
+        filtersOpen() ? 'fixed inset-0 z-50 overflow-y-auto bg-surface p-page-margin' : 'hidden'
+      "
+    >
+      @if (filtersOpen()) {
+        <button
+          type="button"
+          class="mb-gutter-md flex items-center gap-1 text-label-lg lg:hidden"
+          [attr.aria-label]="'filters.close' | translate"
+          (click)="filtersOpen.set(false)"
+        >
+          <span class="material-symbols-outlined" aria-hidden="true">close</span>
+        </button>
+      }
+      <app-filters-panel
+        [type]="type()"
+        [filters]="filters()"
+        [options]="filterOptions()"
+        [activeCount]="activeCount()"
+        (changed)="update($event)"
+        (cleared)="clear()"
+      />
+      @if (filtersOpen()) {
+        <!-- Mobile: big button at the bottom of the panel -->
+        <div class="sticky bottom-0 mt-gutter-lg bg-surface py-gutter-md lg:hidden">
+          <button type="button" class="btn-primary w-full" (click)="filtersOpen.set(false)">
+            {{ 'filters.done' | translate }}
+            @if (pageMeta(); as m) {
+              <span class="tabular-nums">({{ m.total }})</span>
+            }
+          </button>
+        </div>
+      }
+    </aside>
+
+    <div class="flex min-w-0 flex-1 flex-col gap-gutter-lg">
+      @if (places.error() && !result()) {
+        <div class="rounded-lg border border-outline-variant bg-surface-card p-gutter-lg">
+          <p class="mb-gutter-md text-body-md">
+            {{ 'common.loadError' | translate }}
+          </p>
+          <button type="button" class="btn-secondary" (click)="places.reload()">
+            {{ 'common.retry' | translate }}
+          </button>
+        </div>
+      } @else if (!result()) {
+        <!-- First load: grey placeholder cards -->
+        <div class="grid grid-cols-1 gap-gutter-lg sm:grid-cols-2 xl:grid-cols-3">
+          @for (i of [1, 2, 3, 4, 5, 6]; track i) {
+            <div class="h-72 animate-pulse rounded-lg bg-sand"></div>
+          }
+        </div>
+      } @else if (items().length === 0) {
+        <div
+          class="flex flex-col items-start gap-gutter-md rounded-lg border border-outline-variant bg-surface-card p-gutter-lg"
+        >
+          <span class="material-symbols-outlined text-headline-md text-sage" aria-hidden="true"
+            >search_off</span
+          >
+          <p class="text-title-md">{{ 'list.empty' | translate }}</p>
+          @if (activeCount() > 0) {
+            <button type="button" class="btn-primary" (click)="clear()">
+              {{ 'filters.clear' | translate }}
+            </button>
+          }
+        </div>
+      } @else {
+        @if (filters().view === 'map') {
+          <app-place-map class="h-[480px]" [pins]="pins()" (pinClick)="openPin($event)" />
+        }
+
+        <div
+          class="grid grid-cols-1 gap-gutter-lg transition-opacity sm:grid-cols-2 xl:grid-cols-3"
+          [class.opacity-60]="places.isLoading()"
+        >
+          @for (place of items(); track place.id) {
+            <app-place-card [place]="place" />
+          }
+        </div>
+
+        @if (pageMeta(); as m) {
+          @if (m.totalPages > 1) {
+            <nav
+              class="flex items-center justify-center gap-gutter-md"
+              [attr.aria-label]="'common.pages' | translate"
+            >
+              <a
+                [routerLink]="[]"
+                [queryParams]="{ page: m.page - 1 > 1 ? m.page - 1 : null }"
+                queryParamsHandling="merge"
+                class="btn-secondary"
+                [class.pointer-events-none]="m.page <= 1"
+                [class.opacity-40]="m.page <= 1"
+                >{{ 'common.previous' | translate }}</a
+              >
+              <span class="text-body-md text-muted tabular-nums"
+                >{{ m.page }} / {{ m.totalPages }}</span
+              >
+              <a
+                [routerLink]="[]"
+                [queryParams]="{ page: m.page + 1 }"
+                queryParamsHandling="merge"
+                class="btn-secondary"
+                [class.pointer-events-none]="m.page >= m.totalPages"
+                [class.opacity-40]="m.page >= m.totalPages"
+                >{{ 'common.next' | translate }}</a
+              >
+            </nav>
+          }
+        }
+      }
+    </div>
+  </div>
+</section>

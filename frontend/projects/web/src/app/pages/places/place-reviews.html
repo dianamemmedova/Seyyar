@@ -1,0 +1,114 @@
+<div class="flex flex-col gap-gutter-lg">
+  @if (meta(); as m) {
+    <div class="flex items-center gap-gutter-md">
+      @if (m.ratingCount > 0) {
+        <span
+          class="flex h-14 w-14 items-center justify-center rounded-lg bg-primary text-headline-sm text-on-primary tabular-nums"
+          >{{ m.ratingAvg.toFixed(1) }}</span
+        >
+        <p class="text-body-md text-on-surface-variant">
+          {{ 'detail.reviewsCount' | translate: { count: m.ratingCount } }}
+        </p>
+      } @else {
+        <p class="text-body-md text-on-surface-variant">
+          {{ 'detail.noReviews' | translate }}
+        </p>
+      }
+    </div>
+  }
+  @if ((meta()?.ratingCount ?? 0) > 0) {
+    <div
+      class="flex flex-wrap gap-gutter-xs"
+      role="group"
+      [attr.aria-label]="'review.travelType' | translate"
+    >
+      <button
+        type="button"
+        class="chip"
+        [attr.aria-pressed]="travelType() === null"
+        (click)="filter(null)"
+      >
+        {{ 'detail.allReviews' | translate }}
+      </button>
+      @for (type of travelTypes; track type) {
+        <button
+          type="button"
+          class="chip"
+          [attr.aria-pressed]="travelType() === type"
+          (click)="filter(type)"
+        >
+          {{ 'review.types.' + type | translate }}
+        </button>
+      }
+    </div>
+  }
+  @if (reviews.error() && !meta()) {
+    <p class="text-body-md text-muted">{{ 'common.loadError' | translate }}</p>
+  }
+  @if (meta() && items().length === 0 && (meta()?.ratingCount ?? 0) > 0) {
+    <p class="text-body-md text-muted">
+      {{ 'detail.noReviewsOfType' | translate }}
+    </p>
+  }
+
+  <ul class="flex flex-col gap-gutter-md">
+    @for (review of items(); track review.id) {
+      <li
+        class="flex flex-col gap-gutter-sm rounded-lg border border-outline-variant/60 bg-surface-card p-gutter-md"
+      >
+        <div class="flex items-start justify-between gap-gutter-md">
+          <div>
+            <p class="text-label-lg">
+              {{ review.author }}
+              @if (review.travelType) {
+                <span class="text-muted">
+                  · {{ 'review.types.' + review.travelType | translate }}</span
+                >
+              }
+            </p>
+            <p class="text-body-sm text-muted">
+              {{ review.createdAt | date: 'd MMM y' : undefined : lang() }}
+            </p>
+          </div>
+          <span class="text-secondary" [attr.aria-label]="review.rating + ' / 5'">{{
+            stars(review.rating)
+          }}</span>
+        </div>
+        @if (review.text) {
+          <p class="text-body-md whitespace-pre-line">{{ review.text }}</p>
+        }
+        @if (review.photos.length) {
+          <div class="flex gap-gutter-sm overflow-x-auto">
+            @for (photo of review.photos; track photo) {
+              <img
+                [src]="photo"
+                alt=""
+                loading="lazy"
+                class="h-20 w-28 shrink-0 rounded-md object-cover"
+              />
+            }
+          </div>
+        }
+        @if (review.partnerReply) {
+          <div class="rounded-md bg-sage-soft p-gutter-sm text-body-md">
+            <p class="mb-1 text-label-md text-on-sage">
+              {{ 'detail.partnerReply' | translate }}
+            </p>
+            <p class="whitespace-pre-line">{{ review.partnerReply }}</p>
+          </div>
+        }
+      </li>
+    }
+  </ul>
+
+  @if (hasMore()) {
+    <button
+      type="button"
+      class="btn-secondary self-start"
+      [disabled]="reviews.isLoading()"
+      (click)="showMore()"
+    >
+      {{ (reviews.isLoading() ? 'common.wait' : 'detail.moreReviews') | translate }}
+    </button>
+  }
+</div>
